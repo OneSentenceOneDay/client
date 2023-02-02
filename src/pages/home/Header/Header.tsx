@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import { Wrap } from "./styled";
+import { Wrap, LoginBut } from "./styled";
 import Logo from "../../../assets/images/logo.svg";
 
 function Header() {
@@ -7,6 +7,7 @@ function Header() {
 		<>
 			<Wrap>
 				<img src={Logo} />
+				<LoginBut>로그인</LoginBut>
 			</Wrap>
 			<Outlet />
 		</>
