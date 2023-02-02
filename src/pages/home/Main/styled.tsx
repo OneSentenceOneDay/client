@@ -3,9 +3,10 @@ import palette from "../../../lib/palette";
 
 export const Wrap = styled.div`
 	background-color: ${palette.blue1};
-	width: 100vw;
-	height: 100vh;
+	// width: 100vw;
+	// height: 100vh;
 	margin-left: -0.55vw;
+	margin-right: -0.4vw;
 	text-align: center;
 `;
 
@@ -38,9 +39,11 @@ export const Eng = styled.div`
 export const Sentence = styled.div`
 	margin-top: 2vh;
 	font-family: times-new-roman;
+	color: ${palette.gray2};
 `;
 
 export const Source = styled.div`
 	margin-top: 1vh;
 	font-family: times-new-roman-italic;
+	color: ${palette.gray2};
 `;

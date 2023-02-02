@@ -3,10 +3,11 @@ import palette from "../../../lib/palette";
 
 export const Wrap = styled.div`
 	background-color: ${palette.blue1};
-	width: 100vw;
+	// width: 100vw;
 	height: 7vh;
 	line-height: 7vh;
 	margin-left: -0.55vw;
+	margin-right: -0.4vw;
 	margin-top: -1vh;
 	border-bottom: 1px solid ${palette.gray1};
 	img {
