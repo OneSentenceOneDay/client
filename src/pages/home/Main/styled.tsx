@@ -171,6 +171,7 @@ export const Right = styled.div`
 export const Contents = styled.div`
 	text-align: left;
 	font-size: 1.125rem;
+	line-height: 2rem;
 	font-family: Pretendard-Regular;
 	color: ${palette.gray2};
 `;
