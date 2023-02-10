@@ -21,7 +21,7 @@ export const Today = styled.div`
 	line-height: 1.5rem;
 	width: 8.5rem;
 	margin: 0 auto;
-	border-bottom: 1px solid ${palette.blue2};
+	border-bottom: 0.063rem solid ${palette.blue2};
 	font-family: Pretendard-Regular;
 `;
 
@@ -74,7 +74,7 @@ export const Input = styled.div`
 		height: 10rem;
 		padding: 1rem 1.25rem;
 		border-radius: 0.625rem 0.625rem 0rem 0rem;
-		border: 1px solid ${palette.gray4};
+		border: 0.063rem solid ${palette.gray4};
 		resize: none;
 		font-size: 1.125rem;
 		font-family: Pretendard-Regular;
@@ -89,7 +89,7 @@ export const Menu = styled.div`
 	width: 52.25rem;
 	height: 3.75rem;
 	border-radius: 0rem 0rem 0.625rem 0.625rem;
-	border: 1px solid ${palette.gray4};
+	border: 0.063rem solid ${palette.gray4};
 	margin-top: -0.4rem;
 `;
 
@@ -129,7 +129,11 @@ export const ListContainer = styled.div`
 	padding-top: 3rem;
 `;
 
-export const Sort = styled.div``;
+export const Sorted = styled.div<{ flag: boolean }>`
+	color: ${(props) => (props.flag ? palette.blue2 : palette.blue4)};
+	font-family: Pretendard-bold;
+`;
+
 export const SortMenu = styled.div`
 	text-align: right;
 	div {
@@ -137,6 +141,7 @@ export const SortMenu = styled.div`
 		cursor: pointer;
 		font-family: Pretendard-Regular;
 		font-size: 1rem;
+		padding-right: 1rem;
 	}
 `;
 
@@ -150,7 +155,7 @@ export const Comment = styled.div`
 	margin-top: 1rem;
 	padding: 1.5rem 1.5rem 1rem 1.5rem;
 	border-radius: 0.625rem 0.625rem 0.625rem 0.625rem;
-	border: 1px solid ${palette.gray4};
+	border: 0.063rem solid ${palette.gray4};
 `;
 
 export const Name = styled.div`
@@ -184,13 +189,33 @@ export const Num = styled.div`
 `;
 
 export const BottomDiv = styled.div`
-	// background-color: blue;
 	text-align: right;
-	padding-top: 2rem;
-	// padding-right: 2rem;
+	padding-top: 1.7rem;
 `;
 
 export const HeartDiv = styled.div`
 	display: inline-block;
 	margin-left: 1.5rem;
+`;
+
+export const PageSection = styled.div`
+	margin-top: 1rem;
+	display: flex;
+	justify-content: right;
+`;
+
+export const PageDiv = styled.div<{ flag: boolean }>`
+	display: inline-block;
+	width: 2rem;
+	height: 2rem;
+	line-height: 2rem;
+	border: 0.063rem solid
+		${(props) => (props.flag ? palette.blue2 : palette.gray4)};
+	border-radius: 0.625rem 0.625rem 0.625rem 0.625rem;
+	background-color: ${(props) => (props.flag ? palette.blue2 : palette.gray3)};
+	color: ${(props) => (props.flag ? palette.gray3 : palette.blue2)};
+	font-family: Pretendard-Regular;
+	font-size: 0.9rem;
+	cursor: pointer;
+	margin-left: 0.4rem;
 `;

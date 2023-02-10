@@ -13,7 +13,7 @@ import {
 	Icons,
 	Button,
 	ListContainer,
-	Sort,
+	Sorted,
 	SortMenu,
 	LikeSort,
 	LatestSort,
@@ -26,14 +26,15 @@ import {
 	HeartDiv,
 	Right,
 	BottomDiv,
+	PageSection,
+	PageDiv,
 } from "./styled";
 
 import Copy from "../../../assets/icons/copy-icon.svg";
 import Listen from "../../../assets/icons/listen-icon.svg";
 import Trans from "../../../assets/icons/trans-icon.svg";
 import Heart from "../../../assets/icons/heart-icon.svg";
-import { useState } from "react";
-import palette from "../../../lib/palette";
+import { useEffect, useState } from "react";
 
 const week = ["일", "월", "화", "수", "목", "금", "토"];
 let today = new Date();
@@ -142,28 +143,46 @@ function Main() {
 	const Sort = ({ name, mark }: SortProps) => {
 		if (mark) {
 			return (
-				<div
-					style={{ color: `${palette.blue2}`, fontFamily: "Pretendard-bold" }}
+				<Sorted
+					flag={mark}
 					onClick={() => {
 						setNowSort(name);
 					}}
 				>
 					{name}
-				</div>
+				</Sorted>
 			);
 		} else {
 			return (
-				<div
-					style={{ color: `${palette.blue4}` }}
+				<Sorted
+					flag={mark}
 					onClick={() => {
 						setNowSort(name);
 					}}
 				>
 					{name}
-				</div>
+				</Sorted>
 			);
 		}
 	};
+
+	const [page, setPage] = useState(1);
+	let firstNum = page - (page % 5) + 1;
+	let lastNum = page - (page % 5) + 5;
+	const [pages, setPages] = useState<number[]>([]);
+	const lastPage: number = 10;
+	useEffect(() => {
+		const tempPages: number[] = [];
+		for (let i = firstNum; i <= lastNum; i++) {
+			tempPages.push(i);
+		}
+		setPages(tempPages);
+	}, [page]);
+	// const tempPages: number[] = [];
+	// for (let i = 1; i <= lastPage; i++) {
+	// 	tempPages.push(i);
+	// }
+	// setPages(tempPages);
 
 	return (
 		<>
@@ -208,6 +227,67 @@ function Main() {
 							/>
 						))}
 					</Comments>
+					<PageSection>
+						<PageDiv
+							style={{ fontSize: "1rem" }}
+							flag={false}
+							onClick={() => {
+								setPage(1);
+							}}
+						>
+							&#171;
+						</PageDiv>
+						<PageDiv
+							style={{ fontSize: "1rem" }}
+							flag={false}
+							onClick={() => {
+								if (page > 1) {
+									setPage(page - 1);
+								}
+							}}
+						>
+							&#8249;
+						</PageDiv>
+						{pages.map((pageNum) =>
+							pageNum === page ? (
+								<PageDiv
+									flag={true}
+									key={pageNum}
+									onClick={() => setPage(pageNum)}
+								>
+									{pageNum}
+								</PageDiv>
+							) : (
+								<PageDiv
+									flag={false}
+									key={pageNum}
+									onClick={() => setPage(pageNum)}
+								>
+									{pageNum}
+								</PageDiv>
+							)
+						)}
+						<PageDiv
+							style={{ fontSize: "1rem" }}
+							flag={false}
+							onClick={() => {
+								if (lastPage > page) {
+									setPage(page + 1);
+								}
+							}}
+						>
+							&#8250;
+						</PageDiv>
+						<PageDiv
+							style={{ fontSize: "1rem" }}
+							flag={false}
+							onClick={() => {
+								setPage(lastPage);
+							}}
+						>
+							&#187;
+						</PageDiv>
+					</PageSection>
 				</ListContainer>
 			</Wrap>
 		</>

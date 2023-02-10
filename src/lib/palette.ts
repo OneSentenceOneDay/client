@@ -7,6 +7,7 @@ const palette = {
 
 	gray1: "#909090",
 	gray2: "#404040",
+	gray3: "#F5F6FF",
 	gray4: "#D9D9D9",
 };
 
