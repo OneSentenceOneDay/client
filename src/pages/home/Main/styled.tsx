@@ -19,7 +19,7 @@ export const Today = styled.div`
 	color: ${palette.blue2};
 	height: 1.5rem;
 	line-height: 1.5rem;
-	width: 9rem;
+	width: 8.5rem;
 	margin: 0 auto;
 	border-bottom: 1px solid ${palette.blue2};
 	font-family: Pretendard-Regular;
@@ -29,14 +29,14 @@ export const Text = styled.div`
 	font-size: 1.125rem;
 	margin-top: 1rem;
 	font-family: Pretendard-Regular;
-	color: ${palette.gray3};
+	color: ${palette.gray2};
 `;
 
 export const Eng = styled.div`
 	font-size: 2.25rem;
 	margin-top: 2rem;
 	font-family: Pretendard-Bold;
-	color: ${palette.gray3};
+	color: ${palette.gray2};
 `;
 
 export const Sentence = styled.div`
@@ -99,7 +99,7 @@ export const Icons = styled.div`
 	width: 36rem;
 	height: 3.25rem;
 	padding-top: 0.5rem;
-	line-height: 3.75rem;
+	line-height: 3.25rem;
 	text-align: left;
 	float: left;
 	img {
@@ -115,7 +115,7 @@ export const Button = styled.div`
 	color: #ffffff;
 	font-size: 1.125rem;
 	background-color: ${palette.blue3};
-	font-family: Pretendara-Bold;
+	font-family: Pretendard-Bold;
 	border-radius: 0rem 0rem 0.625rem 0rem;
 	float: left;
 	&:hover {
@@ -124,13 +124,72 @@ export const Button = styled.div`
 `;
 
 export const ListContainer = styled.div`
-	background-color: red;
-	margin-top: 3rem;
+	width: 52.25rem;
+	margin: 0 auto;
+	padding-top: 3rem;
 `;
 
 export const Sort = styled.div``;
-export const SortMenu = styled.div``;
+export const SortMenu = styled.div`
+	text-align: right;
+	div {
+		display: inline-block;
+		cursor: pointer;
+		font-family: Pretendard-Regular;
+		font-size: 1rem;
+	}
+`;
 
 export const LikeSort = styled.div``;
 export const LatestSort = styled.div``;
 export const MineSort = styled.div``;
+
+export const Comments = styled.div``;
+export const Comment = styled.div`
+	background-color: #ffffff;
+	margin-top: 1rem;
+	padding: 1.5rem 1.5rem 1rem 1.5rem;
+	border-radius: 0.625rem 0.625rem 0.625rem 0.625rem;
+	border: 1px solid ${palette.gray4};
+`;
+
+export const Name = styled.div`
+	font-size: 1.125rem;
+	font-family: Pretendard-Regular;
+	text-align: left;
+	width: 9rem;
+	vertical-align: top;
+	display: inline-block;
+	color: ${palette.gray2};
+`;
+
+export const Right = styled.div`
+	width: 39.75rem;
+	display: inline-block;
+`;
+
+export const Contents = styled.div`
+	text-align: left;
+	font-size: 1.125rem;
+	font-family: Pretendard-Regular;
+	color: ${palette.gray2};
+`;
+
+export const Num = styled.div`
+	display: inline-block;
+	font-size: 0.875rem;
+	font-family: Pretendard-Regular;
+	color: ${palette.blue2};
+`;
+
+export const BottomDiv = styled.div`
+	// background-color: blue;
+	text-align: right;
+	padding-top: 2rem;
+	// padding-right: 2rem;
+`;
+
+export const HeartDiv = styled.div`
+	display: inline-block;
+	margin-left: 1.5rem;
+`;
