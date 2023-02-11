@@ -14,7 +14,7 @@ export default createGlobalStyle`
         font-weight: medium;
     }
     @font-face {
-        font-family: "Pretendara-Medium";
+        font-family: "Pretendarad-Medium";
         src: local("Pretendara-Medium"), url(${Font_M}) format('woff2'); 
         font-weight: medium;
     }

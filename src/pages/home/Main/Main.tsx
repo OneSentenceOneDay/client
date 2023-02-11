@@ -240,6 +240,7 @@ function Main() {
 					</SortMenu>
 					{sample2.map((c) => (
 						<Com
+							key={c.id}
 							id={c.id}
 							name={c.name}
 							contents={c.contents}
