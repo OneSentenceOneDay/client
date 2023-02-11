@@ -35,7 +35,7 @@ export const Text = styled.div`
 export const Eng = styled.div`
 	font-size: 2.25rem;
 	margin-top: 2rem;
-	font-family: Pretendard-Bold;
+	font-family: Pretendard-Bolder;
 	color: ${palette.gray2};
 `;
 
@@ -149,7 +149,6 @@ export const LikeSort = styled.div``;
 export const LatestSort = styled.div``;
 export const MineSort = styled.div``;
 
-export const Comments = styled.div``;
 export const Comment = styled.div`
 	background-color: #ffffff;
 	margin-top: 1rem;
@@ -191,6 +190,9 @@ export const Num = styled.div`
 export const BottomDiv = styled.div`
 	text-align: right;
 	padding-top: 1.7rem;
+	img {
+		cursor: pointer;
+	}
 `;
 
 export const HeartDiv = styled.div`
@@ -218,4 +220,99 @@ export const PageDiv = styled.div<{ flag: boolean }>`
 	font-size: 0.9rem;
 	cursor: pointer;
 	margin-left: 0.4rem;
+`;
+
+export const MailSection = styled.div`
+	margin-top: 5rem;
+`;
+
+export const MailText = styled.div`
+	display: inline-block;
+	text-align: left;
+	width: 26.125rem;
+`;
+
+export const MailInput = styled.div`
+	display: inline-block;
+	vertical-align: top;
+	width: 26.125rem;
+`;
+
+export const TopText = styled.div`
+	white-space: pre-line;
+	font-family: Pretendard-Bold;
+	font-size: 1.5rem;
+	color: ${palette.gray2};
+`;
+
+export const BottomText = styled.div`
+	font-family: Pretendard-Regular;
+	font-size: 1.25rem;
+	margin-top: 1.65rem;
+`;
+
+export const InputSec = styled.div`
+	display: inline-block;
+`;
+
+export const InputDiv = styled.div<{ position: string }>`
+	input {
+		&: focus {
+			outline: none;
+		}
+		width: 18rem;
+		height: 1.3rem;
+		padding: 1rem 1.25rem;
+		border-radius: ${(props) =>
+			props.position === "up"
+				? "0.625rem 0rem 0rem 0rem "
+				: "0rem 0rem 0rem 0.625rem "};
+		border: 0.063rem solid ${palette.gray4};
+		margin-top: ${(props) => (props.position === "up" ? "" : "-0.063rem")}}
+		font-size: 1.125rem;
+		font-family: Pretendard-Regular;
+		}
+		input::placeholder {
+			color: ${palette.gray4};
+	}
+`;
+
+export const InputBut = styled.div`
+	background-color: ${palette.blue2};
+	display: inline-block;
+	vertical-align: top;
+	width: 4.5rem;
+	height: 6.82rem;
+	line-height: 6.82rem;
+	font-family: Pretendard-Bold;
+	color: #ffffff;
+	border-radius: 0rem 0.625rem 0.625rem 0rem;
+	font-size: 1.125rem;
+	cursor: pointer;
+`;
+
+export const Footer = styled.div`
+	margin-top: 7rem;
+	text-align: right;
+	margin-bottom: -0.625rem;
+`;
+
+export const Member = styled.div<{ flag: boolean }>`
+	white-space: pre-line;
+	display: inline-block;
+	color: ${palette.blue2};
+	font-family: Pretendara-Light;
+	font-size: 0.563rem;
+	text-align: right;
+	padding-left: 1rem;
+	padding-right: ${(props) => (props.flag ? "1rem" : "")}}
+	border-right: ${(props) =>
+		props.flag ? `0.063rem solid ${palette.blue2}` : ""}}
+`;
+export const Copyright = styled.div`
+	font-family: Pretendara-Light;
+	font-size: 0.563rem;
+	color: ${palette.blue2};
+	margin-top: 1rem;
+	padding-bottom: 2rem;
 `;

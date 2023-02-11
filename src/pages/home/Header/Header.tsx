@@ -1,6 +1,7 @@
 import { Outlet } from "react-router-dom";
 import { Wrap, LoginBut } from "./styled";
 import Logo from "../../../assets/images/logo.svg";
+import Profile from "../../../assets/icon/profile.svg";
 
 function Header() {
 	return (

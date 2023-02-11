@@ -18,7 +18,6 @@ import {
 	LikeSort,
 	LatestSort,
 	MineSort,
-	Comments,
 	Comment,
 	Name,
 	Contents,
@@ -28,6 +27,17 @@ import {
 	BottomDiv,
 	PageSection,
 	PageDiv,
+	MailSection,
+	MailText,
+	MailInput,
+	TopText,
+	BottomText,
+	InputDiv,
+	InputBut,
+	InputSec,
+	Footer,
+	Member,
+	Copyright,
 } from "./styled";
 
 import Copy from "../../../assets/icons/copy-icon.svg";
@@ -184,6 +194,12 @@ function Main() {
 	// }
 	// setPages(tempPages);
 
+	const [writing, setWriting] = useState<string>("");
+	useEffect(() => {
+		if (sample.eng.includes(writing)) {
+		}
+	});
+
 	return (
 		<>
 			<Wrap>
@@ -197,7 +213,12 @@ function Main() {
 					<SourceKor>{sample.source_kor}</SourceKor>
 				</TodayStc>
 				<Input>
-					<textarea placeholder={placeholder} />
+					<textarea
+						placeholder={placeholder}
+						onChange={(e) => {
+							setWriting(e.target.value);
+						}}
+					/>
 					<Menu>
 						<Icons>
 							<img src={Copy} alt="copy" />
@@ -217,16 +238,14 @@ function Main() {
 							)
 						)}
 					</SortMenu>
-					<Comments>
-						{sample2.map((c) => (
-							<Com
-								id={c.id}
-								name={c.name}
-								contents={c.contents}
-								hearts={c.hearts}
-							/>
-						))}
-					</Comments>
+					{sample2.map((c) => (
+						<Com
+							id={c.id}
+							name={c.name}
+							contents={c.contents}
+							hearts={c.hearts}
+						/>
+					))}
 					<PageSection>
 						<PageDiv
 							style={{ fontSize: "1rem" }}
@@ -288,6 +307,41 @@ function Main() {
 							&#187;
 						</PageDiv>
 					</PageSection>
+					<MailSection>
+						<MailText>
+							<TopText>
+								{
+									"osod의 하루 한 문장 영어 글쓰기 연습을\n메일로 받아 보길 원하시나요?"
+								}
+							</TopText>
+							<BottomText>이름과 이메일을 남겨주세요.</BottomText>
+						</MailText>
+						<MailInput>
+							<InputSec>
+								<InputDiv position={"up"}>
+									<input placeholder="이름을 입력하세요" />
+								</InputDiv>
+								<InputDiv position={"down"}>
+									<input placeholder="Email 입력하세요" />
+								</InputDiv>
+							</InputSec>
+							<InputBut>구독</InputBut>
+						</MailInput>
+					</MailSection>
+					<Footer>
+						<Member flag={true}>
+							{"서비스기획/디자인: 김경화\nbrilliantkkh@naver.com"}
+						</Member>
+						<Member flag={true}>
+							{"프론트엔드개발: 엄소현\nsohy19@hufs.ac.kr"}
+						</Member>
+						<Member flag={false}>
+							{"백엔드개발: 이현제\n201802977@hufs.ac.kr"}
+						</Member>
+						<Copyright>
+							Copyright © osod All Rights Reserved. Prod By. SWYG
+						</Copyright>
+					</Footer>
 				</ListContainer>
 			</Wrap>
 		</>

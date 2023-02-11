@@ -2,7 +2,8 @@ import { createGlobalStyle } from "styled-components";
 import Font_L from "../assets/fonts/Pretendard-Light.woff2";
 import Font_M from "../assets/fonts/Pretendard-Medium.woff2";
 import Font_R from "../assets/fonts/Pretendard-Regular.woff2";
-import Font_B from "../assets/fonts/Pretendard-Bold.woff2";
+import Font_B from "../assets/fonts/Pretendard-SemiBold.woff2";
+import Font_BM from "../assets/fonts/Pretendard-Bold.woff2";
 import Eng_Font_I from "../assets/fonts/times-new-roman-italic.ttf";
 import Eng_Font from "../assets/fonts/times-new-roman.ttf";
 
@@ -25,6 +26,11 @@ export default createGlobalStyle`
     @font-face {
         font-family: "Pretendard-Bold";
         src: local("Pretendard-Bold"), url(${Font_B}) format('woff2');
+        font-weight: bold;
+    }
+    @font-face {
+        font-family: "Pretendard-Bolder";
+        src: local("Pretendard-Bolder"), url(${Font_BM}) format('woff2');
         font-weight: bold;
     }
     @font-face {
