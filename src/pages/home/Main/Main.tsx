@@ -1,7 +1,5 @@
 import {
-	Wrap,
 	TodayStc,
-	Today,
 	Text,
 	Eng,
 	Sentence,
@@ -15,18 +13,6 @@ import {
 	ListContainer,
 	Sorted,
 	SortMenu,
-	LikeSort,
-	LatestSort,
-	MineSort,
-	Comment,
-	Name,
-	Contents,
-	Num,
-	HeartDiv,
-	Right,
-	BottomDiv,
-	PageSection,
-	PageDiv,
 	MailSection,
 	MailText,
 	MailInput,
@@ -35,30 +21,18 @@ import {
 	InputDiv,
 	InputBut,
 	InputSec,
-	Footer,
-	Member,
-	Copyright,
 } from "./styled";
-
+import { Wrap } from "./../../../components/styled";
 import Copy from "../../../assets/icons/copy-icon.svg";
 import Listen from "../../../assets/icons/listen-icon.svg";
 import Trans from "../../../assets/icons/trans-icon.svg";
-import Heart from "../../../assets/icons/heart-icon.svg";
 import { useEffect, useState } from "react";
+import Com from "components/Comment";
+import Pagination from "components/Pagination";
+import DateComponent, { CalcToday } from "components/DateComponent";
+import FooterComponent from "components/Footer";
 
-const week = ["일", "월", "화", "수", "목", "금", "토"];
-let today = new Date();
-let date =
-	today.getFullYear() +
-	"." +
-	(today.getMonth() + 1 > 9
-		? today.getMonth() + 1
-		: "0" + (today.getMonth() + 1)) +
-	"." +
-	(today.getDate() > 9 ? today.getDate() : "0" + today.getDate()) +
-	" " +
-	week[today.getDay()] +
-	"요일";
+const today = CalcToday();
 
 type stcType = {
 	date: string;
@@ -69,19 +43,20 @@ type stcType = {
 	source_kor: string;
 };
 
-type commetType = {
-	id: number;
-	name: string;
-	contents: string;
-	hearts: number;
-};
 const sample: stcType = {
-	date: date,
+	date: today,
 	eng: "is on his way ~",
 	sentence: "Instead of seeing stars, he is on his way to becoming one.",
 	sentence_kor: "별을 보는 대신, 그는 별이 되는 길을 가고 있다.",
 	source: "- The New York Times sport",
 	source_kor: "출처: 뉴욕타임스 스포츠",
+};
+
+type commetType = {
+	id: number;
+	name: string;
+	contents: string;
+	hearts: number;
 };
 
 const sample2: commetType[] = [
@@ -128,24 +103,6 @@ type SortProps = {
 	mark: boolean;
 };
 
-export function Com({ id, name, contents, hearts }: commetType) {
-	return (
-		<Comment>
-			<Name>{name}</Name>
-			<Right>
-				<Contents>{contents}</Contents>
-				<BottomDiv>
-					<img src={Trans} alt="translate" />
-					<HeartDiv>
-						<img src={Heart} alt="heart" />
-						<Num>{hearts}</Num>
-					</HeartDiv>
-				</BottomDiv>
-			</Right>
-		</Comment>
-	);
-}
-
 function Main() {
 	const sorts = ["좋아요순", "최신순", "내가 쓴 문장"];
 	const [nowSort, setNowSort] = useState("좋아요순");
@@ -176,24 +133,6 @@ function Main() {
 		}
 	};
 
-	const [page, setPage] = useState(1);
-	let firstNum = page - (page % 5) + 1;
-	let lastNum = page - (page % 5) + 5;
-	const [pages, setPages] = useState<number[]>([]);
-	const lastPage: number = 10;
-	useEffect(() => {
-		const tempPages: number[] = [];
-		for (let i = firstNum; i <= lastNum; i++) {
-			tempPages.push(i);
-		}
-		setPages(tempPages);
-	}, [page]);
-	// const tempPages: number[] = [];
-	// for (let i = 1; i <= lastPage; i++) {
-	// 	tempPages.push(i);
-	// }
-	// setPages(tempPages);
-
 	const [writing, setWriting] = useState<string>("");
 	useEffect(() => {
 		if (sample.eng.includes(writing)) {
@@ -201,151 +140,76 @@ function Main() {
 	});
 
 	return (
-		<>
-			<Wrap>
-				<TodayStc>
-					<Today>{sample.date}</Today>
-					<Text>오늘의 구문을 사용하여 영어 글쓰기를 연습해 보세요.</Text>
-					<Eng>{sample.eng}</Eng>
-					<Sentence>{sample.sentence}</Sentence>
-					<SentenceKor>{sample.sentence_kor}</SentenceKor>
-					<Source>{sample.source}</Source>
-					<SourceKor>{sample.source_kor}</SourceKor>
-				</TodayStc>
-				<Input>
-					<textarea
-						placeholder={placeholder}
-						onChange={(e) => {
-							setWriting(e.target.value);
-						}}
+		<Wrap>
+			<TodayStc>
+				<DateComponent date={today} page={"main"} />
+				<Text>오늘의 구문을 사용하여 영어 글쓰기를 연습해 보세요.</Text>
+				<Eng>{sample.eng}</Eng>
+				<Sentence>{sample.sentence}</Sentence>
+				<SentenceKor>{sample.sentence_kor}</SentenceKor>
+				<Source>{sample.source}</Source>
+				<SourceKor>{sample.source_kor}</SourceKor>
+			</TodayStc>
+			<Input>
+				<textarea
+					placeholder={placeholder}
+					onChange={(e) => {
+						setWriting(e.target.value);
+					}}
+				/>
+				<Menu>
+					<Icons>
+						<img src={Copy} alt="copy" />
+						<img src={Listen} alt="listen" />
+						<img src={Trans} alt="translate" />
+					</Icons>
+					<Button>영작 완료</Button>
+				</Menu>
+			</Input>
+			<ListContainer>
+				<SortMenu>
+					{sorts.map((s, idx) =>
+						s === nowSort ? (
+							<Sort key={idx} name={s} mark={true} />
+						) : (
+							<Sort key={idx} name={s} mark={false} />
+						)
+					)}
+				</SortMenu>
+				{sample2.map((c) => (
+					<Com
+						key={c.id}
+						id={c.id}
+						name={c.name}
+						contents={c.contents}
+						hearts={c.hearts}
 					/>
-					<Menu>
-						<Icons>
-							<img src={Copy} alt="copy" />
-							<img src={Listen} alt="listen" />
-							<img src={Trans} alt="translate" />
-						</Icons>
-						<Button>영작 완료</Button>
-					</Menu>
-				</Input>
-				<ListContainer>
-					<SortMenu>
-						{sorts.map((s, idx) =>
-							s === nowSort ? (
-								<Sort key={idx} name={s} mark={true} />
-							) : (
-								<Sort key={idx} name={s} mark={false} />
-							)
-						)}
-					</SortMenu>
-					{sample2.map((c) => (
-						<Com
-							key={c.id}
-							id={c.id}
-							name={c.name}
-							contents={c.contents}
-							hearts={c.hearts}
-						/>
-					))}
-					<PageSection>
-						<PageDiv
-							style={{ fontSize: "1rem" }}
-							flag={false}
-							onClick={() => {
-								setPage(1);
-							}}
-						>
-							&#171;
-						</PageDiv>
-						<PageDiv
-							style={{ fontSize: "1rem" }}
-							flag={false}
-							onClick={() => {
-								if (page > 1) {
-									setPage(page - 1);
-								}
-							}}
-						>
-							&#8249;
-						</PageDiv>
-						{pages.map((pageNum) =>
-							pageNum === page ? (
-								<PageDiv
-									flag={true}
-									key={pageNum}
-									onClick={() => setPage(pageNum)}
-								>
-									{pageNum}
-								</PageDiv>
-							) : (
-								<PageDiv
-									flag={false}
-									key={pageNum}
-									onClick={() => setPage(pageNum)}
-								>
-									{pageNum}
-								</PageDiv>
-							)
-						)}
-						<PageDiv
-							style={{ fontSize: "1rem" }}
-							flag={false}
-							onClick={() => {
-								if (lastPage > page) {
-									setPage(page + 1);
-								}
-							}}
-						>
-							&#8250;
-						</PageDiv>
-						<PageDiv
-							style={{ fontSize: "1rem" }}
-							flag={false}
-							onClick={() => {
-								setPage(lastPage);
-							}}
-						>
-							&#187;
-						</PageDiv>
-					</PageSection>
-					<MailSection>
-						<MailText>
-							<TopText>
-								{
-									"osod의 하루 한 문장 영어 글쓰기 연습을\n메일로 받아 보길 원하시나요?"
-								}
-							</TopText>
-							<BottomText>이름과 이메일을 남겨주세요.</BottomText>
-						</MailText>
-						<MailInput>
-							<InputSec>
-								<InputDiv position={"up"}>
-									<input placeholder="이름을 입력하세요" />
-								</InputDiv>
-								<InputDiv position={"down"}>
-									<input placeholder="Email 입력하세요" />
-								</InputDiv>
-							</InputSec>
-							<InputBut>구독</InputBut>
-						</MailInput>
-					</MailSection>
-					<Footer>
-						<Member flag={true}>
-							{"서비스기획/디자인: 김경화\nbrilliantkkh@naver.com"}
-						</Member>
-						<Member flag={true}>
-							{"프론트엔드개발: 엄소현\nsohy19@hufs.ac.kr"}
-						</Member>
-						<Member flag={false}>
-							{"백엔드개발: 이현제\n201802977@hufs.ac.kr"}
-						</Member>
-						<Copyright>
-							Copyright © osod All Rights Reserved. Prod By. SWYG
-						</Copyright>
-					</Footer>
-				</ListContainer>
-			</Wrap>
-		</>
+				))}
+				<Pagination />
+				<MailSection>
+					<MailText>
+						<TopText>
+							{
+								"osod의 하루 한 문장 영어 글쓰기 연습을\n메일로 받아 보길 원하시나요?"
+							}
+						</TopText>
+						<BottomText>이름과 이메일을 남겨주세요.</BottomText>
+					</MailText>
+					<MailInput>
+						<InputSec>
+							<InputDiv position={"up"}>
+								<input placeholder="이름을 입력하세요" />
+							</InputDiv>
+							<InputDiv position={"down"}>
+								<input placeholder="Email 입력하세요" />
+							</InputDiv>
+						</InputSec>
+						<InputBut>구독</InputBut>
+					</MailInput>
+				</MailSection>
+				<FooterComponent />
+			</ListContainer>
+		</Wrap>
 	);
 }
 

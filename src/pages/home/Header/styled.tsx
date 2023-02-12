@@ -62,6 +62,5 @@ export const Menudiv = styled.div<{ mark: string }>`
 			: `${palette.gray1}`}}
 	font-size: ${(props) => (props.mark === "name" ? "1.5rem" : "1.125rem")}}
 	font-family: Pretendarad-Medium;
-	
-
+	cursor: ${(props) => (props.mark === "name" ? "" : "pointer")}} 
 `;
