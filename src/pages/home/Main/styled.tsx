@@ -104,14 +104,15 @@ export const Button = styled.div`
 `;
 
 export const ListContainer = styled.div`
-	width: 52.25rem;
+	width: 52.75rem;
 	margin: 0 auto;
 	padding-top: 3rem;
 `;
 
 export const Sorted = styled.div<{ flag: boolean }>`
 	color: ${(props) => (props.flag ? palette.blue2 : palette.blue4)};
-	font-family: Pretendard-bold;
+	font-family: ${(props) =>
+		props.flag ? "Pretendard-Bold" : "Pretendard-Regular"};
 `;
 
 export const SortMenu = styled.div`
@@ -119,9 +120,8 @@ export const SortMenu = styled.div`
 	div {
 		display: inline-block;
 		cursor: pointer;
-		font-family: Pretendard-Regular;
 		font-size: 1rem;
-		padding-right: 1rem;
+		margin-right: 1rem;
 	}
 `;
 

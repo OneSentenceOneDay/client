@@ -13,6 +13,7 @@ export const Wrap = styled.div`
 		width: 5rem;
 		vertical-align: middle;
 		margin-left: 3rem;
+		cursor: pointer;
 	}
 	display: flex;
 	justify-content: space-between;
@@ -48,7 +49,6 @@ export const Menu = styled.div`
 `;
 
 export const Menudiv = styled.div<{ mark: string }>`
-	// background-color: red;
 	margin-bottom: 1rem;
 	width: 8.75rem;
 	height: 3.25rem;

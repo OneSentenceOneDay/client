@@ -36,7 +36,7 @@ export const ItemCount = styled.div`
 `;
 
 export const Sentence = styled.div<{ flag: boolean }>`
-	width: 49.75rem;
+	width: 52.75rem;
 	margin: 0 auto;
 	padding-top: 5rem;
 	min-height: ${(props) => (props.flag ? "35rem" : "")};

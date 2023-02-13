@@ -63,6 +63,7 @@ export const Num = styled.div`
 	color: ${palette.blue2};
 `;
 
+// ************** Pagination.tsx **************
 export const PageSection = styled.div`
 	margin-top: 1rem;
 	display: flex;
@@ -85,7 +86,7 @@ export const PageDiv = styled.div<{ flag: boolean }>`
 	margin-left: 0.4rem;
 `;
 
-// ************** Date.tsx **************
+// ************** DatecComponent.tsx **************
 export const Today = styled.div<{ page: string }>`
 	font-size: 1rem;
 	color: ${(props) => (props.page === "main" ? palette.blue2 : palette.gray2)};

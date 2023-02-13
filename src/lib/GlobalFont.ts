@@ -14,15 +14,16 @@ export default createGlobalStyle`
         font-weight: medium;
     }
     @font-face {
-        font-family: "Pretendarad-Medium";
-        src: local("Pretendara-Medium"), url(${Font_M}) format('woff2'); 
-        font-weight: medium;
-    }
-    @font-face {
         font-family: "Pretendard-Regular";
         src: local("Pretendard-Regular"), url(${Font_R}) format('woff2');
         font-weight: regular;
     }
+    @font-face {
+        font-family: "Pretendarad-Medium";
+        src: local("Pretendara-Medium"), url(${Font_M}) format('woff2'); 
+        font-weight: medium;
+    }
+
     @font-face {
         font-family: "Pretendard-Bold";
         src: local("Pretendard-Bold"), url(${Font_B}) format('woff2');
