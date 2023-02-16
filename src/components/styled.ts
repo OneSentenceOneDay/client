@@ -82,8 +82,13 @@ export const PageDiv = styled.div<{ flag: boolean }>`
 	color: ${(props) => (props.flag ? palette.gray3 : palette.blue2)};
 	font-family: Pretendard-Regular;
 	font-size: 0.9rem;
-	cursor: pointer;
 	margin-left: 0.4rem;
+	&:hover {
+		cursor: pointer;
+		color: ${(props) => (props.flag ? palette.gray3 : palette.blue2)};
+		background-color: ${(props) =>
+			props.flag ? palette.blue2 : palette.blue1};
+	}
 `;
 
 // ************** DatecComponent.tsx **************

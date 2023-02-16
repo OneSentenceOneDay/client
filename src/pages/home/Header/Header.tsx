@@ -28,9 +28,9 @@ export function Dropdown() {
 }
 
 function Header() {
-	const [login, setLogin] = useState<boolean>(false);
-	const [view, setView] = useState<boolean>(false);
-	const [openLogin, setOpenLogin] = useState<boolean>(false);
+	const [login, setLogin] = useState<boolean>(true);
+	const [view, setView] = useState<boolean>(false); // dropdown
+	const [openLogin, setOpenLogin] = useState<boolean>(false); // login modal
 
 	// ************ navigation ************
 	const navigate = useNavigate();
@@ -44,24 +44,23 @@ function Header() {
 	}, [openLogin]);
 
 	// ************ close dropdown ************
-	const ref = useRef<HTMLDivElement>(null);
-	const clickOutside = (e: any) => {
-		if (ref.current !== null && !ref.current.contains(e.target)) {
-			setView(!view);
-		}
-	};
+	const outsideRef = useRef<HTMLDivElement>(null);
 	useEffect(() => {
-		if (view) {
-			window.addEventListener("click", clickOutside);
+		function handleClickOutside(event: any) {
+			if (outsideRef.current && !outsideRef.current.contains(event.target)) {
+				setView(false);
+				// setOpenLogin(false);
+			}
 		}
+		document.addEventListener("click", handleClickOutside);
 		return () => {
-			window.removeEventListener("click", clickOutside);
+			document.removeEventListener("click", handleClickOutside);
 		};
-	}, [view]);
+	}, [outsideRef]);
 
 	return (
 		<>
-			<Wrap>
+			<Wrap ref={outsideRef}>
 				<img src={Logo} onClick={goHome} />
 				{login ? (
 					<>

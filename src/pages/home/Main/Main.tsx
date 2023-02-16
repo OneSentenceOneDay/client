@@ -140,7 +140,7 @@ function Main() {
 	useEffect(() => {
 		if (sample.eng.includes(writing)) {
 		}
-	});
+	}, []);
 
 	// ************ open login modal ************
 	type ChildProps = {

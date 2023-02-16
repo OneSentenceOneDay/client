@@ -77,5 +77,9 @@ export const Day = styled.div<{ flag: boolean }>`
 	color: ${(props) => (props.flag ? palette.blue2 : palette.gray2)};
 	border-bottom: ${(props) =>
 		props.flag ? `0.125rem solid ${palette.blue2}` : ""};
-	cursor: pointer;
+	&:hover {
+		cursor: pointer;
+		background-color: ${(props) =>
+			props.flag ? "" : "rgba(116, 138, 255, 0.05)"};
+	}
 `;

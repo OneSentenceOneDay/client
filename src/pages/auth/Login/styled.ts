@@ -37,6 +37,10 @@ export const DialogBox = styled.dialog<{ page: string }>`
 		background-color: ${palette.blue2};
 		color: #ffffff;
 		font-size: 1.125rem;
+		&:hover {
+			cursor: pointer;
+			opacity: 0.9;
+		}
 	}
 `;
 

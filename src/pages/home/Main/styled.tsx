@@ -100,6 +100,7 @@ export const Button = styled.div`
 	float: left;
 	&:hover {
 		cursor: pointer;
+		opacity: 0.9;
 	}
 `;
 
@@ -113,13 +114,16 @@ export const Sorted = styled.div<{ flag: boolean }>`
 	color: ${(props) => (props.flag ? palette.blue2 : palette.blue4)};
 	font-family: ${(props) =>
 		props.flag ? "Pretendard-Bold" : "Pretendard-Regular"};
+	&:hover {
+		cursor: pointer;
+		color: ${(props) => (props.flag ? palette.blue2 : palette.blue5)};
+	}
 `;
 
 export const SortMenu = styled.div`
 	text-align: right;
 	div {
 		display: inline-block;
-		cursor: pointer;
 		font-size: 1rem;
 		margin-right: 1rem;
 	}
@@ -191,5 +195,8 @@ export const InputBut = styled.div`
 	color: #ffffff;
 	border-radius: 0rem 0.625rem 0.625rem 0rem;
 	font-size: 1.125rem;
-	cursor: pointer;
+	&:hover {
+		cursor: pointer;
+		opacity: 0.9;
+	}
 `;

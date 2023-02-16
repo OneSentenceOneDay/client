@@ -11,11 +11,15 @@ import { useState, useCallback } from "react";
 import Signup from "../Signup/Signup";
 
 function Login() {
-	// ************ open login modal ************
-	const [openSignup, setOpenSignup] = useState<boolean>(false);
-	const onClickToggleModal = useCallback(() => {
-		setOpenSignup(!openSignup);
-	}, [openSignup]);
+	// ************ open signup modal ************
+	const [openSignup, setOpenSignup] = useState<boolean>(true);
+	const onClickToggleModal = useCallback(
+		(e: React.MouseEvent) => {
+			e.preventDefault();
+			setOpenSignup(!openSignup);
+		},
+		[openSignup]
+	);
 
 	return (
 		<ModalContainer>
@@ -28,7 +32,7 @@ function Login() {
 						<Text>로그인하셔야 해요</Text>
 						<Input>
 							<input placeholder="Email" />
-							<input placeholder="password" />
+							<input placeholder="Password" />
 						</Input>
 
 						<button>로그인</button>
@@ -37,7 +41,7 @@ function Login() {
 					</DialogBox>
 					<Backdrop
 						onClick={(e: React.MouseEvent) => {
-							e.preventDefault();
+							// e.preventDefault();
 							// if (onClickToggleModal) {
 							// 	onClickToggleModal();
 							// }

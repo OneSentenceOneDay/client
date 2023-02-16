@@ -11,11 +11,11 @@ const Signup = () => {
 				<img src={Logo} />
 				<Text>회원가입을 해주세요</Text>
 				<Input>
-					<input placeholder="이름" />
+					<input placeholder="Name" />
 					<input placeholder="Email" />
-					<input placeholder="닉네임" />
-					<input type="password" placeholder="비밀번호" />
-					<input type="password" placeholder="비밀번호 확인" />
+					<input placeholder="Nickname" />
+					<input type="password" placeholder="Password" />
+					<input type="password" placeholder="Confirm Password" />
 				</Input>
 				<Privacy>
 					<input
@@ -32,9 +32,6 @@ const Signup = () => {
 			<Backdrop
 				onClick={(e: React.MouseEvent) => {
 					e.preventDefault();
-					// if (onClickToggleModal) {
-					// 	onClickToggleModal();
-					// }
 				}}
 			/>
 		</>
