@@ -12,7 +12,7 @@ import Signup from "../Signup/Signup";
 
 function Login() {
 	// ************ open signup modal ************
-	const [openSignup, setOpenSignup] = useState<boolean>(true);
+	const [openSignup, setOpenSignup] = useState<boolean>(false);
 	const onClickToggleModal = useCallback(
 		(e: React.MouseEvent) => {
 			e.preventDefault();

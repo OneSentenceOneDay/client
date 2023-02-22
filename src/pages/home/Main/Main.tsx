@@ -33,6 +33,7 @@ import Pagination from "components/Pagination";
 import DateComponent, { CalcToday } from "components/DateComponent";
 import FooterComponent from "components/Footer";
 import Login from "pages/auth/Login/Login";
+import axios from "axios";
 
 const today = CalcToday();
 
@@ -101,6 +102,25 @@ const sample2: commetType[] = [
 const placeholder = sample.eng + " 를 사용하여 영작하기"; // 영작 input placeholder
 
 function Main() {
+	//
+	const [loading, setLoading] = useState(false);
+	const [sentence, setSentence] = useState([]);
+
+	const getTodaySentence = async () => {
+		// setLoading(true);
+		await axios({
+			method: "get",
+			url: `https://port-0-osod-108dypx2ale9l8kjq.sel3.cloudtype.app/writing/main/`,
+		}).then((res) => {
+			setSentence(res.data);
+			console.log(res);
+		});
+	};
+
+	useEffect(() => {
+		getTodaySentence();
+	}, []);
+
 	// ************ 정렬 버튼 ************
 	const sorts = ["좋아요순", "최신순", "내가 쓴 문장"];
 	const [nowSort, setNowSort] = useState("좋아요순");

@@ -87,7 +87,7 @@ export const PageDiv = styled.div<{ flag: boolean }>`
 		cursor: pointer;
 		color: ${(props) => (props.flag ? palette.gray3 : palette.blue2)};
 		background-color: ${(props) =>
-			props.flag ? palette.blue2 : palette.blue1};
+			props.flag ? palette.blue2 : palette.blue6};
 	}
 `;
 

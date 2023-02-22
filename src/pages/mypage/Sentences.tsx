@@ -50,7 +50,7 @@ const sample2 = {
 
 type historyItem = {
 	name: string;
-	count: number;
+	count: string;
 };
 
 export function HistoryItems({ name, count }: historyItem) {
@@ -71,9 +71,9 @@ function Sectences() {
 			<Name>손흥민</Name>
 			<Nickname>@niceonesony</Nickname>
 			<History>
-				<HistoryItems name={"영어 작문"} count={33} />
-				<HistoryItems name={"좋아요 받은 횟수"} count={12} />
-				<HistoryItems name={"접속일"} count={111} />
+				<HistoryItems name={"영어 작문"} count={"33"} />
+				<HistoryItems name={"좋아요 받은 횟수"} count={"12"} />
+				<HistoryItems name={"연속 학습"} count={"11일째"} />
 			</History>
 			<Sentence flag={false}>
 				<Text>오늘 작성한 문장</Text>
@@ -89,7 +89,7 @@ function Sectences() {
 				/>
 			</Sentence>
 			<Sentence flag={true}>
-				<Text>일주일 동안 연습했던 문장이에요!</Text>
+				<Text>그동안 연습했던 문장이에요!</Text>
 				<Days>
 					{days.map((d) =>
 						d === select ? (
