@@ -16,7 +16,8 @@ export const DialogBox = styled.dialog<{ page: string }>`
 			? "3.125rem 5.313rem 0rem 5.313rem"
 			: "3.125rem 5.313rem 0rem 5.313rem"};
 	width: 40rem;
-	height: ${(props) => (props.page === "login" ? "38.125rem" : "51.25rem")};
+	// height: ${(props) => (props.page === "login" ? "38.125rem" : "51.25rem")};
+	padding-bottom: 3rem;
 	display: flex;
 	flex-direction: column;
 	align-items: center;

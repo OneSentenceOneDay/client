@@ -26,14 +26,14 @@ import { Wrap } from "./../../../components/styled";
 import Copy from "../../../assets/icons/copy-icon.svg";
 import Listen from "../../../assets/icons/listen-icon.svg";
 import Trans from "../../../assets/icons/trans-icon.svg";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef, ContextType } from "react";
 import { useOutletContext } from "react-router-dom";
 import Com from "components/Comment";
 import Pagination from "components/Pagination";
 import DateComponent, { CalcToday } from "components/DateComponent";
 import FooterComponent from "components/Footer";
 import Login from "pages/auth/Login/Login";
-import axios from "axios";
+import { get } from "../../../apis/main";
 
 const today = CalcToday();
 
@@ -102,24 +102,11 @@ const sample2: commetType[] = [
 const placeholder = sample.eng + " 를 사용하여 영작하기"; // 영작 input placeholder
 
 function Main() {
-	//
+	// ************ get 오늘의 구문 ************
 	const [loading, setLoading] = useState(false);
 	const [sentence, setSentence] = useState([]);
 
-	const getTodaySentence = async () => {
-		// setLoading(true);
-		await axios({
-			method: "get",
-			url: `https://port-0-osod-108dypx2ale9l8kjq.sel3.cloudtype.app/writing/main/`,
-		}).then((res) => {
-			setSentence(res.data);
-			console.log(res);
-		});
-	};
-
-	useEffect(() => {
-		getTodaySentence();
-	}, []);
+	// get(`https://port-0-osod-108dypx2ale9l8kjq.sel3.cloudtype.app/writing/main/`)
 
 	// ************ 정렬 버튼 ************
 	const sorts = ["좋아요순", "최신순", "내가 쓴 문장"];
@@ -166,11 +153,11 @@ function Main() {
 	type ChildProps = {
 		openLogin: boolean;
 	};
-	const { openLogin } = useOutletContext<ChildProps>();
+	const [openLogin, setOpenLogin] = useOutletContext<any>(); // any 수정 필요 !!!!!!!!!!!!!!!!!!!!!!!
 
 	return (
 		<Wrap>
-			{openLogin && <Login />}
+			{openLogin && <Login openLogin={openLogin} setOpenLogin={setOpenLogin} />}
 			<TodayStc>
 				<DateComponent date={today} page={"main"} />
 				<Text>오늘의 구문을 사용하여 영어 글쓰기를 연습해 보세요.</Text>

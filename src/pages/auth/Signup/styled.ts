@@ -12,3 +12,7 @@ export const Privacy = styled.div`
 		margin-right: 0.5rem;
 	}
 `;
+
+// modal
+export const Title = styled.div``;
+export const Cont = styled.div``;

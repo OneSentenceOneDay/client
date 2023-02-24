@@ -1,10 +1,24 @@
 import { DialogBox, Text, Backdrop, Input } from "../Login/styled";
-import { Privacy } from "./styled";
+import { Privacy, Title, Cont } from "./styled";
 import Logo from "../../../assets/images/logo.svg";
 import { useState } from "react";
 
-const Signup = () => {
+export function EmailConfirm() {
+	return (
+		<>
+			<Title>You are almost there!</Title>
+			<Cont>
+				{
+					"작성해 주신 이메일로 인증 메일을 발송하였습니다.\n인증 후 회원가입이 완료됩니다"
+				}
+			</Cont>
+		</>
+	);
+}
+
+function Signup() {
 	const [privacy, setPrivacy] = useState(false);
+	const [confirmModal, setConfirmModal] = useState(true);
 	return (
 		<>
 			<DialogBox page="signup">
@@ -36,6 +50,6 @@ const Signup = () => {
 			/>
 		</>
 	);
-};
+}
 
 export default Signup;

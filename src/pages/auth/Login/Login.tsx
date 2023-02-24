@@ -7,10 +7,10 @@ import {
 	Input,
 } from "./styled";
 import Logo from "../../../assets/images/logo.svg";
-import { useState, useCallback } from "react";
+import { useState, useCallback, useRef, useEffect } from "react";
 import Signup from "../Signup/Signup";
 
-function Login() {
+function Login({ openLogin, setOpenLogin }: any) {
 	// ************ open signup modal ************
 	const [openSignup, setOpenSignup] = useState<boolean>(false);
 	const onClickToggleModal = useCallback(
@@ -21,13 +21,33 @@ function Login() {
 		[openSignup]
 	);
 
+	// ************ close modal ************
+	const outsideRef = useRef() as React.MutableRefObject<HTMLDialogElement>;
+	useEffect(() => {
+		if (openLogin) {
+			function handleClickOutside(
+				event: React.BaseSyntheticEvent | MouseEvent
+			) {
+				if (outsideRef.current && !outsideRef.current.contains(event.target)) {
+					setOpenLogin(false);
+					console.log(outsideRef.current);
+					console.log(1);
+				}
+			}
+			document.addEventListener("click", handleClickOutside);
+			return () => {
+				document.removeEventListener("click", handleClickOutside);
+			};
+		}
+	}, [outsideRef]);
+
 	return (
 		<ModalContainer>
 			{openSignup ? (
 				<Signup />
 			) : (
 				<>
-					<DialogBox page={"login"}>
+					<DialogBox page={"login"} ref={outsideRef}>
 						<img src={Logo} />
 						<Text>로그인하셔야 해요</Text>
 						<Input>

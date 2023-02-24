@@ -28,7 +28,7 @@ export function Dropdown() {
 }
 
 function Header() {
-	const [login, setLogin] = useState<boolean>(true);
+	const [login, setLogin] = useState<boolean>(false);
 	const [view, setView] = useState<boolean>(false); // dropdown
 	const [openLogin, setOpenLogin] = useState<boolean>(false); // login modal
 
@@ -77,7 +77,7 @@ function Header() {
 					<LoginBut onClick={onClickToggleModal}>로그인</LoginBut>
 				)}
 			</Wrap>
-			<Outlet context={{ openLogin }} />
+			<Outlet context={[openLogin, setOpenLogin]} />
 		</>
 	);
 }
