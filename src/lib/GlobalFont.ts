@@ -9,8 +9,8 @@ import Eng_Font from "../assets/fonts/times-new-roman.ttf";
 
 export default createGlobalStyle`
     @font-face {
-        font-family: "Pretendara-Light";
-        src: local("Pretendara-Light"), url(${Font_L}) format('woff2'); 
+        font-family: "Pretendard-Light";
+        src: local("Pretendard-Light"), url(${Font_L}) format('woff2'); 
         font-weight: medium;
     }
     @font-face {
@@ -19,8 +19,8 @@ export default createGlobalStyle`
         font-weight: regular;
     }
     @font-face {
-        font-family: "Pretendarad-Medium";
-        src: local("Pretendara-Medium"), url(${Font_M}) format('woff2'); 
+        font-family: "Pretendard-Medium";
+        src: local("Pretendard-Medium"), url(${Font_M}) format('woff2'); 
         font-weight: medium;
     }
 

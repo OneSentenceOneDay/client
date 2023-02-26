@@ -7,7 +7,7 @@ import {
 	Input,
 } from "./styled";
 import Logo from "../../../assets/images/logo.svg";
-import { useState, useCallback, useRef, useEffect } from "react";
+import { useState, useCallback } from "react";
 import Signup from "../Signup/Signup";
 
 function Login({ openLogin, setOpenLogin }: any) {
@@ -20,35 +20,34 @@ function Login({ openLogin, setOpenLogin }: any) {
 
 	const onClickToggleModal = useCallback(() => {
 		setOpenLogin(!openLogin);
+		document.body.style.overflow = "unset";
 	}, [openLogin]);
 
 	return (
 		<ModalContainer>
 			{openSignup ? (
-				<Signup openSignup={openSignup} setOpenSignup={setOpenSignup} />
+				<Signup />
 			) : (
-				<>
-					<DialogBox page={"login"}>
-						<img src={Logo} />
-						<Text>로그인하셔야 해요</Text>
-						<Input>
-							<input placeholder="Email" />
-							<input placeholder="Password" />
-						</Input>
-						<button>로그인</button>
-						<button>구글 로그인</button>
-						<SignupBut onClick={opensignupModal}>회원가입</SignupBut>
-					</DialogBox>
-					<Backdrop
-						onClick={(e: React.MouseEvent) => {
-							e.preventDefault();
-							if (onClickToggleModal) {
-								onClickToggleModal();
-							}
-						}}
-					/>
-				</>
+				<DialogBox page={"login"}>
+					<img src={Logo} />
+					<Text>로그인하셔야 해요</Text>
+					<Input>
+						<input placeholder="Email" />
+						<input placeholder="Password" />
+					</Input>
+					<button>로그인</button>
+					<button>구글 로그인</button>
+					<SignupBut onClick={opensignupModal}>회원가입</SignupBut>
+				</DialogBox>
 			)}
+			<Backdrop
+				onClick={(e: React.MouseEvent) => {
+					e.preventDefault();
+					if (onClickToggleModal) {
+						onClickToggleModal();
+					}
+				}}
+			/>
 		</ModalContainer>
 	);
 }

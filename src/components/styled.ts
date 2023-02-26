@@ -117,7 +117,7 @@ export const Member = styled.div<{ flag: boolean }>`
 	white-space: pre-line;
 	display: inline-block;
 	color: ${palette.blue2};
-	font-family: Pretendara-Light;
+	font-family: Pretendard-Light;
 	font-size: 0.563rem;
 	text-align: right;
 	padding-left: 1rem;
@@ -126,9 +126,14 @@ export const Member = styled.div<{ flag: boolean }>`
 		props.flag ? `0.063rem solid ${palette.blue2}` : ""}}
 `;
 export const Copyright = styled.div`
-	font-family: Pretendara-Light;
+	font-family: Pretendard-Light;
 	font-size: 0.563rem;
 	color: ${palette.blue2};
 	margin-top: 1rem;
 	padding-bottom: 2rem;
 `;
+
+// ************** Modal.tsx **************
+export const Title = styled.div``;
+
+export const Body = styled.div``;

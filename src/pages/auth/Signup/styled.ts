@@ -3,9 +3,9 @@ import palette from "../../../lib/palette";
 
 export const Privacy = styled.div`
 	text-align: left;
-	width: 29.375rem;
+	width: 25.375rem;
 	margin-top: 1.3rem;
-	font-size: 1rem;
+	font-size: 0.9rem;
 	color: ${palette.gray2};
 	font-family: Pretendard-Regular;
 	input {

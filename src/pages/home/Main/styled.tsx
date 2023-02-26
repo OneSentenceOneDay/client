@@ -28,7 +28,7 @@ export const Sentence = styled.div`
 
 export const SentenceKor = styled.div`
 	color: ${palette.gray1};
-	font-family: Pretendara-Light;
+	font-family: Pretendard-Light;
 	font-size: 0.9rem;
 	margin-top: 0.7rem;
 `;
@@ -44,7 +44,7 @@ export const SourceKor = styled.div`
 	font-size: 0.8rem;
 	color: ${palette.gray1};
 	margin-top: 0.6rem;
-	font-family: Pretendara-Light;
+	font-family: Pretendard-Light;
 `;
 
 export const Input = styled.div`

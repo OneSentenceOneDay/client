@@ -13,11 +13,9 @@ export const ModalContainer = styled.div`
 export const DialogBox = styled.dialog<{ page: string }>`
 	padding: ${(props) =>
 		props.page === "login"
-			? "3.125rem 5.313rem 0rem 5.313rem"
-			: "3.125rem 5.313rem 0rem 5.313rem"};
-	width: 40rem;
-	// height: ${(props) => (props.page === "login" ? "38.125rem" : "51.25rem")};
-	padding-bottom: 3rem;
+			? "2.5rem 5.313rem 2.5rem 5.313rem"
+			: "2.5rem 5.313rem 2.5rem 5.313rem"};
+	width: 35rem;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -27,21 +25,24 @@ export const DialogBox = styled.dialog<{ page: string }>`
 	box-sizing: border-box;
 	background-color: #ffffff;
 	z-index: 10000;
-	top: 0rem;
+	top: ${(props) => (props.page === "login" ? "0rem" : "-2.5rem")};
 	button {
-		width: 29.375rem;
-		height: 3.75rem;
+		width: 25.375rem;
+		height: 3.3rem;
 		font-family: Pretendard-Bold;
 		border-radius: 0.625rem 0.625rem 0.625rem 0.625rem;
-		margin-top: 1.3rem;
+		margin-top: 1rem;
 		border: none;
 		background-color: ${palette.blue2};
 		color: #ffffff;
-		font-size: 1.125rem;
+		font-size: 1rem;
 		&:hover {
 			cursor: pointer;
 			opacity: 0.9;
 		}
+	}
+	img {
+		width: 7rem;
 	}
 `;
 
@@ -55,10 +56,10 @@ export const Backdrop = styled.div`
 `;
 
 export const Text = styled.div`
-	font-size: 1.5rem;
-	font-family: Pretendard-Regular;
+	font-size: 1.2rem;
+	font-family: Pretendard-Light;
 	margin-top: 1rem;
-	margin-bottom: 2rem;
+	margin-bottom: 1.5rem;
 `;
 
 export const SignupBut = styled.div`
@@ -75,12 +76,12 @@ export const SignupBut = styled.div`
 export const Input = styled.div`
 	input {
 		padding: 1rem 1.25rem;
-		width: 26.875rem;
-		height: 1.75rem;
+		width: 22.875rem;
+		height: 1.3rem;
 		font-family: Pretendard-Regular;
 		border: 0.063rem solid ${palette.gray4};
 		border-radius: 0.625rem 0.625rem 0.625rem 0.625rem;
-		margin-top: 1.3rem;
+		margin-top: 1rem;
 	}
 	input::placeholder {
 		color: ${palette.gray4};
