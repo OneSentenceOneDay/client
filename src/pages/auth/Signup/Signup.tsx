@@ -1,7 +1,7 @@
 import { DialogBox, Text, Backdrop, Input } from "../Login/styled";
 import { Privacy, Title, Cont } from "./styled";
 import Logo from "../../../assets/images/logo.svg";
-import { useState } from "react";
+import { useState, useCallback } from "react";
 
 export function EmailConfirm() {
 	return (
@@ -16,9 +16,14 @@ export function EmailConfirm() {
 	);
 }
 
-function Signup() {
+function Signup({ openSignup, setOpenSignup }: any) {
 	const [privacy, setPrivacy] = useState(false);
 	const [confirmModal, setConfirmModal] = useState(true);
+
+	const onClickToggleModal = useCallback(() => {
+		setOpenSignup(!openSignup);
+	}, [openSignup]);
+
 	return (
 		<>
 			<DialogBox page="signup">
@@ -46,6 +51,9 @@ function Signup() {
 			<Backdrop
 				onClick={(e: React.MouseEvent) => {
 					e.preventDefault();
+					if (onClickToggleModal) {
+						onClickToggleModal();
+					}
 				}}
 			/>
 		</>

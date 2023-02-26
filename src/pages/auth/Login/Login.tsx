@@ -13,58 +13,38 @@ import Signup from "../Signup/Signup";
 function Login({ openLogin, setOpenLogin }: any) {
 	// ************ open signup modal ************
 	const [openSignup, setOpenSignup] = useState<boolean>(false);
-	const onClickToggleModal = useCallback(
-		(e: React.MouseEvent) => {
-			e.preventDefault();
-			setOpenSignup(!openSignup);
-		},
-		[openSignup]
-	);
+	const opensignupModal = () => {
+		setOpenSignup(!openSignup);
+		// document.body.style.overflow = "hidden";
+	};
 
-	// ************ close modal ************
-	const outsideRef = useRef() as React.MutableRefObject<HTMLDialogElement>;
-	useEffect(() => {
-		if (openLogin) {
-			function handleClickOutside(
-				event: React.BaseSyntheticEvent | MouseEvent
-			) {
-				if (outsideRef.current && !outsideRef.current.contains(event.target)) {
-					setOpenLogin(false);
-					console.log(outsideRef.current);
-					console.log(1);
-				}
-			}
-			document.addEventListener("click", handleClickOutside);
-			return () => {
-				document.removeEventListener("click", handleClickOutside);
-			};
-		}
-	}, [outsideRef]);
+	const onClickToggleModal = useCallback(() => {
+		setOpenLogin(!openLogin);
+	}, [openLogin]);
 
 	return (
 		<ModalContainer>
 			{openSignup ? (
-				<Signup />
+				<Signup openSignup={openSignup} setOpenSignup={setOpenSignup} />
 			) : (
 				<>
-					<DialogBox page={"login"} ref={outsideRef}>
+					<DialogBox page={"login"}>
 						<img src={Logo} />
 						<Text>로그인하셔야 해요</Text>
 						<Input>
 							<input placeholder="Email" />
 							<input placeholder="Password" />
 						</Input>
-
 						<button>로그인</button>
 						<button>구글 로그인</button>
-						<SignupBut onClick={onClickToggleModal}>회원가입</SignupBut>
+						<SignupBut onClick={opensignupModal}>회원가입</SignupBut>
 					</DialogBox>
 					<Backdrop
 						onClick={(e: React.MouseEvent) => {
-							// e.preventDefault();
-							// if (onClickToggleModal) {
-							// 	onClickToggleModal();
-							// }
+							e.preventDefault();
+							if (onClickToggleModal) {
+								onClickToggleModal();
+							}
 						}}
 					/>
 				</>

@@ -39,9 +39,10 @@ function Header() {
 	};
 
 	// ************ open login modal ************
-	const onClickToggleModal = useCallback(() => {
+	const onClickToggleModal = () => {
 		setOpenLogin(!openLogin);
-	}, [openLogin]);
+		document.body.style.overflow = "hidden";
+	};
 
 	// ************ close dropdown ************
 	const outsideRef = useRef<HTMLDivElement>(null);
@@ -49,7 +50,6 @@ function Header() {
 		function handleClickOutside(event: any) {
 			if (outsideRef.current && !outsideRef.current.contains(event.target)) {
 				setView(false);
-				// setOpenLogin(false);
 			}
 		}
 		document.addEventListener("click", handleClickOutside);
