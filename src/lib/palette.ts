@@ -11,6 +11,7 @@ const palette = {
 	gray2: "#404040",
 	gray3: "#F5F6FF",
 	gray4: "#D9D9D9",
+	gray5: "#EEEEEE",
 };
 
 export default palette;

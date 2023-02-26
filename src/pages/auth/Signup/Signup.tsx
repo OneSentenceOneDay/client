@@ -21,10 +21,20 @@ function Signup() {
 	const [privacy, setPrivacy] = useState(false);
 	const [confirmModal, setConfirmModal] = useState(false);
 
+	function openConfirmModal() {
+		setConfirmModal(!confirmModal);
+	}
+
 	return (
 		<>
 			{confirmModal ? (
-				<Modal />
+				<Modal
+					title={"YOU ARE ALMOST THERE!"}
+					body={
+						"작성해 주신 이메일로 인증 메일을 발송하였습니다.\n인증 후 회원가입이 완료됩니다."
+					}
+					button={"확인"}
+				/>
 			) : (
 				<DialogBox page="signup">
 					<img src={Logo} />
@@ -45,7 +55,7 @@ function Signup() {
 						/>
 						개인정보 수집 및 이용 동의
 					</Privacy>
-					<button>회원가입</button>
+					<button onClick={openConfirmModal}>회원가입</button>
 					<button style={{ backgroundColor: "#F1F3FF", color: "#828282" }}>
 						Google 계정으로 가입
 					</button>

@@ -15,7 +15,7 @@ export const DialogBox = styled.dialog<{ page: string }>`
 		props.page === "login"
 			? "2.5rem 5.313rem 2.5rem 5.313rem"
 			: "2.5rem 5.313rem 2.5rem 5.313rem"};
-	width: 35rem;
+	width: ${(props) => (props.page === "modal" ? "32rem" : "35rem")};
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -25,7 +25,12 @@ export const DialogBox = styled.dialog<{ page: string }>`
 	box-sizing: border-box;
 	background-color: #ffffff;
 	z-index: 10000;
-	top: ${(props) => (props.page === "login" ? "0rem" : "-2.5rem")};
+	top: ${(props) =>
+		props.page === "signup"
+			? "-2.5rem"
+			: props.page === "login"
+			? "0rem"
+			: "6rem"};
 	button {
 		width: 25.375rem;
 		height: 3.3rem;

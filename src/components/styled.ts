@@ -134,6 +134,42 @@ export const Copyright = styled.div`
 `;
 
 // ************** Modal.tsx **************
-export const Title = styled.div``;
+export const Title = styled.div`
+	color: ${palette.blue2};
+	font-size: 1.25rem;
+	font-family: Pretendard-Medium;
+`;
 
-export const Body = styled.div``;
+export const Body = styled.div`
+	white-space: pre-line;
+	font-size: 1rem;
+	font-family: Pretendard-Light;
+	line-height: 1.7rem;
+	margin-top: 2rem;
+	margin-bottom: 1rem;
+`;
+
+export const Button = styled.div<{ flag: boolean; index: number }>`
+	width: ${(props) => (props.flag ? "11.2rem" : "23rem")}};
+	height: 3.3rem;
+	line-height: 3.3rem;
+	font-family: Pretendard-Bold;
+	border-radius: 0.625rem 0.625rem 0.625rem 0.625rem;
+	margin-top: 1rem;
+	border: none;
+	background-color: ${(props) =>
+		props.index === 1 ? palette.blue2 : palette.gray5}};
+
+	color: ${(props) => (props.index === 1 ? "#ffffff" : palette.blue4)}};
+	font-size: 1rem;
+	&:hover {
+		cursor: pointer;
+		opacity: 0.9;
+	}
+`;
+
+export const Buttons = styled.div`
+	display: flex;
+	justify-content: space-between;
+	width: 23rem;
+`;

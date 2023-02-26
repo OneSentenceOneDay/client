@@ -1,15 +1,21 @@
 import { DialogBox } from "pages/auth/Login/styled";
-import { Title, Body } from "./styled";
+import { Title, Body, Button, Buttons } from "./styled";
 
-export function Modal() {
+export function Modal({ title, body, button, button2 }: any) {
 	return (
 		<DialogBox page={"modal"}>
-			<Title>You are almost there!</Title>
-			<Body>
-				{
-					"작성해 주신 이메일로 인증 메일을 발송하였습니다\n인증 후 회원가입이 완료됩니다"
-				}
-			</Body>
+			<Title>{title}</Title>
+			<Body>{body}</Body>
+			<Buttons>
+				<Button flag={button2 ? true : false} index={!button2 ? 1 : 2}>
+					{button}
+				</Button>
+				{button2 && (
+					<Button flag={true} index={2}>
+						{button2}
+					</Button>
+				)}
+			</Buttons>
 		</DialogBox>
 	);
 }
