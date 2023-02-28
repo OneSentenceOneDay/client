@@ -118,7 +118,7 @@ function Main() {
 			eng: "my",
 		},
 	];
-	const [nowSort, setNowSort] = useState("latest");
+	const [nowSort, setNowSort] = useState<string>("latest");
 	type SortProps = {
 		name: string;
 		eng: string;
@@ -151,23 +151,41 @@ function Main() {
 		}
 	};
 
+	// ************ get 오늘의 구문 ************
 	const [loading, setLoading] = useState(false);
-	// ************ get 오늘의 구문, 작문 ************
-	const [sentence, setSentence] = useState<any>();
+	const [sentence, setSentence] = useState<any>([]);
 
-	function fetchData() {
+	useEffect(() => {
+		setLoading(true);
 		axios({
 			method: "get",
 			url: `https://port-0-osod-108dypx2ale9l8kjq.sel3.cloudtype.app/writing/main/`,
 		}).then((res) => {
-			setSentence(res.data);
-			console.log(res);
+			setSentence(res.data.postList[0]);
+			// console.log(res.data.postList[0]);
 		});
-	}
+		setLoading(false);
+	}, []);
+
+	// ************ get 문장 ************
+	const [post, setPost] = useState<any>([]);
+	const [pages, setPages] = useState<number>(1);
+	const [page, setPage] = useState<number>(1);
 
 	useEffect(() => {
-		fetchData();
-	}, []);
+		setLoading(true);
+		if (sentence.id) {
+			axios({
+				method: "get",
+				url: `https://port-0-osod-108dypx2ale9l8kjq.sel3.cloudtype.app/writing/post/order/${sentence.id}/query=${nowSort}/?page=${page}`,
+			}).then((res) => {
+				setPost(res.data.postList);
+				setPages(res.data.pageCnt);
+				console.log(res.data);
+			});
+			setLoading(false);
+		}
+	}, [sentence, page, nowSort]);
 
 	// ************ 오늘의 구문이 포함되어 있는지 ************
 	const [writing, setWriting] = useState<string>("");
@@ -177,10 +195,9 @@ function Main() {
 	}, []);
 
 	// ************ open login modal ************
-	type ChildProps = {
-		openLogin: boolean;
-	};
 	const [openLogin, setOpenLogin] = useOutletContext<any>(); // any 수정 필요 !!!!!!!!!!!!!!!!!!!!!!!
+
+	if (loading) return null;
 
 	return (
 		<Wrap>
@@ -188,11 +205,11 @@ function Main() {
 			<TodayStc>
 				<DateComponent date={today} page={"main"} />
 				<Text>오늘의 구문을 사용하여 영어 글쓰기를 연습해 보세요.</Text>
-				<Eng>{sample.eng}</Eng>
-				<Sentence>{sample.sentence}</Sentence>
-				<SentenceKor>{sample.sentence_kor}</SentenceKor>
-				<Source>{sample.source}</Source>
-				<SourceKor>{sample.source_kor}</SourceKor>
+				<Eng>{sentence.sentence} ~</Eng>
+				<Sentence>{sentence.discription}</Sentence>
+				<SentenceKor>{sentence.translate}</SentenceKor>
+				{/* <Source>{sentence.postList[0].}</Source>
+				<SourceKor>{sentence.postList[0].}</SourceKor> */}
 			</TodayStc>
 			<Input>
 				<textarea
@@ -220,16 +237,16 @@ function Main() {
 						)
 					)}
 				</SortMenu>
-				{sample2.map((c) => (
+				{post.map((c: any) => (
 					<Com
 						key={c.id}
 						id={c.id}
-						name={c.name}
-						contents={c.contents}
-						hearts={c.hearts}
+						name={c.unknown ? c.unknown : c.user.nickname}
+						contents={c.body}
+						hearts={c.like_num}
 					/>
 				))}
-				<Pagination />
+				<Pagination pages={pages} page={page} setPage={setPage} />
 				<MailSection>
 					<MailText>
 						<TopText>

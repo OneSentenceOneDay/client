@@ -1,24 +1,21 @@
 import { PageSection, PageDiv } from "./styled";
 import { useState, useEffect } from "react";
 
-export default function Pagination() {
-	const [page, setPage] = useState(1);
-	let firstNum = page - (page % 5) + 1;
-	let lastNum = page - (page % 5) + 5;
-	const [pages, setPages] = useState<number[]>([]);
-	const lastPage: number = 10;
+export default function Pagination({ pages, page, setPage }: any) {
+	// let firstNum = pages - (pages % 5) + 1;
+	// let lastNum = pages - (pages % 5) + 5;
+
+	const lastPage: number = pages;
+	const [pageList, setPageList] = useState<number[]>([]);
+
+	console.log(pages);
 	useEffect(() => {
 		const tempPages: number[] = [];
-		for (let i = firstNum; i <= lastNum; i++) {
+		for (let i = 1; i <= pages; i++) {
 			tempPages.push(i);
 		}
-		setPages(tempPages);
-	}, [page]);
-	// const tempPages: number[] = [];
-	// for (let i = 1; i <= lastPage; i++) {
-	// 	tempPages.push(i);
-	// }
-	// setPages(tempPages);
+		setPageList(tempPages);
+	}, [page, pages]);
 
 	return (
 		<PageSection>
@@ -42,7 +39,7 @@ export default function Pagination() {
 			>
 				&#8249;
 			</PageDiv>
-			{pages.map((pageNum) =>
+			{pageList.map((pageNum: number) =>
 				pageNum === page ? (
 					<PageDiv flag={true} key={pageNum} onClick={() => setPage(pageNum)}>
 						{pageNum}
