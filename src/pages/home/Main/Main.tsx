@@ -33,7 +33,8 @@ import Pagination from "components/Pagination";
 import DateComponent, { CalcToday } from "components/DateComponent";
 import FooterComponent from "components/Footer";
 import Login from "pages/auth/Login/Login";
-import { get } from "../../../apis/main";
+// import { useGet } from "../../../apis/main";
+import axios from "axios";
 
 const today = CalcToday();
 
@@ -102,27 +103,35 @@ const sample2: commetType[] = [
 const placeholder = sample.eng + " 를 사용하여 영작하기"; // 영작 input placeholder
 
 function Main() {
-	// ************ get 오늘의 구문 ************
-	const [loading, setLoading] = useState(false);
-	const [sentence, setSentence] = useState([]);
-
-	// get(`https://port-0-osod-108dypx2ale9l8kjq.sel3.cloudtype.app/writing/main/`)
-
 	// ************ 정렬 버튼 ************
-	const sorts = ["좋아요순", "최신순", "내가 쓴 문장"];
-	const [nowSort, setNowSort] = useState("좋아요순");
+	const sorts = [
+		{
+			kor: "좋아요순",
+			eng: "latest",
+		},
+		{
+			kor: "최신순",
+			eng: "likes",
+		},
+		{
+			kor: "내가 쓴 문장",
+			eng: "my",
+		},
+	];
+	const [nowSort, setNowSort] = useState("latest");
 	type SortProps = {
 		name: string;
+		eng: string;
 		mark: boolean;
 	};
 
-	const Sort = ({ name, mark }: SortProps) => {
+	const Sort = ({ name, eng, mark }: SortProps) => {
 		if (mark) {
 			return (
 				<Sorted
 					flag={mark}
 					onClick={() => {
-						setNowSort(name);
+						setNowSort(eng);
 					}}
 				>
 					{name}
@@ -133,7 +142,7 @@ function Main() {
 				<Sorted
 					flag={mark}
 					onClick={() => {
-						setNowSort(name);
+						setNowSort(eng);
 					}}
 				>
 					{name}
@@ -141,6 +150,24 @@ function Main() {
 			);
 		}
 	};
+
+	const [loading, setLoading] = useState(false);
+	// ************ get 오늘의 구문, 작문 ************
+	const [sentence, setSentence] = useState<any>();
+
+	function fetchData() {
+		axios({
+			method: "get",
+			url: `https://port-0-osod-108dypx2ale9l8kjq.sel3.cloudtype.app/writing/main/`,
+		}).then((res) => {
+			setSentence(res.data);
+			console.log(res);
+		});
+	}
+
+	useEffect(() => {
+		fetchData();
+	}, []);
 
 	// ************ 오늘의 구문이 포함되어 있는지 ************
 	const [writing, setWriting] = useState<string>("");
@@ -186,10 +213,10 @@ function Main() {
 			<ListContainer>
 				<SortMenu>
 					{sorts.map((s, idx) =>
-						s === nowSort ? (
-							<Sort key={idx} name={s} mark={true} />
+						s.eng === nowSort ? (
+							<Sort key={idx} name={s.kor} eng={s.eng} mark={true} />
 						) : (
-							<Sort key={idx} name={s} mark={false} />
+							<Sort key={idx} name={s.kor} eng={s.eng} mark={false} />
 						)
 					)}
 				</SortMenu>
