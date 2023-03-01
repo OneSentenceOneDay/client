@@ -47,14 +47,15 @@ export const SourceKor = styled.div`
 	font-family: Pretendard-Light;
 `;
 
-export const Input = styled.div`
+export const Input = styled.div<{ warning: boolean | null }>`
 	margin-top: 2rem;
 	textarea {
 		width: 49.75rem;
 		height: 10rem;
 		padding: 1rem 1.25rem;
 		border-radius: 0.625rem 0.625rem 0rem 0rem;
-		border: 0.063rem solid ${palette.gray4};
+		border: 0.063rem solid
+			${(props) => (props.warning ? palette.red1 : palette.gray4)};
 		resize: none;
 		font-size: 1.125rem;
 		font-family: Pretendard-Regular;
@@ -108,6 +109,17 @@ export const ListContainer = styled.div`
 	width: 52.75rem;
 	margin: 0 auto;
 	padding-top: 3rem;
+`;
+
+export const WarningText = styled.div<{ warning: boolean | null }>`
+	width: 52.75rem;
+	margin: 0 auto;
+	text-align: left;
+	padding-top: 0.5rem;
+	font-family: Pretendard-Light;
+	color: ${palette.red1};
+	font-size: 0.75rem;
+	visibility: ${(props) => (props.warning ? "visible" : "hidden")};
 `;
 
 export const MenuContainer = styled.div`

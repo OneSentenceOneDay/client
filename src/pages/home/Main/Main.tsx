@@ -23,6 +23,7 @@ import {
 	InputSec,
 	Cnt,
 	MenuContainer,
+	WarningText,
 } from "./styled";
 import { Wrap } from "./../../../components/styled";
 import Copy from "../../../assets/icons/copy-icon.svg";
@@ -131,8 +132,7 @@ function Main() {
 
 	// ************************ get 작성된 문장 개수 ************************
 	const [postcnt, setPostcnt] = useState<number>(0);
-
-	useEffect(() => {
+	function getCnt() {
 		setLoading(true);
 		axios({
 			method: "get",
@@ -141,16 +141,53 @@ function Main() {
 			setPostcnt(res.data.today_postcnt);
 		});
 		setLoading(false);
+	}
+
+	useEffect(() => {
+		getCnt();
 	}, []);
 
-	function getLikes() {}
+	// ************************ 좋아요 클릭 ************************
+	function clickLikes(id: number) {
+		axios({
+			method: "get",
+			url: `https://port-0-osod-108dypx2ale9l8kjq.sel3.cloudtype.app/writing/post/${id}/likes/`,
+		}).then(() => {
+			getSentences();
+		});
+	}
 
 	// ************************ 오늘의 구문이 포함되어 있는지 ************************
 	const [writing, setWriting] = useState<string>("");
-	// useEffect(() => {
-	// 	if (sample.eng.includes(writing)) {
-	// 	}
-	// }, []);
+	const [warning, setWarning] = useState<boolean | null>(null);
+	function isWarning() {
+		if (writing.includes(sentence.sentence)) {
+			setWarning(false);
+		} else {
+			setWarning(true);
+		}
+	}
+
+	// ************************ 문장 작성 ************************
+	async function saveSentence() {
+		console.log(warning);
+		if (!warning) {
+			setLoading(true);
+			await axios({
+				method: "post",
+				url: `https://port-0-osod-108dypx2ale9l8kjq.sel3.cloudtype.app/writing/post/create/${sentence.id}/`,
+				data: { body: writing },
+			}).then(() => {
+				getSentences();
+				getCnt();
+				setWarning(null);
+				setLoading(false);
+			});
+		}
+	}
+	useEffect(() => {
+		saveSentence();
+	}, [warning]);
 
 	// ************************ open login modal ************************
 	const [openLogin, setOpenLogin] = useOutletContext<any>();
@@ -166,19 +203,6 @@ function Main() {
 	}
 	function clickSubNo() {
 		setFirst(false);
-	}
-
-	// ************************ 문장 작성 ************************
-	async function saveSentence() {
-		setLoading(true);
-		await axios({
-			method: "post",
-			url: `https://port-0-osod-108dypx2ale9l8kjq.sel3.cloudtype.app/writing/post/create/${sentence.id}/`,
-			data: { body: writing },
-		}).then(() => {
-			getSentences();
-			setLoading(false);
-		});
 	}
 
 	if (loading) return null;
@@ -211,7 +235,7 @@ function Main() {
 				{/* <Source>{sentence.postList[0].}</Source>
 				<SourceKor>{sentence.postList[0].}</SourceKor> */}
 			</TodayStc>
-			<Input>
+			<Input warning={warning}>
 				<textarea
 					placeholder={sentence.sentence + " 를 사용하여 영작하기"}
 					onChange={(e) => {
@@ -224,8 +248,12 @@ function Main() {
 						<img src={Listen} alt="listen" />
 						<img src={Trans} alt="translate" />
 					</Icons>
-					<Button onClick={saveSentence}>영작 완료</Button>
+					<Button onClick={isWarning}>영작 완료</Button>
 				</Menu>
+
+				<WarningText warning={warning}>
+					*오늘의 구문을 활용하여 문장을 만들어주세요!
+				</WarningText>
 			</Input>
 			<ListContainer>
 				<MenuContainer>
@@ -240,14 +268,16 @@ function Main() {
 						)}
 					</SortMenu>
 				</MenuContainer>
-
 				{post.map((c: any) => (
 					<Com
 						key={c.id}
 						id={c.unknown ? null : c.user.id}
+						postId={c.id}
 						name={c.unknown ? c.unknown : c.user.nickname}
 						contents={c.body}
 						hearts={c.like_num}
+						bool_like={c.bool_like}
+						onClick={clickLikes}
 					/>
 				))}
 				<Pagination pages={pages} page={page} setPage={setPage} />

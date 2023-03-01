@@ -24,7 +24,8 @@ export const Name = styled.div`
 	font-size: 1.125rem;
 	font-family: Pretendard-Regular;
 	text-align: left;
-	width: 9rem;
+	width: 8rem;
+	padding-right: 1rem;
 	vertical-align: top;
 	display: inline-block;
 	color: ${palette.gray2};

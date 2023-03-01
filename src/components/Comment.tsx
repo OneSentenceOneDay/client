@@ -9,16 +9,29 @@ import {
 } from "./styled";
 import Trans from "./../assets/icons/trans-icon.svg";
 import Heart from "./../assets/icons/heart-icon.svg";
+import ColorHeart from "./../assets/icons/color-heart-icon.svg";
 import Edit from "./../assets/icons/edit-icon.svg";
+import axios from "axios";
 
 type commetType = {
 	id: number | null;
+	postId: number;
 	name: string;
 	contents: string;
 	hearts: number;
+	bool_like: boolean;
+	onClick: (id: number) => void;
 };
 
-export default function Com({ id, name, contents, hearts }: commetType) {
+export default function Com({
+	id,
+	postId,
+	name,
+	contents,
+	hearts,
+	bool_like,
+	onClick,
+}: commetType) {
 	const userId: string | null = localStorage.getItem("id");
 
 	return (
@@ -32,7 +45,16 @@ export default function Com({ id, name, contents, hearts }: commetType) {
 						: ""}
 					<img src={Trans} alt="translate" />
 					<HeartDiv>
-						<img src={Heart} alt="heart" />
+						{bool_like ? (
+							<img
+								src={ColorHeart}
+								alt="heart"
+								onClick={() => onClick(postId)}
+							/>
+						) : (
+							<img src={Heart} alt="heart" onClick={() => onClick(postId)} />
+						)}
+
 						<Num>{hearts}</Num>
 					</HeartDiv>
 				</BottomDiv>
