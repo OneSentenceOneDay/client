@@ -3,8 +3,10 @@ import { Outlet, useNavigate } from "react-router-dom";
 import { Wrap, LoginBut, Menu, ProfileBut, Menudiv } from "./styled";
 import Logo from "../../../assets/images/logo.svg";
 import Profile from "../../../assets/icons/profile-icon.svg";
+import axios from "axios";
 
-export function Dropdown() {
+export function Dropdown({ setLogin }: any) {
+	// ************************ navigation ************************
 	const navigate = useNavigate();
 	const goSentences = () => {
 		navigate("/sentence");
@@ -12,9 +14,25 @@ export function Dropdown() {
 	const gohearts = () => {
 		navigate("/heart");
 	};
+
+	// ************************ Logout ************************
+	function clickLogout() {
+		axios({
+			method: "post",
+			url: `https://port-0-osod-108dypx2ale9l8kjq.sel3.cloudtype.app/logout/`,
+			data: {
+				refresh: localStorage.getItem("refresh_token"),
+			},
+		}).then((res) => {
+			localStorage.clear();
+			setLogin(false);
+			alert(res.data.detail);
+		});
+	}
+
 	return (
 		<Menu>
-			<Menudiv mark={"name"}>손흥민</Menudiv>
+			<Menudiv mark={"name"}>{localStorage.getItem("nickname")}</Menudiv>
 			<Menudiv mark={"menu"} onClick={goSentences}>
 				내가 쓴 문장
 			</Menudiv>
@@ -22,29 +40,33 @@ export function Dropdown() {
 				♡ 모아보기
 			</Menudiv>
 			<Menudiv mark={"menu"}>비밀번호 변경</Menudiv>
-			<Menudiv mark={"logout"}>로그아웃</Menudiv>
+			<Menudiv mark={"logout"} onClick={clickLogout}>
+				로그아웃
+			</Menudiv>
 		</Menu>
 	);
 }
 
 function Header() {
-	const [login, setLogin] = useState<boolean>(false);
+	const [login, setLogin] = useState<boolean | string | null>(
+		localStorage.getItem("access_token")
+	);
 	const [view, setView] = useState<boolean>(false); // dropdown
 	const [openLogin, setOpenLogin] = useState<boolean>(false); // login modal
 
-	// ************ navigation ************
+	// ************************ navigation ************************
 	const navigate = useNavigate();
 	const goHome = () => {
 		navigate("/");
 	};
 
-	// ************ open login modal ************
+	// ************************ open login modal ************************
 	const onClickToggleModal = () => {
 		setOpenLogin(!openLogin);
 		document.body.style.overflow = "hidden";
 	};
 
-	// ************ close dropdown ************
+	// ************************ close dropdown ************************
 	const outsideRef = useRef<HTMLDivElement>(null);
 	useEffect(() => {
 		function handleClickOutside(event: any) {
@@ -70,14 +92,14 @@ function Header() {
 							}}
 						>
 							<img src={Profile} />
-							{view && <Dropdown />}
+							{view && <Dropdown setLogin={setLogin} />}
 						</ProfileBut>
 					</>
 				) : (
 					<LoginBut onClick={onClickToggleModal}>로그인</LoginBut>
 				)}
 			</Wrap>
-			<Outlet context={[openLogin, setOpenLogin]} />
+			<Outlet context={[openLogin, setOpenLogin, setLogin]} />
 		</>
 	);
 }

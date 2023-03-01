@@ -110,6 +110,17 @@ export const ListContainer = styled.div`
 	padding-top: 3rem;
 `;
 
+export const MenuContainer = styled.div`
+	display: flex;
+	justify-content: space-between;
+`;
+
+export const Cnt = styled.div`
+	margin-left: 1rem;
+	color: ${palette.blue2};
+	font-family: Pretendard-Medium;
+`;
+
 export const Sorted = styled.div<{ flag: boolean }>`
 	color: ${(props) => (props.flag ? palette.blue2 : palette.blue4)};
 	font-family: ${(props) =>

@@ -21,89 +21,28 @@ import {
 	InputDiv,
 	InputBut,
 	InputSec,
+	Cnt,
+	MenuContainer,
 } from "./styled";
 import { Wrap } from "./../../../components/styled";
 import Copy from "../../../assets/icons/copy-icon.svg";
 import Listen from "../../../assets/icons/listen-icon.svg";
 import Trans from "../../../assets/icons/trans-icon.svg";
-import { useEffect, useState, useRef, ContextType } from "react";
+import { useEffect, useState, useCallback, useMemo } from "react";
 import { useOutletContext } from "react-router-dom";
 import Com from "components/Comment";
 import Pagination from "components/Pagination";
 import DateComponent, { CalcToday } from "components/DateComponent";
 import FooterComponent from "components/Footer";
 import Login from "pages/auth/Login/Login";
-// import { useGet } from "../../../apis/main";
+import { getData } from "../../../apis/main";
 import axios from "axios";
+import { Modal } from "components/Modal";
 
 const today = CalcToday();
 
-type stcType = {
-	date: string;
-	eng: string;
-	sentence: string;
-	sentence_kor: string;
-	source: string;
-	source_kor: string;
-};
-
-const sample: stcType = {
-	date: today,
-	eng: "is on his way ~",
-	sentence: "Instead of seeing stars, he is on his way to becoming one.",
-	sentence_kor: "별을 보는 대신, 그는 별이 되는 길을 가고 있다.",
-	source: "- The New York Times sport",
-	source_kor: "출처: 뉴욕타임스 스포츠",
-};
-
-type commetType = {
-	id: number;
-	name: string;
-	contents: string;
-	hearts: number;
-};
-
-const sample2: commetType[] = [
-	{
-		id: 0,
-		name: "허리 케인",
-		contents:
-			"It's one of those things where She’s supposed to be on her way to work.",
-		hearts: 12,
-	},
-	{
-		id: 1,
-		name: "sony",
-		contents:
-			"She wants to know the closest sushi place, make a reservation and be on her way.",
-		hearts: 11,
-	},
-	{
-		id: 2,
-		name: "허리 케인",
-		contents: "She's probably hungry and on her way to lunch.",
-		hearts: 10,
-	},
-	{
-		id: 3,
-		name: "익명0011",
-		contents:
-			"It's one of those things where She’s supposed to be on her way to work.",
-		hearts: 9,
-	},
-	{
-		id: 4,
-		name: "허리 케인",
-		contents:
-			"It's one of those things where I'm supposed to be on my way out the door to work, and my wife finds me over at the puzzle table.",
-		hearts: 8,
-	},
-];
-
-const placeholder = sample.eng + " 를 사용하여 영작하기"; // 영작 input placeholder
-
 function Main() {
-	// ************ 정렬 버튼 ************
+	// ************************ 정렬 버튼 ************************
 	const sorts = [
 		{
 			kor: "좋아요순",
@@ -151,7 +90,7 @@ function Main() {
 		}
 	};
 
-	// ************ get 오늘의 구문 ************
+	// ************************ get 오늘의 구문 ************************
 	const [loading, setLoading] = useState(false);
 	const [sentence, setSentence] = useState<any>([]);
 
@@ -167,7 +106,7 @@ function Main() {
 		setLoading(false);
 	}, []);
 
-	// ************ get 문장 ************
+	// ************************ get 작성된 문장 ************************
 	const [post, setPost] = useState<any>([]);
 	const [pages, setPages] = useState<number>(1);
 	const [page, setPage] = useState<number>(1);
@@ -181,31 +120,52 @@ function Main() {
 			}).then((res) => {
 				setPost(res.data.postList);
 				setPages(res.data.pageCnt);
-				console.log(res.data);
+				// console.log(res.data);
 			});
 			setLoading(false);
 		}
 	}, [sentence, page, nowSort]);
 
-	// ************ 오늘의 구문이 포함되어 있는지 ************
-	const [writing, setWriting] = useState<string>("");
+	// ************************ get 작성된 문장 개수 ************************
+	const [postcnt, setPostcnt] = useState<number>(0);
+
 	useEffect(() => {
-		if (sample.eng.includes(writing)) {
-		}
+		setLoading(true);
+		axios({
+			method: "get",
+			url: `https://port-0-osod-108dypx2ale9l8kjq.sel3.cloudtype.app/writing/post/todaypostcnt/`,
+		}).then((res) => {
+			setPostcnt(res.data.today_postcnt);
+			// console.log(res.data.today_postcnt);
+		});
+		setLoading(false);
 	}, []);
 
-	// ************ open login modal ************
-	const [openLogin, setOpenLogin] = useOutletContext<any>(); // any 수정 필요 !!!!!!!!!!!!!!!!!!!!!!!
+	function getLikes() {}
+
+	// ************************ 오늘의 구문이 포함되어 있는지 ************************
+	const [writing, setWriting] = useState<string>("");
+	// useEffect(() => {
+	// 	if (sample.eng.includes(writing)) {
+	// 	}
+	// }, []);
+
+	// ************************ open login modal ************************
+	const [openLogin, setOpenLogin] = useOutletContext<any>();
+
+	// ************************ 최초 로그인 확인 ************************
+	const [isFirst, setIsFirst] = useState<boolean>(false);
 
 	if (loading) return null;
 
 	return (
 		<Wrap>
 			{openLogin && <Login openLogin={openLogin} setOpenLogin={setOpenLogin} />}
+			{isFirst && <Modal />}
 			<TodayStc>
 				<DateComponent date={today} page={"main"} />
 				<Text>오늘의 구문을 사용하여 영어 글쓰기를 연습해 보세요.</Text>
-				<Eng>{sentence.sentence} ~</Eng>
+				<Eng>{sentence.sentence}</Eng>
 				<Sentence>{sentence.discription}</Sentence>
 				<SentenceKor>{sentence.translate}</SentenceKor>
 				{/* <Source>{sentence.postList[0].}</Source>
@@ -213,7 +173,7 @@ function Main() {
 			</TodayStc>
 			<Input>
 				<textarea
-					placeholder={placeholder}
+					placeholder={sentence.sentence + " 를 사용하여 영작하기"}
 					onChange={(e) => {
 						setWriting(e.target.value);
 					}}
@@ -228,15 +188,19 @@ function Main() {
 				</Menu>
 			</Input>
 			<ListContainer>
-				<SortMenu>
-					{sorts.map((s, idx) =>
-						s.eng === nowSort ? (
-							<Sort key={idx} name={s.kor} eng={s.eng} mark={true} />
-						) : (
-							<Sort key={idx} name={s.kor} eng={s.eng} mark={false} />
-						)
-					)}
-				</SortMenu>
+				<MenuContainer>
+					<Cnt>오늘 하루 {postcnt}개의 영작문이 있어요!</Cnt>
+					<SortMenu>
+						{sorts.map((s, idx) =>
+							s.eng === nowSort ? (
+								<Sort key={idx} name={s.kor} eng={s.eng} mark={true} />
+							) : (
+								<Sort key={idx} name={s.kor} eng={s.eng} mark={false} />
+							)
+						)}
+					</SortMenu>
+				</MenuContainer>
+
 				{post.map((c: any) => (
 					<Com
 						key={c.id}

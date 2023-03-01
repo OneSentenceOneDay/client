@@ -66,3 +66,14 @@ import axios from "axios";
 
 //   return [state, ];
 // };
+
+export async function getData(url: string, setData: any, setLoading: any) {
+	setLoading(true);
+	await axios({
+		method: "get",
+		url: `https://port-0-osod-108dypx2ale9l8kjq.sel3.cloudtype.app${url}`,
+	}).then((res) => {
+		setData(res.data);
+	});
+	setLoading(false);
+}

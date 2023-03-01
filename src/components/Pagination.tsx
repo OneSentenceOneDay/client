@@ -8,7 +8,6 @@ export default function Pagination({ pages, page, setPage }: any) {
 	const lastPage: number = pages;
 	const [pageList, setPageList] = useState<number[]>([]);
 
-	console.log(pages);
 	useEffect(() => {
 		const tempPages: number[] = [];
 		for (let i = 1; i <= pages; i++) {
