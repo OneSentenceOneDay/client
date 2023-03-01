@@ -13,7 +13,7 @@ import axios from "axios";
 import jwt_decode from "jwt-decode";
 import { useOutletContext } from "react-router-dom";
 
-function Login({ openLogin, setOpenLogin }: any) {
+function Login({ openLogin, setOpenLogin, setFirst }: any) {
 	// ************************ open signup modal ************************
 	const [openSignup, setOpenSignup] = useState<boolean>(false);
 	const opensignupModal = () => {
@@ -47,8 +47,13 @@ function Login({ openLogin, setOpenLogin }: any) {
 				localStorage.setItem("access_token", res.data.access_token);
 				localStorage.setItem("refresh_token", res.data.refresh_token);
 				localStorage.setItem("nickname", res.data.user.nickname);
-				flag[2](true);
-				flag[1](false);
+				localStorage.setItem("id", res.data.user.id);
+				flag[1](false); // cloase login modal
+				flag[2](true); // header 프로필 버튼 활성화
+				document.body.style.overflow = "unset";
+				if (res.data.user.is_first & res.data.user.subscription) {
+					setFirst(true);
+				}
 				console.log(res);
 			})
 			.catch((error) => {

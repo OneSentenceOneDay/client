@@ -111,19 +111,22 @@ function Main() {
 	const [pages, setPages] = useState<number>(1);
 	const [page, setPage] = useState<number>(1);
 
-	useEffect(() => {
-		setLoading(true);
+	function getSentences() {
 		if (sentence.id) {
+			setLoading(true);
 			axios({
 				method: "get",
 				url: `https://port-0-osod-108dypx2ale9l8kjq.sel3.cloudtype.app/writing/post/order/${sentence.id}/query=${nowSort}/?page=${page}`,
 			}).then((res) => {
 				setPost(res.data.postList);
 				setPages(res.data.pageCnt);
-				// console.log(res.data);
+				console.log(res.data);
 			});
 			setLoading(false);
 		}
+	}
+	useEffect(() => {
+		getSentences();
 	}, [sentence, page, nowSort]);
 
 	// ************************ get 작성된 문장 개수 ************************
@@ -136,7 +139,6 @@ function Main() {
 			url: `https://port-0-osod-108dypx2ale9l8kjq.sel3.cloudtype.app/writing/post/todaypostcnt/`,
 		}).then((res) => {
 			setPostcnt(res.data.today_postcnt);
-			// console.log(res.data.today_postcnt);
 		});
 		setLoading(false);
 	}, []);
@@ -154,14 +156,52 @@ function Main() {
 	const [openLogin, setOpenLogin] = useOutletContext<any>();
 
 	// ************************ 최초 로그인 확인 ************************
-	const [isFirst, setIsFirst] = useState<boolean>(false);
+	const [first, setFirst] = useState<boolean>(false);
+	function clickSubYes() {
+		axios({
+			method: "get",
+			url: `https://port-0-osod-108dypx2ale9l8kjq.sel3.cloudtype.app/writing/change-sub/`,
+		});
+		setFirst(false);
+	}
+	function clickSubNo() {
+		setFirst(false);
+	}
+
+	// ************************ 문장 작성 ************************
+	async function saveSentence() {
+		setLoading(true);
+		await axios({
+			method: "post",
+			url: `https://port-0-osod-108dypx2ale9l8kjq.sel3.cloudtype.app/writing/post/create/${sentence.id}/`,
+			data: { body: writing },
+		}).then(() => {
+			getSentences();
+			setLoading(false);
+		});
+	}
 
 	if (loading) return null;
 
 	return (
 		<Wrap>
-			{openLogin && <Login openLogin={openLogin} setOpenLogin={setOpenLogin} />}
-			{isFirst && <Modal />}
+			{openLogin && (
+				<Login
+					openLogin={openLogin}
+					setOpenLogin={setOpenLogin}
+					setFirst={setFirst}
+				/>
+			)}
+			{first && (
+				<Modal
+					title={"Email 구독 신청"}
+					body={"하루 한 문장 영어 글쓰기 연습을\n메일로 받아 보길 원하시나요?"}
+					button={"네"}
+					button2={"아니요"}
+					onclick={clickSubYes}
+					onclick2={clickSubNo}
+				/>
+			)}
 			<TodayStc>
 				<DateComponent date={today} page={"main"} />
 				<Text>오늘의 구문을 사용하여 영어 글쓰기를 연습해 보세요.</Text>
@@ -184,7 +224,7 @@ function Main() {
 						<img src={Listen} alt="listen" />
 						<img src={Trans} alt="translate" />
 					</Icons>
-					<Button>영작 완료</Button>
+					<Button onClick={saveSentence}>영작 완료</Button>
 				</Menu>
 			</Input>
 			<ListContainer>
@@ -204,7 +244,7 @@ function Main() {
 				{post.map((c: any) => (
 					<Com
 						key={c.id}
-						id={c.id}
+						id={c.unknown ? null : c.user.id}
 						name={c.unknown ? c.unknown : c.user.nickname}
 						contents={c.body}
 						hearts={c.like_num}

@@ -30,7 +30,7 @@ export const DialogBox = styled.dialog<{ page: string }>`
 			? "-2.5rem"
 			: props.page === "login"
 			? "0rem"
-			: "6rem"};
+			: "3rem"};
 	button {
 		width: 25.375rem;
 		height: 3.3rem;

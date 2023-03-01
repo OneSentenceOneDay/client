@@ -27,6 +27,7 @@ export function Dropdown({ setLogin }: any) {
 			localStorage.clear();
 			setLogin(false);
 			alert(res.data.detail);
+			navigate("/");
 		});
 	}
 

@@ -48,12 +48,13 @@ export const BottomDiv = styled.div`
 	padding-top: 1.7rem;
 	img {
 		cursor: pointer;
+		margin-left: 1rem;
 	}
 `;
 
 export const HeartDiv = styled.div`
 	display: inline-block;
-	margin-left: 1.5rem;
+	// margin-left: 1.5rem;
 `;
 
 export const Num = styled.div`
@@ -134,6 +135,15 @@ export const Copyright = styled.div`
 `;
 
 // ************** Modal.tsx **************
+export const ModalContainer = styled.div`
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	position: fixed;
+`;
+
 export const Title = styled.div`
 	color: ${palette.blue2};
 	font-size: 1.25rem;
