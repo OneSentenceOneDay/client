@@ -32,7 +32,7 @@ export default function Com({
 	bool_like,
 	onClick,
 }: commetType) {
-	const userId: string | null = localStorage.getItem("id");
+	const userId: string | null = sessionStorage.getItem("id");
 
 	return (
 		<Comment>

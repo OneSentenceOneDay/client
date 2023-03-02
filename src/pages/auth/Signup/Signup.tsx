@@ -17,12 +17,17 @@ export function EmailConfirm() {
 	);
 }
 
-function Signup() {
+function Signup({ setOpenSignup, setOpenLogin }: any) {
 	const [privacy, setPrivacy] = useState(false);
 	const [confirmModal, setConfirmModal] = useState(false);
 
 	function openConfirmModal() {
 		setConfirmModal(!confirmModal);
+	}
+
+	function closeModal() {
+		setOpenLogin(false);
+		setOpenSignup(false);
 	}
 
 	return (
@@ -34,6 +39,7 @@ function Signup() {
 						"작성해 주신 이메일로 인증 메일을 발송하였습니다.\n인증 후 회원가입이 완료됩니다."
 					}
 					button={"확인"}
+					onclick={closeModal}
 				/>
 			) : (
 				<DialogBox page="signup">

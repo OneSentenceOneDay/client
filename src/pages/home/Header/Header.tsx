@@ -21,19 +21,20 @@ export function Dropdown({ setLogin }: any) {
 			method: "post",
 			url: `https://port-0-osod-108dypx2ale9l8kjq.sel3.cloudtype.app/logout/`,
 			data: {
-				refresh: localStorage.getItem("refresh_token"),
+				refresh: sessionStorage.getItem("refresh_token"),
 			},
 		}).then((res) => {
-			localStorage.clear();
+			sessionStorage.clear();
 			setLogin(false);
 			alert(res.data.detail);
+			window.location.reload(); // 새로고침
 			navigate("/");
 		});
 	}
 
 	return (
 		<Menu>
-			<Menudiv mark={"name"}>{localStorage.getItem("nickname")}</Menudiv>
+			<Menudiv mark={"name"}>{sessionStorage.getItem("nickname")}</Menudiv>
 			<Menudiv mark={"menu"} onClick={goSentences}>
 				내가 쓴 문장
 			</Menudiv>
@@ -50,7 +51,7 @@ export function Dropdown({ setLogin }: any) {
 
 function Header() {
 	const [login, setLogin] = useState<boolean | string | null>(
-		localStorage.getItem("access_token")
+		sessionStorage.getItem("access_token")
 	);
 	const [view, setView] = useState<boolean>(false); // dropdown
 	const [openLogin, setOpenLogin] = useState<boolean>(false); // login modal

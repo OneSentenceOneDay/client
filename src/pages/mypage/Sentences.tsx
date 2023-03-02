@@ -1,7 +1,7 @@
 import Com from "components/Comment";
 import DateComponent, { CalcToday } from "components/DateComponent";
 import FooterComponent from "components/Footer";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
 	Name,
 	Nickname,
@@ -17,6 +17,7 @@ import {
 	Day,
 } from "./styled";
 import { Wrap } from "./../../components/styled";
+import axios from "axios";
 
 const sample = {
 	id: 0,
@@ -69,6 +70,26 @@ const today = CalcToday();
 
 function Sectences() {
 	const [select, setSelect] = useState(days[0]);
+
+	// ************************ get user detail ************************
+	const [loading, setLoading] = useState(false);
+	const [user, setUser] = useState<any>([]);
+
+	useEffect(() => {
+		setLoading(true);
+		axios({
+			method: "get",
+			url: `https://port-0-osod-108dypx2ale9l8kjq.sel3.cloudtype.app/writing/mypage/userdetail/`,
+			headers: {
+				Authorization: `Bearer ${sessionStorage.getItem("access_token")}`,
+			},
+		}).then((res) => {
+			// setUser(res.data);
+			console.log(res);
+		});
+		setLoading(false);
+	}, []);
+
 	return (
 		<Wrap>
 			<Name>손흥민</Name>

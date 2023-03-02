@@ -47,7 +47,7 @@ export const SourceKor = styled.div`
 	font-family: Pretendard-Light;
 `;
 
-export const Input = styled.div<{ warning: boolean | null }>`
+export const Input = styled.div<{ notWarning: boolean | null }>`
 	margin-top: 2rem;
 	textarea {
 		width: 49.75rem;
@@ -55,7 +55,7 @@ export const Input = styled.div<{ warning: boolean | null }>`
 		padding: 1rem 1.25rem;
 		border-radius: 0.625rem 0.625rem 0rem 0rem;
 		border: 0.063rem solid
-			${(props) => (props.warning ? palette.red1 : palette.gray4)};
+			${(props) => (props.notWarning === false ? palette.red1 : palette.gray4)};
 		resize: none;
 		font-size: 1.125rem;
 		font-family: Pretendard-Regular;
@@ -111,7 +111,7 @@ export const ListContainer = styled.div`
 	padding-top: 3rem;
 `;
 
-export const WarningText = styled.div<{ warning: boolean | null }>`
+export const WarningText = styled.div<{ notWarning: boolean | null }>`
 	width: 52.75rem;
 	margin: 0 auto;
 	text-align: left;
@@ -119,7 +119,18 @@ export const WarningText = styled.div<{ warning: boolean | null }>`
 	font-family: Pretendard-Light;
 	color: ${palette.red1};
 	font-size: 0.75rem;
-	visibility: ${(props) => (props.warning ? "visible" : "hidden")};
+	visibility: ${(props) => (props.notWarning === false ? "visible" : "hidden")};
+`;
+
+export const NoSentences = styled.div`
+	height: 13rem;
+	// background-color: red;
+`;
+
+export const NoSentencesText = styled.div`
+	font-family: Pretendard-Light;
+	color: ${palette.gray1};
+	margin-top: 1rem;
 `;
 
 export const MenuContainer = styled.div`

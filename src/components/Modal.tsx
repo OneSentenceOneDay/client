@@ -11,7 +11,8 @@ export function Modal({
 	onclick2,
 }: any) {
 	return (
-		<ModalContainer>
+		<>
+			{" "}
 			<DialogBox page={"modal"}>
 				<Title>{title}</Title>
 				<Body>{body}</Body>
@@ -23,7 +24,7 @@ export function Modal({
 					)}
 					<Button
 						flag={button2 ? true : false}
-						index={button2 ? 1 : 2}
+						index={button2 ? 1 : 1}
 						onClick={onclick}
 					>
 						{button}
@@ -31,6 +32,6 @@ export function Modal({
 				</Buttons>
 			</DialogBox>
 			<Backdrop />
-		</ModalContainer>
+		</>
 	);
 }

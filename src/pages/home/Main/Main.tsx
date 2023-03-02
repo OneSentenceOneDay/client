@@ -24,6 +24,8 @@ import {
 	Cnt,
 	MenuContainer,
 	WarningText,
+	NoSentences,
+	NoSentencesText,
 } from "./styled";
 import { Wrap } from "./../../../components/styled";
 import Copy from "../../../assets/icons/copy-icon.svg";
@@ -47,18 +49,18 @@ function Main() {
 	const sorts = [
 		{
 			kor: "좋아요순",
-			eng: "latest",
+			eng: "likes",
 		},
 		{
 			kor: "최신순",
-			eng: "likes",
+			eng: "latest",
 		},
 		{
 			kor: "내가 쓴 문장",
 			eng: "my",
 		},
 	];
-	const [nowSort, setNowSort] = useState<string>("latest");
+	const [nowSort, setNowSort] = useState<string>("likes");
 	type SortProps = {
 		name: string;
 		eng: string;
@@ -118,6 +120,12 @@ function Main() {
 			axios({
 				method: "get",
 				url: `https://port-0-osod-108dypx2ale9l8kjq.sel3.cloudtype.app/writing/post/order/${sentence.id}/query=${nowSort}/?page=${page}`,
+
+				headers: {
+					Authorization: sessionStorage.getItem("access_token")
+						? `Bearer ${sessionStorage.getItem("access_token")}`
+						: "",
+				},
 			}).then((res) => {
 				setPost(res.data.postList);
 				setPages(res.data.pageCnt);
@@ -126,6 +134,7 @@ function Main() {
 			setLoading(false);
 		}
 	}
+
 	useEffect(() => {
 		getSentences();
 	}, [sentence, page, nowSort]);
@@ -148,30 +157,36 @@ function Main() {
 	}, []);
 
 	// ************************ 좋아요 클릭 ************************
-	function clickLikes(id: number) {
-		axios({
+	async function clickLikes(id: number) {
+		await axios({
 			method: "get",
 			url: `https://port-0-osod-108dypx2ale9l8kjq.sel3.cloudtype.app/writing/post/${id}/likes/`,
-		}).then(() => {
-			getSentences();
-		});
+			headers: {
+				Authorization: `Bearer ${sessionStorage.getItem("access_token")}`,
+			},
+		})
+			.then((res) => {
+				getSentences();
+				console.log(res);
+			})
+			.catch(() => setOpenLogin(true));
 	}
 
 	// ************************ 오늘의 구문이 포함되어 있는지 ************************
 	const [writing, setWriting] = useState<string>("");
-	const [warning, setWarning] = useState<boolean | null>(null);
+	const [notWarning, setNotWarning] = useState<boolean | null>(null);
 	function isWarning() {
 		if (writing.includes(sentence.sentence)) {
-			setWarning(false);
+			setNotWarning(true);
 		} else {
-			setWarning(true);
+			setNotWarning(false);
 		}
 	}
 
 	// ************************ 문장 작성 ************************
 	async function saveSentence() {
-		console.log(warning);
-		if (!warning) {
+		console.log(notWarning);
+		if (notWarning) {
 			setLoading(true);
 			await axios({
 				method: "post",
@@ -180,14 +195,15 @@ function Main() {
 			}).then(() => {
 				getSentences();
 				getCnt();
-				setWarning(null);
+				setNotWarning(null);
 				setLoading(false);
+				setNowSort("latest");
 			});
 		}
 	}
 	useEffect(() => {
 		saveSentence();
-	}, [warning]);
+	}, [notWarning]);
 
 	// ************************ open login modal ************************
 	const [openLogin, setOpenLogin] = useOutletContext<any>();
@@ -197,15 +213,24 @@ function Main() {
 	function clickSubYes() {
 		axios({
 			method: "get",
-			url: `https://port-0-osod-108dypx2ale9l8kjq.sel3.cloudtype.app/writing/change-sub/`,
+			url: `https://port-0-osod-108dypx2ale9l8kjq.sel3.cloudtype.app/accounts/change-sub/`,
+			headers: {
+				Authorization: `Bearer ${sessionStorage.getItem("access_token")}`,
+			},
 		});
 		setFirst(false);
+		window.location.reload(); // 새로고침
 	}
 	function clickSubNo() {
 		setFirst(false);
+		window.location.reload(); // 새로고침
 	}
 
-	if (loading) return null;
+	// ************************ 구글 로그인 시 ************************
+	const [google, setGoogle] = useState<boolean>(false);
+	function setNickname() {}
+
+	if (loading) return <Wrap>로딩중 ...</Wrap>;
 
 	return (
 		<Wrap>
@@ -214,6 +239,7 @@ function Main() {
 					openLogin={openLogin}
 					setOpenLogin={setOpenLogin}
 					setFirst={setFirst}
+					setGoogle={setGoogle}
 				/>
 			)}
 			{first && (
@@ -226,6 +252,9 @@ function Main() {
 					onclick2={clickSubNo}
 				/>
 			)}
+			{google && (
+				<Modal body={"닉네임과 이름을 설정해 주세요"} button={"확인"} />
+			)}
 			<TodayStc>
 				<DateComponent date={today} page={"main"} />
 				<Text>오늘의 구문을 사용하여 영어 글쓰기를 연습해 보세요.</Text>
@@ -235,7 +264,7 @@ function Main() {
 				{/* <Source>{sentence.postList[0].}</Source>
 				<SourceKor>{sentence.postList[0].}</SourceKor> */}
 			</TodayStc>
-			<Input warning={warning}>
+			<Input notWarning={notWarning}>
 				<textarea
 					placeholder={sentence.sentence + " 를 사용하여 영작하기"}
 					onChange={(e) => {
@@ -251,36 +280,46 @@ function Main() {
 					<Button onClick={isWarning}>영작 완료</Button>
 				</Menu>
 
-				<WarningText warning={warning}>
+				<WarningText notWarning={notWarning}>
 					*오늘의 구문을 활용하여 문장을 만들어주세요!
 				</WarningText>
 			</Input>
 			<ListContainer>
-				<MenuContainer>
-					<Cnt>오늘 하루 {postcnt}개의 영작문이 있어요!</Cnt>
-					<SortMenu>
-						{sorts.map((s, idx) =>
-							s.eng === nowSort ? (
-								<Sort key={idx} name={s.kor} eng={s.eng} mark={true} />
-							) : (
-								<Sort key={idx} name={s.kor} eng={s.eng} mark={false} />
-							)
-						)}
-					</SortMenu>
-				</MenuContainer>
-				{post.map((c: any) => (
-					<Com
-						key={c.id}
-						id={c.unknown ? null : c.user.id}
-						postId={c.id}
-						name={c.unknown ? c.unknown : c.user.nickname}
-						contents={c.body}
-						hearts={c.like_num}
-						bool_like={c.bool_like}
-						onClick={clickLikes}
-					/>
-				))}
-				<Pagination pages={pages} page={page} setPage={setPage} />
+				{postcnt === 0 ? (
+					<NoSentences>
+						<Cnt>오늘 하루 {postcnt}개의 영작문이 있어요!</Cnt>
+						<NoSentencesText>✏️ 첫번째 영문장을 작성해 보세요.</NoSentencesText>
+					</NoSentences>
+				) : (
+					<>
+						<MenuContainer>
+							<Cnt>오늘 하루 {postcnt}개의 영작문이 있어요!</Cnt>
+							<SortMenu>
+								{sorts.map((s, idx) =>
+									s.eng === nowSort ? (
+										<Sort key={idx} name={s.kor} eng={s.eng} mark={true} />
+									) : (
+										<Sort key={idx} name={s.kor} eng={s.eng} mark={false} />
+									)
+								)}
+							</SortMenu>
+						</MenuContainer>
+						{post.map((c: any) => (
+							<Com
+								key={c.id}
+								id={c.unknown ? null : c.user.id}
+								postId={c.id}
+								name={c.unknown ? c.unknown : c.user.nickname}
+								contents={c.body}
+								hearts={c.like_num}
+								bool_like={c.bool_like}
+								onClick={clickLikes}
+							/>
+						))}
+						<Pagination pages={pages} page={page} setPage={setPage} />{" "}
+					</>
+				)}
+
 				<MailSection>
 					<MailText>
 						<TopText>
