@@ -7,12 +7,12 @@ import {
 	Input,
 } from "./styled";
 import Logo from "../../../assets/images/logo.svg";
+import Google from "../../../assets/icons/google-icon.svg";
 import { useState, useCallback } from "react";
 import Signup from "../Signup/Signup";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
 import { useOutletContext } from "react-router-dom";
-import Google from "../../../assets/icons/google-icon.svg";
 
 function Login({ openLogin, setOpenLogin, setFirst, setGoogle }: any) {
 	// ************************ open signup modal ************************
@@ -76,12 +76,12 @@ function Login({ openLogin, setOpenLogin, setFirst, setGoogle }: any) {
 				// flag[2](true); // header 프로필 버튼 활성화
 				document.body.style.overflow = "unset";
 				// 최초 로그인 확인
-				if (res.data.user.is_first) {
-					setGoogle(true);
-				} else {
-					window.location.reload(); // 새로고침
-				}
-				console.log(res);
+				// if (res.data.user.is_first) {
+				// 	setGoogle(true);
+				// } else {
+				// 	window.location.reload(); // 새로고침
+				// }
+				// console.log(res);
 			})
 			.catch((e) => {
 				console.log(e);
@@ -140,7 +140,13 @@ function Login({ openLogin, setOpenLogin, setFirst, setGoogle }: any) {
 						/>
 					</Input>
 					<button onClick={clickLogin}>로그인</button>
-					<button onClick={clickGoogleLogin}>구글 로그인</button>
+					<button
+						onClick={clickGoogleLogin}
+						style={{ backgroundColor: "#F1F3FF", color: "#828282" }}
+					>
+						<img src={Google} />
+						Google 로그인
+					</button>
 					<SignupBut onClick={opensignupModal}>회원가입</SignupBut>
 				</DialogBox>
 			)}

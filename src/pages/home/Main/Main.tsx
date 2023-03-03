@@ -285,10 +285,13 @@ function Main() {
 				</WarningText>
 			</Input>
 			<ListContainer>
-				{postcnt === 0 ? (
+				{false ? (
+					// {postcnt === 0 ? (
 					<NoSentences>
 						<Cnt>오늘 하루 {postcnt}개의 영작문이 있어요!</Cnt>
-						<NoSentencesText>✏️ 첫번째 영문장을 작성해 보세요.</NoSentencesText>
+						<NoSentencesText>
+							✏️ 첫 번째 영문장을 작성해 보세요.
+						</NoSentencesText>
 					</NoSentences>
 				) : (
 					<>

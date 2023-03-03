@@ -45,6 +45,15 @@ export const DialogBox = styled.dialog<{ page: string }>`
 			cursor: pointer;
 			opacity: 0.9;
 		}
+		div {
+			display: inline-block;
+		}
+		img {
+			width: 1rem;
+			margin-right: 0.5rem;
+			display: inline-block;
+			// float: left;
+		}
 	}
 	img {
 		width: 7rem;
