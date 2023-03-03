@@ -5,6 +5,7 @@ import {
 	Text,
 	SignupBut,
 	Input,
+	GoogleButton,
 } from "./styled";
 import Logo from "../../../assets/images/logo.svg";
 import Google from "../../../assets/icons/google-icon.svg";
@@ -13,8 +14,16 @@ import Signup from "../Signup/Signup";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
 import { useOutletContext } from "react-router-dom";
+import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google";
+import { useGoogleLogin } from "@react-oauth/google";
+import { hasGrantedAnyScopeGoogle } from "@react-oauth/google";
 
 function Login({ openLogin, setOpenLogin, setFirst, setGoogle }: any) {
+	const googleLogin = useGoogleLogin({
+		onSuccess: (tokenResponse) => console.log(tokenResponse),
+		flow: "auth-code",
+	});
+
 	// ************************ open signup modal ************************
 	const [openSignup, setOpenSignup] = useState<boolean>(false);
 	const opensignupModal = () => {
@@ -116,6 +125,8 @@ function Login({ openLogin, setOpenLogin, setFirst, setGoogle }: any) {
 	}
 	setInterval(refreshAccessToken, 300000); // 5분마다 갱신 시도
 
+	const googleOauthClientId = process.env.NEXT_PUBLIC_GOOGLE_OAUTH_CLIENT_ID!;
+
 	return (
 		<ModalContainer>
 			{openSignup ? (
@@ -140,13 +151,10 @@ function Login({ openLogin, setOpenLogin, setFirst, setGoogle }: any) {
 						/>
 					</Input>
 					<button onClick={clickLogin}>로그인</button>
-					<button
-						onClick={clickGoogleLogin}
-						style={{ backgroundColor: "#F1F3FF", color: "#828282" }}
-					>
+					<GoogleButton onClick={() => googleLogin()}>
 						<img src={Google} />
 						Google 로그인
-					</button>
+					</GoogleButton>
 					<SignupBut onClick={opensignupModal}>회원가입</SignupBut>
 				</DialogBox>
 			)}

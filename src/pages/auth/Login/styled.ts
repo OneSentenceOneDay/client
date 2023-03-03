@@ -41,22 +41,29 @@ export const DialogBox = styled.dialog<{ page: string }>`
 		background-color: ${palette.blue2};
 		color: #ffffff;
 		font-size: 1rem;
-		&:hover {
-			cursor: pointer;
-			opacity: 0.9;
-		}
-		div {
-			display: inline-block;
-		}
-		img {
-			width: 1rem;
-			margin-right: 0.5rem;
-			display: inline-block;
-			// float: left;
-		}
 	}
 	img {
 		width: 7rem;
+	}
+`;
+
+export const GoogleButton = styled.div`
+	background-color: ${palette.blue7};
+	color: ${[palette.gray6]};
+	width: 25.375rem;
+	height: 3.3rem;
+	line-height: 3.3rem;
+	font-family: Pretendard-Bold;
+	border-radius: 0.625rem 0.625rem 0.625rem 0.625rem;
+	margin-top: 1rem;
+	border: none;
+	img {
+		width: 1.125rem;
+		margin-right: 0.5rem;
+	}
+	&:hover {
+		cursor: pointer;
+		opacity: 0.9;
 	}
 `;
 
