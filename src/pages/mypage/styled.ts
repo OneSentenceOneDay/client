@@ -83,3 +83,11 @@ export const Day = styled.div<{ flag: boolean }>`
 			props.flag ? "" : "rgba(116, 138, 255, 0.05)"};
 	}
 `;
+
+export const NoTodayPost = styled.div`
+	// background-color: red;
+	height: 10rem;
+	line-height: 10rem;
+	font-family: Pretendard-Light;
+	color: ${palette.gray1};
+`;

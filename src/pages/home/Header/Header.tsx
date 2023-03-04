@@ -29,8 +29,8 @@ export function Dropdown({ setLogin }: any) {
 			sessionStorage.clear();
 			setLogin(false);
 			alert(res.data.detail);
-			window.location.reload(); // 새로고침
 			navigate("/");
+			window.location.reload(); // 새로고침
 		});
 	}
 
