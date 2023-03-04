@@ -318,7 +318,13 @@ function Main() {
 					<Icons>
 						<img src={Copy} alt="copy" />
 						<img src={Listen} alt="listen" />
-						<img src={Trans} alt="translate" />
+						<img
+							src={Trans}
+							alt="translate"
+							onClick={() => {
+								clickTrans(writing);
+							}}
+						/>
 					</Icons>
 					<Button onClick={isWarning}>영작 완료</Button>
 				</Menu>
