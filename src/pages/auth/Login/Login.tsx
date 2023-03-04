@@ -9,12 +9,13 @@ import {
 } from "./styled";
 import Logo from "../../../assets/images/logo.svg";
 import Google from "../../../assets/icons/google-icon.svg";
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import Signup from "../Signup/Signup";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
 import { useOutletContext } from "react-router-dom";
 import { useGoogleLogin } from "@react-oauth/google";
+import { WarningText } from "pages/home/Main/styled";
 
 function Login({ openLogin, setOpenLogin, setFirst, setGoogle }: any) {
 	const googleLogin = useGoogleLogin({
@@ -60,6 +61,7 @@ function Login({ openLogin, setOpenLogin, setFirst, setGoogle }: any) {
 	const [email, setEmail] = useState<string>("");
 	const [password, setPassword] = useState<string>("");
 	const flag = useOutletContext<any>();
+	const [noWarning, setNoWarning] = useState<boolean>(true);
 
 	function clickLogin() {
 		axios({
@@ -87,9 +89,13 @@ function Login({ openLogin, setOpenLogin, setFirst, setGoogle }: any) {
 				console.log(res);
 			})
 			.catch(() => {
-				alert("이메일 혹은 비밀번호가 맞지 않습니다.");
+				setNoWarning(false);
 			});
 	}
+
+	useEffect(() => {
+		setNoWarning(true);
+	}, [email, password]);
 
 	// ************************ refresh token ************************
 	function refreshAccessToken() {
@@ -119,8 +125,6 @@ function Login({ openLogin, setOpenLogin, setFirst, setGoogle }: any) {
 	}
 	setInterval(refreshAccessToken, 300000); // 5분마다 갱신 시도
 
-	const googleOauthClientId = process.env.NEXT_PUBLIC_GOOGLE_OAUTH_CLIENT_ID!;
-
 	return (
 		<ModalContainer>
 			{openSignup ? (
@@ -129,13 +133,15 @@ function Login({ openLogin, setOpenLogin, setFirst, setGoogle }: any) {
 				<DialogBox page={"login"}>
 					<img src={Logo} />
 					<Text>로그인하셔야 해요</Text>
-					<Input noWarning={false}>
+					<Input noWarning={noWarning} page="login">
 						<input
 							placeholder="Email"
 							onChange={(e) => {
 								setEmail(e.target.value);
 							}}
 						/>
+					</Input>
+					<Input noWarning={noWarning} page={"login"}>
 						<input
 							type="password"
 							placeholder="Password"
@@ -144,6 +150,9 @@ function Login({ openLogin, setOpenLogin, setFirst, setGoogle }: any) {
 							}}
 						/>
 					</Input>
+					<WarningText noWarning={noWarning}>
+						* 이메일 혹은 비밀번호가 맞지 않습니다.
+					</WarningText>
 					<button onClick={clickLogin}>로그인</button>
 					<GoogleButton onClick={() => googleLogin()}>
 						<img src={Google} />

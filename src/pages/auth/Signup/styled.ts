@@ -16,3 +16,15 @@ export const Privacy = styled.div`
 // modal
 export const Title = styled.div``;
 export const Cont = styled.div``;
+
+export const WarningText = styled.div<{ noWarning: boolean | null }>`
+	width: 52.75rem;
+	margin: 0 auto;
+	text-align: left;
+	padding-top: 0.5rem;
+	font-family: Pretendard-Light;
+	color: ${palette.red1};
+	font-size: 0.75rem;
+	display: ${(props) => (props.noWarning === false ? "" : "none")};
+	visibility: ;
+`;

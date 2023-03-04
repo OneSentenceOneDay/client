@@ -14,7 +14,7 @@ export const DialogBox = styled.dialog<{ page: string }>`
 	padding: ${(props) =>
 		props.page === "login"
 			? "2.5rem 5.313rem 2.5rem 5.313rem"
-			: "2.5rem 5.313rem 2.5rem 5.313rem"};
+			: "2rem 5.313rem 2rem 5.313rem"};
 	width: ${(props) => (props.page === "modal" ? "32rem" : "35rem")};
 	display: flex;
 	flex-direction: column;
@@ -27,7 +27,7 @@ export const DialogBox = styled.dialog<{ page: string }>`
 	z-index: 10000;
 	top: ${(props) =>
 		props.page === "signup"
-			? "-2.5rem"
+			? "-4.5rem"
 			: props.page === "login"
 			? "0rem"
 			: "3rem"};
@@ -98,7 +98,7 @@ export const SignupBut = styled.div`
 	cursor: pointer;
 `;
 
-export const Input = styled.div<{ noWarning: boolean }>`
+export const Input = styled.div<{ noWarning: boolean; page: string }>`
 	input {
 		padding: 1rem 1.25rem;
 		width: 22.875rem;
@@ -107,9 +107,11 @@ export const Input = styled.div<{ noWarning: boolean }>`
 		border: 0.063rem solid
 			${(props) => (props.noWarning === false ? palette.red1 : palette.gray4)};
 		border-radius: 0.625rem 0.625rem 0.625rem 0.625rem;
-		margin-top: 1rem;
+		margin-top: ${(props) => (props.page === "signup" ? "0.5rem" : "1rem")};
 	}
 	input::placeholder {
 		color: ${palette.gray4};
 	}
 `;
+
+export const InputDiv = styled.div``;

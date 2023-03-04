@@ -187,7 +187,7 @@ function Main() {
 	}
 
 	// ************************ 오늘의 구문이 포함되어 있는지 ************************
-	const [writing, setWriting] = useState<string>("");
+	const [writing, setWriting] = useState<string>(""); // 작성한 문장
 	const [noWarning, setNoWarning] = useState<boolean | null>(null);
 	function isWarning() {
 		if (writing.toLowerCase().includes(sentence.sentence)) {
@@ -212,6 +212,7 @@ function Main() {
 				setNoWarning(null);
 				setLoading(false);
 				setNowSort("latest");
+				setWriting("");
 			});
 		}
 	}
@@ -244,6 +245,10 @@ function Main() {
 				setNameError(false);
 			});
 	}
+
+	useEffect(() => {
+		setNameError(true);
+	}, [name, nickname]);
 
 	// ************************ 구독 신청 ************************
 	const [first, setFirst] = useState<boolean>(false); // 최초 로그인 유무
@@ -329,7 +334,7 @@ function Main() {
 						<Text style={{ marginBottom: "1rem" }}>
 							이름 및 닉네임을 설정해 주세요
 						</Text>
-						<Input noWarning={nameError}>
+						<Input noWarning={nameError} page="">
 							<input
 								placeholder="Name"
 								onChange={(e) => {
