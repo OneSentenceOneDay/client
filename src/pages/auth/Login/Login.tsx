@@ -14,16 +14,48 @@ import Signup from "../Signup/Signup";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
 import { useOutletContext } from "react-router-dom";
-import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google";
 import { useGoogleLogin } from "@react-oauth/google";
-import { hasGrantedAnyScopeGoogle } from "@react-oauth/google";
 
 function Login({ openLogin, setOpenLogin, setFirst, setGoogle }: any) {
 	const googleLogin = useGoogleLogin({
+		redirect_uri: "http://localhost:8000/accounts/google/callback/",
 		onSuccess: (tokenResponse) => console.log(tokenResponse),
 		flow: "auth-code",
+		// onSuccess: async (tokenResponse) => {
+		// 	console.log(tokenResponse.code);
+		// 	await axios({
+		// 		method: "post",
+		// 		url: "https://port-0-osod-108dypx2ale9l8kjq.sel3.cloudtype.app/accounts/google/test/",
+		// 		data: tokenResponse.code,
+		// 	})
+		// 		.then((res) => console.log(res))
+		// 		.catch((e) => {
+		// 			console.log(e);
+		// 		});
+		// },
+		// flow: "auth-code",
+
+		// onSuccess: async (tokenResponse) => {
+		// 	console.log(tokenResponse);
+		// 	// fetching userinfo can be done on the client or the server
+		// 	const userInfo = await axios
+		// 		.get("https://www.googleapis.com/oauth2/v3/userinfo", {
+		// 			headers: { Authorization: `Bearer ${tokenResponse.access_token}` },
+		// 		})
+		// 		.then((res) => res.data);
+
+		// 	console.log(userInfo);
+		// },
 	});
 
+	function go() {
+		axios({
+			method: "post",
+			url: "https://port-0-osod-108dypx2ale9l8kjq.sel3.cloudtype.app/accounts/google/login/",
+		}).then((res) => {
+			console.log(res);
+		});
+	}
 	// ************************ open signup modal ************************
 	const [openSignup, setOpenSignup] = useState<boolean>(false);
 	const opensignupModal = () => {

@@ -84,11 +84,12 @@ function Header() {
 
 	return (
 		<>
-			<Wrap ref={outsideRef}>
+			<Wrap>
 				<img src={Logo} onClick={goHome} />
 				{login ? (
 					<>
 						<ProfileBut
+							ref={outsideRef}
 							onClick={() => {
 								setView(!view);
 							}}

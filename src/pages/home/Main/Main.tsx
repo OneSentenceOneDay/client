@@ -26,12 +26,13 @@ import {
 	WarningText,
 	NoSentences,
 	NoSentencesText,
+	TransModal,
 } from "./styled";
 import { Wrap } from "./../../../components/styled";
 import Copy from "../../../assets/icons/copy-icon.svg";
 import Listen from "../../../assets/icons/listen-icon.svg";
 import Trans from "../../../assets/icons/trans-icon.svg";
-import { useEffect, useState, useCallback, useMemo } from "react";
+import { useEffect, useState, Dispatch, SetStateAction, useRef } from "react";
 import { useOutletContext } from "react-router-dom";
 import Com from "components/Comment";
 import Pagination from "components/Pagination";
@@ -42,10 +43,15 @@ import { getData } from "../../../apis/main";
 import axios from "axios";
 import { Modal } from "components/Modal";
 
+// ************************ 번역 컴포넌트 ************************
+export function transModal(body: string) {
+	<TransModal>{body}</TransModal>;
+}
+
 const today = CalcToday();
 
 function Main() {
-	// ************************ 정렬 버튼 ************************
+	// ************************ 정렬 컴포넌트 ************************
 	const sorts = [
 		{
 			kor: "좋아요순",
@@ -67,13 +73,22 @@ function Main() {
 		mark: boolean;
 	};
 
+	function clickSort(eng: string) {
+		if (!sessionStorage.getItem("access_token") && eng === "my") {
+			// 비로그인 시 내가 쓴 문장 확인 불가 -> 로그인 유도
+			setOpenLogin(true);
+		} else {
+			setNowSort(eng);
+		}
+	}
+
 	const Sort = ({ name, eng, mark }: SortProps) => {
 		if (mark) {
 			return (
 				<Sorted
 					flag={mark}
 					onClick={() => {
-						setNowSort(eng);
+						clickSort(eng);
 					}}
 				>
 					{name}
@@ -84,7 +99,7 @@ function Main() {
 				<Sorted
 					flag={mark}
 					onClick={() => {
-						setNowSort(eng);
+						clickSort(eng);
 					}}
 				>
 					{name}
@@ -104,7 +119,6 @@ function Main() {
 			url: `https://port-0-osod-108dypx2ale9l8kjq.sel3.cloudtype.app/writing/main/`,
 		}).then((res) => {
 			setSentence(res.data.postList[0]);
-			// console.log(res.data.postList[0]);
 		});
 		setLoading(false);
 	}, []);
@@ -120,7 +134,6 @@ function Main() {
 			axios({
 				method: "get",
 				url: `https://port-0-osod-108dypx2ale9l8kjq.sel3.cloudtype.app/writing/post/order/${sentence.id}/query=${nowSort}/?page=${page}`,
-
 				headers: {
 					Authorization: sessionStorage.getItem("access_token")
 						? `Bearer ${sessionStorage.getItem("access_token")}`
@@ -129,7 +142,6 @@ function Main() {
 			}).then((res) => {
 				setPost(res.data.postList);
 				setPages(res.data.pageCnt);
-				console.log(res.data);
 			});
 			setLoading(false);
 		}
@@ -176,7 +188,7 @@ function Main() {
 	const [writing, setWriting] = useState<string>("");
 	const [notWarning, setNotWarning] = useState<boolean | null>(null);
 	function isWarning() {
-		if (writing.includes(sentence.sentence)) {
+		if (writing.toLowerCase().includes(sentence.sentence)) {
 			setNotWarning(true);
 		} else {
 			setNotWarning(false);
@@ -208,7 +220,7 @@ function Main() {
 	// ************************ open login modal ************************
 	const [openLogin, setOpenLogin] = useOutletContext<any>();
 
-	// ************************ 최초 로그인 확인 ************************
+	// ************************ 최초 로그인 시 구독 신청 모달 ************************
 	const [first, setFirst] = useState<boolean>(false);
 	function clickSubYes() {
 		axios({
@@ -229,6 +241,38 @@ function Main() {
 	// ************************ 구글 로그인 시 ************************
 	const [google, setGoogle] = useState<boolean>(false);
 	function setNickname() {}
+
+	const [trans, setTrans] = useState<string>("");
+	const [showTrans, setShowTrans] = useState<boolean>(false);
+
+	// ************************ 번역 ************************
+	async function clickTrans(body: string) {
+		await axios({
+			method: "post",
+			url: `https://port-0-osod-108dypx2ale9l8kjq.sel3.cloudtype.app/writing/translate/`,
+			data: {
+				text: body,
+			},
+		}).then((res) => {
+			setTrans(res.data.translation);
+			console.log(res.data.translation);
+			setShowTrans(true);
+			console.log(showTrans);
+		});
+	}
+
+	const outsideRef = useRef<HTMLDialogElement | null>(null);
+	useEffect(() => {
+		function handleClickOutside(event: any) {
+			if (outsideRef.current && !outsideRef.current.contains(event.target)) {
+				setShowTrans(false);
+			}
+		}
+		document.addEventListener("click", handleClickOutside);
+		return () => {
+			document.removeEventListener("click", handleClickOutside);
+		};
+	}, [outsideRef]);
 
 	if (loading) return <Wrap>로딩중 ...</Wrap>;
 
@@ -261,8 +305,7 @@ function Main() {
 				<Eng>{sentence.sentence}</Eng>
 				<Sentence>{sentence.discription}</Sentence>
 				<SentenceKor>{sentence.translate}</SentenceKor>
-				{/* <Source>{sentence.postList[0].}</Source>
-				<SourceKor>{sentence.postList[0].}</SourceKor> */}
+				<Source>- {sentence.source}</Source>
 			</TodayStc>
 			<Input notWarning={notWarning}>
 				<textarea
@@ -279,7 +322,6 @@ function Main() {
 					</Icons>
 					<Button onClick={isWarning}>영작 완료</Button>
 				</Menu>
-
 				<WarningText notWarning={notWarning}>
 					*오늘의 구문을 활용하여 문장을 만들어주세요!
 				</WarningText>
@@ -307,6 +349,7 @@ function Main() {
 								)}
 							</SortMenu>
 						</MenuContainer>
+						{showTrans && <TransModal ref={outsideRef}>{trans}</TransModal>}
 						{post.map((c: any) => (
 							<Com
 								key={c.id}
@@ -316,7 +359,8 @@ function Main() {
 								contents={c.body}
 								hearts={c.like_num}
 								bool_like={c.bool_like}
-								onClick={clickLikes}
+								clickLikes={clickLikes}
+								clickTrans={clickTrans}
 							/>
 						))}
 						<Pagination pages={pages} page={page} setPage={setPage} />{" "}
