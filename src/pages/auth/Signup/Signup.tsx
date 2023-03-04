@@ -5,6 +5,8 @@ import { useState, Dispatch, SetStateAction, useEffect } from "react";
 import { Modal } from "components/Modal";
 import axios from "axios";
 
+const BASE_URL = process.env.REACT_APP_API;
+
 export function EmailConfirm() {
 	return (
 		<>
@@ -81,7 +83,7 @@ function Signup(
 			if (privacy) {
 				axios({
 					method: "post",
-					url: `https://port-0-osod-108dypx2ale9l8kjq.sel3.cloudtype.app/registration/`,
+					url: `${BASE_URL}/registration/`,
 					data: {
 						username: name,
 						email: email,

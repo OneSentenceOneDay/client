@@ -17,13 +17,15 @@ import { useOutletContext } from "react-router-dom";
 import { useGoogleLogin } from "@react-oauth/google";
 import { WarningText } from "pages/home/Main/styled";
 
+const BASE_URL = process.env.REACT_APP_API;
+
 function Login({ openLogin, setOpenLogin, setFirst, setGoogle }: any) {
 	const googleLogin = useGoogleLogin({
 		onSuccess: async (res) => {
 			console.log(res.access_token);
 			await axios({
 				method: "post",
-				url: "https://port-0-osod-108dypx2ale9l8kjq.sel3.cloudtype.app/accounts/google/test/",
+				url: `${BASE_URL}/accounts/google/test/`,
 				data: { access_token: res.access_token },
 			})
 				.then((res) => {
@@ -66,7 +68,7 @@ function Login({ openLogin, setOpenLogin, setFirst, setGoogle }: any) {
 	function clickLogin() {
 		axios({
 			method: "post",
-			url: `https://port-0-osod-108dypx2ale9l8kjq.sel3.cloudtype.app/login/`,
+			url: `${BASE_URL}/login/`,
 			data: {
 				email: email,
 				password: password,

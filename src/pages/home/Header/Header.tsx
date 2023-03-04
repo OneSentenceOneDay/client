@@ -5,6 +5,8 @@ import Logo from "../../../assets/images/logo.svg";
 import Profile from "../../../assets/icons/profile-icon.svg";
 import axios from "axios";
 
+const BASE_URL = process.env.REACT_APP_API;
+
 export function Dropdown({ setLogin }: any) {
 	// ************************ navigation ************************
 	const navigate = useNavigate();
@@ -19,7 +21,7 @@ export function Dropdown({ setLogin }: any) {
 	function clickLogout() {
 		axios({
 			method: "post",
-			url: `https://port-0-osod-108dypx2ale9l8kjq.sel3.cloudtype.app/logout/`,
+			url: `${BASE_URL}/logout/`,
 			data: {
 				refresh: sessionStorage.getItem("refresh_token"),
 			},

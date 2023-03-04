@@ -50,6 +50,8 @@ import {
 	ModalContainer,
 } from "pages/auth/Login/styled";
 
+const BASE_URL = process.env.REACT_APP_API;
+
 const today = CalcToday();
 
 function Main() {
@@ -118,7 +120,7 @@ function Main() {
 		setLoading(true);
 		axios({
 			method: "get",
-			url: `https://port-0-osod-108dypx2ale9l8kjq.sel3.cloudtype.app/writing/main/`,
+			url: `${BASE_URL}/writing/main/`,
 		}).then((res) => {
 			setSentence(res.data.postList[0]);
 		});
@@ -135,7 +137,7 @@ function Main() {
 			setLoading(true);
 			axios({
 				method: "get",
-				url: `https://port-0-osod-108dypx2ale9l8kjq.sel3.cloudtype.app/writing/post/order/${sentence.id}/query=${nowSort}/?page=${page}`,
+				url: `${BASE_URL}/writing/post/order/${sentence.id}/query=${nowSort}/?page=${page}`,
 				headers: {
 					Authorization: sessionStorage.getItem("access_token")
 						? `Bearer ${sessionStorage.getItem("access_token")}`
@@ -159,7 +161,7 @@ function Main() {
 		setLoading(true);
 		axios({
 			method: "get",
-			url: `https://port-0-osod-108dypx2ale9l8kjq.sel3.cloudtype.app/writing/post/todaypostcnt/`,
+			url: `${BASE_URL}/writing/post/todaypostcnt/`,
 		}).then((res) => {
 			setPostcnt(res.data.today_postcnt);
 		});
@@ -174,7 +176,7 @@ function Main() {
 	async function clickLikes(id: number) {
 		await axios({
 			method: "get",
-			url: `https://port-0-osod-108dypx2ale9l8kjq.sel3.cloudtype.app/writing/post/${id}/likes/`,
+			url: `${BASE_URL}/writing/post/${id}/likes/`,
 			headers: {
 				Authorization: `Bearer ${sessionStorage.getItem("access_token")}`,
 			},
@@ -204,7 +206,7 @@ function Main() {
 			setLoading(true);
 			await axios({
 				method: "post",
-				url: `https://port-0-osod-108dypx2ale9l8kjq.sel3.cloudtype.app/writing/post/create/${sentence.id}/`,
+				url: `${BASE_URL}/writing/post/create/${sentence.id}/`,
 				data: { body: writing },
 			}).then(() => {
 				getSentences();
@@ -233,7 +235,7 @@ function Main() {
 	function setNameAndNickname() {
 		axios({
 			method: "post",
-			url: `https://port-0-osod-108dypx2ale9l8kjq.sel3.cloudtype.app/accounts/make-nickname/`,
+			url: `${BASE_URL}/accounts/make-nickname/`,
 			data: { nickname: nickname, name: name },
 		})
 			.then(() => {
@@ -251,12 +253,14 @@ function Main() {
 	}, [name, nickname]);
 
 	// ************************ 구독 신청 ************************
+	const [subModal, setSubModal] = useState<boolean>(false);
+
 	const [first, setFirst] = useState<boolean>(false); // 최초 로그인 유무
 
 	function clickSubYes() {
 		axios({
 			method: "get",
-			url: `https://port-0-osod-108dypx2ale9l8kjq.sel3.cloudtype.app/accounts/change-sub/`,
+			url: `${BASE_URL}/accounts/change-sub/`,
 			headers: {
 				Authorization: `Bearer ${sessionStorage.getItem("access_token")}`,
 			},
@@ -270,7 +274,17 @@ function Main() {
 		window.location.reload(); // 새로고침
 	}
 
-	const [subModal, setSubModal] = useState<boolean>(false);
+	// ************************ 비로그인 유저 구독 신청 ************************
+	const [subName, setSubName] = useState<string>("");
+	const [subEmail, setSubEmail] = useState<string>("");
+
+	function subAsNonUser() {
+		axios({
+			method: "post",
+			url: `${BASE_URL}/writing/post/subscription/create/`,
+			data: { sub_email: subEmail, sub_nickname: subName },
+		});
+	}
 
 	// ************************ 번역 ************************
 	const [trans, setTrans] = useState<string>("");
@@ -279,7 +293,7 @@ function Main() {
 	async function clickTrans(body: string) {
 		await axios({
 			method: "post",
-			url: `https://port-0-osod-108dypx2ale9l8kjq.sel3.cloudtype.app/writing/translate/`,
+			url: `${BASE_URL}/writing/translate/`,
 			data: {
 				text: body,
 			},
@@ -292,6 +306,7 @@ function Main() {
 	}
 
 	// ************************ 번역 모달 창 닫기 ************************
+
 	const outsideRef = useRef<HTMLDialogElement | null>(null);
 	useEffect(() => {
 		function handleClickOutside(event: any) {
@@ -387,7 +402,7 @@ function Main() {
 					<Button onClick={isWarning}>영작 완료</Button>
 				</Menu>
 				<WarningText noWarning={noWarning}>
-					*오늘의 구문을 활용하여 문장을 만들어주세요!
+					* 오늘의 구문을 활용하여 문장을 만들어주세요!
 				</WarningText>
 			</Writing>
 			<ListContainer>
@@ -454,13 +469,25 @@ function Main() {
 						<MailInput>
 							<InputSec>
 								<InputDiv position={"up"}>
-									<input placeholder="이름을 입력하세요" />
+									<input
+										placeholder="이름을 입력하세요"
+										onChange={(e) => {
+											setSubName(e.target.value);
+										}}
+									/>
 								</InputDiv>
 								<InputDiv position={"down"}>
-									<input placeholder="Email 입력하세요" />
+									<input
+										placeholder="Email을 입력하세요"
+										onChange={(e) => {
+											setSubEmail(e.target.value);
+										}}
+									/>
 								</InputDiv>
 							</InputSec>
-							<InputBut login={false}>구독</InputBut>
+							<InputBut login={false} onClick={subAsNonUser}>
+								구독
+							</InputBut>
 						</MailInput>
 					)}
 				</MailSection>

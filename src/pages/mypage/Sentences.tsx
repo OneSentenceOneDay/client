@@ -19,6 +19,8 @@ import {
 import { Wrap } from "./../../components/styled";
 import axios from "axios";
 
+const BASE_URL = process.env.REACT_APP_API;
+
 const sample = {
 	id: 0,
 	name: "niceonesony",
@@ -79,7 +81,7 @@ function Sectences() {
 		setLoading(true);
 		axios({
 			method: "get",
-			url: `https://port-0-osod-108dypx2ale9l8kjq.sel3.cloudtype.app/writing/mypage/userdetail/`,
+			url: `${BASE_URL}/writing/mypage/userdetail/`,
 			headers: {
 				Authorization: `Bearer ${sessionStorage.getItem("access_token")}`,
 			},
