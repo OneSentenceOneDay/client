@@ -47,7 +47,7 @@ export const SourceKor = styled.div`
 	font-family: Pretendard-Light;
 `;
 
-export const Input = styled.div<{ notWarning: boolean | null }>`
+export const Writing = styled.div<{ noWarning: boolean | null }>`
 	margin-top: 2rem;
 	textarea {
 		width: 49.75rem;
@@ -55,7 +55,7 @@ export const Input = styled.div<{ notWarning: boolean | null }>`
 		padding: 1rem 1.25rem;
 		border-radius: 0.625rem 0.625rem 0rem 0rem;
 		border: 0.063rem solid
-			${(props) => (props.notWarning === false ? palette.red1 : palette.gray4)};
+			${(props) => (props.noWarning === false ? palette.red1 : palette.gray4)};
 		resize: none;
 		font-size: 1.125rem;
 		font-family: Pretendard-Regular;
@@ -111,7 +111,7 @@ export const ListContainer = styled.div`
 	padding-top: 3rem;
 `;
 
-export const WarningText = styled.div<{ notWarning: boolean | null }>`
+export const WarningText = styled.div<{ noWarning: boolean | null }>`
 	width: 52.75rem;
 	margin: 0 auto;
 	text-align: left;
@@ -119,7 +119,7 @@ export const WarningText = styled.div<{ notWarning: boolean | null }>`
 	font-family: Pretendard-Light;
 	color: ${palette.red1};
 	font-size: 0.75rem;
-	visibility: ${(props) => (props.notWarning === false ? "visible" : "hidden")};
+	visibility: ${(props) => (props.noWarning === false ? "visible" : "hidden")};
 `;
 
 export const NoSentences = styled.div`
@@ -164,13 +164,14 @@ export const SortMenu = styled.div`
 `;
 
 export const MailSection = styled.div`
-	margin-top: 5rem;
+	margin-top: 8rem;
 `;
 
-export const MailText = styled.div`
+export const MailText = styled.div<{ login: boolean }>`
 	display: inline-block;
 	text-align: left;
 	width: 26.125rem;
+	float: ${(props) => (props.login ? "left" : "")}}
 `;
 
 export const MailInput = styled.div`
@@ -218,21 +219,25 @@ export const InputDiv = styled.div<{ position: string }>`
 	}
 `;
 
-export const InputBut = styled.div`
+export const InputBut = styled.div<{ login: boolean }>`
 	background-color: ${palette.blue2};
 	display: inline-block;
 	vertical-align: top;
-	width: 4.5rem;
-	height: 6.82rem;
-	line-height: 6.82rem;
+	width: ${(props) => (props.login ? "14.063rem" : "4.5rem")}}
+	height: ${(props) => (props.login ? "4.5rem" : "6.82rem")}}
+	line-height: ${(props) => (props.login ? "4.5rem" : "6.82rem")}}
 	font-family: Pretendard-Bold;
 	color: #ffffff;
-	border-radius: 0rem 0.625rem 0.625rem 0rem;
+	border-radius: ${(props) =>
+		props.login
+			? "0.625rem 0.625rem 0.625rem 0.625rem"
+			: "0rem 0.625rem 0.625rem 0rem"}}
 	font-size: 1.125rem;
 	&:hover {
 		cursor: pointer;
 		opacity: 0.9;
 	}
+	float: ${(props) => (props.login ? "right" : "")}}
 `;
 
 export const TransModal = styled.dialog`

@@ -45,7 +45,7 @@ function Signup({ setOpenSignup, setOpenLogin }: any) {
 				<DialogBox page="signup">
 					<img src={Logo} />
 					<Text>회원가입을 해주세요</Text>
-					<Input>
+					<Input noWarning={false}>
 						<input placeholder="Name" />
 						<input placeholder="Email" />
 						<input placeholder="Nickname" />

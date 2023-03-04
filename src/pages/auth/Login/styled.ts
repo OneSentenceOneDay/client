@@ -98,13 +98,14 @@ export const SignupBut = styled.div`
 	cursor: pointer;
 `;
 
-export const Input = styled.div`
+export const Input = styled.div<{ noWarning: boolean }>`
 	input {
 		padding: 1rem 1.25rem;
 		width: 22.875rem;
 		height: 1.3rem;
 		font-family: Pretendard-Regular;
-		border: 0.063rem solid ${palette.gray4};
+		border: 0.063rem solid
+			${(props) => (props.noWarning === false ? palette.red1 : palette.gray4)};
 		border-radius: 0.625rem 0.625rem 0.625rem 0.625rem;
 		margin-top: 1rem;
 	}

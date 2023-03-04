@@ -18,44 +18,32 @@ import { useGoogleLogin } from "@react-oauth/google";
 
 function Login({ openLogin, setOpenLogin, setFirst, setGoogle }: any) {
 	const googleLogin = useGoogleLogin({
-		redirect_uri: "http://localhost:8000/accounts/google/callback/",
-		onSuccess: (tokenResponse) => console.log(tokenResponse),
-		flow: "auth-code",
-		// onSuccess: async (tokenResponse) => {
-		// 	console.log(tokenResponse.code);
-		// 	await axios({
-		// 		method: "post",
-		// 		url: "https://port-0-osod-108dypx2ale9l8kjq.sel3.cloudtype.app/accounts/google/test/",
-		// 		data: tokenResponse.code,
-		// 	})
-		// 		.then((res) => console.log(res))
-		// 		.catch((e) => {
-		// 			console.log(e);
-		// 		});
-		// },
-		// flow: "auth-code",
-
-		// onSuccess: async (tokenResponse) => {
-		// 	console.log(tokenResponse);
-		// 	// fetching userinfo can be done on the client or the server
-		// 	const userInfo = await axios
-		// 		.get("https://www.googleapis.com/oauth2/v3/userinfo", {
-		// 			headers: { Authorization: `Bearer ${tokenResponse.access_token}` },
-		// 		})
-		// 		.then((res) => res.data);
-
-		// 	console.log(userInfo);
-		// },
+		onSuccess: async (res) => {
+			console.log(res.access_token);
+			await axios({
+				method: "post",
+				url: "https://port-0-osod-108dypx2ale9l8kjq.sel3.cloudtype.app/accounts/google/test/",
+				data: { access_token: res.access_token },
+			})
+				.then((res) => {
+					console.log(res);
+					sessionStorage.setItem("access_token", res.data.access_token);
+					sessionStorage.setItem("refresh_token", res.data.refresh_token);
+					sessionStorage.setItem("id", res.data.user.id);
+					flag[1](false); // cloase login modal
+					flag[2](true); // header 프로필 버튼 활성화
+					document.body.style.overflow = "unset";
+					// 최초 로그인 확인
+					if (res.data.user.is_first) {
+						setGoogle(true);
+					} else {
+						window.location.reload(); // 새로고침
+					}
+				})
+				.catch((e) => console.log(e));
+		},
 	});
 
-	function go() {
-		axios({
-			method: "post",
-			url: "https://port-0-osod-108dypx2ale9l8kjq.sel3.cloudtype.app/accounts/google/login/",
-		}).then((res) => {
-			console.log(res);
-		});
-	}
 	// ************************ open signup modal ************************
 	const [openSignup, setOpenSignup] = useState<boolean>(false);
 	const opensignupModal = () => {
@@ -103,32 +91,6 @@ function Login({ openLogin, setOpenLogin, setFirst, setGoogle }: any) {
 			});
 	}
 
-	// ************************ Google Login ************************
-	function clickGoogleLogin() {
-		axios({
-			method: "post",
-			url: `https://port-0-osod-108dypx2ale9l8kjq.sel3.cloudtype.app/accounts/google/login/`,
-		})
-			.then((res) => {
-				// sessionStorage.setItem("access_token", res.data.access_token);
-				// sessionStorage.setItem("refresh_token", res.data.refresh_token);
-				// sessionStorage.setItem("id", res.data.user.id);
-				// flag[1](false); // cloase login modal
-				// flag[2](true); // header 프로필 버튼 활성화
-				document.body.style.overflow = "unset";
-				// 최초 로그인 확인
-				// if (res.data.user.is_first) {
-				// 	setGoogle(true);
-				// } else {
-				// 	window.location.reload(); // 새로고침
-				// }
-				// console.log(res);
-			})
-			.catch((e) => {
-				console.log(e);
-			});
-	}
-
 	// ************************ refresh token ************************
 	function refreshAccessToken() {
 		// access token 만료 여부 확인
@@ -167,7 +129,7 @@ function Login({ openLogin, setOpenLogin, setFirst, setGoogle }: any) {
 				<DialogBox page={"login"}>
 					<img src={Logo} />
 					<Text>로그인하셔야 해요</Text>
-					<Input>
+					<Input noWarning={false}>
 						<input
 							placeholder="Email"
 							onChange={(e) => {

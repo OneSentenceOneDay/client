@@ -6,7 +6,7 @@ import {
 	Source,
 	SentenceKor,
 	SourceKor,
-	Input,
+	Writing,
 	Menu,
 	Icons,
 	Button,
@@ -42,11 +42,13 @@ import Login from "pages/auth/Login/Login";
 import { getData } from "../../../apis/main";
 import axios from "axios";
 import { Modal } from "components/Modal";
-
-// ************************ 번역 컴포넌트 ************************
-export function transModal(body: string) {
-	<TransModal>{body}</TransModal>;
-}
+import closeModal from "apis/closeModal";
+import {
+	Backdrop,
+	DialogBox,
+	Input,
+	ModalContainer,
+} from "pages/auth/Login/styled";
 
 const today = CalcToday();
 
@@ -186,19 +188,19 @@ function Main() {
 
 	// ************************ 오늘의 구문이 포함되어 있는지 ************************
 	const [writing, setWriting] = useState<string>("");
-	const [notWarning, setNotWarning] = useState<boolean | null>(null);
+	const [noWarning, setNoWarning] = useState<boolean | null>(null);
 	function isWarning() {
 		if (writing.toLowerCase().includes(sentence.sentence)) {
-			setNotWarning(true);
+			setNoWarning(true);
 		} else {
-			setNotWarning(false);
+			setNoWarning(false);
 		}
 	}
 
 	// ************************ 문장 작성 ************************
 	async function saveSentence() {
-		console.log(notWarning);
-		if (notWarning) {
+		console.log(noWarning);
+		if (noWarning) {
 			setLoading(true);
 			await axios({
 				method: "post",
@@ -207,7 +209,7 @@ function Main() {
 			}).then(() => {
 				getSentences();
 				getCnt();
-				setNotWarning(null);
+				setNoWarning(null);
 				setLoading(false);
 				setNowSort("latest");
 			});
@@ -215,13 +217,37 @@ function Main() {
 	}
 	useEffect(() => {
 		saveSentence();
-	}, [notWarning]);
+	}, [noWarning]);
 
-	// ************************ open login modal ************************
+	// ************************ 로그인 모달 ************************
 	const [openLogin, setOpenLogin] = useOutletContext<any>();
 
-	// ************************ 최초 로그인 시 구독 신청 모달 ************************
-	const [first, setFirst] = useState<boolean>(false);
+	// ************************ 구글 로그인 시 ************************
+	const [firstGoogle, setFirstGoogle] = useState<boolean>(false); // 구글 로그인 처음인지 유무
+	const [name, setName] = useState<string>("");
+	const [nickname, setNickname] = useState<string>("");
+	const [nameError, setNameError] = useState<boolean>(true); // 이름 혹은 닉네임 에러 확인
+
+	// 이름 및 닉네임 설정
+	function setNameAndNickname() {
+		axios({
+			method: "post",
+			url: `https://port-0-osod-108dypx2ale9l8kjq.sel3.cloudtype.app/accounts/make-nickname/`,
+			data: { nickname: nickname, name: name },
+		})
+			.then(() => {
+				setFirstGoogle(false);
+				setFirst(true);
+			})
+			.catch((e) => {
+				console.log(e.response.data.detail);
+				setNameError(false);
+			});
+	}
+
+	// ************************ 구독 신청 ************************
+	const [first, setFirst] = useState<boolean>(false); // 최초 로그인 유무
+
 	function clickSubYes() {
 		axios({
 			method: "get",
@@ -233,19 +259,18 @@ function Main() {
 		setFirst(false);
 		window.location.reload(); // 새로고침
 	}
+
 	function clickSubNo() {
 		setFirst(false);
 		window.location.reload(); // 새로고침
 	}
 
-	// ************************ 구글 로그인 시 ************************
-	const [google, setGoogle] = useState<boolean>(false);
-	function setNickname() {}
+	const [subModal, setSubModal] = useState<boolean>(false);
 
+	// ************************ 번역 ************************
 	const [trans, setTrans] = useState<string>("");
 	const [showTrans, setShowTrans] = useState<boolean>(false);
 
-	// ************************ 번역 ************************
 	async function clickTrans(body: string) {
 		await axios({
 			method: "post",
@@ -261,6 +286,7 @@ function Main() {
 		});
 	}
 
+	// ************************ 번역 모달 창 닫기 ************************
 	const outsideRef = useRef<HTMLDialogElement | null>(null);
 	useEffect(() => {
 		function handleClickOutside(event: any) {
@@ -273,6 +299,7 @@ function Main() {
 			document.removeEventListener("click", handleClickOutside);
 		};
 	}, [outsideRef]);
+	// closeModal()
 
 	if (loading) return <Wrap>로딩중 ...</Wrap>;
 
@@ -283,7 +310,7 @@ function Main() {
 					openLogin={openLogin}
 					setOpenLogin={setOpenLogin}
 					setFirst={setFirst}
-					setGoogle={setGoogle}
+					setGoogle={setFirstGoogle}
 				/>
 			)}
 			{first && (
@@ -296,9 +323,35 @@ function Main() {
 					onclick2={clickSubNo}
 				/>
 			)}
-			{google && (
-				<Modal body={"닉네임과 이름을 설정해 주세요"} button={"확인"} />
+			{firstGoogle && (
+				<ModalContainer>
+					<DialogBox page={"login"}>
+						<Text style={{ marginBottom: "1rem" }}>
+							이름 및 닉네임을 설정해 주세요
+						</Text>
+						<Input noWarning={nameError}>
+							<input
+								placeholder="Name"
+								onChange={(e) => {
+									setName(e.target.value);
+								}}
+							/>
+							<input
+								placeholder="Nickname"
+								onChange={(e) => {
+									setNickname(e.target.value);
+								}}
+							/>
+						</Input>
+						<WarningText noWarning={nameError}>
+							* 닉네임이 중복되었거나 이름이 형식에 맞지 않습니다.
+						</WarningText>
+						<button onClick={setNameAndNickname}>확인</button>
+					</DialogBox>
+					<Backdrop />
+				</ModalContainer>
 			)}
+			{subModal && <Modal body={"구독 신청이 되었습니다."} button={"확인"} />}
 			<TodayStc>
 				<DateComponent date={today} page={"main"} />
 				<Text>오늘의 구문을 사용하여 영어 글쓰기를 연습해 보세요.</Text>
@@ -307,7 +360,7 @@ function Main() {
 				<SentenceKor>{sentence.translate}</SentenceKor>
 				<Source>- {sentence.source}</Source>
 			</TodayStc>
-			<Input notWarning={notWarning}>
+			<Writing noWarning={noWarning}>
 				<textarea
 					placeholder={sentence.sentence + " 를 사용하여 영작하기"}
 					onChange={(e) => {
@@ -328,10 +381,10 @@ function Main() {
 					</Icons>
 					<Button onClick={isWarning}>영작 완료</Button>
 				</Menu>
-				<WarningText notWarning={notWarning}>
+				<WarningText noWarning={noWarning}>
 					*오늘의 구문을 활용하여 문장을 만들어주세요!
 				</WarningText>
-			</Input>
+			</Writing>
 			<ListContainer>
 				{false ? (
 					// {postcnt === 0 ? (
@@ -374,25 +427,37 @@ function Main() {
 				)}
 
 				<MailSection>
-					<MailText>
+					<MailText
+						login={sessionStorage.getItem("access_token") ? true : false}
+					>
 						<TopText>
 							{
 								"osod의 하루 한 문장 영어 글쓰기 연습을\n메일로 받아 보길 원하시나요?"
 							}
 						</TopText>
-						<BottomText>이름과 이메일을 남겨주세요.</BottomText>
+						{sessionStorage.getItem("access_token") ? (
+							""
+						) : (
+							<BottomText>이름과 이메일을 남겨주세요.</BottomText>
+						)}
 					</MailText>
-					<MailInput>
-						<InputSec>
-							<InputDiv position={"up"}>
-								<input placeholder="이름을 입력하세요" />
-							</InputDiv>
-							<InputDiv position={"down"}>
-								<input placeholder="Email 입력하세요" />
-							</InputDiv>
-						</InputSec>
-						<InputBut>구독</InputBut>
-					</MailInput>
+					{sessionStorage.getItem("access_token") ? (
+						<InputBut login={true} onClick={clickSubYes}>
+							구독
+						</InputBut>
+					) : (
+						<MailInput>
+							<InputSec>
+								<InputDiv position={"up"}>
+									<input placeholder="이름을 입력하세요" />
+								</InputDiv>
+								<InputDiv position={"down"}>
+									<input placeholder="Email 입력하세요" />
+								</InputDiv>
+							</InputSec>
+							<InputBut login={false}>구독</InputBut>
+						</MailInput>
+					)}
 				</MailSection>
 				<FooterComponent />
 			</ListContainer>
