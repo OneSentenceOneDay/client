@@ -241,9 +241,13 @@ function Main() {
 		axios({
 			method: "post",
 			url: `${BASE_URL}/accounts/make-nickname/`,
+			headers: {
+				Authorization: `Bearer ${sessionStorage.getItem("access_token")}`,
+			},
 			data: { nickname: nickname, name: name },
 		})
 			.then(() => {
+				sessionStorage.setItem("nickname", nickname);
 				setFirstGoogle(false);
 				setFirst(true);
 			})

@@ -34,6 +34,7 @@ function Login({ openLogin, setOpenLogin, setFirst, setGoogle }: any) {
 					sessionStorage.setItem("refresh_token", res.data.refresh_token);
 					sessionStorage.setItem("id", res.data.user.id);
 					sessionStorage.setItem("email", res.data.user.email);
+					sessionStorage.setItem("nickname", res.data.user.nickname);
 					flag[1](false); // cloase login modal
 					flag[2](true); // header 프로필 버튼 활성화
 					document.body.style.overflow = "unset";

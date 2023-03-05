@@ -43,6 +43,7 @@ function Signup({ setOpenSignup, setOpenLogin }: any) {
 	const [warningPassword, setWarningPassword] = useState<boolean>(true);
 	const [warningPassword2, setWarningPassword2] = useState<boolean>(true);
 	const [emailWarningMsg, setEmailWarningMsg] = useState<string>("");
+	const [nicknameWarningMsg, setNicknameWarningMsg] = useState<string>("");
 	const [passwordWarningMsg, setPasswordWarningMsg] = useState<string>("");
 
 	function validation() {
@@ -54,6 +55,7 @@ function Signup({ setOpenSignup, setOpenLogin }: any) {
 			setWarningEmail(false);
 		}
 		if (nickname.length === 0) {
+			setNicknameWarningMsg("* 닉네임을 입력하세요");
 			setWarningNickname(false);
 		}
 		if (password.length === 0) {
@@ -94,17 +96,22 @@ function Signup({ setOpenSignup, setOpenLogin }: any) {
 						setConfirmModal(!confirmModal); // open cinfirm modal
 					})
 					.catch((e) => {
+						console.log(e);
 						if (e.response.data.email) {
-							setEmailWarningMsg("* " + e.response.data.email);
+							setEmailWarningMsg("* 유효한 이메일 주소를 입력해주세요");
 							setWarningEmail(false);
 						}
 						if (e.response.data.password1) {
 							setPasswordWarningMsg("* " + e.response.data.password1[0]);
 							setWarningPassword(false);
 						}
+						if (e.response.data.nickname) {
+							setNicknameWarningMsg("* 이미 사용 중인 닉네임입니다");
+							setWarningNickname(false);
+						}
 					});
 			} else {
-				alert("개인정보 수집 및 이용 동의에 체크해주세요.");
+				alert("개인정보 수집 및 이용 동의에 체크해주세요");
 			}
 		}
 	}
@@ -167,7 +174,7 @@ function Signup({ setOpenSignup, setOpenLogin }: any) {
 						/>
 					</Input>
 					<WarningText noWarning={warningNickname}>
-						* 닉네임을 입력하세요
+						{nicknameWarningMsg}
 					</WarningText>
 					<Input noWarning={warningPassword} page="signup">
 						<input
