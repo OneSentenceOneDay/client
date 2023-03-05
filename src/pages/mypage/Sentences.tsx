@@ -19,52 +19,34 @@ import {
 } from "./styled";
 import { Wrap } from "./../../components/styled";
 import axios from "axios";
+import Emoji1 from "../../assets/icons/emoji-icon-1.svg";
+import Emoji2 from "../../assets/icons/emoji-icon-2.svg";
+import Emoji3 from "../../assets/icons/emoji-icon-3.svg";
+import Emoji4 from "../../assets/icons/emoji-icon-4.svg";
+import Emoji5 from "../../assets/icons/emoji-icon-5.svg";
+import Emoji6 from "../../assets/icons/emoji-icon-6.svg";
+import Emoji7 from "../../assets/icons/emoji-icon-7.svg";
+import Emoji8 from "../../assets/icons/emoji-icon-8.svg";
+import Emoji9 from "../../assets/icons/emoji-icon-9.svg";
+import Emoji10 from "../../assets/icons/emoji-icon-10.svg";
+import Emoji11 from "../../assets/icons/emoji-icon-11.svg";
 
 const BASE_URL = process.env.REACT_APP_API;
-
-const sample = {
-	id: 0,
-	name: "niceonesony",
-	contents:
-		"We want to know the closest sushi place, make a reservation and be on our way",
-	hearts: 11,
-	bool_like: true,
-};
-
-const days = ["1", "2", "3", "4", "5", "6", "7"];
-
-const sample2 = {
-	day: "2023.01.19 목요일",
-	sentences: [
-		{
-			id: 0,
-			name: "niceonesony",
-			contents:
-				"We want to know the closest sushi place, make a reservation and be on our way",
-			hearts: 11,
-			bool_like: true,
-		},
-		{
-			id: 1,
-			name: "niceonesony",
-			contents:
-				"We want to know the closest sushi place, make a reservation and be on our way",
-			hearts: 11,
-			bool_like: true,
-		},
-	],
-};
 
 type historyItem = {
 	name: string;
 	count: string;
+	img: any;
 };
 
-export function HistoryItems({ name, count }: historyItem) {
+export function HistoryItems({ name, count, img }: historyItem) {
 	return (
 		<HistoryItem>
 			<ItemName>{name}</ItemName>
-			<ItemCount>{count}</ItemCount>
+			<ItemCount>
+				{count}
+				<img src={img} />
+			</ItemCount>
 		</HistoryItem>
 	);
 }
@@ -73,21 +55,33 @@ const today = CalcToday();
 
 function Sectences() {
 	// ************************ 연속 학습 이모티콘 ************************
-	const emojiList = "😀😃😄😁😆😍🥰❤️‍🔥🔥🌟👑";
-	const [emoji, setEmoji] = useState<string>("");
+
+	const [emoji, setEmoji] = useState<any>("");
 	function todayEmoji(day: number) {
 		if (day < 1) {
 			setEmoji("");
-		} else if (day < 8) {
-			setEmoji(emojiList[day - 1]);
+		} else if (day < 2) {
+			setEmoji(Emoji1);
+		} else if (day < 3) {
+			setEmoji(Emoji2);
+		} else if (day < 3) {
+			setEmoji(Emoji3);
+		} else if (day < 4) {
+			setEmoji(Emoji4);
+		} else if (day < 5) {
+			setEmoji(Emoji5);
+		} else if (day < 6) {
+			setEmoji(Emoji6);
+		} else if (day < 7) {
+			setEmoji(Emoji7);
 		} else if (day < 10) {
-			setEmoji("❤️‍🔥");
+			setEmoji(Emoji8);
 		} else if (day < 12) {
-			setEmoji("🔥");
+			setEmoji(Emoji9);
 		} else if (day < 14) {
-			setEmoji("🌟");
+			setEmoji(Emoji10);
 		} else {
-			setEmoji("👑");
+			setEmoji(Emoji11);
 		}
 	}
 
@@ -113,7 +107,9 @@ function Sectences() {
 
 	// ************************ get 오늘 쓴 문장 ************************
 	const [todayPost, setTodyPost] = useState<any>([]);
-	useEffect(() => {
+	const [todySentence, setTodaySentence] = useState<string>("");
+
+	function getTodayPost() {
 		setLoading(true);
 		axios({
 			method: "get",
@@ -123,15 +119,19 @@ function Sectences() {
 			},
 		}).then((res) => {
 			setTodyPost(res.data);
-			console.log(res.data);
+			setTodaySentence(res.data[0].sentence.sentence);
+			setLoading(false);
 		});
-		setLoading(false);
+	}
+	useEffect(() => {
+		getTodayPost();
 	}, []);
 
 	// ************************ get 일주일 날짜 ************************
 	const [week, setWeek] = useState<any>([]);
 	const [select, setSelect] = useState<string>("");
 	const [date, setDate] = useState<string>(""); // 요일별 작성 문장을 얻기 위한 변수 (02%12 형태)
+	const [sentences, setSentences] = useState<string>("");
 
 	useEffect(() => {
 		setLoading(true);
@@ -142,42 +142,79 @@ function Sectences() {
 				Authorization: `Bearer ${sessionStorage.getItem("access_token")}`,
 			},
 		}).then((res) => {
+			console.log(res);
 			getWeek(res.data);
 		});
 	}, []);
 
 	function getWeek(strObj: any) {
-		let temp: string[] = [];
+		let temp = [];
 		for (let objKey in strObj) {
 			if (strObj.hasOwnProperty(objKey)) {
 				temp.push(strObj[objKey]);
 			}
 		}
+		temp.shift();
 		setWeek(temp);
-		setSelect(temp[0]);
+		setSelect(temp[0].detail);
+		setDate(temp[0].summary);
+		setSentences(temp[0].sentence);
 		setLoading(false);
 	}
 
 	// ************************ get 요일별 작성 문장 ************************
-	useEffect(() => {
-		const [mon, day] = select.split("/");
-		setDate(`${mon}%${day}`);
-	}, [select]);
+	const [posts, setPosts] = useState([]);
 
 	useEffect(() => {
 		if (date) {
 			setLoading(true);
 			axios({
 				method: "get",
-				url: `${BASE_URL}/writing/mypage/query=${date}/`,
+				url: `${BASE_URL}/writing/mypage/query=${date.replace("/", "&")}/`,
 				headers: {
 					Authorization: `Bearer ${sessionStorage.getItem("access_token")}`,
 				},
-			}).then((res) => {
-				console.log(res);
-			});
+			})
+				.then((res) => {
+					setPosts(res.data);
+				})
+				.catch((e) => {
+					setPosts([]);
+				});
 		}
 	}, [date]);
+
+	// ************************ 좋아요 클릭 ************************
+	async function clickLikes(id: number) {
+		await axios({
+			method: "get",
+			url: `${BASE_URL}/writing/post/${id}/likes/`,
+			headers: {
+				Authorization: `Bearer ${sessionStorage.getItem("access_token")}`,
+			},
+		}).then((res) => {
+			getTodayPost();
+		});
+	}
+
+	// ************************ 번역 ************************
+	const [trans, setTrans] = useState<string>("");
+	const [showTrans, setShowTrans] = useState<boolean>(false);
+
+	async function clickTrans(body: string) {
+		await axios({
+			method: "post",
+			url: `${BASE_URL}/writing/translate/`,
+			data: {
+				text: body,
+			},
+		}).then((res) => {
+			setTrans(res.data.translation);
+			console.log(res.data.translation);
+			setShowTrans(true);
+			console.log(showTrans);
+		});
+	}
 
 	if (loading) <div>로딩 중 ...</div>;
 
@@ -186,72 +223,88 @@ function Sectences() {
 			<Name>{sessionStorage.getItem("nickname")}</Name>
 			<Nickname>{sessionStorage.getItem("email")}</Nickname>
 			<History>
-				<HistoryItems name={"영어 작문"} count={user.post_num} />
-				<HistoryItems name={"좋아요 받은 횟수"} count={user.liked_num} />
+				<HistoryItems name={"영어 작문"} count={user.post_num} img={""} />
+				<HistoryItems
+					name={"좋아요 받은 횟수"}
+					count={user.liked_num}
+					img={""}
+				/>
 				<HistoryItems
 					name={"연속 학습"}
-					count={user.continuous_cnt + "일째 " + emoji}
+					count={user.continuous_cnt + "일째 "}
+					img={emoji}
 				/>
 			</History>
 			<Sentence flag={false}>
 				<Text>오늘 작성한 문장</Text>
 				<MiddleSection>
 					<DateComponent date={today} page={"mypage"} />
-					<Eng>is on his way~</Eng>
+					<Eng>{todySentence}</Eng>
 				</MiddleSection>
 				{todayPost.length === 0 && (
-					<NoTodayPost>오늘 작성한 글이 없습니다.</NoTodayPost>
+					<NoTodayPost>작성한 글이 없습니다.</NoTodayPost>
 				)}
-				{/* <Com
-					key={c.id}
-					id={sample.id}
-					postId={c.id}
-					name={sample.name}
-					contents={sample.contents}
-					hearts={sample.hearts}
-					bool_like={sample.bool_like}
-				/> */}
+				{todayPost.map((c: any) => (
+					<Com
+						key={c.id}
+						id={c.unknown ? null : c.user.id}
+						postId={c.id}
+						name={c.unknown ? c.unknown : c.user.nickname}
+						contents={c.body}
+						hearts={c.like_num}
+						bool_like={c.bool_like}
+						clickLikes={clickLikes}
+						clickTrans={clickTrans}
+					/>
+				))}
 			</Sentence>
 			<Sentence flag={true}>
 				<Text>그동안 연습했던 문장이에요!</Text>
 				<Days>
-					{week.map((d: string) =>
-						d === select ? (
+					{week.map((d: any) =>
+						d.detail === select ? (
 							<Day
 								flag={true}
 								onClick={() => {
-									setSelect(d);
+									setSelect(d.detail);
+									setDate(d.summary);
+									setSentences(d.sentence);
 								}}
 							>
-								{d}
+								{d.summary}
 							</Day>
 						) : (
 							<Day
 								flag={false}
 								onClick={() => {
-									setSelect(d);
+									setSelect(d.detail);
+									setDate(d.summary);
+									setSentences(d.sentence);
 								}}
 							>
-								{d}
+								{d.summary}
 							</Day>
 						)
 					)}
 				</Days>
 				<MiddleSection>
 					<DateComponent date={select} page={"mypage"} />
-					<Eng>is on his way~</Eng>
+					<Eng>{sentences}</Eng>
 				</MiddleSection>
-				{/* {sample2.sentences.map((c) => (
+				{posts.length === 0 && <NoTodayPost>작성한 글이 없습니다.</NoTodayPost>}
+				{posts.map((c: any) => (
 					<Com
 						key={c.id}
-						id={c.id}
+						id={c.unknown ? null : c.user.id}
 						postId={c.id}
-						name={c.name}
-						contents={c.contents}
-						hearts={c.hearts}
+						name={c.unknown ? c.unknown : c.user.nickname}
+						contents={c.body}
+						hearts={c.like_num}
 						bool_like={c.bool_like}
+						clickLikes={clickLikes}
+						clickTrans={clickTrans}
 					/>
-				))} */}
+				))}
 			</Sentence>
 			<FooterComponent />
 		</Wrap>

@@ -25,7 +25,7 @@ function Login({ openLogin, setOpenLogin, setFirst, setGoogle }: any) {
 			console.log(res.access_token);
 			await axios({
 				method: "post",
-				url: `${BASE_URL}/accounts/google/test/`,
+				url: `${BASE_URL}/accounts/google/login/`,
 				data: { access_token: res.access_token },
 			})
 				.then((res) => {

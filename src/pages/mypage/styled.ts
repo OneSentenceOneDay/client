@@ -33,6 +33,10 @@ export const ItemCount = styled.div`
 	color: ${palette.blue2};
 	font-size: 1.25rem;
 	margin-top: 1rem;
+	img {
+		// background-color: red;
+		height: 1rem;
+	}
 `;
 
 export const Sentence = styled.div<{ flag: boolean }>`

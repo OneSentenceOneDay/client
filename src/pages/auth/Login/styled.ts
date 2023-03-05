@@ -25,12 +25,9 @@ export const DialogBox = styled.dialog<{ page: string }>`
 	box-sizing: border-box;
 	background-color: #ffffff;
 	z-index: 10000;
-	top: ${(props) =>
-		props.page === "signup"
-			? "-4.5rem"
-			: props.page === "login"
-			? "0rem"
-			: "3rem"};
+
+	top: 0;
+
 	button {
 		width: 25.375rem;
 		height: 3.3rem;

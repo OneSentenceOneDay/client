@@ -207,6 +207,11 @@ function Main() {
 			await axios({
 				method: "post",
 				url: `${BASE_URL}/writing/post/create/${sentence.id}/`,
+				headers: {
+					Authorization: sessionStorage.getItem("access_token")
+						? `Bearer ${sessionStorage.getItem("access_token")}`
+						: "",
+				},
 				data: { body: writing },
 			}).then(() => {
 				getSentences();

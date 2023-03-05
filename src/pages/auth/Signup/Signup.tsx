@@ -20,10 +20,7 @@ export function EmailConfirm() {
 	);
 }
 
-function Signup(
-	setOpenSignup: any, // Dispatch<SetStateAction<boolean>>
-	setOpenLogin: Dispatch<SetStateAction<boolean>>
-) {
+function Signup({ setOpenSignup, setOpenLogin }: any) {
 	const [privacy, setPrivacy] = useState(false);
 	const [confirmModal, setConfirmModal] = useState(false);
 
@@ -85,13 +82,11 @@ function Signup(
 					method: "post",
 					url: `${BASE_URL}/registration/`,
 					data: {
-						username: name,
 						email: email,
 						password1: password,
 						password2: password2,
 						nickname: nickname,
 						name: name,
-						subscription: false,
 					},
 				})
 					.then((res) => {
@@ -107,8 +102,6 @@ function Signup(
 							setPasswordWarningMsg("* " + e.response.data.password1[0]);
 							setWarningPassword(false);
 						}
-
-						console.log(e.response.data);
 					});
 			} else {
 				alert("개인정보 수집 및 이용 동의에 체크해주세요.");

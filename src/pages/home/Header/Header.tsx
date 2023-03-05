@@ -16,6 +16,9 @@ export function Dropdown({ setLogin }: any) {
 	const gohearts = () => {
 		navigate("/heart");
 	};
+	const changePassword = () => {
+		navigate("/password");
+	};
 
 	// ************************ Logout ************************
 	function clickLogout() {
@@ -43,7 +46,9 @@ export function Dropdown({ setLogin }: any) {
 			<Menudiv mark={"menu"} onClick={gohearts}>
 				♡ 모아보기
 			</Menudiv>
-			<Menudiv mark={"menu"}>비밀번호 변경</Menudiv>
+			<Menudiv mark={"menu"} onClick={changePassword}>
+				비밀번호 변경
+			</Menudiv>
 			<Menudiv mark={"logout"} onClick={clickLogout}>
 				로그아웃
 			</Menudiv>
