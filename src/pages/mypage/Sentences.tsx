@@ -97,12 +97,16 @@ function Sectences() {
 			headers: {
 				Authorization: `Bearer ${sessionStorage.getItem("access_token")}`,
 			},
-		}).then((res) => {
-			setUser(res.data);
-			todayEmoji(res.data.continuous_cnt);
-			// console.log(res.data);
-		});
-		setLoading(false);
+		})
+			.then((res) => {
+				setUser(res.data);
+				todayEmoji(res.data.continuous_cnt);
+				console.log(res.data);
+				setLoading(false);
+			})
+			.catch((e) => {
+				console.log(e);
+			});
 	}, []);
 
 	// ************************ get 오늘 쓴 문장 ************************
@@ -210,7 +214,7 @@ function Sectences() {
 			},
 		}).then((res) => {
 			setTrans(res.data.translation);
-			console.log(res.data.translation);
+			// console.log(res.data.translation);
 			setShowTrans(true);
 			console.log(showTrans);
 		});

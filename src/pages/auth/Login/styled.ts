@@ -85,14 +85,26 @@ export const Text = styled.div`
 `;
 
 export const SignupBut = styled.div`
+	color: ${palette.blue2};
+	cursor: pointer;
+	display: inline-block;
+	// background-color: yellow;
+	margin-left: 1.8rem;
+`;
+
+export const FindBut = styled.div`
+	color: ${palette.gray4};
+	display: inline-block;
+	cursor: pointer;
+	// background-color: blue;
+	margin-left: 2.2rem;
+`;
+export const BottomBut = styled.div`
 	margin-top: 1.7rem;
 	font-family: Pretendard-Regular;
 	font-size: 1rem;
-	height: 1.5rem;
-	width: 3.5rem;
-	border-bottom: 0.063rem solid ${palette.blue2};
-	color: ${palette.blue2};
-	cursor: pointer;
+	width: 15rem;
+	// background-color: red;
 `;
 
 export const Input = styled.div<{ noWarning: boolean; page: string }>`

@@ -143,6 +143,7 @@ export const ModalContainer = styled.div`
 	height: 100%;
 	display: flex;
 	position: fixed;
+	top: 50%;
 `;
 
 export const Title = styled.div`

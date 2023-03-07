@@ -6,6 +6,8 @@ import {
 	SignupBut,
 	Input,
 	GoogleButton,
+	FindBut,
+	BottomBut,
 } from "./styled";
 import Logo from "../../../assets/images/logo.svg";
 import Google from "../../../assets/icons/google-icon.svg";
@@ -16,6 +18,7 @@ import jwt_decode from "jwt-decode";
 import { useOutletContext } from "react-router-dom";
 import { useGoogleLogin } from "@react-oauth/google";
 import { WarningText } from "pages/home/Main/styled";
+import { Modal } from "components/Modal";
 
 const BASE_URL = process.env.REACT_APP_API;
 
@@ -131,6 +134,34 @@ function Login({ openLogin, setOpenLogin, setFirst, setGoogle }: any) {
 	}
 	setInterval(refreshAccessToken, 300000); // 5분마다 갱신 시도
 
+	// ************************ 비밀번호 찾기 ************************
+	const [resetPasswordModal, setResetPasswordModal] = useState<boolean>(true);
+	const [resetPasswordConfirmModal, setResetPasswordConfirmModal] =
+		useState<boolean>(false);
+
+	function openResetPasswordModal() {
+		// setOpenLogin(false);
+		setResetPasswordModal(true);
+		console.log(resetPasswordModal);
+	}
+	function resetPassword() {
+		axios({
+			method: "post",
+			url: `${BASE_URL} /password/reset/`,
+			headers: {
+				Authorization: `Bearer ${sessionStorage.getItem("access_token")}`,
+			},
+		})
+			.then((res) => {
+				console.log(res);
+				setResetPasswordModal(false);
+				setResetPasswordConfirmModal(true);
+			})
+			.catch((e) => {
+				console.log(e);
+			});
+	}
+
 	return (
 		<ModalContainer>
 			{openSignup ? (
@@ -164,8 +195,29 @@ function Login({ openLogin, setOpenLogin, setFirst, setGoogle }: any) {
 						<img src={Google} />
 						Google 로그인
 					</GoogleButton>
-					<SignupBut onClick={opensignupModal}>회원가입</SignupBut>
+					<BottomBut>
+						<SignupBut onClick={opensignupModal}>회원가입</SignupBut>
+						<FindBut onClick={openResetPasswordModal}>비밀번호 찾기</FindBut>
+					</BottomBut>
 				</DialogBox>
+			)}
+			{resetPasswordModal ? (
+				<Modal
+					body={"가입하신 Email로\n비밀번호 재설정 링크를 받으시겠어요?"}
+					button={"네"}
+					button2={"아니요"}
+					onclick={resetPassword}
+					onclick2={setResetPasswordModal(false)}
+				/>
+			) : (
+				""
+			)}
+			{resetPasswordConfirmModal && (
+				<Modal
+					body={"가입한 이메일로\n비밀번호를 재설정 링크를 보냈습니다"}
+					button={"확인"}
+					onclick={setResetPasswordConfirmModal(false)}
+				/>
 			)}
 			<Backdrop
 				onClick={(e: React.MouseEvent) => {
