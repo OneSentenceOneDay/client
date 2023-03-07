@@ -232,7 +232,6 @@ function Main() {
 
 	// ************************ 구글 로그인 시 ************************
 	const [firstGoogle, setFirstGoogle] = useState<boolean>(false); // 구글 로그인 처음인지 유무
-	const [name, setName] = useState<string>("");
 	const [nickname, setNickname] = useState<string>("");
 	const [nameError, setNameError] = useState<boolean>(true); // 이름 혹은 닉네임 에러 확인
 
@@ -244,10 +243,12 @@ function Main() {
 			headers: {
 				Authorization: `Bearer ${sessionStorage.getItem("access_token")}`,
 			},
-			data: { nickname: nickname, name: name },
+			data: { nickname: nickname },
 		})
-			.then(() => {
+			.then((r) => {
+				console.log(r);
 				sessionStorage.setItem("nickname", nickname);
+				sessionStorage.setItem("name", r.data.name);
 				setFirstGoogle(false);
 				setFirst(true);
 			})
@@ -259,7 +260,7 @@ function Main() {
 
 	useEffect(() => {
 		setNameError(true);
-	}, [name, nickname]);
+	}, [nickname]);
 
 	// ************************ 구독 신청 ************************
 	const [subModal, setSubModal] = useState<boolean>(false);
@@ -355,16 +356,8 @@ function Main() {
 			{firstGoogle && (
 				<ModalContainer>
 					<DialogBox page={"login"}>
-						<Text style={{ marginBottom: "1rem" }}>
-							이름 및 닉네임을 설정해 주세요
-						</Text>
+						<Text style={{ marginBottom: "1rem" }}>닉네임을 설정해 주세요</Text>
 						<Input noWarning={nameError} page="">
-							<input
-								placeholder="Name"
-								onChange={(e) => {
-									setName(e.target.value);
-								}}
-							/>
 							<input
 								placeholder="Nickname"
 								onChange={(e) => {
@@ -373,7 +366,7 @@ function Main() {
 							/>
 						</Input>
 						<WarningText noWarning={nameError}>
-							* 닉네임이 중복되었거나 이름이 형식에 맞지 않습니다.
+							* 중복이거나 잘못된 닉네임입니다
 						</WarningText>
 						<button onClick={setNameAndNickname}>확인</button>
 					</DialogBox>

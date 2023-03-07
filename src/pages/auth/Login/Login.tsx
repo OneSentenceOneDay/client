@@ -77,6 +77,7 @@ function Login({ openLogin, setOpenLogin, setFirst, setGoogle }: any) {
 			},
 		})
 			.then((res) => {
+				console.log(res.data);
 				sessionStorage.setItem("access_token", res.data.access_token);
 				sessionStorage.setItem("refresh_token", res.data.refresh_token);
 				sessionStorage.setItem("nickname", res.data.user.nickname);
