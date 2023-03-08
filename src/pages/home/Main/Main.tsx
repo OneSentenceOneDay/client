@@ -27,12 +27,20 @@ import {
 	NoSentences,
 	NoSentencesText,
 	TransModal,
+	Buttons,
 } from "./styled";
 import { Wrap } from "./../../../components/styled";
 import Copy from "../../../assets/icons/copy-icon.svg";
 import Listen from "../../../assets/icons/listen-icon.svg";
 import Trans from "../../../assets/icons/trans-icon.svg";
-import { useEffect, useState, Dispatch, SetStateAction, useRef } from "react";
+import {
+	useEffect,
+	useState,
+	Dispatch,
+	SetStateAction,
+	useRef,
+	useCallback,
+} from "react";
 import { useOutletContext } from "react-router-dom";
 import Com from "components/Comment";
 import Pagination from "components/Pagination";
@@ -331,6 +339,38 @@ function Main() {
 	}, [outsideRef]);
 	// closeModal()
 
+	// ************************ 비밀번호 찾기 ************************
+	const [resetPasswordModal, setResetPasswordModal] = useState<boolean>(false);
+	const [resetPasswordConfirmModal, setResetPasswordConfirmModal] =
+		useState<boolean>(false);
+
+	function openResetPasswordModal() {
+		setResetPasswordModal(true);
+		setOpenLogin(false);
+	}
+
+	function resetPassword() {
+		// axios({
+		// 	method: "post",
+		// 	url: `${BASE_URL} /password/reset/`,
+		// 	headers: {
+		// 		Authorization: `Bearer ${sessionStorage.getItem("access_token")}`,
+		// 	},
+		// })
+		// 	.then((res) => {
+		// 		console.log(res);
+		// 		setResetPasswordModal(false);
+		// 		setResetPasswordConfirmModal(true);
+		// 	})
+		// 	.catch((e) => {
+		// 		console.log(e);
+		// 	});
+	}
+
+	function closeResetPasswordModal() {
+		setResetPasswordModal(false);
+	}
+
 	if (loading) return <Wrap>로딩중 ...</Wrap>;
 
 	return (
@@ -341,6 +381,7 @@ function Main() {
 					setOpenLogin={setOpenLogin}
 					setFirst={setFirst}
 					setGoogle={setFirstGoogle}
+					openResetPasswordModal={openResetPasswordModal}
 				/>
 			)}
 			{first && (
@@ -370,10 +411,23 @@ function Main() {
 						</WarningText>
 						<button onClick={setNameAndNickname}>확인</button>
 					</DialogBox>
-					<Backdrop />
 				</ModalContainer>
 			)}
 			{subModal && <Modal body={"구독 신청이 되었습니다."} button={"확인"} />}
+			{resetPasswordModal && (
+				<ModalContainer>
+					<DialogBox page={"login"}>
+						<Text>가입하신 Email 주소를 입력해주세요</Text>
+						<Input noWarning={true} page="passwordModal">
+							<input placeholder="Email" />
+						</Input>
+						<Buttons>확인</Buttons>
+						<Buttons>취소</Buttons>
+					</DialogBox>
+					<Backdrop />
+				</ModalContainer>
+			)}
+			{resetPasswordConfirmModal && <Modal />}
 			<TodayStc>
 				<DateComponent date={today} page={"main"} />
 				<Text>오늘의 구문을 사용하여 영어 글쓰기를 연습해 보세요.</Text>
