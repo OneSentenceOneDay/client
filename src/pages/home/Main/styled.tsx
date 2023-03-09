@@ -63,6 +63,11 @@ export const Writing = styled.div<{ noWarning: boolean | null }>`
 			color: ${palette.gray4};
 		}
 	}
+	@media only screen and (max-width: 700px) {
+		textarea {
+			width: 24rem;
+		}
+		}
 `;
 
 export const Menu = styled.div`
@@ -72,6 +77,10 @@ export const Menu = styled.div`
 	border-radius: 0rem 0rem 0.625rem 0.625rem;
 	border: 0.063rem solid ${palette.gray4};
 	margin-top: -0.4rem;
+	@media only screen and (max-width: 700px) {
+		width: 26.5rem;
+		display: flex;
+		}
 `;
 
 export const Icons = styled.div`
@@ -87,6 +96,9 @@ export const Icons = styled.div`
 		margin-left: 2rem;
 		cursor: pointer;
 	}
+	@media only screen and (max-width: 700px) {
+		width: 20rem;
+		}
 `;
 
 export const Button = styled.div`
@@ -103,12 +115,19 @@ export const Button = styled.div`
 		cursor: pointer;
 		opacity: 0.9;
 	}
+	@media only screen and (max-width: 700px) {
+		font-size: 1rem;
+		width: 10rem;
+	}
 `;
 
 export const ListContainer = styled.div`
 	width: 52.75rem;
 	margin: 0 auto;
 	padding-top: 3rem;
+	@media only screen and (max-width: 700px) {
+		width: 26.5rem;
+	}
 `;
 
 export const WarningText = styled.div<{ noWarning: boolean | null }>`
@@ -120,6 +139,9 @@ export const WarningText = styled.div<{ noWarning: boolean | null }>`
 	color: ${palette.red1};
 	font-size: 0.75rem;
 	visibility: ${(props) => (props.noWarning === false ? "visible" : "hidden")};
+	@media only screen and (max-width: 700px) {
+		width: 26.5rem;
+	}
 `;
 
 export const NoSentences = styled.div`
@@ -131,17 +153,24 @@ export const NoSentencesText = styled.div`
 	font-family: Pretendard-Light;
 	color: ${palette.gray1};
 	margin-top: 1rem;
+	
 `;
 
 export const MenuContainer = styled.div`
 	display: flex;
 	justify-content: space-between;
+	@media only screen and (max-width: 700px) {
+		display: inline;
+    }
 `;
 
 export const Cnt = styled.div`
 	margin-left: 1rem;
 	color: ${palette.blue2};
 	font-family: Pretendard-Medium;
+	@media only screen and (max-width: 700px) {
+		margin: 50px 0;
+	}
 `;
 
 export const Sorted = styled.div<{ flag: boolean }>`
@@ -160,6 +189,9 @@ export const SortMenu = styled.div`
 		display: inline-block;
 		font-size: 1rem;
 		margin-right: 1rem;
+	}
+	@media only screen and (max-width: 700px) {
+		text-align: center;
 	}
 `;
 
@@ -185,12 +217,21 @@ export const TopText = styled.div`
 	font-family: Pretendard-Bold;
 	font-size: 1.5rem;
 	color: ${palette.gray2};
+	@media only screen and (max-width: 700px) {
+		font-size: 1.25rem;
+		margin-left: 0.5rem;
+	}
 `;
 
 export const BottomText = styled.div`
 	font-family: Pretendard-Regular;
 	font-size: 1.25rem;
 	margin-top: 1.65rem;
+	@media only screen and (max-width: 700px) {
+		font-size: 1.125rem;
+		margin-bottom: 1.65rem;
+		margin-left: 0.5rem;
+	}
 `;
 
 export const InputSec = styled.div`
@@ -217,6 +258,9 @@ export const InputDiv = styled.div<{ position: string }>`
 		input::placeholder {
 			color: ${palette.gray4};
 	}
+	@media only screen and (max-width: 700px) {
+		font-size: 1rem;
+	}
 `;
 
 export const InputBut = styled.div<{ login: boolean }>`
@@ -238,6 +282,9 @@ export const InputBut = styled.div<{ login: boolean }>`
 		opacity: 0.9;
 	}
 	float: ${(props) => (props.login ? "right" : "")}}
+	@media only screen and (max-width: 700px) {
+		font-size: 1rem;
+	}
 `;
 
 export const TransModal = styled.dialog`

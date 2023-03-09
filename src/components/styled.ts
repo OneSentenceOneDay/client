@@ -70,6 +70,9 @@ export const PageSection = styled.div`
 	margin-top: 1rem;
 	display: flex;
 	justify-content: right;
+	@media only screen and (max-width: 700px) {
+		justify-content: center;
+	}
 `;
 
 export const PageDiv = styled.div<{ flag: boolean }>`
@@ -113,6 +116,9 @@ export const Footer = styled.div`
 	padding-top: 10rem;
 	text-align: right;
 	margin: 0 auto;
+	@media only screen and (max-width: 700px) {
+		width: 26.5rem;
+	}
 `;
 
 export const Member = styled.div<{ flag: boolean }>`

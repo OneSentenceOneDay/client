@@ -80,7 +80,7 @@ function Main() {
 	function clickSort(eng: string) {
 		if (!sessionStorage.getItem("access_token") && eng === "my") {
 			// 비로그인 시 내가 쓴 문장 확인 불가 -> 로그인 유도
-			setOpenLogin(true);
+			setOpenLogin(false);
 		} else {
 			setNowSort(eng);
 		}
@@ -185,7 +185,7 @@ function Main() {
 				getSentences();
 				console.log(res);
 			})
-			.catch(() => setOpenLogin(true));
+			.catch(() => setOpenLogin(false));
 	}
 
 	// ************************ 오늘의 구문이 포함되어 있는지 ************************
