@@ -27,7 +27,6 @@ import {
 	NoSentences,
 	NoSentencesText,
 	TransModal,
-	Buttons,
 } from "./styled";
 import { Wrap } from "./../../../components/styled";
 import Copy from "../../../assets/icons/copy-icon.svg";
@@ -422,22 +421,14 @@ function Main() {
 			)}
 			{subModal && <Modal body={"구독 신청이 되었습니다."} button={"확인"} />}
 			{resetPasswordModal && (
-				<ModalContainer>
-					<DialogBox page={"login"}>
-						<Text>가입하신 Email 주소를 입력해주세요</Text>
-						<Input noWarning={true} page="passwordModal">
-							<input
-								placeholder="Email"
-								onChange={(e) => {
-									setEmail(e.target.value);
-								}}
-							/>
-						</Input>
-						<Buttons onClick={resetPassword}>확인</Buttons>
-						<Buttons onClick={closeResetPasswordModal}>취소</Buttons>
-					</DialogBox>
-					<Backdrop />
-				</ModalContainer>
+				<Modal
+					body="가입하신 Email 주소를 입력해주세요"
+					button="확인"
+					button2="취소"
+					onclick={resetPassword}
+					onclick2={closeResetPasswordModal}
+					input={true}
+				/>
 			)}
 			{resetPasswordConfirmModal && (
 				<Modal

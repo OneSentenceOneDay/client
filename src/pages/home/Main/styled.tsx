@@ -254,7 +254,3 @@ export const TransModal = styled.dialog`
 	align-items: flex-start;
 	color: ${palette.gray2};
 `;
-
-export const Buttons = styled.div`
-	background-color: red;
-`;
