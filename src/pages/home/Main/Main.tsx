@@ -340,6 +340,7 @@ function Main() {
 	// closeModal()
 
 	// ************************ 비밀번호 찾기 ************************
+	const [email, setEmail] = useState<string>("");
 	const [resetPasswordModal, setResetPasswordModal] = useState<boolean>(false);
 	const [resetPasswordConfirmModal, setResetPasswordConfirmModal] =
 		useState<boolean>(false);
@@ -349,13 +350,23 @@ function Main() {
 		setOpenLogin(false);
 	}
 
+	function closeResetPasswordModal() {
+		setResetPasswordModal(false);
+		setOpenLogin(false);
+	}
+
+	function closeResetPasswordConfirmModal() {
+		setResetPasswordConfirmModal(false);
+	}
+
 	function resetPassword() {
+		setResetPasswordModal(false);
+		setResetPasswordConfirmModal(true);
+
 		// axios({
 		// 	method: "post",
 		// 	url: `${BASE_URL} /password/reset/`,
-		// 	headers: {
-		// 		Authorization: `Bearer ${sessionStorage.getItem("access_token")}`,
-		// 	},
+		// 	data: { email: email },
 		// })
 		// 	.then((res) => {
 		// 		console.log(res);
@@ -365,10 +376,6 @@ function Main() {
 		// 	.catch((e) => {
 		// 		console.log(e);
 		// 	});
-	}
-
-	function closeResetPasswordModal() {
-		setResetPasswordModal(false);
 	}
 
 	if (loading) return <Wrap>로딩중 ...</Wrap>;
@@ -419,15 +426,26 @@ function Main() {
 					<DialogBox page={"login"}>
 						<Text>가입하신 Email 주소를 입력해주세요</Text>
 						<Input noWarning={true} page="passwordModal">
-							<input placeholder="Email" />
+							<input
+								placeholder="Email"
+								onChange={(e) => {
+									setEmail(e.target.value);
+								}}
+							/>
 						</Input>
-						<Buttons>확인</Buttons>
-						<Buttons>취소</Buttons>
+						<Buttons onClick={resetPassword}>확인</Buttons>
+						<Buttons onClick={closeResetPasswordModal}>취소</Buttons>
 					</DialogBox>
 					<Backdrop />
 				</ModalContainer>
 			)}
-			{resetPasswordConfirmModal && <Modal />}
+			{resetPasswordConfirmModal && (
+				<Modal
+					body={"가입한 이메일로 \n비밀번호를 재설정 링크를 보냈습니다"}
+					button={"확인"}
+					onclick={closeResetPasswordConfirmModal}
+				/>
+			)}
 			<TodayStc>
 				<DateComponent date={today} page={"main"} />
 				<Text>오늘의 구문을 사용하여 영어 글쓰기를 연습해 보세요.</Text>

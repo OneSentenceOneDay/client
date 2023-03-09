@@ -257,5 +257,4 @@ export const TransModal = styled.dialog`
 
 export const Buttons = styled.div`
 	background-color: red;
-	display: inline;
 `;
