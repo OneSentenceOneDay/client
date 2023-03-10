@@ -10,7 +10,7 @@ export const Text = styled.div`
 	margin-top: 1rem;
 	font-family: Pretendard-Regular;
 	color: ${palette.gray2};
-	@media only screen and (max-width: 768px) and (min-width: 360px) {
+	@media only screen and (max-width: 768px) {
 		font-size: 0.875rem;
 	}
 `;
@@ -20,7 +20,7 @@ export const Eng = styled.div`
 	margin-top: 2rem;
 	font-family: Pretendard-Bolder;
 	color: ${palette.gray2};
-	@media only screen and (max-width: 768px) and (min-width: 360px) {
+	@media only screen and (max-width: 768px) {
 		font-size: 1.75rem;
 	}
 `;
@@ -30,7 +30,7 @@ export const Sentence = styled.div`
 	font-size: 1.125rem;
 	font-family: times-new-roman;
 	color: ${palette.gray2};
-	@media only screen and (max-width: 768px) and (min-width: 360px) {
+	@media only screen and (max-width: 768px) {
 		font-size: 0.875rem;
 		width: 22rem;
 		justify-content: center;
@@ -44,7 +44,7 @@ export const SentenceKor = styled.div`
 	font-family: Pretendard-Light;
 	font-size: 0.9rem;
 	margin-top: 0.7rem;
-	@media only screen and (max-width: 768px) and (min-width: 360px) {
+	@media only screen and (max-width: 768px) {
 		font-size: 0.875rem;
 		width: 22rem;
 		justify-content: center;
@@ -68,18 +68,11 @@ export const Writing = styled.div<{ noWarning: boolean | null }>`
 		::placeholder {
 			color: ${palette.gray4};
 		}
-	}
-	@media only screen and (max-width: 320px) {
-		textarea {
-			width: 20rem;
+		@media only screen and (max-width: 768px) {
+			width: 18rem;
 			font-size: 1rem;
 		}
 	}
-	// @media only screen and (max-width: 768px) and (min-width: 360px) {
-	// 	textarea {
-	// 		width: 20rem;
-	// 		font-size: 1rem;
-	// 	}
 `;
 
 export const Menu = styled.div`
@@ -89,8 +82,8 @@ export const Menu = styled.div`
 	border-radius: 0rem 0rem 0.625rem 0.625rem;
 	border: 0.063rem solid ${palette.gray4};
 	margin-top: -0.4rem;
-	@media only screen and (max-width: 768px) and (min-width: 360px) {
-		width: 8rem;
+	@media only screen and (max-width: 768px) {
+		width: 20.5rem;
 	}
 `;
 
@@ -106,6 +99,12 @@ export const Icons = styled.div`
 	img {
 		margin-left: 2rem;
 		cursor: pointer;
+	}
+	@media only screen and (max-width: 768px) {
+		width: 12.5rem;
+		img {
+			margin-left: 1.5rem;
+		}
 	}
 `;
 
@@ -123,8 +122,9 @@ export const Button = styled.div`
 		cursor: pointer;
 		opacity: 0.9;
 	}
-	@media only screen and (max-width: 768px) and (min-width: 360px) {
-		width: 10rem;
+	@media only screen and (max-width: 768px) {
+		width: 8rem;
+		font-size: 1rem;
 	}
 `;
 
@@ -132,6 +132,9 @@ export const ListContainer = styled.div`
 	width: 52.75rem;
 	margin: 0 auto;
 	padding-top: 3rem;
+	@media only screen and (max-width: 768px) {
+		width: 20.5rem;
+	}
 `;
 
 export const WarningText = styled.div<{ noWarning: boolean | null }>`
@@ -143,11 +146,13 @@ export const WarningText = styled.div<{ noWarning: boolean | null }>`
 	color: ${palette.red1};
 	font-size: 0.75rem;
 	visibility: ${(props) => (props.noWarning === false ? "visible" : "hidden")};
+	@media only screen and (max-width: 768px) {
+		width: 20.5rem;
+	}
 `;
 
 export const NoSentences = styled.div`
 	height: 13rem;
-	// background-color: red;
 `;
 
 export const NoSentencesText = styled.div`
@@ -165,6 +170,9 @@ export const Cnt = styled.div`
 	margin-left: 1rem;
 	color: ${palette.blue2};
 	font-family: Pretendard-Medium;
+	@media only screen and (max-width: 768px) {
+		font-size: 0.1rem;
+	}
 `;
 
 export const Sorted = styled.div<{ flag: boolean }>`
@@ -175,6 +183,9 @@ export const Sorted = styled.div<{ flag: boolean }>`
 		cursor: pointer;
 		color: ${(props) => (props.flag ? palette.blue2 : palette.blue5)};
 	}
+	@media only screen and (max-width: 768px) {
+		font-size: 0.1rem;
+	}
 `;
 
 export const SortMenu = styled.div`
@@ -183,11 +194,16 @@ export const SortMenu = styled.div`
 		display: inline-block;
 		font-size: 1rem;
 		margin-right: 1rem;
+		@media only screen and (max-width: 768px) {
+			font-size: 0.7rem;
+			margin-right: 0.5rem;
+		}
 	}
 `;
 
 export const MailSection = styled.div`
 	margin-top: 8rem;
+	display: none;
 `;
 
 export const MailText = styled.div<{ login: boolean }>`
@@ -195,6 +211,7 @@ export const MailText = styled.div<{ login: boolean }>`
 	text-align: left;
 	width: 26.125rem;
 	float: ${(props) => (props.login ? "left" : "")}}
+
 `;
 
 export const MailInput = styled.div`

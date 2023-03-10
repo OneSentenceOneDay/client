@@ -18,6 +18,9 @@ export const Comment = styled.div`
 	border-radius: 0.625rem 0.625rem 0.625rem 0.625rem;
 	border: 0.063rem solid ${palette.gray4};
 	width: 49.75rem;
+	@media only screen and (max-width: 768px) {
+		width: 17.5rem;
+	}
 `;
 
 export const Name = styled.div`
@@ -29,11 +32,20 @@ export const Name = styled.div`
 	vertical-align: top;
 	display: inline-block;
 	color: ${palette.gray2};
+	@media only screen and (max-width: 768px) {
+		width: 16.5rem;
+		font-size: 0.9rem;
+		display: flex;
+	}
 `;
 
 export const Right = styled.div`
 	width: 39.75rem;
 	display: inline-block;
+	@media only screen and (max-width: 768px) {
+		display: block;
+		width: 17.5rem;
+	}
 `;
 
 export const Contents = styled.div`
@@ -42,6 +54,11 @@ export const Contents = styled.div`
 	line-height: 2rem;
 	font-family: Pretendard-Regular;
 	color: ${palette.gray2};
+	@media only screen and (max-width: 768px) {
+		font-size: 0.9rem;
+		line-height: 1.5rem;
+		margin-top: 1rem;
+	}
 `;
 
 export const BottomDiv = styled.div`
@@ -51,11 +68,17 @@ export const BottomDiv = styled.div`
 		cursor: pointer;
 		margin-left: 1rem;
 	}
+	@media only screen and (max-width: 768px) {
+		display: block;
+		img {
+			margin-left: 0.9rem;
+			width: 0.95rem;
+		}
+	}
 `;
 
 export const HeartDiv = styled.div`
 	display: inline-block;
-	// margin-left: 1.5rem;
 `;
 
 export const Num = styled.div`
@@ -70,6 +93,10 @@ export const PageSection = styled.div`
 	margin-top: 1rem;
 	display: flex;
 	justify-content: right;
+	@media only screen and (max-width: 768px) {
+		width: 20.5rem;
+		justify-content: center;
+	}
 `;
 
 export const PageDiv = styled.div<{ flag: boolean }>`
@@ -91,6 +118,12 @@ export const PageDiv = styled.div<{ flag: boolean }>`
 		background-color: ${(props) =>
 			props.flag ? palette.blue2 : palette.blue6};
 	}
+	@media only screen and (max-width: 768px) {
+		width: 1.5rem;
+		height: 1.5rem;
+		line-height: 1.5rem;
+		font-size: 0.7rem;
+	}
 `;
 
 // ************** DatecComponent.tsx **************
@@ -105,6 +138,10 @@ export const Today = styled.div<{ page: string }>`
 		props.page === "main" ? `0.063rem solid ${palette.blue2}` : ""};
 	font-family: Pretendard-Regular;
 	display: inline-block;
+	@media only screen and (max-width: 768px) {
+		font-size: 0.875rem;
+		width: 7.5rem;
+	}
 `;
 
 // ************** Footer.tsx **************
@@ -113,6 +150,9 @@ export const Footer = styled.div`
 	padding-top: 10rem;
 	text-align: right;
 	margin: 0 auto;
+	@media only screen and (max-width: 768px) {
+		width: 20.5rem;
+	}
 `;
 
 export const Member = styled.div<{ flag: boolean }>`
@@ -126,6 +166,13 @@ export const Member = styled.div<{ flag: boolean }>`
 	padding-right: ${(props) => (props.flag ? "1rem" : "")}}
 	border-right: ${(props) =>
 		props.flag ? `0.063rem solid ${palette.blue2}` : ""}}
+	@media only screen and (max-width: 768px) {
+		font-size: 0.01rem;
+		display: block;
+		padding-right: 0rem;
+		border-right: none;
+		margin-top: 0.5rem;
+	}
 `;
 export const Copyright = styled.div`
 	font-family: Pretendard-Light;
@@ -133,6 +180,9 @@ export const Copyright = styled.div`
 	color: ${palette.blue2};
 	margin-top: 1rem;
 	padding-bottom: 2rem;
+	@media only screen and (max-width: 768px) {
+		// font-size: 0.05rem;
+	}
 `;
 
 // ************** Modal.tsx **************
