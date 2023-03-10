@@ -33,20 +33,6 @@ export const SentenceKor = styled.div`
 	margin-top: 0.7rem;
 `;
 
-export const Source = styled.div`
-	font-size: 1rem;
-	font-family: times-new-roman-italic;
-	color: ${palette.gray2};
-	margin-top: 0.7rem;
-`;
-
-export const SourceKor = styled.div`
-	font-size: 0.8rem;
-	color: ${palette.gray1};
-	margin-top: 0.6rem;
-	font-family: Pretendard-Light;
-`;
-
 export const Writing = styled.div<{ noWarning: boolean | null }>`
 	margin-top: 2rem;
 	textarea {

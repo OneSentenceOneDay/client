@@ -3,9 +3,7 @@ import {
 	Text,
 	Eng,
 	Sentence,
-	Source,
 	SentenceKor,
-	SourceKor,
 	Writing,
 	Menu,
 	Icons,
@@ -208,7 +206,6 @@ function Main() {
 
 	// ************************ 문장 작성 ************************
 	async function saveSentence() {
-		console.log(noWarning);
 		if (noWarning) {
 			setLoading(true);
 			await axios({
@@ -443,7 +440,6 @@ function Main() {
 				<Eng>{sentence.sentence}</Eng>
 				<Sentence>{sentence.discription}</Sentence>
 				<SentenceKor>{sentence.translate}</SentenceKor>
-				<Source>- {sentence.source}</Source>
 			</TodayStc>
 			<Writing noWarning={noWarning}>
 				<textarea
