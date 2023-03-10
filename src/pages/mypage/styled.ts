@@ -6,6 +6,10 @@ export const Name = styled.div`
 	color: ${palette.gray2};
 	font-size: 2.25rem;
 	font-family: Pretendard-Bold;
+	@media only screen and (max-width: 700px) {
+		font-size: 1.3rem;
+		padding-top: 2rem;
+	}
 `;
 
 export const Nickname = styled.div`
@@ -13,6 +17,10 @@ export const Nickname = styled.div`
 	color: ${palette.gray2};
 	font-size: 1.125rem;
 	font-family: Pretendard-Regular;
+	@media only screen and (max-width: 700px) {
+		font-size: 0.7rem;
+		padding-top: 1rem;
+	}
 `;
 export const History = styled.div`
 	padding-top: 3rem;
@@ -21,11 +29,17 @@ export const History = styled.div`
 export const HistoryItem = styled.div`
 	display: inline-block;
 	margin: 0rem 2.5rem;
+	@media only screen and (max-width: 700px) {
+		margin: 0rem 1rem;
+	}
 `;
 export const ItemName = styled.div`
 	color: ${palette.gray2};
 	font-size: 1.125rem;
 	font-family: Pretendard-Regular;
+	@media only screen and (max-width: 700px) {
+		font-size: 0.7rem;
+	}
 `;
 
 export const ItemCount = styled.div`
@@ -34,8 +48,13 @@ export const ItemCount = styled.div`
 	font-size: 1.25rem;
 	margin-top: 1rem;
 	img {
-		// background-color: red;
 		height: 1rem;
+	}
+	@media only screen and (max-width: 700px) {
+		font-size: 0.9rem;
+		img {
+			height: 0.8rem;
+		}
 	}
 `;
 
@@ -44,6 +63,10 @@ export const Sentence = styled.div<{ flag: boolean }>`
 	margin: 0 auto;
 	padding-top: 5rem;
 	min-height: ${(props) => (props.flag ? "35rem" : "")};
+	@media only screen and (max-width: 700px) {
+		width: 22rem;
+		min-height: ${(props) => (props.flag ? "10rem" : "")};
+	}
 `;
 
 export const Text = styled.div`
@@ -51,6 +74,9 @@ export const Text = styled.div`
 	font-family: Pretendard-bold;
 	font-size: 1.5rem;
 	text-align: left;
+	@media only screen and (max-width: 700px) {
+		font-size: 1rem;
+	}
 `;
 
 export const MiddleSection = styled.div`
@@ -65,6 +91,9 @@ export const Eng = styled.div`
 	font-size: 1.5rem;
 	display: inline-block;
 	margin-left: 1rem;
+	@media only screen and (max-width: 700px) {
+		font-size: 1rem;
+	}
 `;
 
 export const Days = styled.div`
@@ -72,6 +101,9 @@ export const Days = styled.div`
 	justify-content: space-between;
 	width: 52.75rem;
 	margin-top: 2rem;
+	@media only screen and (max-width: 700px) {
+		width: 22rem;
+	}
 `;
 
 export const Day = styled.div<{ flag: boolean }>`
@@ -86,6 +118,10 @@ export const Day = styled.div<{ flag: boolean }>`
 		background-color: ${(props) =>
 			props.flag ? "" : "rgba(116, 138, 255, 0.05)"};
 	}
+	@media only screen and (max-width: 700px) {
+		width: 22rem;
+		font-size: 0.7rem;
+	}
 `;
 
 export const NoTodayPost = styled.div`
@@ -94,4 +130,7 @@ export const NoTodayPost = styled.div`
 	line-height: 10rem;
 	font-family: Pretendard-Light;
 	color: ${palette.gray1};
+	@media only screen and (max-width: 700px) {
+		font-size: 0.8rem;
+	}
 `;

@@ -101,7 +101,6 @@ function Sectences() {
 			.then((res) => {
 				setUser(res.data);
 				todayEmoji(res.data.continuous_cnt);
-				console.log(res.data);
 				setLoading(false);
 			})
 			.catch((e) => {
@@ -125,6 +124,7 @@ function Sectences() {
 			setTodyPost(res.data);
 			setTodaySentence(res.data[0].sentence.sentence);
 			setLoading(false);
+			console.log(res);
 		});
 	}
 	useEffect(() => {
@@ -146,7 +146,6 @@ function Sectences() {
 				Authorization: `Bearer ${sessionStorage.getItem("access_token")}`,
 			},
 		}).then((res) => {
-			console.log(res);
 			getWeek(res.data);
 		});
 	}, []);

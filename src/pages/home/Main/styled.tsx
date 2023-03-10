@@ -137,9 +137,12 @@ export const ListContainer = styled.div`
 	}
 `;
 
-export const WarningText = styled.div<{ noWarning: boolean | null }>`
+export const WarningText = styled.div<{
+	noWarning: boolean | null;
+	page: string;
+}>`
 	width: 52.75rem;
-	margin: 0 auto;
+	margin: ${(props) => (props.page === "login" ? "" : "0 auto")};
 	text-align: left;
 	padding-top: 0.5rem;
 	font-family: Pretendard-Light;
@@ -147,7 +150,7 @@ export const WarningText = styled.div<{ noWarning: boolean | null }>`
 	font-size: 0.75rem;
 	visibility: ${(props) => (props.noWarning === false ? "visible" : "hidden")};
 	@media only screen and (max-width: 768px) {
-		width: 20.5rem;
+		width: ${(props) => (props.page === "login" ? "17.5rem" : "20.5rem")};
 	}
 `;
 

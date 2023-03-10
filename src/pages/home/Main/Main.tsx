@@ -409,7 +409,7 @@ function Main() {
 								}}
 							/>
 						</Input>
-						<WarningText noWarning={nameError}>
+						<WarningText noWarning={nameError} page="login">
 							* 중복이거나 잘못된 닉네임입니다
 						</WarningText>
 						<button onClick={setNameAndNickname}>확인</button>
@@ -463,7 +463,7 @@ function Main() {
 					</Icons>
 					<Button onClick={isWarning}>영작 완료</Button>
 				</Menu>
-				<WarningText noWarning={noWarning}>
+				<WarningText noWarning={noWarning} page="main">
 					* 오늘의 구문을 활용하여 문장을 만들어주세요!
 				</WarningText>
 			</Writing>

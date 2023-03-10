@@ -163,9 +163,14 @@ function Login({
 							onChange={(e) => {
 								setPassword(e.target.value);
 							}}
+							onKeyUp={(e) => {
+								if (e.key === `Enter`) {
+									clickLogin();
+								}
+							}}
 						/>
 					</Input>
-					<WarningText noWarning={noWarning}>
+					<WarningText noWarning={noWarning} page="login">
 						* 이메일 혹은 비밀번호가 맞지 않습니다.
 					</WarningText>
 					<button onClick={clickLogin}>로그인</button>

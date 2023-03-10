@@ -40,9 +40,9 @@ export const ProfileBut = styled.div`
 	img {
 		width: 2.5rem;
 		cursor: pointer;
-		@media only screen and (max-width: 700px) {
-			margin-right: 1.5rem;
-		}
+	}
+	@media only screen and (max-width: 700px) {
+		margin-right: 1.5rem;
 	}
 `;
 
