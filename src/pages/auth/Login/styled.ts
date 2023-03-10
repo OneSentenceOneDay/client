@@ -46,6 +46,18 @@ export const DialogBox = styled.dialog<{ page: string }>`
 	img {
 		width: 7rem;
 	}
+
+	@media only screen and (max-width: 768px) {
+		width: 20.5rem;
+		img {
+			width: 5rem;
+		}
+		button {
+			width: 18rem;
+			height: 3rem;
+			font-size: 0.9rem;
+		}
+	}
 `;
 
 export const GoogleButton = styled.div`
@@ -66,6 +78,15 @@ export const GoogleButton = styled.div`
 		cursor: pointer;
 		opacity: 0.9;
 	}
+	@media only screen and (max-width: 768px) {
+		width: 18rem;
+		height: 3rem;
+		font-size: 0.9rem;
+		line-height: 3rem;
+		img {
+			width: 0.7rem;
+		}
+	}
 `;
 
 export const Backdrop = styled.div`
@@ -82,6 +103,9 @@ export const Text = styled.div`
 	font-family: Pretendard-Light;
 	margin-top: 1rem;
 	margin-bottom: 1.5rem;
+	@media only screen and (max-width: 768px) {
+		font-size: 1rem;
+	}
 `;
 
 export const SignupBut = styled.div`
@@ -90,14 +114,19 @@ export const SignupBut = styled.div`
 	display: inline-block;
 	// background-color: yellow;
 	margin-left: 1.8rem;
+	@media only screen and (max-width: 768px) {
+		margin-left: 1rem;
+	}
 `;
 
 export const FindBut = styled.div`
 	color: ${palette.gray4};
 	display: inline-block;
 	cursor: pointer;
-	// background-color: blue;
 	margin-left: 2.2rem;
+	@media only screen and (max-width: 768px) {
+		margin-left: 1rem;
+	}
 `;
 export const BottomBut = styled.div`
 	margin-top: 1.7rem;
@@ -105,6 +134,9 @@ export const BottomBut = styled.div`
 	font-size: 1rem;
 	width: 15rem;
 	// background-color: red;
+	@media only screen and (max-width: 768px) {
+		font-size: 0.8rem;
+	}
 `;
 
 export const Input = styled.div<{ noWarning: boolean; page: string }>`
@@ -121,6 +153,9 @@ export const Input = styled.div<{ noWarning: boolean; page: string }>`
 	input::placeholder {
 		color: ${palette.gray4};
 	}
+	@media only screen and (max-width: 768px) {
+		input {
+			width: 15.5rem;
+		}
+	}
 `;
-
-export const InputDiv = styled.div``;
