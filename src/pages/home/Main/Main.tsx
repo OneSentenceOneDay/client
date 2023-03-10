@@ -359,19 +359,19 @@ function Main() {
 		setResetPasswordModal(false);
 		setResetPasswordConfirmModal(true);
 
-		// axios({
-		// 	method: "post",
-		// 	url: `${BASE_URL} /password/reset/`,
-		// 	data: { email: email },
-		// })
-		// 	.then((res) => {
-		// 		console.log(res);
-		// 		setResetPasswordModal(false);
-		// 		setResetPasswordConfirmModal(true);
-		// 	})
-		// 	.catch((e) => {
-		// 		console.log(e);
-		// 	});
+		axios({
+			method: "post",
+			url: `${BASE_URL} /password/reset/`,
+			data: { email: email },
+		})
+			.then((res) => {
+				console.log(res);
+				setResetPasswordModal(false);
+				setResetPasswordConfirmModal(true);
+			})
+			.catch((e) => {
+				console.log(e);
+			});
 	}
 
 	if (loading) return <Wrap>로딩중 ...</Wrap>;
