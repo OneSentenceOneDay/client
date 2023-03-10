@@ -10,6 +10,9 @@ export const Text = styled.div`
 	margin-top: 1rem;
 	font-family: Pretendard-Regular;
 	color: ${palette.gray2};
+	@media only screen and (max-width: 768px) and (min-width: 360px) {
+		font-size: 0.875rem;
+	}
 `;
 
 export const Eng = styled.div`
@@ -17,6 +20,9 @@ export const Eng = styled.div`
 	margin-top: 2rem;
 	font-family: Pretendard-Bolder;
 	color: ${palette.gray2};
+	@media only screen and (max-width: 768px) and (min-width: 360px) {
+		font-size: 1.75rem;
+	}
 `;
 
 export const Sentence = styled.div`
@@ -24,6 +30,13 @@ export const Sentence = styled.div`
 	font-size: 1.125rem;
 	font-family: times-new-roman;
 	color: ${palette.gray2};
+	@media only screen and (max-width: 768px) and (min-width: 360px) {
+		font-size: 0.875rem;
+		width: 22rem;
+		justify-content: center;
+		margin: 0 auto;
+		padding-top: 1rem;
+	}
 `;
 
 export const SentenceKor = styled.div`
@@ -31,6 +44,13 @@ export const SentenceKor = styled.div`
 	font-family: Pretendard-Light;
 	font-size: 0.9rem;
 	margin-top: 0.7rem;
+	@media only screen and (max-width: 768px) and (min-width: 360px) {
+		font-size: 0.875rem;
+		width: 22rem;
+		justify-content: center;
+		margin: 0 auto;
+		padding-top: 1rem;
+	}
 `;
 
 export const Writing = styled.div<{ noWarning: boolean | null }>`
@@ -49,6 +69,17 @@ export const Writing = styled.div<{ noWarning: boolean | null }>`
 			color: ${palette.gray4};
 		}
 	}
+	@media only screen and (max-width: 320px) {
+		textarea {
+			width: 20rem;
+			font-size: 1rem;
+		}
+	}
+	// @media only screen and (max-width: 768px) and (min-width: 360px) {
+	// 	textarea {
+	// 		width: 20rem;
+	// 		font-size: 1rem;
+	// 	}
 `;
 
 export const Menu = styled.div`
@@ -58,6 +89,9 @@ export const Menu = styled.div`
 	border-radius: 0rem 0rem 0.625rem 0.625rem;
 	border: 0.063rem solid ${palette.gray4};
 	margin-top: -0.4rem;
+	@media only screen and (max-width: 768px) and (min-width: 360px) {
+		width: 8rem;
+	}
 `;
 
 export const Icons = styled.div`
@@ -88,6 +122,9 @@ export const Button = styled.div`
 	&:hover {
 		cursor: pointer;
 		opacity: 0.9;
+	}
+	@media only screen and (max-width: 768px) and (min-width: 360px) {
+		width: 10rem;
 	}
 `;
 

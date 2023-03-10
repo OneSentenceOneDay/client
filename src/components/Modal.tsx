@@ -11,6 +11,7 @@ export function Modal({
 	onclick,
 	onclick2,
 	input,
+	setState,
 }: any) {
 	return (
 		<>
@@ -19,7 +20,12 @@ export function Modal({
 				<Body>{body}</Body>
 				{input ? (
 					<Input noWarning={true} page="">
-						<input placeholder="Email" />
+						<input
+							placeholder="Email"
+							onChange={(e) => {
+								setState(e.target.value);
+							}}
+						/>
 					</Input>
 				) : (
 					""

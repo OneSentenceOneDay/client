@@ -27,7 +27,7 @@ function Password() {
 		})
 			.then((res) => {
 				console.log(res);
-				alert(res.data.old_password);
+				alert(res.data.detail);
 			})
 			.catch((e) => {
 				console.log(e);

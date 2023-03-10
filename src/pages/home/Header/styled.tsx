@@ -14,6 +14,10 @@ export const Wrap = styled.div`
 		vertical-align: middle;
 		margin-left: 3rem;
 		cursor: pointer;
+		@media only screen and (max-width: 700px) {
+			margin-left: 1.5rem;
+			width: 4rem;
+		}
 	}
 	display: flex;
 	justify-content: space-between;
@@ -25,6 +29,9 @@ export const LoginBut = styled.div`
 	color: ${palette.blue2};
 	font-family: Pretendard-Bold;
 	cursor: pointer;
+	@media only screen and (max-width: 700px) {
+		margin-right: 1.5rem;
+	}
 `;
 
 export const ProfileBut = styled.div`
@@ -33,6 +40,9 @@ export const ProfileBut = styled.div`
 	img {
 		width: 2.5rem;
 		cursor: pointer;
+		@media only screen and (max-width: 700px) {
+			margin-right: 1.5rem;
+		}
 	}
 `;
 

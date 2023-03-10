@@ -98,7 +98,7 @@ function Signup({ setOpenSignup, setOpenLogin }: any) {
 					.catch((e) => {
 						console.log(e);
 						if (e.response.data.email) {
-							setEmailWarningMsg("* 유효한 이메일 주소를 입력해주세요");
+							setEmailWarningMsg("* 이미 사용 중인 Email입니다");
 							setWarningEmail(false);
 						}
 						if (e.response.data.password1) {

@@ -425,6 +425,7 @@ function Main() {
 					onclick={resetPassword}
 					onclick2={closeResetPasswordModal}
 					input={true}
+					setState={setEmail}
 				/>
 			)}
 			{resetPasswordConfirmModal && (
