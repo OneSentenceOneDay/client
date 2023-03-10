@@ -179,7 +179,7 @@ function Hearts() {
 						clickTrans={clickTrans}
 					/>
 				))}
-				<Pagination />
+				{/* <Pagination /> */}
 			</Sentence>
 
 			<FooterComponent />

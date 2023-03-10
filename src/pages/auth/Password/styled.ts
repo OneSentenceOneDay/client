@@ -7,6 +7,10 @@ export const Text = styled.div`
 	padding-top: 8rem;
 	margin-bottom: 2rem;
 	font-size: 1.5rem;
+	@media only screen and (max-width: 768px) {
+		padding-top: 4rem;
+		font-size: 1.2rem;
+	}
 `;
 
 export const Button = styled.button`
@@ -23,5 +27,10 @@ export const Button = styled.button`
 	&:hover {
 		cursor: pointer;
 		opacity: 0.9;
+	}
+	@media only screen and (max-width: 768px) {
+		width: 18rem;
+		height: 3rem;
+		font-size: 0.9rem;
 	}
 `;

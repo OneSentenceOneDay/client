@@ -64,7 +64,7 @@ export const Sentence = styled.div<{ flag: boolean }>`
 	padding-top: 5rem;
 	min-height: ${(props) => (props.flag ? "35rem" : "")};
 	@media only screen and (max-width: 700px) {
-		width: 22rem;
+		width: 20.5rem;
 		min-height: ${(props) => (props.flag ? "10rem" : "")};
 	}
 `;
@@ -102,7 +102,7 @@ export const Days = styled.div`
 	width: 52.75rem;
 	margin-top: 2rem;
 	@media only screen and (max-width: 700px) {
-		width: 22rem;
+		width: 20.5rem;
 	}
 `;
 

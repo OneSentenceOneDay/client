@@ -11,6 +11,9 @@ export const Privacy = styled.div`
 	input {
 		margin-right: 0.5rem;
 	}
+	@media only screen and (max-width: 768px) {
+		width: 18rem;
+	}
 `;
 
 // modal
@@ -26,5 +29,8 @@ export const WarningText = styled.div<{ noWarning: boolean | null }>`
 	color: ${palette.red1};
 	font-size: 0.75rem;
 	display: ${(props) => (props.noWarning === false ? "" : "none")};
-	visibility: ;
+	@media only screen and (max-width: 768px) {
+		width: 18rem;
+		margin: 0;
+	}
 `;

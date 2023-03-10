@@ -43,6 +43,9 @@ export const ProfileBut = styled.div`
 	}
 	@media only screen and (max-width: 700px) {
 		margin-right: 1.5rem;
+		img {
+			width: 2rem;
+		}
 	}
 `;
 

@@ -208,6 +208,11 @@ export const Body = styled.div`
 	line-height: 1.7rem;
 	margin-top: 2rem;
 	margin-bottom: 1rem;
+	@media only screen and (max-width: 768px) {
+		margin-top: 1rem;
+		font-size: 0.8rem;
+		width: 18rem;
+	}
 `;
 
 export const Button = styled.div<{ flag: boolean; index: number }>`
@@ -227,10 +232,18 @@ export const Button = styled.div<{ flag: boolean; index: number }>`
 		cursor: pointer;
 		opacity: 0.9;
 	}
+	@media only screen and (max-width: 768px) {
+		width: ${(props) => (props.flag ? "8.7rem;" : "18rem")}};
+		height: 3.3rem;
+		line-height: 3.3rem;
+	}
 `;
 
 export const Buttons = styled.div`
 	display: flex;
 	justify-content: space-between;
 	width: 23rem;
+	@media only screen and (max-width: 768px) {
+		width: 18rem;
+	}
 `;
