@@ -21,6 +21,9 @@ export const Wrap = styled.div`
 	}
 	display: flex;
 	justify-content: space-between;
+	@media only screen and (max-width: 768px) {
+		margin-right: -0.55rem;
+	}
 `;
 
 export const LoginBut = styled.div`

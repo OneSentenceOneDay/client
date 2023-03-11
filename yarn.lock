@@ -2046,6 +2046,13 @@
   dependencies:
     "@types/react" "*"
 
+"@types/react-responsive@^8.0.5":
+  "integrity" "sha512-k3gQJgI87oP5IrVZe//3LKJFnAeFaqqWmmtl5eoYL2H3HqFcIhUaE30kRK1CsW3DHdojZxcVj4ZNc2ClsEu2PA=="
+  "resolved" "https://registry.npmjs.org/@types/react-responsive/-/react-responsive-8.0.5.tgz"
+  "version" "8.0.5"
+  dependencies:
+    "@types/react" "*"
+
 "@types/react-router-dom@^5.3.3":
   "integrity" "sha512-kpqnYK4wcdm5UaWI3fLcELopqLrHgLqNsdpHauzlQktfkHL3npOSwtj1Uz9oKBAzs7lFtVkV8j83voAz2D8fhw=="
   "resolved" "https://registry.npmjs.org/@types/react-router-dom/-/react-router-dom-5.3.3.tgz"

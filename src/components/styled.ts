@@ -8,6 +8,9 @@ export const Wrap = styled.div`
 	margin-right: -0.4rem;
 	margin-bottom: -0.625rem;
 	text-align: center;
+	@media only screen and (max-width: 768px) {
+		margin-right: -0.55rem;
+	}
 `;
 
 // ************** Comment.tsx **************

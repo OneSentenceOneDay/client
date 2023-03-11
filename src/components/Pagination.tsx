@@ -6,19 +6,18 @@ export default function Pagination({ pages, page, setPage }: any) {
 	const [currPage, setCurrPage] = useState<number>(page);
 	const [firstNum, setFirstNum] = useState<number>(1);
 	const [lastNum, setLastNum] = useState<number>(pages < 5 ? pages : 5);
-	console.log(pages);
 	// var firstNum: number;
 	// var lastNum: number;
 	console.log("page " + page);
-	console.log("last " + lastNum);
 	console.log("first " + firstNum);
+	console.log("last " + lastNum);
 	console.log("currpage:" + currPage);
 	useEffect(() => {
 		// firstNum = page - (page % 5) + 1;
 		// lastNum = pages < page - (page % 5) + 5 ? pages : page - (page % 5) + 5;
 		setFirstNum(page - (page % 5) + 1);
 		setLastNum(pages < page - (page % 5) + 5 ? pages : page - (page % 5) + 5);
-	}, [currPage, pages]);
+	}, [page, pages]);
 
 	useEffect(() => {
 		const tempPages: number[] = [];
@@ -26,7 +25,7 @@ export default function Pagination({ pages, page, setPage }: any) {
 			tempPages.push(i);
 		}
 		setPageList(tempPages);
-	}, [lastNum]);
+	}, [firstNum, lastNum]);
 
 	return (
 		<PageSection>

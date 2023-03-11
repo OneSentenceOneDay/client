@@ -112,7 +112,7 @@ export const SignupBut = styled.div`
 	cursor: pointer;
 	display: inline-block;
 	// background-color: yellow;
-	margin-left: 1.8rem;
+	// margin-left: 1.8rem;
 	@media only screen and (max-width: 768px) {
 		margin-left: 1rem;
 	}
@@ -122,7 +122,7 @@ export const FindBut = styled.div`
 	color: ${palette.gray4};
 	display: inline-block;
 	cursor: pointer;
-	margin-left: 2.2rem;
+	margin-left: 1.8rem;
 	@media only screen and (max-width: 768px) {
 		margin-left: 1rem;
 	}

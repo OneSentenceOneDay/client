@@ -70,6 +70,7 @@ export const Writing = styled.div<{ noWarning: boolean | null }>`
 		}
 		@media only screen and (max-width: 768px) {
 			width: 18rem;
+			height: 7rem;
 			font-size: 1rem;
 		}
 	}
@@ -84,6 +85,7 @@ export const Menu = styled.div`
 	margin-top: -0.4rem;
 	@media only screen and (max-width: 768px) {
 		width: 20.5rem;
+		height: 3.5rem;
 	}
 `;
 
@@ -102,6 +104,7 @@ export const Icons = styled.div`
 	}
 	@media only screen and (max-width: 768px) {
 		width: 12.5rem;
+		height: 3rem;
 		img {
 			margin-left: 1.5rem;
 		}
@@ -124,6 +127,7 @@ export const Button = styled.div`
 	}
 	@media only screen and (max-width: 768px) {
 		width: 8rem;
+		height: 3.5rem;
 		font-size: 1rem;
 	}
 `;

@@ -17,7 +17,7 @@ const AppRouter: React.FC = () => (
 				<Route path="/heart" element={<Hearts />} />
 				<Route path="/login" element={<Login />} />
 				<Route path="/password" element={<Password />} />
-				<Route path="/reset_password" element={<ResetPassword />} />
+				<Route path="/password/reset/:uid/:token" element={<ResetPassword />} />
 			</Route>
 			<Route path="*" element={<div>There's nothing here!</div>} />
 		</Routes>
