@@ -65,7 +65,7 @@ export const Sentence = styled.div<{ flag: boolean }>`
 	min-height: ${(props) => (props.flag ? "35rem" : "")};
 	@media only screen and (max-width: 700px) {
 		width: 20.5rem;
-		min-height: ${(props) => (props.flag ? "10rem" : "")};
+		min-height: ${(props) => (props.flag ? "18rem" : "")};
 	}
 `;
 

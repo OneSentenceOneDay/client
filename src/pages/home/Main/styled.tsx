@@ -71,7 +71,7 @@ export const Writing = styled.div<{ noWarning: boolean | null }>`
 		@media only screen and (max-width: 768px) {
 			width: 18rem;
 			height: 7rem;
-			font-size: 1rem;
+			font-size: 0.9rem;
 		}
 	}
 `;

@@ -4,15 +4,15 @@ import { Wrap, LoginBut, Menu, ProfileBut, Menudiv } from "./styled";
 import Logo from "../../../assets/images/logo.svg";
 import Profile from "../../../assets/icons/profile-icon.svg";
 import axios from "axios";
-import { useMediaQuery } from "react-responsive";
+// import { useMediaQuery } from "react-responsive";
 
 const BASE_URL = process.env.REACT_APP_API;
 
 export function Dropdown({ setLogin }: any) {
-	const isMobile = useMediaQuery({
-		maxDeviceWidth: 768,
-		// query: "(max-width:768px)",
-	});
+	// const isMobile = useMediaQuery({
+	// 	maxDeviceWidth: 768,
+	// 	// query: "(max-width:768px)",
+	// });
 
 	// ************************ navigation ************************
 	const navigate = useNavigate();
