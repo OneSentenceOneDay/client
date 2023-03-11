@@ -358,10 +358,10 @@ function Main() {
 	function resetPassword() {
 		setResetPasswordModal(false);
 		setResetPasswordConfirmModal(true);
-
+		console.log(1);
 		axios({
 			method: "post",
-			url: `${BASE_URL} /password/reset/`,
+			url: `${BASE_URL}/password/reset/`,
 			data: { email: email },
 		})
 			.then((res) => {

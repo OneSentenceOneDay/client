@@ -6,6 +6,7 @@ import Sentences from "../pages/mypage/Sentences";
 import Hearts from "../pages/mypage/Hearts";
 import Login from "pages/auth/Login/Login";
 import Password from "../pages/auth/Password/Password";
+import ResetPassword from "pages/auth/Password/ResetPassword";
 
 const AppRouter: React.FC = () => (
 	<BrowserRouter>
@@ -16,6 +17,7 @@ const AppRouter: React.FC = () => (
 				<Route path="/heart" element={<Hearts />} />
 				<Route path="/login" element={<Login />} />
 				<Route path="/password" element={<Password />} />
+				<Route path="/reset_password" element={<ResetPassword />} />
 			</Route>
 			<Route path="*" element={<div>There's nothing here!</div>} />
 		</Routes>

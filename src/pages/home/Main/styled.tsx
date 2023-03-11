@@ -141,7 +141,7 @@ export const WarningText = styled.div<{
 	noWarning: boolean | null;
 	page: string;
 }>`
-	width: 52.75rem;
+	width: ${(props) => (props.page === "main" ? "52.75rem" : "25rem")};
 	margin: ${(props) => (props.page === "login" ? "" : "0 auto")};
 	text-align: left;
 	padding-top: 0.5rem;
