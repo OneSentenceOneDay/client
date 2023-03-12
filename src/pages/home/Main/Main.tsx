@@ -25,11 +25,13 @@ import {
 	NoSentences,
 	NoSentencesText,
 	TransModal,
+	AIIcon,
 } from "./styled";
 import { Wrap } from "./../../../components/styled";
 import Copy from "../../../assets/icons/copy-icon.svg";
 import Listen from "../../../assets/icons/listen-icon.svg";
 import Trans from "../../../assets/icons/trans-icon.svg";
+import osodAI from "../../../assets/icons/osodAI-icon.svg";
 import {
 	useEffect,
 	useState,
@@ -451,8 +453,6 @@ function Main() {
 				/>
 				<Menu>
 					<Icons>
-						<img src={Copy} alt="copy" />
-						<img src={Listen} alt="listen" />
 						<img
 							src={Trans}
 							alt="translate"
@@ -460,6 +460,8 @@ function Main() {
 								clickTrans(writing);
 							}}
 						/>
+						<AIIcon>osod AI</AIIcon>
+						<img src={Copy} alt="copy" />
 					</Icons>
 					<Button onClick={isWarning}>영작 완료</Button>
 				</Menu>

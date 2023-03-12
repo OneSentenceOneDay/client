@@ -99,15 +99,36 @@ export const Icons = styled.div`
 	text-align: left;
 	float: left;
 	img {
-		margin-left: 2rem;
+		margin-left: 1.5rem;
 		cursor: pointer;
 	}
 	@media only screen and (max-width: 768px) {
 		width: 12.5rem;
 		height: 3rem;
 		img {
-			margin-left: 1.5rem;
+			margin-left: 1.1rem;
+			width: 1rem;
 		}
+	}
+`;
+
+export const AIIcon = styled.div`
+	background-color: ${palette.blue8};
+	color: ${palette.blue3};
+	font-family: Pretendard-Bold;
+	float: left;
+	width: 5rem;
+	height: 2.1rem;
+	line-height: 2.1rem;
+	margin-top: 0.3rem;
+	text-align: center;
+	border-radius: 0.5rem;
+	margin-left: 1.5rem;
+	@media only screen and (max-width: 768px) {
+		margin-left: 1rem;
+		font-size: 0.8rem;
+		width: 4rem;
+		height: 2rem;
 	}
 `;
 
@@ -171,6 +192,9 @@ export const NoSentencesText = styled.div`
 export const MenuContainer = styled.div`
 	display: flex;
 	justify-content: space-between;
+	@media only screen and (max-width: 768px) {
+		display: block;
+	}
 `;
 
 export const Cnt = styled.div`
@@ -178,7 +202,7 @@ export const Cnt = styled.div`
 	color: ${palette.blue2};
 	font-family: Pretendard-Medium;
 	@media only screen and (max-width: 768px) {
-		font-size: 0.1rem;
+		font-size: 0.15rem;
 	}
 `;
 
@@ -191,7 +215,8 @@ export const Sorted = styled.div<{ flag: boolean }>`
 		color: ${(props) => (props.flag ? palette.blue2 : palette.blue5)};
 	}
 	@media only screen and (max-width: 768px) {
-		font-size: 0.1rem;
+		font-size: 0.15rem;
+		margin-top: 1rem;
 	}
 `;
 
