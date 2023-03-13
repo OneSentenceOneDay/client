@@ -24,14 +24,11 @@ import {
 	WarningText,
 	NoSentences,
 	NoSentencesText,
-	TransModal,
 	AIIcon,
 } from "./styled";
 import { Wrap } from "./../../../components/styled";
 import Copy from "../../../assets/icons/copy-icon.svg";
-import Listen from "../../../assets/icons/listen-icon.svg";
 import Trans from "../../../assets/icons/trans-icon.svg";
-import osodAI from "../../../assets/icons/osodAI-icon.svg";
 import {
 	useEffect,
 	useState,
@@ -50,12 +47,14 @@ import { getData } from "../../../apis/main";
 import axios from "axios";
 import { Modal } from "components/Modal";
 import closeModal from "apis/closeModal";
+import BlueboxModal from "../../../components/BlueboxModal";
 import {
 	Backdrop,
 	DialogBox,
 	Input,
 	ModalContainer,
 } from "pages/auth/Login/styled";
+import handleCopyClipBoard from "../../../apis/copy";
 
 const BASE_URL = process.env.REACT_APP_API;
 
@@ -315,9 +314,7 @@ function Main() {
 			},
 		}).then((res) => {
 			setTrans(res.data.translation);
-			console.log(res.data.translation);
 			setShowTrans(true);
-			console.log(showTrans);
 		});
 	}
 
@@ -375,6 +372,43 @@ function Main() {
 				console.log(e);
 			});
 	}
+
+	// ************************ osod AI ************************
+	const [showAI, setShowAI] = useState<boolean>(false);
+	const [bool, setBool] = useState<boolean>(false);
+	const [osodAI, setOsodAI] = useState<string>("");
+	const [response, setResponse] = useState<string>("");
+	const [original, setOriginal] = useState<string>("");
+
+	async function clickAI() {
+		await axios({
+			method: "post",
+			url: `${BASE_URL}/writing/grammar-check/`,
+			data: {
+				text: writing,
+			},
+		}).then((res) => {
+			console.log(res.data);
+			setBool(res.data.bool);
+			setOsodAI(res.data.ai);
+			setResponse(res.data.response);
+			setOriginal(res.data.original);
+			setShowAI(true);
+		});
+	}
+
+	const outsideRef2 = useRef<HTMLDialogElement | null>(null);
+	useEffect(() => {
+		function handleClickOutside(event: any) {
+			if (outsideRef2.current && !outsideRef2.current.contains(event.target)) {
+				setShowAI(false);
+			}
+		}
+		document.addEventListener("click", handleClickOutside);
+		return () => {
+			document.removeEventListener("click", handleClickOutside);
+		};
+	}, [outsideRef2]);
 
 	if (loading) return <Wrap>로딩중 ...</Wrap>;
 
@@ -444,7 +478,16 @@ function Main() {
 				<Sentence>{sentence.discription}</Sentence>
 				<SentenceKor>{sentence.translate}</SentenceKor>
 			</TodayStc>
+
 			<Writing noWarning={noWarning}>
+				{showAI && (
+					<BlueboxModal
+						ref={outsideRef2}
+						title={osodAI}
+						subbody={original}
+						body={response}
+					/>
+				)}
 				<textarea
 					placeholder={sentence.sentence + " 를 사용하여 영작하기"}
 					onChange={(e) => {
@@ -460,8 +503,14 @@ function Main() {
 								clickTrans(writing);
 							}}
 						/>
-						<AIIcon>osod AI</AIIcon>
-						<img src={Copy} alt="copy" />
+						<AIIcon onClick={clickAI}>osod AI</AIIcon>
+						<img
+							src={Copy}
+							alt="copy"
+							onClick={() => {
+								handleCopyClipBoard(writing);
+							}}
+						/>
 					</Icons>
 					<Button onClick={isWarning}>영작 완료</Button>
 				</Menu>
@@ -492,7 +541,7 @@ function Main() {
 								)}
 							</SortMenu>
 						</MenuContainer>
-						{showTrans && <TransModal ref={outsideRef}>{trans}</TransModal>}
+						{showTrans && <BlueboxModal ref={outsideRef} body={trans} />}
 						{post.map((c: any) => (
 							<Com
 								key={c.id}

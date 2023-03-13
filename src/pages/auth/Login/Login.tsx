@@ -18,7 +18,7 @@ import jwt_decode from "jwt-decode";
 import { useOutletContext } from "react-router-dom";
 import { useGoogleLogin } from "@react-oauth/google";
 import { WarningText } from "pages/home/Main/styled";
-import { Modal } from "components/Modal";
+import { createPortal } from "react-dom";
 
 const BASE_URL = process.env.REACT_APP_API;
 

@@ -311,18 +311,3 @@ export const InputBut = styled.div<{ login: boolean }>`
 	}
 	float: ${(props) => (props.login ? "right" : "")}}
 `;
-
-export const TransModal = styled.dialog`
-	display: flex;
-	flex-direction: row;
-	box-sizing: border-box;
-	background-color: #ffffff;
-	z-index: 10000;
-	border: 0.063rem solid ${palette.blue2};
-	border-radius: 0.625rem;
-	padding: 1.875rem;
-	box-shadow: 0rem 1.125rem 2.25rem rgba(0, 0, 0, 0.15);
-	font-family: Pretendard-Regular;
-	align-items: flex-start;
-	color: ${palette.gray2};
-`;

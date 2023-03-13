@@ -250,3 +250,24 @@ export const Buttons = styled.div`
 		width: 18rem;
 	}
 `;
+
+// ************** Translation, AI Modal **************
+export const Bluebox = styled.dialog`
+	display: flex;
+	flex-direction: row;
+	box-sizing: border-box;
+	background-color: #ffffff;
+	z-index: 10000;
+	border: 0.063rem solid ${palette.blue2};
+	border-radius: 0.625rem;
+	padding: 1.875rem;
+	box-shadow: 0rem 1.125rem 2.25rem rgba(0, 0, 0, 0.15);
+	font-family: Pretendard-Regular;
+	align-items: flex-start;
+	color: ${palette.gray2};
+	max-width: 42.125rem;
+	@media only screen and (max-width: 768px) {
+		font-size: 0.9rem;
+		padding: 1.3rem;
+	}
+`;

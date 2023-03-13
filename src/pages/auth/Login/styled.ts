@@ -26,7 +26,8 @@ export const DialogBox = styled.dialog<{ page: string }>`
 	background-color: #ffffff;
 	z-index: 10000;
 
-	top: ${(props) => (props.page === "modal" ? "" : "0rem")};
+	top: ${(props) => (props.page === "modal" ? "" : "0")};
+	top: 5rem;
 	button {
 		width: 25.375rem;
 		height: 3.3rem;
