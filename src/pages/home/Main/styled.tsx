@@ -256,7 +256,7 @@ export const MailInput = styled.div`
 	width: 26.125rem;
 	@media only screen and (max-width: 768px) {
 		width: 20.5rem;
-		margin-top: 1.5rem;
+		margin-top: 1rem;
 	}
 `;
 
@@ -266,7 +266,7 @@ export const TopText = styled.div`
 	font-size: 1.5rem;
 	color: ${palette.gray2};
 	@media only screen and (max-width: 768px) {
-		font-size: 1.1rem;
+		font-size: 1rem;
 	}
 `;
 
@@ -276,6 +276,7 @@ export const BottomText = styled.div`
 	margin-top: 1.65rem;
 	@media only screen and (max-width: 768px) {
 		font-size: 1rem;
+		margin-top: 0.7rem;
 	}
 `;
 

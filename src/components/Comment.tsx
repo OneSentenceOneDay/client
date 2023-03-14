@@ -50,9 +50,9 @@ commetType) {
 					{/* {showTrans && <TransModal>{trans}</TransModal>} */}
 				</Contents>
 				<BottomDiv>
-					{userId
+					{/* {userId
 						? id?.toString() === userId && <img src={Edit} alt="edit" />
-						: ""}
+						: ""} */}
 					{/* <img
 						src={Trans}
 						alt="translate"
