@@ -1,8 +1,15 @@
-import { Footer, Member, Copyright } from "./styled";
+import { Footer, Member, Copyright, Img } from "./styled";
+import Logo from "assets/images/logo.svg";
+import SubLogo from "assets/images/sub-logo.svg";
 
 function FooterComponent() {
 	return (
 		<Footer>
+			<Img>
+				<img src={Logo} width="75rem" />
+				<img src={SubLogo} />
+			</Img>
+
 			<Member flag={true}>
 				{"서비스기획/디자인: 김경화\nbrilliantkkh@naver.com"}
 			</Member>

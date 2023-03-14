@@ -158,6 +158,13 @@ export const Footer = styled.div`
 	}
 `;
 
+export const Img = styled.div`
+	float: left;
+	img {
+		display: block;
+	}
+`;
+
 export const Member = styled.div<{ flag: boolean }>`
 	white-space: pre-line;
 	display: inline-block;
