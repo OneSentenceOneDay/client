@@ -114,34 +114,6 @@ function Login({
 		setNoWarning(true);
 	}, [email, password]);
 
-	// ************************ refresh token ************************
-	function refreshAccessToken() {
-		// access token 만료 여부 확인
-		if (sessionStorage.getItem("access_token")) {
-			const token = sessionStorage.getItem("access_token");
-			const decodedToken = jwt_decode(token!) as any;
-			const now = Date.now() / 1000;
-			if (decodedToken.exp - now > 300) {
-				return; // access token 유효 기간이 5분 이상 남은 경우
-			}
-
-			// refresh token 사용하여 새로운 access token 발급받기
-			const refresh_token = sessionStorage.getItem("refresh_token");
-			axios({
-				method: "post",
-				data: { refresh: refresh_token },
-			})
-				.then((res) => {
-					sessionStorage.setItem("access_token", res.data.access_token);
-					console.log("Access token refreshed");
-				})
-				.catch((error) => {
-					console.error("Failed to refresh access token", error);
-				});
-		}
-	}
-	setInterval(refreshAccessToken, 300000); // 5분마다 갱신 시도
-
 	return (
 		<ModalContainer>
 			{openSignup ? (

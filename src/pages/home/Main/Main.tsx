@@ -298,6 +298,9 @@ function Main() {
 			method: "post",
 			url: `${BASE_URL}/writing/post/subscription/create/`,
 			data: { sub_email: subEmail, sub_nickname: subName },
+		}).then((res) => {
+			alert("신청되었습니다.");
+			console.log(res);
 		});
 	}
 

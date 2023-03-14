@@ -4,7 +4,9 @@ import { Wrap, LoginBut, Menu, ProfileBut, Menudiv } from "./styled";
 import Logo from "../../../assets/images/logo.svg";
 import Profile from "../../../assets/icons/profile-icon.svg";
 import axios from "axios";
-import useLogout from "apis/logout";
+import { useLogout } from "apis/logout";
+import { useRecoilState } from "recoil";
+import { LoginState } from "states/LoginState";
 // import { useMediaQuery } from "react-responsive";
 
 const BASE_URL = process.env.REACT_APP_API;
@@ -73,6 +75,7 @@ function Header() {
 	const [login, setLogin] = useState<boolean | string | null>(
 		sessionStorage.getItem("access_token")
 	);
+	// const [login, setLogin] = useRecoilState(LoginState);
 	const [view, setView] = useState<boolean>(false); // dropdown
 	const [openLogin, setOpenLogin] = useState<boolean>(false); // login modal
 
