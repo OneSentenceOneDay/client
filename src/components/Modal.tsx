@@ -12,6 +12,7 @@ export function Modal({
 	onclick2,
 	input,
 	setState,
+	placeholder,
 }: any) {
 	return (
 		<>
@@ -21,7 +22,7 @@ export function Modal({
 				{input ? (
 					<Input noWarning={true} page="">
 						<input
-							placeholder="Email"
+							placeholder={placeholder}
 							onChange={(e) => {
 								setState(e.target.value);
 							}}
@@ -45,7 +46,7 @@ export function Modal({
 					</Button>
 				</Buttons>
 			</DialogBox>
-			<Backdrop />
+			{/* <Backdrop /> */}
 		</>
 	);
 }

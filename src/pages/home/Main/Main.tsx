@@ -301,40 +301,6 @@ function Main() {
 		});
 	}
 
-	// ************************ 번역 ************************
-	const [trans, setTrans] = useState<string>("");
-	const [showTrans, setShowTrans] = useState<boolean>(false);
-
-	async function clickTrans(body: string) {
-		await axios({
-			method: "post",
-			url: `${BASE_URL}/writing/translate/`,
-			data: {
-				text: body,
-			},
-		}).then((res) => {
-			setTrans(res.data.translation);
-			setShowTrans(true);
-		});
-	}
-
-	// ************************ 번역 모달 창 닫기 ************************
-
-	// const outsideRef = useRef<HTMLDialogElement | null | undefined>(null);
-	const outsideRef = useRef<any>(null);
-	useEffect(() => {
-		function handleClickOutside(event: any) {
-			if (outsideRef.current && !outsideRef.current.contains(event.target)) {
-				setShowTrans(false);
-				setShowAI(false);
-			}
-		}
-		document.addEventListener("click", handleClickOutside);
-		return () => {
-			document.removeEventListener("click", handleClickOutside);
-		};
-	}, [outsideRef]);
-
 	// ************************ 비밀번호 찾기 ************************
 	const [email, setEmail] = useState<string>("");
 	const [resetPasswordModal, setResetPasswordModal] = useState<boolean>(false);
@@ -402,6 +368,40 @@ function Main() {
 			});
 	}
 
+	// ************************ AI 모달 창 닫기 ************************
+
+	// const outsideRef = useRef<HTMLDialogElement | null | undefined>(null);
+	const outsideRef = useRef<any>(null);
+	useEffect(() => {
+		function handleClickOutside(event: any) {
+			if (outsideRef.current && !outsideRef.current.contains(event.target)) {
+				setShowAI(false);
+				setShowTrans(false);
+			}
+		}
+		document.addEventListener("click", handleClickOutside);
+		return () => {
+			document.removeEventListener("click", handleClickOutside);
+		};
+	}, [outsideRef]);
+
+	// ************************ 번역 ************************
+	const [trans, setTrans] = useState<string>("");
+	const [showTrans, setShowTrans] = useState<boolean>(false);
+
+	async function clickTrans(body: string) {
+		await axios({
+			method: "post",
+			url: `${BASE_URL}/writing/translate/`,
+			data: {
+				text: body,
+			},
+		}).then((res) => {
+			setTrans(res.data.translation);
+			setShowTrans(true);
+		});
+	}
+
 	if (loading) return <Wrap>로딩중 ...</Wrap>;
 
 	return (
@@ -454,6 +454,7 @@ function Main() {
 					onclick2={closeResetPasswordModal}
 					input={true}
 					setState={setEmail}
+					placeholder="Email"
 				/>
 			)}
 			{resetPasswordConfirmModal && (
@@ -477,6 +478,11 @@ function Main() {
 						<BlueboxModal title={osodAI} subbody={original} body={response} />
 					</div>
 				)}
+				{showTrans && (
+					<div ref={outsideRef}>
+						<BlueboxModal body={trans} />
+					</div>
+				)}
 				<textarea
 					placeholder={sentence.sentence + " 를 사용하여 영작하기"}
 					onChange={(e) => {
@@ -485,13 +491,13 @@ function Main() {
 				/>
 				<Menu>
 					<Icons>
-						{/* <img
+						<img
 							src={Trans}
 							alt="translate"
 							onClick={() => {
 								clickTrans(writing);
 							}}
-						/> */}
+						/>
 						<AIIcon onClick={clickAI}>osod AI</AIIcon>
 						<img
 							src={Copy}
@@ -530,11 +536,6 @@ function Main() {
 								)}
 							</SortMenu>
 						</MenuContainer>
-						{/* {showTrans && (
-							<div ref={outsideRef}>
-								<BlueboxModal body={trans} />
-							</div>
-						)} */}
 						{post.map((c: any) => (
 							<Com
 								key={c.id}
@@ -545,6 +546,7 @@ function Main() {
 								hearts={c.like_num}
 								bool_like={c.bool_like}
 								clickLikes={clickLikes}
+								getSentences={getSentences}
 								// clickTrans={clickTrans}
 							/>
 						))}
