@@ -320,11 +320,13 @@ function Main() {
 
 	// ************************ 번역 모달 창 닫기 ************************
 
-	const outsideRef = useRef<HTMLDialogElement | null>(null);
+	// const outsideRef = useRef<HTMLDialogElement | null | undefined>(null);
+	const outsideRef = useRef<any>(null);
 	useEffect(() => {
 		function handleClickOutside(event: any) {
 			if (outsideRef.current && !outsideRef.current.contains(event.target)) {
 				setShowTrans(false);
+				setShowAI(false);
 			}
 		}
 		document.addEventListener("click", handleClickOutside);
@@ -332,7 +334,6 @@ function Main() {
 			document.removeEventListener("click", handleClickOutside);
 		};
 	}, [outsideRef]);
-	// closeModal()
 
 	// ************************ 비밀번호 찾기 ************************
 	const [email, setEmail] = useState<string>("");
@@ -357,7 +358,6 @@ function Main() {
 	function resetPassword() {
 		setResetPasswordModal(false);
 		setResetPasswordConfirmModal(true);
-		console.log(1);
 		axios({
 			method: "post",
 			url: `${BASE_URL}/password/reset/`,
@@ -375,7 +375,6 @@ function Main() {
 
 	// ************************ osod AI ************************
 	const [showAI, setShowAI] = useState<boolean>(false);
-	const [bool, setBool] = useState<boolean>(false);
 	const [osodAI, setOsodAI] = useState<string>("");
 	const [response, setResponse] = useState<string>("");
 	const [original, setOriginal] = useState<string>("");
@@ -387,28 +386,21 @@ function Main() {
 			data: {
 				text: writing,
 			},
-		}).then((res) => {
-			console.log(res.data);
-			setBool(res.data.bool);
-			setOsodAI(res.data.ai);
-			setResponse(res.data.response);
-			setOriginal(res.data.original);
-			setShowAI(true);
-		});
+		})
+			.then((res) => {
+				console.log(res.data);
+				setOsodAI(res.data.ai);
+				setResponse(res.data.response);
+				setOriginal(res.data.original);
+				setShowAI(true);
+			})
+			.catch((e) => {
+				setOsodAI(e.response.data.ai);
+				setResponse(e.response.data.response);
+				setOriginal(e.response.data.original);
+				setShowAI(true);
+			});
 	}
-
-	const outsideRef2 = useRef<HTMLDialogElement | null>(null);
-	useEffect(() => {
-		function handleClickOutside(event: any) {
-			if (outsideRef2.current && !outsideRef2.current.contains(event.target)) {
-				setShowAI(false);
-			}
-		}
-		document.addEventListener("click", handleClickOutside);
-		return () => {
-			document.removeEventListener("click", handleClickOutside);
-		};
-	}, [outsideRef2]);
 
 	if (loading) return <Wrap>로딩중 ...</Wrap>;
 
@@ -481,12 +473,9 @@ function Main() {
 
 			<Writing noWarning={noWarning}>
 				{showAI && (
-					<BlueboxModal
-						ref={outsideRef2}
-						title={osodAI}
-						subbody={original}
-						body={response}
-					/>
+					<div ref={outsideRef}>
+						<BlueboxModal title={osodAI} subbody={original} body={response} />
+					</div>
 				)}
 				<textarea
 					placeholder={sentence.sentence + " 를 사용하여 영작하기"}
@@ -496,13 +485,13 @@ function Main() {
 				/>
 				<Menu>
 					<Icons>
-						<img
+						{/* <img
 							src={Trans}
 							alt="translate"
 							onClick={() => {
 								clickTrans(writing);
 							}}
-						/>
+						/> */}
 						<AIIcon onClick={clickAI}>osod AI</AIIcon>
 						<img
 							src={Copy}
@@ -541,7 +530,11 @@ function Main() {
 								)}
 							</SortMenu>
 						</MenuContainer>
-						{showTrans && <BlueboxModal ref={outsideRef} body={trans} />}
+						{/* {showTrans && (
+							<div ref={outsideRef}>
+								<BlueboxModal body={trans} />
+							</div>
+						)} */}
 						{post.map((c: any) => (
 							<Com
 								key={c.id}
@@ -552,14 +545,16 @@ function Main() {
 								hearts={c.like_num}
 								bool_like={c.bool_like}
 								clickLikes={clickLikes}
-								clickTrans={clickTrans}
+								// clickTrans={clickTrans}
 							/>
 						))}
 						<Pagination pages={pages} page={page} setPage={setPage} />{" "}
 					</>
 				)}
 
-				<MailSection>
+				<MailSection
+					subscription={sessionStorage.getItem("subscription") ? true : false}
+				>
 					<MailText
 						login={sessionStorage.getItem("access_token") ? true : false}
 					>
@@ -611,3 +606,5 @@ function Main() {
 }
 
 export default Main;
+
+console.log();

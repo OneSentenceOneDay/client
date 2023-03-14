@@ -9,37 +9,6 @@ import { WarningText } from "pages/home/Main/styled";
 const BASE_URL = process.env.REACT_APP_API;
 
 function Password() {
-	const [oldPassword, setOldPassword] = useState<string>("");
-	const [newPassword1, setNewPassword1] = useState<string>("");
-	const [newPassword2, setNewPassword2] = useState<string>("");
-
-	function changePassword() {
-		if (validation()) {
-			console.log(1);
-			axios({
-				method: "post",
-				url: `${BASE_URL}/password/change/`,
-				headers: {
-					Authorization: `Bearer ${sessionStorage.getItem("access_token")}`,
-				},
-				data: {
-					old_password: oldPassword,
-					new_password1: newPassword1,
-					new_password2: newPassword2,
-				},
-			})
-				.then((res) => {
-					console.log(res);
-					alert(res.data.detail);
-				})
-				.catch((e) => {
-					console.log(e);
-					alert(e.data.old_password);
-					alert(e.data.new_password2);
-				});
-		}
-	}
-
 	// ************************ validation ************************
 	const [warningOldPassword, setWarningOldPassword] = useState<boolean>(true);
 	const [warningNewPassword, setWarningNewPassword] = useState<boolean>(true);
@@ -48,35 +17,49 @@ function Password() {
 	const [warningNewPasswordMsg, setWarningNewPasswordMsg] =
 		useState<string>("");
 
-	function validation() {
-		if (oldPassword.length === 0) {
-			setWarningOldPassword(false);
-			setWarningOldPasswordMsg("* 비밀번호를 입력해주세요");
-		} else {
-			setWarningOldPassword(true);
-			setWarningOldPasswordMsg("");
-		}
-		if (
-			newPassword1.length === 0 ||
-			(newPassword1.length !== 0 && newPassword1 !== newPassword2)
-		) {
-			setWarningNewPassword(false);
-			setWarningNewPasswordMsg(
-				newPassword1.length === 0
-					? "* 비밀번호를 입력해주세요"
-					: "* 비밀번호가 일치하지 않습니다"
-			);
-		} else {
-			setWarningNewPassword(true);
-			setWarningNewPasswordMsg("");
-		}
-		if (warningOldPassword && warningNewPassword) {
-			console.log(2);
-			return true;
-		}
-		return false;
+	const [oldPassword, setOldPassword] = useState<string>("");
+	const [newPassword1, setNewPassword1] = useState<string>("");
+	const [newPassword2, setNewPassword2] = useState<string>("");
+
+	function changePassword() {
+		axios({
+			method: "post",
+			url: `${BASE_URL}/password/change/`,
+			headers: {
+				Authorization: `Bearer ${sessionStorage.getItem("access_token")}`,
+			},
+			data: {
+				old_password: oldPassword,
+				new_password1: newPassword1,
+				new_password2: newPassword2,
+			},
+		})
+			.then((res) => {
+				console.log(res);
+				alert(res.data.detail);
+			})
+			.catch((e) => {
+				if (e.response.data.old_password) {
+					setWarningOldPasswordMsg("* " + e.response.data.old_password[0]);
+					setWarningOldPassword(false);
+				}
+				if (e.response.data.new_password2) {
+					setWarningNewPasswordMsg("* " + e.response.data.new_password2[0]);
+					setWarningNewPassword(false);
+				}
+				if (e.response.data.code === "token_not_valid") {
+					// 로그아웃
+				}
+			});
 	}
-	console.log(warningNewPassword);
+
+	useEffect(() => {
+		setWarningOldPassword(true);
+	}, [oldPassword]);
+	useEffect(() => {
+		setWarningNewPassword(true);
+	}, [newPassword1, newPassword2]);
+
 	return (
 		<Wrap>
 			<Text>비밀번호 변경</Text>

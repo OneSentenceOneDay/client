@@ -9,6 +9,8 @@ import Password from "../pages/auth/Password/Password";
 import ResetPassword from "pages/auth/Password/ResetPassword";
 import Signup from "pages/auth/Signup/Signup";
 
+const BASE_URL = process.env.REACT_APP_API;
+
 const AppRouter: React.FC = () => (
 	<BrowserRouter>
 		<Routes>
@@ -18,7 +20,11 @@ const AppRouter: React.FC = () => (
 				<Route path="/heart" element={<Hearts />} />
 				<Route path="/login" element={<Signup />} />
 				<Route path="/password" element={<Password />} />
-				<Route path="/password/reset/:uid/:token" element={<ResetPassword />} />
+				<Route
+					// &token=:token
+					path="password/reset/:uid/:token"
+					element={<ResetPassword />}
+				/>
 			</Route>
 			<Route path="*" element={<div>There's nothing here!</div>} />
 		</Routes>

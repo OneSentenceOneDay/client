@@ -3,12 +3,22 @@ import palette from "lib/palette";
 import Copy from "../assets/icons/copy-icon.svg";
 import handleCopyClipBoard from "../apis/copy";
 
-function BlueboxModal({ title, subbody, body }: any) {
+type Props = {
+	// ref: HTMLDialogElement | null | undefined;
+	// ref: any;
+	title?: string;
+	subbody?: string;
+	body: string;
+};
+
+function BlueboxModal({ title, subbody, body }: Props) {
 	return (
 		<Bluebox>
-			<Title>
-				<Osod>osodAI</Osod>: {title}
-			</Title>
+			{title && (
+				<Title>
+					<Osod>osodAI</Osod>: {title}
+				</Title>
+			)}
 			<Subbody>{subbody}</Subbody>
 			<Body>{body}</Body>
 			<img
@@ -31,12 +41,14 @@ const Bluebox = styled.dialog`
 	z-index: 10000;
 	border: 0.063rem solid ${palette.blue2};
 	border-radius: 0.625rem;
-	padding: 1.875rem;
+	padding: 1.8rem;
 	box-shadow: 0rem 1.125rem 2.25rem rgba(0, 0, 0, 0.15);
 	font-family: Pretendard-Regular;
 	text-align: left;
+	font-size: 1.125rem;
 	color: ${palette.gray2};
 	max-width: 42.125rem;
+	min-width: 30rem;
 	img {
 		width: 1rem;
 		margin-top: 1.2rem;

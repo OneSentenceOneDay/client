@@ -99,7 +99,7 @@ export const Icons = styled.div`
 	text-align: left;
 	float: left;
 	img {
-		margin-left: 1.5rem;
+		margin-left: 1.4rem;
 		cursor: pointer;
 	}
 	@media only screen and (max-width: 768px) {
@@ -124,6 +124,7 @@ export const AIIcon = styled.div`
 	text-align: center;
 	border-radius: 0.5rem;
 	margin-left: 1.5rem;
+	cursor: pointer;
 	@media only screen and (max-width: 768px) {
 		margin-left: 1rem;
 		font-size: 0.8rem;
@@ -233,9 +234,9 @@ export const SortMenu = styled.div`
 	}
 `;
 
-export const MailSection = styled.div`
+export const MailSection = styled.div<{ subscription: boolean }>`
 	margin-top: 8rem;
-	display: none;
+	display: ${(props) => (props.subscription ? "none" : "")}}
 `;
 
 export const MailText = styled.div<{ login: boolean }>`
@@ -243,6 +244,9 @@ export const MailText = styled.div<{ login: boolean }>`
 	text-align: left;
 	width: 26.125rem;
 	float: ${(props) => (props.login ? "left" : "")}}
+	@media only screen and (max-width: 768px) {
+		width: 20.5rem;
+	}
 
 `;
 
@@ -250,6 +254,10 @@ export const MailInput = styled.div`
 	display: inline-block;
 	vertical-align: top;
 	width: 26.125rem;
+	@media only screen and (max-width: 768px) {
+		width: 20.5rem;
+		margin-top: 1.5rem;
+	}
 `;
 
 export const TopText = styled.div`
@@ -257,12 +265,18 @@ export const TopText = styled.div`
 	font-family: Pretendard-Bold;
 	font-size: 1.5rem;
 	color: ${palette.gray2};
+	@media only screen and (max-width: 768px) {
+		font-size: 1.1rem;
+	}
 `;
 
 export const BottomText = styled.div`
 	font-family: Pretendard-Regular;
 	font-size: 1.25rem;
 	margin-top: 1.65rem;
+	@media only screen and (max-width: 768px) {
+		font-size: 1rem;
+	}
 `;
 
 export const InputSec = styled.div`
@@ -285,10 +299,17 @@ export const InputDiv = styled.div<{ position: string }>`
 		margin-top: ${(props) => (props.position === "up" ? "" : "-0.063rem")}}
 		font-size: 1.125rem;
 		font-family: Pretendard-Regular;
-		}
-		input::placeholder {
-			color: ${palette.gray4};
 	}
+	input::placeholder {
+		color: ${palette.gray4};
+	}
+	@media only screen and (max-width: 768px) {
+		input {
+			width: 13.37rem;
+		}
+	}
+
+
 `;
 
 export const InputBut = styled.div<{ login: boolean }>`
@@ -310,4 +331,11 @@ export const InputBut = styled.div<{ login: boolean }>`
 		opacity: 0.9;
 	}
 	float: ${(props) => (props.login ? "right" : "")}}
+	@media only screen and (max-width: 768px) {
+		width: ${(props) => (props.login ? "20.5rem" : "4.5rem")}}
+		height: ${(props) => (props.login ? "4rem" : "6.82rem")}}
+		line-height: ${(props) => (props.login ? "4rem" : "6.82rem")}}
+		margin-top: ${(props) => (props.login ? "1.5rem" : "")}}
+		font-size: 1rem;
+	}
 `;

@@ -4,6 +4,7 @@ import { Wrap, LoginBut, Menu, ProfileBut, Menudiv } from "./styled";
 import Logo from "../../../assets/images/logo.svg";
 import Profile from "../../../assets/icons/profile-icon.svg";
 import axios from "axios";
+import useLogout from "apis/logout";
 // import { useMediaQuery } from "react-responsive";
 
 const BASE_URL = process.env.REACT_APP_API;
@@ -26,7 +27,7 @@ export function Dropdown({ setLogin }: any) {
 		navigate("/password");
 	};
 
-	// ************************ Logout ************************
+	// // ************************ Logout ************************
 	function clickLogout() {
 		axios({
 			method: "post",
@@ -55,7 +56,13 @@ export function Dropdown({ setLogin }: any) {
 			<Menudiv mark={"menu"} onClick={changePassword}>
 				비밀번호 변경
 			</Menudiv>
-			<Menudiv mark={"logout"} onClick={clickLogout}>
+			<Menudiv
+				mark={"logout"}
+				onClick={() => {
+					// useLogout(setLogin);
+					clickLogout();
+				}}
+			>
 				로그아웃
 			</Menudiv>
 		</Menu>

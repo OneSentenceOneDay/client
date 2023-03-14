@@ -141,7 +141,7 @@ export const BottomBut = styled.div`
 
 export const Input = styled.div<{ noWarning: boolean; page: string }>`
 	input {
-		padding: 1rem 1.25rem;
+		padding: 0.9rem 1.15rem;
 		width: 22.875rem;
 		height: 1.3rem;
 		font-family: Pretendard-Regular;

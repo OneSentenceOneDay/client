@@ -23,7 +23,7 @@ type commetType = {
 	hearts: number;
 	bool_like: boolean;
 	clickLikes: (id: number) => void;
-	clickTrans: (body: string) => void;
+	// clickTrans: (body: string) => void;
 };
 
 export default function Com({
@@ -34,8 +34,8 @@ export default function Com({
 	hearts,
 	bool_like,
 	clickLikes,
-	clickTrans,
-}: commetType) {
+}: // clickTrans,
+commetType) {
 	const userId: string | null = sessionStorage.getItem("id");
 
 	// ************************ 수정 ************************
@@ -53,13 +53,13 @@ export default function Com({
 					{userId
 						? id?.toString() === userId && <img src={Edit} alt="edit" />
 						: ""}
-					<img
+					{/* <img
 						src={Trans}
 						alt="translate"
 						onClick={() => {
 							clickTrans(contents);
 						}}
-					/>
+					/> */}
 					<HeartDiv>
 						{bool_like ? (
 							<img

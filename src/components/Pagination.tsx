@@ -8,10 +8,10 @@ export default function Pagination({ pages, page, setPage }: any) {
 	const [lastNum, setLastNum] = useState<number>(pages < 5 ? pages : 5);
 	// var firstNum: number;
 	// var lastNum: number;
-	console.log("page " + page);
-	console.log("first " + firstNum);
-	console.log("last " + lastNum);
-	console.log("currpage:" + currPage);
+	// console.log("page " + page);
+	// console.log("first " + firstNum);
+	// console.log("last " + lastNum);
+	// console.log("currpage:" + currPage);
 	useEffect(() => {
 		// firstNum = page - (page % 5) + 1;
 		// lastNum = pages < page - (page % 5) + 5 ? pages : page - (page % 5) + 5;
