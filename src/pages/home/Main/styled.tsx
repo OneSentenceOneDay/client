@@ -188,6 +188,9 @@ export const NoSentencesText = styled.div`
 	font-family: Pretendard-Light;
 	color: ${palette.gray1};
 	margin-top: 1rem;
+	@media only screen and (max-width: 768px) {
+		font-size: 0.9rem;
+	}
 `;
 
 export const MenuContainer = styled.div`
@@ -335,6 +338,7 @@ export const InputBut = styled.div<{ login: boolean }>`
 	@media only screen and (max-width: 768px) {
 		text-align: center;
 		width: ${(props) => (props.login ? "20.5rem" : "4rem")};
-		padding: 2.281rem 0;
+		padding: ${(props) => (props.login ? "1rem 0" : "")};
+		margin-top: ${(props) => (props.login ? "1rem" : "")};
 	}
 `;
