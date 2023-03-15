@@ -186,7 +186,7 @@ export const WarningText = styled.div<{
 	font-size: 0.75rem;
 	visibility: ${(props) => (props.noWarning === false ? "visible" : "hidden")};
 	@media only screen and (max-width: 768px) {
-		width: ${(props) => (props.page === "login" ? "17.5rem" : "20.5rem")};
+		width: 17.5rem;
 	}
 `;
 

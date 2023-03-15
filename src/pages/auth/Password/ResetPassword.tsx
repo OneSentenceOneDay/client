@@ -85,14 +85,14 @@ function ResetPassword() {
 	console.log(confirmModal);
 	return (
 		<Wrap>
+			<Text>비밀번호 변경</Text>
 			{confirmModal && (
 				<Modal
 					body="비밀번호가 변경되었습니다."
 					button="확인"
-					onClick={closeModal}
+					onclick={closeModal}
 				/>
 			)}
-			<Text>비밀번호 변경</Text>
 			<Input noWarning={warning} page={"password"}>
 				<input
 					type="password"

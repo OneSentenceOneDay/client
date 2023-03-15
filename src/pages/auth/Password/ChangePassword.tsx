@@ -69,8 +69,8 @@ function Password() {
 				.then((res) => {
 					// console.log(res);
 					setLoading(false);
-					alert("비밀번호가 변경되었습니다.");
-					navigate("/");
+					// alert("비밀번호가 변경되었습니다.");
+					setConfirmModal(true);
 				})
 				.catch((e) => {
 					if (e.response.data.old_password) {
@@ -97,13 +97,24 @@ function Password() {
 	}, [newPassword1, newPassword2]);
 
 	// ************************ confirm modal ************************
-	const [confirmModal, setConfirmModal] = useState<boolean>(true);
+	const [confirmModal, setConfirmModal] = useState<boolean>(false);
+	function closeModal() {
+		setConfirmModal(false);
+		console.log(1);
+		navigate("/");
+	}
 
 	if (loading) return <Loading />;
 	return (
 		<Wrap>
+			{confirmModal && (
+				<Modal
+					body="비밀번호가 변경되었습니다."
+					button="확인"
+					onclick={closeModal}
+				/>
+			)}
 			<Text>비밀번호 변경</Text>
-
 			<Input noWarning={warningOldPassword} page={"password"}>
 				<input
 					type="password"
@@ -113,6 +124,7 @@ function Password() {
 					}}
 				/>
 			</Input>
+
 			<WarningText noWarning={warningOldPassword} page="password">
 				{warningOldPasswordMsg}
 			</WarningText>

@@ -61,7 +61,10 @@ function Login({
 					}
 					setLoading(false);
 				})
-				.catch((e) => console.log(e));
+				.catch((e) => {
+					setLoading(false);
+					alert("다시 시도해주세요.");
+				});
 		},
 	});
 
@@ -114,6 +117,8 @@ function Login({
 			})
 			.catch(() => {
 				setNoWarning(false);
+				setLoading(false);
+				alert("다시 시도해주세요.");
 			});
 	}
 
