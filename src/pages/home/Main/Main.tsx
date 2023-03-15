@@ -341,7 +341,6 @@ function Main() {
 			.then((res) => {
 				console.log(res);
 				setResetPasswordModal(false);
-				setResetPasswordConfirmModal(true);
 			})
 			.catch((e) => {
 				console.log(e);

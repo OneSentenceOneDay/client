@@ -18,16 +18,23 @@ function ResetPassword() {
 	const uid = params.uid;
 	const token = params.token;
 
+	// ************************ validation ************************
+	const [warning, setWarning] = useState<boolean>(true);
+	const [warningMsg, setWarningMsg] = useState<string>("");
+
 	function validation() {
-		if (newPassword1 === newPassword2) {
-			return true;
-		} else {
+		if (newPassword1.length === 0 || newPassword2.length === 0) {
+			setWarning(false);
+			setWarningMsg("* 비밀번호를 설정해주세요");
 			return false;
 		}
+		if (newPassword1 !== newPassword2) {
+			setWarning(false);
+			setWarningMsg("* 비밀번호가 일치하지 않습니다");
+			return false;
+		}
+		return true;
 	}
-
-	// console.log(uid);
-	// console.log(token);
 
 	function reset() {
 		if (validation()) {
@@ -46,8 +53,11 @@ function ResetPassword() {
 					alert("비밀번호가 변경되었습니다.");
 				})
 				.catch((e) => {
-					console.log(e);
-					alert("다시 시도해주세요.");
+					setWarning(false);
+					if (e.response.data.new_password2) {
+						setWarningMsg("* " + e.response.data.new_password2[0]);
+					}
+					console.log(e.response.data.new_password2[0]);
 				});
 		}
 	}
@@ -55,7 +65,7 @@ function ResetPassword() {
 	return (
 		<Wrap>
 			<Text>비밀번호 변경</Text>
-			<Input noWarning={true} page={"password"}>
+			<Input noWarning={warning} page={"password"}>
 				<input
 					type="password"
 					placeholder="New Password"
@@ -64,7 +74,7 @@ function ResetPassword() {
 					}}
 				/>
 			</Input>
-			<Input noWarning={true} page={"password"}>
+			<Input noWarning={warning} page={"password"}>
 				<input
 					type="password"
 					placeholder="Confirm New Password"
@@ -73,8 +83,8 @@ function ResetPassword() {
 					}}
 				/>
 			</Input>
-			<WarningText noWarning={true} page="password">
-				{}
+			<WarningText noWarning={warning} page="password">
+				{warningMsg}
 			</WarningText>
 			<Button onClick={reset}>새 비밀번호로 변경</Button>
 			<FooterComponent />

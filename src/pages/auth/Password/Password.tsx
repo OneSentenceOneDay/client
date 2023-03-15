@@ -17,40 +17,66 @@ function Password() {
 	const [warningNewPasswordMsg, setWarningNewPasswordMsg] =
 		useState<string>("");
 
+	function validation() {
+		let flag = true;
+		if (oldPassword.length === 0) {
+			setWarningOldPassword(false);
+			setWarningOldPasswordMsg("* 비밀번호를 설정해주세요");
+			flag = false;
+		}
+		if (newPassword1.length === 0 || newPassword2.length === 0) {
+			setWarningNewPassword(false);
+			setWarningNewPasswordMsg("* 비밀번호를 설정해주세요");
+			flag = false;
+		}
+		if (newPassword1.length !== 0 && newPassword1 !== newPassword2) {
+			setWarningNewPassword(false);
+			setWarningNewPasswordMsg("* 비밀번호가 일치하지 않습니다");
+			flag = false;
+		}
+		if (flag) {
+			return true;
+		}
+
+		return false;
+	}
+	// ************************ reset password ************************
 	const [oldPassword, setOldPassword] = useState<string>("");
 	const [newPassword1, setNewPassword1] = useState<string>("");
 	const [newPassword2, setNewPassword2] = useState<string>("");
 
 	function changePassword() {
-		axios({
-			method: "post",
-			url: `${BASE_URL}/password/change/`,
-			headers: {
-				Authorization: `Bearer ${sessionStorage.getItem("access_token")}`,
-			},
-			data: {
-				old_password: oldPassword,
-				new_password1: newPassword1,
-				new_password2: newPassword2,
-			},
-		})
-			.then((res) => {
-				console.log(res);
-				alert(res.data.detail);
+		if (validation()) {
+			axios({
+				method: "post",
+				url: `${BASE_URL}/password/change/`,
+				headers: {
+					Authorization: `Bearer ${sessionStorage.getItem("access_token")}`,
+				},
+				data: {
+					old_password: oldPassword,
+					new_password1: newPassword1,
+					new_password2: newPassword2,
+				},
 			})
-			.catch((e) => {
-				if (e.response.data.old_password) {
-					setWarningOldPasswordMsg("* " + e.response.data.old_password[0]);
-					setWarningOldPassword(false);
-				}
-				if (e.response.data.new_password2) {
-					setWarningNewPasswordMsg("* " + e.response.data.new_password2[0]);
-					setWarningNewPassword(false);
-				}
-				if (e.response.data.code === "token_not_valid") {
-					// 로그아웃
-				}
-			});
+				.then((res) => {
+					console.log(res);
+					alert(res.data.detail);
+				})
+				.catch((e) => {
+					if (e.response.data.old_password) {
+						setWarningOldPasswordMsg("* " + e.response.data.old_password[0]);
+						setWarningOldPassword(false);
+					}
+					if (e.response.data.new_password2) {
+						setWarningNewPasswordMsg("* " + e.response.data.new_password2[0]);
+						setWarningNewPassword(false);
+					}
+					if (e.response.data.code === "token_not_valid") {
+						// 로그아웃
+					}
+				});
+		}
 	}
 
 	useEffect(() => {
