@@ -53,7 +53,7 @@ function Login({
 					if (res.data.user.is_first) {
 						setGoogle(true);
 					} else {
-						// window.location.reload(); // 새로고침
+						window.location.reload(); // 새로고침
 					}
 				})
 				.catch((e) => console.log(e));
