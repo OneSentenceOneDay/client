@@ -45,7 +45,7 @@ const Bluebox = styled.dialog`
 	box-shadow: 0rem 1.125rem 2.25rem rgba(0, 0, 0, 0.15);
 	font-family: Pretendard-Regular;
 	text-align: left;
-	font-size: 1.125rem;
+	font-size: 1rem;
 	color: ${palette.gray2};
 	max-width: 42.125rem;
 	min-width: 30rem;

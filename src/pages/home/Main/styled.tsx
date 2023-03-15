@@ -102,9 +102,10 @@ export const Icons = styled.div`
 		margin-top: 0.3rem;
 		padding: 0.5rem;
 		margin-left: 0.9rem;
+		border-radius: 0.625rem;
 		&:hover {
 			cursor: pointer;
-			background-color: ${palette.blue6};
+			background-color: ${palette.blue1};
 		}
 	}
 	@media only screen and (max-width: 768px) {
@@ -133,7 +134,6 @@ export const AIIcon = styled.div`
 	&:hover {
 		cursor: pointer;
 		background-color: ${palette.blue6};
-		color: white;
 	}
 	@media only screen and (max-width: 768px) {
 		margin-left: 1rem;
@@ -302,7 +302,6 @@ export const InputDiv = styled.div<{ position: string }>`
 		&: focus {
 			outline: none;
 		}
-
 		width: 18rem;
 		height: 1.3rem;
 		padding: 1rem 1.25rem;
@@ -317,11 +316,11 @@ export const InputDiv = styled.div<{ position: string }>`
 	input::placeholder {
 		color: ${palette.gray4};
 	}
-
 	@media only screen and (max-width: 768px) {
 		input {
 			padding: 0.9rem 1.25rem;
 			width: 12rem;
+			font-size: 0.8rem;
 		}
 	}
 `;

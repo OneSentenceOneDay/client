@@ -18,7 +18,7 @@ export const Nickname = styled.div`
 	font-size: 1.125rem;
 	font-family: Pretendard-Regular;
 	@media only screen and (max-width: 700px) {
-		font-size: 0.7rem;
+		font-size: 0.8rem;
 		padding-top: 1rem;
 	}
 `;
@@ -38,7 +38,7 @@ export const ItemName = styled.div`
 	font-size: 1.125rem;
 	font-family: Pretendard-Regular;
 	@media only screen and (max-width: 700px) {
-		font-size: 0.7rem;
+		font-size: 0.8rem;
 	}
 `;
 
