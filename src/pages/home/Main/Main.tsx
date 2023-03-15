@@ -326,6 +326,7 @@ function Main() {
 	function closeResetPasswordModal() {
 		setResetPasswordModal(false);
 		setOpenLogin(false);
+		document.body.style.overflow = "unset";
 	}
 
 	function closeResetPasswordConfirmModal() {

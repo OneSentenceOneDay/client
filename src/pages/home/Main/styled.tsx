@@ -12,7 +12,7 @@ export const Text = styled.div`
 	color: ${palette.gray2};
 	@media only screen and (max-width: 768px) {
 		font-size: 0.875rem;
-	}
+	} ;
 `;
 
 export const Eng = styled.div`
@@ -22,7 +22,7 @@ export const Eng = styled.div`
 	color: ${palette.gray2};
 	@media only screen and (max-width: 768px) {
 		font-size: 1.75rem;
-	}
+	} ;
 `;
 
 export const Sentence = styled.div`
@@ -36,7 +36,7 @@ export const Sentence = styled.div`
 		justify-content: center;
 		margin: 0 auto;
 		padding-top: 1rem;
-	}
+	} ;
 `;
 
 export const SentenceKor = styled.div`
@@ -50,7 +50,7 @@ export const SentenceKor = styled.div`
 		justify-content: center;
 		margin: 0 auto;
 		padding-top: 1rem;
-	}
+	} ;
 `;
 
 export const Writing = styled.div<{ noWarning: boolean | null }>`
@@ -246,8 +246,8 @@ export const MailText = styled.div<{ login: boolean }>`
 	display: inline-block;
 	text-align: left;
 	width: 26.125rem;
-	float: ${(props) => (props.login ? "left" : "")} @media only screen and
-		(max-width: 768px) {
+	float: ${(props) => (props.login ? "left" : "")};
+	@media only screen and (max-width: 768px) {
 		width: 20.5rem;
 	}
 `;
@@ -297,11 +297,10 @@ export const InputDiv = styled.div<{ position: string }>`
 		padding: 1rem 1.25rem;
 		border-radius: ${(props) =>
 			props.position === "up"
-				? "0.625rem 0rem 0rem 0rem "
-				: "0rem 0rem 0rem 0.625rem "};
+				? "0.625rem 0rem 0rem 0rem"
+				: "0rem 0rem 0rem 0.625rem"};
 		border: 0.063rem solid ${palette.gray4};
-		margin-top: ${(props) => (props.position === "up" ? "" : "10rem")}
-		font-size: 1.125rem;
+		margin-top: ${(props) => (props.position === "up" ? "" : "-0.1rem")};
 		font-family: Pretendard-Regular;
 	}
 	input::placeholder {
@@ -310,8 +309,8 @@ export const InputDiv = styled.div<{ position: string }>`
 
 	@media only screen and (max-width: 768px) {
 		input {
-			width: 10rem;
-			height: 0.8rem;
+			padding: 0.9rem 1.25rem;
+			width: 12rem;
 		}
 	}
 `;
@@ -334,11 +333,10 @@ export const InputBut = styled.div<{ login: boolean }>`
 		opacity: 0.9;
 	}
 	float: ${(props) => (props.login ? "right" : "")};
-
 	@media only screen and (max-width: 768px) {
 		text-align: center;
-		width: ${(props) => (props.login ? "20.5rem" : "4rem")};
-		padding: ${(props) => (props.login ? "1rem 0" : "")};
+		width: ${(props) => (props.login ? "20.5rem" : "5rem")};
+		padding: ${(props) => (props.login ? "1rem 0" : "2.6rem 0")};
 		margin-top: ${(props) => (props.login ? "1rem" : "")};
 	}
 `;

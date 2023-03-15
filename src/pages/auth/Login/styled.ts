@@ -112,7 +112,6 @@ export const SignupBut = styled.div`
 	color: ${palette.blue2};
 	cursor: pointer;
 	display: inline-block;
-	// background-color: yellow;
 	// margin-left: 1.8rem;
 	@media only screen and (max-width: 768px) {
 		margin-left: 1rem;
@@ -133,7 +132,6 @@ export const BottomBut = styled.div`
 	font-family: Pretendard-Regular;
 	font-size: 1rem;
 	width: 15rem;
-	// background-color: red;
 	@media only screen and (max-width: 768px) {
 		font-size: 0.8rem;
 	}
