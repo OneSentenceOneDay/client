@@ -129,6 +129,7 @@ function Main() {
 			url: `${BASE_URL}/writing/main/`,
 		}).then((res) => {
 			setSentence(res.data.postList[0]);
+			// console.log(res.data);
 		});
 		setLoading(false);
 	}, []);
@@ -189,7 +190,7 @@ function Main() {
 		})
 			.then((res) => {
 				getSentences();
-				console.log(res);
+				// console.log(res);
 			})
 			.catch(() => setOpenLogin(true));
 	}
@@ -198,8 +199,9 @@ function Main() {
 	const [writing, setWriting] = useState<string>(""); // 작성한 문장
 	const [noWarning, setNoWarning] = useState<boolean | null>(null);
 	function isWarning() {
-		if (writing.toLowerCase().includes(sentence.sentence)) {
+		if (writing.toLowerCase().includes(sentence.sentence.toLowerCase())) {
 			setNoWarning(true);
+			console.log(1);
 		} else {
 			setNoWarning(false);
 		}

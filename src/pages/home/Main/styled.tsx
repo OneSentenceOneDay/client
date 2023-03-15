@@ -257,6 +257,7 @@ export const MailInput = styled.div`
 	@media only screen and (max-width: 768px) {
 		width: 20.5rem;
 		margin-top: 1rem;
+		text-align: left;
 	}
 `;
 
@@ -306,7 +307,8 @@ export const InputDiv = styled.div<{ position: string }>`
 	}
 	@media only screen and (max-width: 768px) {
 		input {
-			width: 13.37rem;
+			width: 10rem;
+			height: 0.8rem;
 		}
 	}
 
@@ -318,7 +320,7 @@ export const InputBut = styled.div<{ login: boolean }>`
 	display: inline-block;
 	vertical-align: top;
 	width: ${(props) => (props.login ? "14.063rem" : "4.5rem")}}
-	height: ${(props) => (props.login ? "4.5rem" : "6.82rem")}}
+	height: ${(props) => (props.login ? "4.5rem" : "6.32rem")}}
 	line-height: ${(props) => (props.login ? "4.5rem" : "6.82rem")}}
 	font-family: Pretendard-Bold;
 	color: #ffffff;
@@ -333,10 +335,11 @@ export const InputBut = styled.div<{ login: boolean }>`
 	}
 	float: ${(props) => (props.login ? "right" : "")}}
 	@media only screen and (max-width: 768px) {
-		width: ${(props) => (props.login ? "20.5rem" : "4.5rem")}}
-		height: ${(props) => (props.login ? "4rem" : "6.82rem")}}
-		line-height: ${(props) => (props.login ? "4rem" : "6.82rem")}}
+		width: ${(props) => (props.login ? "20.5rem" : "4rem")}}
+		height: ${(props) => (props.login ? "4rem" : "5.82rem")}}
+		line-height: ${(props) => (props.login ? "4rem" : "5.82rem")}}
 		margin-top: ${(props) => (props.login ? "1.5rem" : "")}}
 		font-size: 1rem;
+		text-align: center;
 	}
 `;
