@@ -30,6 +30,7 @@ import Emoji8 from "../../assets/icons/emoji-icon-8.svg";
 import Emoji9 from "../../assets/icons/emoji-icon-9.svg";
 import Emoji10 from "../../assets/icons/emoji-icon-10.svg";
 import Emoji11 from "../../assets/icons/emoji-icon-11.svg";
+import { Modal } from "components/Modal";
 
 const BASE_URL = process.env.REACT_APP_API;
 
@@ -110,7 +111,6 @@ function Sectences() {
 
 	// ************************ get 오늘 쓴 문장 ************************
 	const [todayPost, setTodyPost] = useState<any>([]);
-	const [todySentence, setTodaySentence] = useState<string>("");
 
 	function getTodayPost() {
 		setLoading(true);
@@ -122,7 +122,6 @@ function Sectences() {
 			},
 		}).then((res) => {
 			setTodyPost(res.data);
-			setTodaySentence(res.data[0].sentence.sentence);
 			setLoading(false);
 			console.log(res.data);
 		});
@@ -137,6 +136,8 @@ function Sectences() {
 	const [date, setDate] = useState<string>(""); // 요일별 작성 문장을 얻기 위한 변수 (02%12 형태)
 	const [sentences, setSentences] = useState<string>("");
 
+	const [todySentence, setTodaySentence] = useState<string>("");
+
 	useEffect(() => {
 		setLoading(true);
 		axios({
@@ -147,6 +148,8 @@ function Sectences() {
 			},
 		}).then((res) => {
 			getWeek(res.data);
+			setTodaySentence(res.data.today_sentence);
+			console.log(res.data);
 		});
 	}, []);
 

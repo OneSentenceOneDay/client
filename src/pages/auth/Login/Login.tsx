@@ -38,7 +38,7 @@ function Login({
 				data: { access_token: res.access_token },
 			})
 				.then((res) => {
-					console.log(res);
+					// console.log(res);
 					sessionStorage.setItem("access_token", res.data.access_token);
 					sessionStorage.setItem("refresh_token", res.data.refresh_token);
 					sessionStorage.setItem("id", res.data.user.id);

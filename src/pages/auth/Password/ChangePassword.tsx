@@ -5,6 +5,8 @@ import FooterComponent from "components/Footer";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { WarningText } from "pages/home/Main/styled";
+import { useNavigate } from "react-router-dom";
+import { Modal } from "components/Modal";
 
 const BASE_URL = process.env.REACT_APP_API;
 
@@ -40,10 +42,11 @@ function Password() {
 
 		return false;
 	}
-	// ************************ reset password ************************
+	// ************************ change password ************************
 	const [oldPassword, setOldPassword] = useState<string>("");
 	const [newPassword1, setNewPassword1] = useState<string>("");
 	const [newPassword2, setNewPassword2] = useState<string>("");
+	const navigate = useNavigate();
 
 	function changePassword() {
 		if (validation()) {
@@ -60,8 +63,9 @@ function Password() {
 				},
 			})
 				.then((res) => {
-					console.log(res);
-					alert(res.data.detail);
+					// console.log(res);
+					alert("비밀번호가 변경되었습니다.");
+					navigate("/");
 				})
 				.catch((e) => {
 					if (e.response.data.old_password) {
@@ -86,9 +90,13 @@ function Password() {
 		setWarningNewPassword(true);
 	}, [newPassword1, newPassword2]);
 
+	// ************************ confirm modal ************************
+	const [confirmModal, setConfirmModal] = useState<boolean>(true);
+
 	return (
 		<Wrap>
 			<Text>비밀번호 변경</Text>
+
 			<Input noWarning={warningOldPassword} page={"password"}>
 				<input
 					type="password"

@@ -4,7 +4,7 @@ import Header from "../pages/home/Header/Header";
 import Main from "../pages/home/Main/Main";
 import Sentences from "../pages/mypage/Sentences";
 import Hearts from "../pages/mypage/Hearts";
-import Password from "../pages/auth/Password/Password";
+import Password from "../pages/auth/Password/ChangePassword";
 import ResetPassword from "pages/auth/Password/ResetPassword";
 import TermsOfUse from "pages/home/Laws/TermsOfUse";
 import Privacy from "pages/home/Laws/Privacy";
