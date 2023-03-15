@@ -352,6 +352,7 @@ function Main() {
 	const [osodAI, setOsodAI] = useState<string>("");
 	const [response, setResponse] = useState<string>("");
 	const [original, setOriginal] = useState<string>("");
+	const [bool, setBool] = useState<boolean>(false);
 
 	async function clickAI() {
 		await axios({
@@ -366,12 +367,14 @@ function Main() {
 				setOsodAI(res.data.ai);
 				setResponse(res.data.response);
 				setOriginal(res.data.original);
+				setBool(res.data.bool);
 				setShowAI(true);
 			})
 			.catch((e) => {
 				setOsodAI(e.response.data.ai);
 				setResponse(e.response.data.response);
 				setOriginal(e.response.data.original);
+				setBool(e.response.data.bool);
 				setShowAI(true);
 			});
 	}
@@ -483,7 +486,11 @@ function Main() {
 			<Writing noWarning={noWarning}>
 				{showAI && (
 					<div ref={outsideRef}>
-						<BlueboxModal title={osodAI} subbody={original} body={response} />
+						<BlueboxModal
+							title={osodAI}
+							subbody={!bool ? original : ""}
+							body={!bool ? response : ""}
+						/>
 					</div>
 				)}
 				{showTrans && (
