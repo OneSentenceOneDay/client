@@ -124,7 +124,7 @@ function Sectences() {
 			setTodyPost(res.data);
 			setTodaySentence(res.data[0].sentence.sentence);
 			setLoading(false);
-			console.log(res);
+			console.log(res.data);
 		});
 	}
 	useEffect(() => {
@@ -200,25 +200,6 @@ function Sectences() {
 		});
 	}
 
-	// ************************ 번역 ************************
-	const [trans, setTrans] = useState<string>("");
-	const [showTrans, setShowTrans] = useState<boolean>(false);
-
-	async function clickTrans(body: string) {
-		await axios({
-			method: "post",
-			url: `${BASE_URL}/writing/translate/`,
-			data: {
-				text: body,
-			},
-		}).then((res) => {
-			setTrans(res.data.translation);
-			// console.log(res.data.translation);
-			setShowTrans(true);
-			console.log(showTrans);
-		});
-	}
-
 	if (loading) <div>로딩 중 ...</div>;
 
 	return (
@@ -257,7 +238,7 @@ function Sectences() {
 						hearts={c.like_num}
 						bool_like={c.bool_like}
 						clickLikes={clickLikes}
-						clickTrans={clickTrans}
+						// clickTrans={clickTrans}
 					/>
 				))}
 			</Sentence>

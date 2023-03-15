@@ -236,18 +236,17 @@ export const SortMenu = styled.div`
 
 export const MailSection = styled.div<{ subscription: boolean }>`
 	margin-top: 8rem;
-	display: ${(props) => (props.subscription ? "none" : "")}}
+	display: ${(props) => (props.subscription ? "none" : "")};
 `;
 
 export const MailText = styled.div<{ login: boolean }>`
 	display: inline-block;
 	text-align: left;
 	width: 26.125rem;
-	float: ${(props) => (props.login ? "left" : "")}}
-	@media only screen and (max-width: 768px) {
+	float: ${(props) => (props.login ? "left" : "")} @media only screen and
+		(max-width: 768px) {
 		width: 20.5rem;
 	}
-
 `;
 
 export const MailInput = styled.div`
@@ -298,54 +297,44 @@ export const InputDiv = styled.div<{ position: string }>`
 				? "0.625rem 0rem 0rem 0rem "
 				: "0rem 0rem 0rem 0.625rem "};
 		border: 0.063rem solid ${palette.gray4};
-		margin-top: ${(props) => (props.position === "up" ? "" : "-0.063rem")}}
+		margin-top: ${(props) => (props.position === "up" ? "" : "10rem")}
 		font-size: 1.125rem;
 		font-family: Pretendard-Regular;
 	}
 	input::placeholder {
 		color: ${palette.gray4};
 	}
+
 	@media only screen and (max-width: 768px) {
 		input {
 			width: 10rem;
 			height: 0.8rem;
 		}
 	}
-
-
 `;
 
 export const InputBut = styled.div<{ login: boolean }>`
 	background-color: ${palette.blue2};
 	display: inline-block;
 	vertical-align: top;
-	width: ${(props) => (props.login ? "14.063rem" : "5.063rem")}}
-	height: ${(props) => (props.login ? "4.5rem" : "6.82rem")}}
-	line-height: ${(props) => (props.login ? "4.5rem" : "6.82rem")}}
+	width: ${(props) => (props.login ? "14.063rem" : "5.063rem")};
+	padding: 2.8rem 0;
 	font-family: Pretendard-Bold;
 	color: #ffffff;
 	font-size: 1rem;
 	border-radius: ${(props) =>
 		props.login
 			? "0.625rem 0.625rem 0.625rem 0.625rem"
-			: "0rem 0.625rem 0.625rem 0rem"}}
+			: "0rem 0.625rem 0.625rem 0rem"};
 	&:hover {
-			cursor: pointer;
-			opacity: 0.9;
-		}
-	float: ${(props) => (props.login ? "right" : "")}}
+		cursor: pointer;
+		opacity: 0.9;
+	}
+	float: ${(props) => (props.login ? "right" : "")};
+
 	@media only screen and (max-width: 768px) {
-		// width: ${(props) => (props.login ? "20.5rem" : "4rem")}}
-		// height: ${(props) => (props.login ? "4rem" : "5.72rem")}}
-		// line-height: ${(props) => (props.login ? "4rem" : "5.72rem")}}
+		text-align: center;
+		width: ${(props) => (props.login ? "20.5rem" : "4rem")};
+		padding: 2.281rem 0;
 	}
 `;
-
-// @media only screen and (max-width: 768px) {
-// 	width: ${(props) => (props.login ? "20.5rem" : "4rem")}}
-// 	height: ${(props) => (props.login ? "4rem" : "5.82rem")}}
-// 	line-height: ${(props) => (props.login ? "4rem" : "5.82rem")}}
-// 	margin-top: ${(props) => (props.login ? "1.5rem" : "")}}
-// 	font-size: 1rem;
-// 	text-align: center;
-// }
