@@ -21,7 +21,7 @@ export const Title = styled.div``;
 export const Cont = styled.div``;
 
 export const WarningText = styled.div<{ noWarning: boolean | null }>`
-	width: 52.75rem;
+	min-width: 24.875rem;
 	margin: 0 auto;
 	text-align: left;
 	padding-top: 0.5rem;
@@ -30,7 +30,7 @@ export const WarningText = styled.div<{ noWarning: boolean | null }>`
 	font-size: 0.75rem;
 	display: ${(props) => (props.noWarning === false ? "" : "none")};
 	@media only screen and (max-width: 768px) {
-		width: 18rem;
+		min-width: 18rem;
 		margin: 0;
 	}
 `;

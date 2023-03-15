@@ -29,6 +29,7 @@ function Login({
 	setGoogle,
 	openResetPasswordModal,
 }: any) {
+	// ************************ Google login ************************
 	const googleLogin = useGoogleLogin({
 		onSuccess: async (res) => {
 			console.log(res.access_token);
@@ -117,7 +118,11 @@ function Login({
 	return (
 		<ModalContainer>
 			{openSignup ? (
-				<Signup setOpenSignup={setOpenSignup} setOpenLogin={setOpenLogin} />
+				<Signup
+					setOpenSignup={setOpenSignup}
+					setOpenLogin={setOpenLogin}
+					setGoogle={setGoogle}
+				/>
 			) : (
 				<DialogBox page={"login"}>
 					<img src={Logo} />

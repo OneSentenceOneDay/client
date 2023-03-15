@@ -11,11 +11,9 @@ export const ModalContainer = styled.div`
 `;
 
 export const DialogBox = styled.dialog<{ page: string }>`
-	padding: ${(props) =>
-		props.page === "login"
-			? "2.5rem 5.313rem 2.5rem 5.313rem"
-			: "2rem 5.313rem 2rem 5.313rem"};
+	padding: 2.5rem 0;
 	width: ${(props) => (props.page === "modal" ? "32rem" : "35rem")};
+	height: ${(props) => (props.page === "signup" ? "90%" : "")};
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -29,8 +27,8 @@ export const DialogBox = styled.dialog<{ page: string }>`
 	top: ${(props) =>
 		props.page === "modal" ? "" : props.page === "signup" ? "-3.5rem" : "0rem"};
 	button {
-		width: 25.375rem;
-		height: 3.3rem;
+		min-width: 25.375rem;
+		min-height: 3.3rem;
 		font-family: Pretendard-Bold;
 		border-radius: 0.625rem 0.625rem 0.625rem 0.625rem;
 		margin-top: 1rem;
@@ -46,15 +44,16 @@ export const DialogBox = styled.dialog<{ page: string }>`
 	img {
 		width: 7rem;
 	}
-
+	overflow-y: scroll;
 	@media only screen and (max-width: 768px) {
-		width: 20.5rem;
+		max-width: 20.5rem;
+		min-width: 20.5rem;
 		img {
 			width: 5rem;
 		}
 		button {
 			width: 18rem;
-			height: 3rem;
+			min-height: 3rem;
 			font-size: 0.9rem;
 		}
 	}
@@ -146,7 +145,8 @@ export const Input = styled.div<{ noWarning: boolean; page: string }>`
 		border: 0.063rem solid
 			${(props) => (props.noWarning === false ? palette.red1 : palette.gray4)};
 		border-radius: 0.625rem 0.625rem 0.625rem 0.625rem;
-		margin-top: ${(props) => (props.page === "signup" ? "0.5rem" : "1rem")};
+		// margin-top: ${(props) => (props.page === "signup" ? "0.5rem" : "1rem")};
+		margin-top: 1rem;
 	}
 	input::placeholder {
 		color: ${palette.gray4};
@@ -157,3 +157,8 @@ export const Input = styled.div<{ noWarning: boolean; page: string }>`
 		}
 	}
 `;
+
+// padding: ${(props) =>
+// 	props.page === "login"
+// 		? "2.5rem 5.313rem 2.5rem 5.313rem"
+// 		: "2rem 5.313rem 2rem 5.313rem"};

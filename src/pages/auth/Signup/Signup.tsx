@@ -4,6 +4,10 @@ import Logo from "../../../assets/images/logo.svg";
 import { useState, Dispatch, SetStateAction, useEffect } from "react";
 import { Modal } from "components/Modal";
 import axios from "axios";
+import Google from "../../../assets/icons/google-icon.svg";
+import { GoogleButton } from "../Login/styled";
+import { useOutletContext } from "react-router-dom";
+import { useGoogleLogin } from "@react-oauth/google";
 
 const BASE_URL = process.env.REACT_APP_API;
 
@@ -20,7 +24,7 @@ export function EmailConfirm() {
 	);
 }
 
-function Signup({ setOpenSignup, setOpenLogin }: any) {
+function Signup({ setOpenSignup, setOpenLogin, setGoogle }: any) {
 	const [privacy, setPrivacy] = useState(false);
 	const [confirmModal, setConfirmModal] = useState(false);
 
@@ -132,6 +136,39 @@ function Signup({ setOpenSignup, setOpenLogin }: any) {
 		setWarningPassword2(true);
 	}, [password2]);
 
+	// ************************ Google login ************************
+	const flag = useOutletContext<any>();
+	const googleLogin = useGoogleLogin({
+		onSuccess: async (res) => {
+			console.log(res.access_token);
+			await axios({
+				method: "post",
+				url: `${BASE_URL}/accounts/google/login/`,
+				data: { access_token: res.access_token },
+			})
+				.then((res) => {
+					// console.log(res);
+					sessionStorage.setItem("access_token", res.data.access_token);
+					sessionStorage.setItem("refresh_token", res.data.refresh_token);
+					sessionStorage.setItem("id", res.data.user.id);
+					sessionStorage.setItem("email", res.data.user.email);
+					sessionStorage.setItem("nickname", res.data.user.nickname);
+					sessionStorage.setItem("subscription", res.data.user.subscription);
+
+					flag[1](false); // cloase login modal
+					flag[2](true); // header 프로필 버튼 활성화
+					document.body.style.overflow = "unset";
+					// 최초 로그인 확인
+					if (res.data.user.is_first) {
+						setGoogle(true);
+					} else {
+						window.location.reload(); // 새로고침
+					}
+				})
+				.catch((e) => console.log(e));
+		},
+	});
+
 	return (
 		<>
 			{confirmModal ? (
@@ -213,9 +250,10 @@ function Signup({ setOpenSignup, setOpenLogin }: any) {
 						</label>
 					</Privacy>
 					<button onClick={goSignUp}>회원가입</button>
-					<button style={{ backgroundColor: "#F1F3FF", color: "#828282" }}>
+					<GoogleButton onClick={() => googleLogin()}>
+						<img src={Google} />
 						Google 계정으로 가입
-					</button>
+					</GoogleButton>
 				</DialogBox>
 			)}
 		</>
