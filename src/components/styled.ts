@@ -179,6 +179,9 @@ export const Law = styled.div`
 	font-family: Pretendard-Light;
 	font-size: 0.563rem;
 	cursor: pointer;
+	@media only screen and (max-width: 768px) {
+		font-size: 0.8rem;
+	}
 `;
 
 export const Member = styled.div<{ flag: boolean }>`
@@ -189,11 +192,11 @@ export const Member = styled.div<{ flag: boolean }>`
 	font-size: 0.563rem;
 	text-align: right;
 	padding-left: 1rem;
-	padding-right: ${(props) => (props.flag ? "1rem" : "")}}
+	padding-right: ${(props) => (props.flag ? "1rem" : "")};
 	border-right: ${(props) =>
-		props.flag ? `0.063rem solid ${palette.blue2}` : ""}}
+		props.flag ? `0.063rem solid ${palette.blue2}` : ""};
 	@media only screen and (max-width: 768px) {
-		font-size: 0.01rem;
+		font-size: 0.8rem;
 		display: block;
 		padding-right: 0rem;
 		border-right: none;
@@ -207,7 +210,7 @@ export const Copyright = styled.div`
 	margin-top: 0.5rem;
 	padding-bottom: 2rem;
 	@media only screen and (max-width: 768px) {
-		font-size: 0.1rem;
+		font-size: 0.8rem;
 	}
 `;
 
@@ -242,7 +245,7 @@ export const Body = styled.div`
 `;
 
 export const Button = styled.div<{ flag: boolean; index: number }>`
-	width: ${(props) => (props.flag ? "11.2rem" : "23rem")}};
+	width: ${(props) => (props.flag ? "11.2rem" : "23rem")};
 	height: 3.3rem;
 	line-height: 3.3rem;
 	font-family: Pretendard-Bold;
@@ -250,16 +253,16 @@ export const Button = styled.div<{ flag: boolean; index: number }>`
 	margin-top: 1rem;
 	border: none;
 	background-color: ${(props) =>
-		props.index === 1 ? palette.blue2 : palette.gray5}};
+		props.index === 1 ? palette.blue2 : palette.gray5};
 
-	color: ${(props) => (props.index === 1 ? "#ffffff" : palette.blue4)}};
+	color: ${(props) => (props.index === 1 ? "#ffffff" : palette.blue4)};
 	font-size: 1rem;
 	&:hover {
 		cursor: pointer;
 		opacity: 0.9;
 	}
 	@media only screen and (max-width: 768px) {
-		width: ${(props) => (props.flag ? "8.7rem;" : "18rem")}};
+		width: ${(props) => (props.flag ? "8.7rem;" : "18rem")};
 		height: 3.3rem;
 		line-height: 3.3rem;
 	}

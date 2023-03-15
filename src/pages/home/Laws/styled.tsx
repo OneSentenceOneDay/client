@@ -7,11 +7,17 @@ export const Title = styled.div`
 	padding-top: 3rem;
 	font-family: Pretendard-Bold;
 	font-size: 1.125rem;
+	@media only screen and (max-width: 768px) {
+		font-size: 0.95rem;
+	}
 `;
 
 export const InnerWrap = styled.div`
 	width: 52.75rem;
 	margin: 0 auto;
+	@media only screen and (max-width: 768px) {
+		width: 20.5rem;
+	}
 `;
 
 export const Conts = styled.div`
@@ -21,4 +27,7 @@ export const Conts = styled.div`
 	line-height: 1.75rem;
 	font-size: 0.95rem;
 	margin-top: 1rem;
+	@media only screen and (max-width: 768px) {
+		font-size: 0.9rem;
+	}
 `;
