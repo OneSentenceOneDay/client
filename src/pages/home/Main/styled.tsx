@@ -203,7 +203,7 @@ export const Cnt = styled.div`
 	color: ${palette.blue2};
 	font-family: Pretendard-Medium;
 	@media only screen and (max-width: 768px) {
-		font-size: 0.15rem;
+		font-size: 0.75rem;
 	}
 `;
 
@@ -276,7 +276,7 @@ export const BottomText = styled.div`
 	font-size: 1.25rem;
 	margin-top: 1.65rem;
 	@media only screen and (max-width: 768px) {
-		font-size: 1rem;
+		font-size: 0.95rem;
 		margin-top: 0.7rem;
 	}
 `;
@@ -319,27 +319,33 @@ export const InputBut = styled.div<{ login: boolean }>`
 	background-color: ${palette.blue2};
 	display: inline-block;
 	vertical-align: top;
-	width: ${(props) => (props.login ? "14.063rem" : "4.5rem")}}
-	height: ${(props) => (props.login ? "4.5rem" : "6.32rem")}}
+	width: ${(props) => (props.login ? "14.063rem" : "5.063rem")}}
+	height: ${(props) => (props.login ? "4.5rem" : "6.82rem")}}
 	line-height: ${(props) => (props.login ? "4.5rem" : "6.82rem")}}
 	font-family: Pretendard-Bold;
 	color: #ffffff;
+	font-size: 1rem;
 	border-radius: ${(props) =>
 		props.login
 			? "0.625rem 0.625rem 0.625rem 0.625rem"
 			: "0rem 0.625rem 0.625rem 0rem"}}
-	font-size: 1.125rem;
 	&:hover {
-		cursor: pointer;
-		opacity: 0.9;
-	}
+			cursor: pointer;
+			opacity: 0.9;
+		}
 	float: ${(props) => (props.login ? "right" : "")}}
 	@media only screen and (max-width: 768px) {
-		width: ${(props) => (props.login ? "20.5rem" : "4rem")}}
-		height: ${(props) => (props.login ? "4rem" : "5.82rem")}}
-		line-height: ${(props) => (props.login ? "4rem" : "5.82rem")}}
-		margin-top: ${(props) => (props.login ? "1.5rem" : "")}}
-		font-size: 1rem;
-		text-align: center;
+		// width: ${(props) => (props.login ? "20.5rem" : "4rem")}}
+		// height: ${(props) => (props.login ? "4rem" : "5.72rem")}}
+		// line-height: ${(props) => (props.login ? "4rem" : "5.72rem")}}
 	}
 `;
+
+// @media only screen and (max-width: 768px) {
+// 	width: ${(props) => (props.login ? "20.5rem" : "4rem")}}
+// 	height: ${(props) => (props.login ? "4rem" : "5.82rem")}}
+// 	line-height: ${(props) => (props.login ? "4rem" : "5.82rem")}}
+// 	margin-top: ${(props) => (props.login ? "1.5rem" : "")}}
+// 	font-size: 1rem;
+// 	text-align: center;
+// }

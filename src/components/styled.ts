@@ -27,14 +27,16 @@ export const Comment = styled.div`
 `;
 
 export const Name = styled.div`
-	font-size: 1.125rem;
+	font-size: 1rem;
 	font-family: Pretendard-Regular;
 	text-align: left;
 	width: 8rem;
 	padding-right: 1rem;
 	vertical-align: top;
 	display: inline-block;
-	color: ${palette.gray2};
+	color: ${palette.gray1};
+	line-height: none;
+	// background-color: red;
 	@media only screen and (max-width: 768px) {
 		width: 16.5rem;
 		font-size: 0.9rem;
@@ -45,6 +47,7 @@ export const Name = styled.div`
 export const Right = styled.div`
 	width: 39.75rem;
 	display: inline-block;
+	// background-color: blue;
 	@media only screen and (max-width: 768px) {
 		display: block;
 		width: 17.5rem;
@@ -54,7 +57,7 @@ export const Right = styled.div`
 export const Contents = styled.div`
 	text-align: left;
 	font-size: 1.125rem;
-	line-height: 2rem;
+	// line-height: 2rem;
 	font-family: Pretendard-Regular;
 	color: ${palette.gray2};
 	@media only screen and (max-width: 768px) {
