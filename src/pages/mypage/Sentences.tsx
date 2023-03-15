@@ -257,7 +257,7 @@ function Sectences() {
 						hearts={c.like_num}
 						bool_like={c.bool_like}
 						clickLikes={clickLikes}
-						// clickTrans={clickTrans}
+						clickTrans={clickTrans}
 					/>
 				))}
 			</Sentence>

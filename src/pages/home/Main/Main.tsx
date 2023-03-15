@@ -522,8 +522,7 @@ function Main() {
 				</WarningText>
 			</Writing>
 			<ListContainer>
-				{false ? (
-					// {postcnt === 0 ? (
+				{postcnt === 0 ? (
 					<NoSentences>
 						<Cnt>오늘 하루 {postcnt}개의 영작문이 있어요!</Cnt>
 						<NoSentencesText>
@@ -555,7 +554,7 @@ function Main() {
 								bool_like={c.bool_like}
 								clickLikes={clickLikes}
 								getSentences={getSentences}
-								// clickTrans={clickTrans}
+								clickTrans={clickTrans}
 							/>
 						))}
 						<Pagination pages={pages} page={page} setPage={setPage} />{" "}
