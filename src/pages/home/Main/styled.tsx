@@ -99,8 +99,13 @@ export const Icons = styled.div`
 	text-align: left;
 	float: left;
 	img {
-		margin-left: 1.4rem;
-		cursor: pointer;
+		margin-top: 0.3rem;
+		padding: 0.5rem;
+		margin-left: 0.9rem;
+		&:hover {
+			cursor: pointer;
+			background-color: ${palette.blue6};
+		}
 	}
 	@media only screen and (max-width: 768px) {
 		width: 12.5rem;
@@ -124,7 +129,12 @@ export const AIIcon = styled.div`
 	text-align: center;
 	border-radius: 0.5rem;
 	margin-left: 1.5rem;
-	cursor: pointer;
+	border: none;
+	&:hover {
+		cursor: pointer;
+		background-color: ${palette.blue6};
+		color: white;
+	}
 	@media only screen and (max-width: 768px) {
 		margin-left: 1rem;
 		font-size: 0.8rem;
@@ -231,7 +241,7 @@ export const SortMenu = styled.div`
 		font-size: 1rem;
 		margin-right: 1rem;
 		@media only screen and (max-width: 768px) {
-			font-size: 0.7rem;
+			font-size: 0.8rem;
 			margin-right: 0.5rem;
 		}
 	}

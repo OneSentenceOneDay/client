@@ -39,7 +39,7 @@ export const Name = styled.div`
 	// background-color: red;
 	@media only screen and (max-width: 768px) {
 		width: 16.5rem;
-		font-size: 0.9rem;
+		font-size: 0.95rem;
 		display: flex;
 	}
 `;
@@ -61,9 +61,9 @@ export const Contents = styled.div`
 	font-family: Pretendard-Regular;
 	color: ${palette.gray2};
 	@media only screen and (max-width: 768px) {
-		font-size: 0.9rem;
+		font-size: 0.95rem;
 		line-height: 1.5rem;
-		margin-top: 1rem;
+		margin-top: 0.5rem;
 	}
 `;
 
@@ -158,6 +158,7 @@ export const Footer = styled.div`
 	margin: 0 auto;
 	@media only screen and (max-width: 768px) {
 		width: 20.5rem;
+		font-size: 0.15rem;
 	}
 `;
 
@@ -169,7 +170,7 @@ export const Img = styled.div`
 `;
 
 export const Laws = styled.div`
-	margin-top: 0.5rem;
+	margin-top: 1rem;
 `;
 
 export const Law = styled.div`
@@ -179,9 +180,6 @@ export const Law = styled.div`
 	font-family: Pretendard-Light;
 	font-size: 0.563rem;
 	cursor: pointer;
-	@media only screen and (max-width: 768px) {
-		font-size: 0.8rem;
-	}
 `;
 
 export const Member = styled.div<{ flag: boolean }>`
@@ -196,7 +194,6 @@ export const Member = styled.div<{ flag: boolean }>`
 	border-right: ${(props) =>
 		props.flag ? `0.063rem solid ${palette.blue2}` : ""};
 	@media only screen and (max-width: 768px) {
-		font-size: 0.8rem;
 		display: block;
 		padding-right: 0rem;
 		border-right: none;
@@ -209,9 +206,6 @@ export const Copyright = styled.div`
 	color: ${palette.blue2};
 	margin-top: 0.5rem;
 	padding-bottom: 2rem;
-	@media only screen and (max-width: 768px) {
-		font-size: 0.8rem;
-	}
 `;
 
 // ************** Modal.tsx **************

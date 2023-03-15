@@ -58,6 +58,8 @@ const Bluebox = styled.dialog`
 	@media only screen and (max-width: 768px) {
 		font-size: 0.9rem;
 		padding: 1.3rem;
+		min-width: 20.5rem;
+		max-width: 20.5rem;
 	}
 `;
 
