@@ -165,6 +165,19 @@ export const Img = styled.div`
 	}
 `;
 
+export const Laws = styled.div`
+	margin-top: 0.5rem;
+`;
+
+export const Law = styled.div`
+	display: inline-block;
+	margin-left: 1rem;
+	color: ${palette.blue2};
+	font-family: Pretendard-Light;
+	font-size: 0.563rem;
+	cursor: pointer;
+`;
+
 export const Member = styled.div<{ flag: boolean }>`
 	white-space: pre-line;
 	display: inline-block;
@@ -188,7 +201,7 @@ export const Copyright = styled.div`
 	font-family: Pretendard-Light;
 	font-size: 0.563rem;
 	color: ${palette.blue2};
-	margin-top: 1rem;
+	margin-top: 0.5rem;
 	padding-bottom: 2rem;
 	@media only screen and (max-width: 768px) {
 		font-size: 0.1rem;

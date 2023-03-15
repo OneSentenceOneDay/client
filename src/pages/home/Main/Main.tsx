@@ -298,10 +298,16 @@ function Main() {
 			method: "post",
 			url: `${BASE_URL}/writing/subscription/create/`,
 			data: { sub_email: subEmail, sub_nickname: subName },
-		}).then((res) => {
-			alert("신청되었습니다.");
-			console.log(res);
-		});
+		})
+			.then((res) => {
+				alert("신청되었습니다.");
+				console.log(res);
+			})
+			.catch((e) => {
+				if (e.response.status === 400) {
+					alert("이미 가입된 이메일입니다.\n로그인 후 신청해주세요.");
+				}
+			});
 	}
 
 	// ************************ 비밀번호 찾기 ************************

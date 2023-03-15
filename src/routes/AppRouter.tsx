@@ -4,10 +4,10 @@ import Header from "../pages/home/Header/Header";
 import Main from "../pages/home/Main/Main";
 import Sentences from "../pages/mypage/Sentences";
 import Hearts from "../pages/mypage/Hearts";
-import Login from "pages/auth/Login/Login";
 import Password from "../pages/auth/Password/Password";
 import ResetPassword from "pages/auth/Password/ResetPassword";
-import Signup from "pages/auth/Signup/Signup";
+import TermsOfUse from "pages/home/Laws/TermsOfUse";
+import Privacy from "pages/home/Laws/Privacy";
 
 const BASE_URL = process.env.REACT_APP_API;
 
@@ -18,13 +18,10 @@ const AppRouter: React.FC = () => (
 				<Route index element={<Main />} />
 				<Route path="/sentence" element={<Sentences />} />
 				<Route path="/heart" element={<Hearts />} />
-				<Route path="/login" element={<Signup />} />
 				<Route path="/password" element={<Password />} />
-				<Route
-					// &token=:token
-					path="password/reset/:uid/:token"
-					element={<ResetPassword />}
-				/>
+				<Route path="password/reset/:uid/:token" element={<ResetPassword />} />
+				<Route path="/termsofuse" element={<TermsOfUse />} />
+				<Route path="/privacy" element={<Privacy />} />
 			</Route>
 			<Route path="*" element={<div>There's nothing here!</div>} />
 		</Routes>
