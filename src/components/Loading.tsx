@@ -1,20 +1,11 @@
-import { Wrap } from "./styled";
-import Spinner from "react-bootstrap/Spinner";
-import Button from "react-bootstrap/Button";
+import FooterComponent from "./Footer";
+import { Wrap, LoadingItem } from "./styled";
 
 function Loading() {
 	return (
 		<Wrap>
-			<Button variant="primary" disabled>
-				<Spinner
-					as="span"
-					animation="grow"
-					size="sm"
-					role="status"
-					aria-hidden="true"
-				/>
-				Loading...
-			</Button>
+			<LoadingItem>로딩 중 ...</LoadingItem>
+			<FooterComponent />
 		</Wrap>
 	);
 }

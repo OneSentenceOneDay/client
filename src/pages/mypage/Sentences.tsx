@@ -31,6 +31,7 @@ import Emoji9 from "../../assets/icons/emoji-icon-9.svg";
 import Emoji10 from "../../assets/icons/emoji-icon-10.svg";
 import Emoji11 from "../../assets/icons/emoji-icon-11.svg";
 import { Modal } from "components/Modal";
+import Loading from "components/Loading";
 
 const BASE_URL = process.env.REACT_APP_API;
 
@@ -203,7 +204,7 @@ function Sectences() {
 		});
 	}
 
-	if (loading) <div>로딩 중 ...</div>;
+	if (loading) <Loading />;
 
 	return (
 		<Wrap>

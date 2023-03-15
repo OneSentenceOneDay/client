@@ -19,6 +19,7 @@ import { useOutletContext } from "react-router-dom";
 import { useGoogleLogin } from "@react-oauth/google";
 import { WarningText } from "pages/home/Main/styled";
 import { createPortal } from "react-dom";
+import Loading from "components/Loading";
 
 const BASE_URL = process.env.REACT_APP_API;
 
@@ -29,10 +30,12 @@ function Login({
 	setGoogle,
 	openResetPasswordModal,
 }: any) {
+	const [loading, setLoading] = useState(false);
+
 	// ************************ Google login ************************
 	const googleLogin = useGoogleLogin({
 		onSuccess: async (res) => {
-			console.log(res.access_token);
+			setLoading(true);
 			await axios({
 				method: "post",
 				url: `${BASE_URL}/accounts/google/login/`,
@@ -56,6 +59,7 @@ function Login({
 					} else {
 						window.location.reload(); // 새로고침
 					}
+					setLoading(false);
 				})
 				.catch((e) => console.log(e));
 		},
@@ -80,6 +84,7 @@ function Login({
 	const [noWarning, setNoWarning] = useState<boolean>(true);
 
 	function clickLogin() {
+		setLoading(true);
 		axios({
 			method: "post",
 			url: `${BASE_URL}/login/`,
@@ -104,7 +109,8 @@ function Login({
 				} else {
 					// window.location.reload(); // 새로고침
 				}
-				console.log(res);
+				// console.log(res);
+				setLoading(false);
 			})
 			.catch(() => {
 				setNoWarning(false);
@@ -115,6 +121,7 @@ function Login({
 		setNoWarning(true);
 	}, [email, password]);
 
+	if (loading) return <Loading />;
 	return (
 		<ModalContainer>
 			{openSignup ? (

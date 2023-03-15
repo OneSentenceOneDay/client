@@ -8,10 +8,13 @@ import { WarningText } from "pages/home/Main/styled";
 import { useNavigate, useParams } from "react-router-dom";
 import Password from "./ChangePassword";
 import { Modal } from "components/Modal";
+import Loading from "components/Loading";
 
 const BASE_URL = process.env.REACT_APP_API;
 
 function ResetPassword() {
+	const [loading, setLoading] = useState(false);
+
 	const [newPassword1, setNewPassword1] = useState<string>("");
 	const [newPassword2, setNewPassword2] = useState<string>("");
 
@@ -42,6 +45,7 @@ function ResetPassword() {
 
 	function reset() {
 		if (validation()) {
+			setLoading(true);
 			axios({
 				method: "post",
 				url: `${BASE_URL}/password/reset/${uid}/${token}/`,
@@ -53,12 +57,14 @@ function ResetPassword() {
 				},
 			})
 				.then((res) => {
-					console.log(res);
-					alert("비밀번호가 변경되었습니다.");
-					navigate("/");
+					// console.log(res);
+					setLoading(false);
+					setConfirmModal(true);
+					// alert("비밀번호가 변경되었습니다.");
 				})
 				.catch((e) => {
 					setWarning(false);
+					setLoading(false);
 					if (e.response.data.new_password2) {
 						setWarningMsg("* " + e.response.data.new_password2[0]);
 					}
@@ -68,12 +74,24 @@ function ResetPassword() {
 	}
 
 	// ************************ confirm modal ************************
-	const [confirmModal, setConfirmModal] = useState<boolean>(true);
+	const [confirmModal, setConfirmModal] = useState<boolean>(false);
+	function closeModal() {
+		setConfirmModal(false);
+		navigate("/");
+	}
+
+	if (loading) return <Loading />;
 
 	console.log(confirmModal);
 	return (
 		<Wrap>
-			{confirmModal && <Modal body="비밀번호가 변경되었습니다." />}
+			{confirmModal && (
+				<Modal
+					body="비밀번호가 변경되었습니다."
+					button="확인"
+					onClick={closeModal}
+				/>
+			)}
 			<Text>비밀번호 변경</Text>
 			<Input noWarning={warning} page={"password"}>
 				<input

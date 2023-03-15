@@ -5,104 +5,9 @@ import FooterComponent from "components/Footer";
 import Pagination from "components/Pagination";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import Loading from "components/Loading";
 
 const BASE_URL = process.env.REACT_APP_API;
-
-const sample2 = {
-	day: "2023.01.19 목요일",
-	sentences: [
-		{
-			id: 0,
-			postId: 1,
-			name: "niceonesony",
-			contents:
-				"We want to know the closest sushi place, make a reservation and be on our way",
-			hearts: 11,
-			bool_like: true,
-		},
-		{
-			id: 1,
-			postId: 1,
-			name: "niceonesony",
-			contents:
-				"We want to know the closest sushi place, make a reservation and be on our way",
-			hearts: 11,
-			bool_like: true,
-		},
-		{
-			id: 2,
-			postId: 1,
-			name: "niceonesony",
-			contents:
-				"We want to know the closest sushi place, make a reservation and be on our way",
-			hearts: 11,
-			bool_like: true,
-		},
-		{
-			id: 3,
-			postId: 1,
-			name: "niceonesony",
-			contents:
-				"We want to know the closest sushi place, make a reservation and be on our way",
-			hearts: 11,
-			bool_like: true,
-		},
-		{
-			id: 4,
-			postId: 1,
-			name: "niceonesony",
-			contents:
-				"We want to know the closest sushi place, make a reservation and be on our way",
-			hearts: 11,
-			bool_like: true,
-		},
-		{
-			id: 5,
-			postId: 1,
-			name: "niceonesony",
-			contents:
-				"We want to know the closest sushi place, make a reservation and be on our way",
-			hearts: 11,
-			bool_like: true,
-		},
-		{
-			id: 6,
-			postId: 1,
-			name: "niceonesony",
-			contents:
-				"We want to know the closest sushi place, make a reservation and be on our way",
-			hearts: 11,
-			bool_like: true,
-		},
-		{
-			id: 7,
-			postId: 1,
-			name: "niceonesony",
-			contents:
-				"We want to know the closest sushi place, make a reservation and be on our way",
-			hearts: 11,
-			bool_like: true,
-		},
-		{
-			id: 8,
-			postId: 1,
-			name: "niceonesony",
-			contents:
-				"We want to know the closest sushi place, make a reservation and be on our way",
-			hearts: 11,
-			bool_like: true,
-		},
-		{
-			id: 9,
-			postId: 1,
-			name: "niceonesony",
-			contents:
-				"We want to know the closest sushi place, make a reservation and be on our way",
-			hearts: 11,
-			bool_like: true,
-		},
-	],
-};
 
 function Hearts() {
 	const [loading, setLoading] = useState(false);
@@ -159,7 +64,7 @@ function Hearts() {
 		});
 	}
 
-	if (loading) return <div>로딩 중 ...</div>;
+	if (loading) return <Loading />;
 	return (
 		<Wrap>
 			<Name>{sessionStorage.getItem("nickname")}</Name>

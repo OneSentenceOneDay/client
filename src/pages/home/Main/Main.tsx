@@ -55,6 +55,7 @@ import {
 	ModalContainer,
 } from "pages/auth/Login/styled";
 import handleCopyClipBoard from "../../../apis/copy";
+import Loading from "components/Loading";
 
 const BASE_URL = process.env.REACT_APP_API;
 
@@ -336,14 +337,16 @@ function Main() {
 	function resetPassword() {
 		setResetPasswordModal(false);
 		setResetPasswordConfirmModal(true);
+		setLoading(true);
 		axios({
 			method: "post",
 			url: `${BASE_URL}/password/reset/`,
 			data: { email: email },
 		})
 			.then((res) => {
-				console.log(res);
+				// console.log(res);
 				setResetPasswordModal(false);
+				setLoading(false);
 			})
 			.catch((e) => {
 				console.log(e);
@@ -416,7 +419,7 @@ function Main() {
 		});
 	}
 
-	if (loading) return <Wrap>로딩중 ...</Wrap>;
+	if (loading) return <Loading />;
 
 	return (
 		<Wrap>

@@ -8,6 +8,7 @@ import Google from "../../../assets/icons/google-icon.svg";
 import { GoogleButton } from "../Login/styled";
 import { useOutletContext } from "react-router-dom";
 import { useGoogleLogin } from "@react-oauth/google";
+import Loading from "components/Loading";
 
 const BASE_URL = process.env.REACT_APP_API;
 
@@ -25,6 +26,7 @@ export function EmailConfirm() {
 }
 
 function Signup({ setOpenSignup, setOpenLogin, setGoogle }: any) {
+	const [loading, setLoading] = useState(false);
 	const [privacy, setPrivacy] = useState(false);
 	const [confirmModal, setConfirmModal] = useState(false);
 
@@ -84,6 +86,7 @@ function Signup({ setOpenSignup, setOpenLogin, setGoogle }: any) {
 	function goSignUp() {
 		if (validation()) {
 			if (privacy) {
+				setLoading(true);
 				axios({
 					method: "post",
 					url: `${BASE_URL}/registration/`,
@@ -98,9 +101,11 @@ function Signup({ setOpenSignup, setOpenLogin, setGoogle }: any) {
 					.then((res) => {
 						console.log(res);
 						setConfirmModal(!confirmModal); // open cinfirm modal
+						setLoading(false);
 					})
 					.catch((e) => {
 						console.log(e);
+						setLoading(false);
 						if (e.response.data.email) {
 							setEmailWarningMsg("* 이미 사용 중인 Email입니다");
 							setWarningEmail(false);
@@ -140,7 +145,8 @@ function Signup({ setOpenSignup, setOpenLogin, setGoogle }: any) {
 	const flag = useOutletContext<any>();
 	const googleLogin = useGoogleLogin({
 		onSuccess: async (res) => {
-			console.log(res.access_token);
+			// console.log(res.access_token);
+			setLoading(true);
 			await axios({
 				method: "post",
 				url: `${BASE_URL}/accounts/google/login/`,
@@ -148,6 +154,7 @@ function Signup({ setOpenSignup, setOpenLogin, setGoogle }: any) {
 			})
 				.then((res) => {
 					// console.log(res);
+					setLoading(false);
 					sessionStorage.setItem("access_token", res.data.access_token);
 					sessionStorage.setItem("refresh_token", res.data.refresh_token);
 					sessionStorage.setItem("id", res.data.user.id);
@@ -168,6 +175,8 @@ function Signup({ setOpenSignup, setOpenLogin, setGoogle }: any) {
 				.catch((e) => console.log(e));
 		},
 	});
+
+	if (loading) return <Loading />;
 
 	return (
 		<>

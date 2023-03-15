@@ -297,3 +297,9 @@ export const Bluebox = styled.dialog`
 		padding: 1.3rem;
 	}
 `;
+
+// ************** Loading **************
+export const LoadingItem = styled.div`
+	padding: 35vh 0;
+	font-family: Pretendard-Regular;
+`;

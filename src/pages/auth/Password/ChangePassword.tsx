@@ -7,10 +7,13 @@ import { useState, useEffect } from "react";
 import { WarningText } from "pages/home/Main/styled";
 import { useNavigate } from "react-router-dom";
 import { Modal } from "components/Modal";
+import Loading from "components/Loading";
 
 const BASE_URL = process.env.REACT_APP_API;
 
 function Password() {
+	const [loading, setLoading] = useState(false);
+
 	// ************************ validation ************************
 	const [warningOldPassword, setWarningOldPassword] = useState<boolean>(true);
 	const [warningNewPassword, setWarningNewPassword] = useState<boolean>(true);
@@ -50,6 +53,7 @@ function Password() {
 
 	function changePassword() {
 		if (validation()) {
+			setLoading(true);
 			axios({
 				method: "post",
 				url: `${BASE_URL}/password/change/`,
@@ -64,6 +68,7 @@ function Password() {
 			})
 				.then((res) => {
 					// console.log(res);
+					setLoading(false);
 					alert("비밀번호가 변경되었습니다.");
 					navigate("/");
 				})
@@ -79,6 +84,7 @@ function Password() {
 					if (e.response.data.code === "token_not_valid") {
 						// 로그아웃
 					}
+					setLoading(false);
 				});
 		}
 	}
@@ -93,6 +99,7 @@ function Password() {
 	// ************************ confirm modal ************************
 	const [confirmModal, setConfirmModal] = useState<boolean>(true);
 
+	if (loading) return <Loading />;
 	return (
 		<Wrap>
 			<Text>비밀번호 변경</Text>

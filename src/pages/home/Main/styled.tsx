@@ -292,6 +292,7 @@ export const InputDiv = styled.div<{ position: string }>`
 		&: focus {
 			outline: none;
 		}
+
 		width: 18rem;
 		height: 1.3rem;
 		padding: 1rem 1.25rem;

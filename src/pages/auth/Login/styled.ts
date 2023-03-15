@@ -13,7 +13,8 @@ export const ModalContainer = styled.div`
 export const DialogBox = styled.dialog<{ page: string }>`
 	padding: 2.5rem 0;
 	width: ${(props) => (props.page === "modal" ? "32rem" : "35rem")};
-	height: ${(props) => (props.page === "signup" ? "90%" : "")};
+	height: ${(props) => (props.page === "signup" ? "80%" : "")};
+	max-height: 50rem;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -25,10 +26,12 @@ export const DialogBox = styled.dialog<{ page: string }>`
 	z-index: 10000;
 
 	top: ${(props) =>
-		props.page === "modal" ? "" : props.page === "signup" ? "-3.5rem" : "0rem"};
+		props.page === "modal" ? "" : props.page === "signup" ? "-2rem" : "0rem"};
 	button {
 		min-width: 25.375rem;
+		max-width: 25.375rem;
 		min-height: 3.3rem;
+		max-height: 3.3rem;
 		font-family: Pretendard-Bold;
 		border-radius: 0.625rem 0.625rem 0.625rem 0.625rem;
 		margin-top: 1rem;
@@ -52,8 +55,10 @@ export const DialogBox = styled.dialog<{ page: string }>`
 			width: 5rem;
 		}
 		button {
-			width: 18rem;
+			min-width: 18rem;
+			max-width: 18rem;
 			min-height: 3rem;
+			max-height: 3rem;
 			font-size: 0.9rem;
 		}
 	}
@@ -157,8 +162,3 @@ export const Input = styled.div<{ noWarning: boolean; page: string }>`
 		}
 	}
 `;
-
-// padding: ${(props) =>
-// 	props.page === "login"
-// 		? "2.5rem 5.313rem 2.5rem 5.313rem"
-// 		: "2rem 5.313rem 2rem 5.313rem"};
