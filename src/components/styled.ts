@@ -28,15 +28,33 @@ export const Comment = styled.div`
 
 export const Name = styled.div`
 	font-size: 1rem;
-	font-family: Pretendard-Regular;
-	text-align: left;
-	width: 8rem;
-	padding-right: 1rem;
-	vertical-align: top;
-	display: inline-block;
 	color: ${palette.gray1};
-	line-height: none;
 	// background-color: red;
+	@media only screen and (max-width: 768px) {
+		font-size: 0.95rem;
+		display: flex;
+	}
+`;
+
+export const Time = styled.div`
+	// background-color: red;
+	margin-top: 0.5rem;
+	font-size: 0.8rem;
+	color: ${palette.gray4};
+	@media only screen and (max-width: 768px) {
+		margin-left: 1rem;
+		margin-top: 0rem;
+	}
+`;
+
+export const Left = styled.div`
+	width: 8rem;
+	// background-color: blue;
+	padding-right: 1rem;
+	display: inline-block;
+	vertical-align: top;
+	text-align: left;
+	font-family: Pretendard-Regular;
 	@media only screen and (max-width: 768px) {
 		width: 16.5rem;
 		font-size: 0.95rem;

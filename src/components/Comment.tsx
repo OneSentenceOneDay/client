@@ -6,6 +6,8 @@ import {
 	HeartDiv,
 	Right,
 	BottomDiv,
+	Time,
+	Left,
 } from "./styled";
 import Trans from "./../assets/icons/trans-icon.svg";
 import Heart from "./../assets/icons/heart-icon.svg";
@@ -37,6 +39,7 @@ export default function Com({
 	contents,
 	hearts,
 	bool_like,
+	time,
 	clickLikes,
 	getSentences,
 }: // showTrans,
@@ -123,7 +126,11 @@ any) {
 				</div>
 			)}
 			<Comment>
-				<Name>{name}</Name>
+				<Left>
+					<Name>{name}</Name>
+					<Time>{time}</Time>
+				</Left>
+
 				<Right>
 					<Contents>{contents}</Contents>
 					<BottomDiv>

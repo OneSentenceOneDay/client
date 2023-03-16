@@ -152,6 +152,7 @@ function Main() {
 						: "",
 				},
 			}).then((res) => {
+				console.log(res);
 				setPost(res.data.postList);
 				setPages(res.data.pageCnt);
 			});
@@ -568,9 +569,10 @@ function Main() {
 								contents={c.body}
 								hearts={c.like_num}
 								bool_like={c.bool_like}
+								time={c.time_ago}
 								clickLikes={clickLikes}
 								getSentences={getSentences}
-								clickTrans={clickTrans}
+								// clickTrans={clickTrans}
 							/>
 						))}
 						<Pagination pages={pages} page={page} setPage={setPage} />{" "}
