@@ -184,7 +184,7 @@ export const WarningText = styled.div<{
 	font-family: Pretendard-Light;
 	color: ${palette.red1};
 	font-size: 0.75rem;
-	visibility: ${(props) => (props.noWarning === false ? "visible" : "hidden")};
+	display: ${(props) => (props.noWarning === false ? "" : "none")};
 	@media only screen and (max-width: 768px) {
 		width: 17.5rem;
 	}

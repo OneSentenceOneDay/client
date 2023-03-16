@@ -4,7 +4,8 @@ import palette from "../../../lib/palette";
 export const Privacy = styled.div`
 	text-align: left;
 	width: 25.375rem;
-	margin-top: 1.3rem;
+	margin-top: 1rem;
+	margin-bottom: 1rem;
 	font-size: 0.9rem;
 	color: ${palette.gray2};
 	font-family: Pretendard-Regular;

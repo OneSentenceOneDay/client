@@ -150,7 +150,6 @@ export const Input = styled.div<{ noWarning: boolean; page: string }>`
 		border: 0.063rem solid
 			${(props) => (props.noWarning === false ? palette.red1 : palette.gray4)};
 		border-radius: 0.625rem 0.625rem 0.625rem 0.625rem;
-		// margin-top: ${(props) => (props.page === "signup" ? "0.5rem" : "1rem")};
 		margin-top: 1rem;
 	}
 	input::placeholder {

@@ -124,7 +124,6 @@ function Password() {
 					}}
 				/>
 			</Input>
-
 			<WarningText noWarning={warningOldPassword} page="password">
 				{warningOldPasswordMsg}
 			</WarningText>
