@@ -241,12 +241,11 @@ function Main() {
 	// ************************ 로그인 모달 ************************
 	const [openLogin, setOpenLogin] = useOutletContext<any>();
 
-	// ************************ 구글 로그인 시 ************************
+	// ************************ 구글 첫 로그인 시 이름 및 닉네임 설정 ************************
 	const [firstGoogle, setFirstGoogle] = useState<boolean>(false); // 구글 로그인 처음인지 유무
 	const [nickname, setNickname] = useState<string>("");
 	const [nameError, setNameError] = useState<boolean>(true); // 이름 혹은 닉네임 에러 확인
 
-	// 이름 및 닉네임 설정
 	function setNameAndNickname() {
 		axios({
 			method: "post",
@@ -287,12 +286,17 @@ function Main() {
 			},
 		});
 		setFirst(false);
+		sessionStorage.setItem("subscription", "true");
 		window.location.reload(); // 새로고침
 	}
 
 	function clickSubNo() {
 		setFirst(false);
-		window.location.reload(); // 새로고침
+		// window.location.reload(); // 새로고침
+	}
+
+	function closeSubModal() {
+		setSubModal(false);
 	}
 
 	// ************************ 비로그인 유저 구독 신청 ************************
@@ -300,7 +304,9 @@ function Main() {
 	const [subEmail, setSubEmail] = useState<string>("");
 
 	function subAsNonUser() {
-		if (subEmail.length !== 0 && subName.length !== 0) {
+		if (subEmail.length === 0 || subName.length === 0) {
+			alert("이름과 이메일을 작성해주세요.");
+		} else {
 			axios({
 				method: "post",
 				url: `${BASE_URL}/writing/subscription/create/`,
@@ -316,7 +322,6 @@ function Main() {
 					}
 				});
 		}
-		alert("이름과 이메일을 작성해주세요.");
 	}
 
 	// ************************ 비밀번호 찾기 ************************
@@ -467,7 +472,13 @@ function Main() {
 					</DialogBox>
 				</ModalContainer>
 			)}
-			{subModal && <Modal body={"구독 신청이 되었습니다."} button={"확인"} />}
+			{subModal && (
+				<Modal
+					body={"구독 신청이 되었습니다."}
+					button={"확인"}
+					onclick={closeSubModal}
+				/>
+			)}
 			{resetPasswordModal && (
 				<Modal
 					body="가입하신 Email 주소를 입력해주세요"
@@ -574,7 +585,6 @@ function Main() {
 								time={c.time_ago}
 								clickLikes={clickLikes}
 								getSentences={getSentences}
-								// clickTrans={clickTrans}
 							/>
 						))}
 						<Pagination pages={pages} page={page} setPage={setPage} />{" "}

@@ -83,6 +83,7 @@ function Header() {
 	const navigate = useNavigate();
 	const goHome = () => {
 		navigate("/");
+		window.location.reload(); // 새로고침
 	};
 
 	// ************************ open login modal ************************
