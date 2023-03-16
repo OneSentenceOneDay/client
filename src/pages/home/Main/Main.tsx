@@ -90,6 +90,8 @@ function Main() {
 			setOpenLogin(true);
 		} else {
 			setNowSort(eng);
+			setPage(1);
+			console.log(1);
 		}
 	}
 
@@ -152,7 +154,7 @@ function Main() {
 						: "",
 				},
 			}).then((res) => {
-				console.log(res);
+				// console.log(res);
 				setPost(res.data.postList);
 				setPages(res.data.pageCnt);
 			});
