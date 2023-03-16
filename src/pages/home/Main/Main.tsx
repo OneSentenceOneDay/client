@@ -91,7 +91,7 @@ function Main() {
 		} else {
 			setNowSort(eng);
 			setPage(1);
-			console.log(1);
+			// console.log(1);
 		}
 	}
 
