@@ -330,7 +330,7 @@ export const InputBut = styled.div<{ login: boolean }>`
 	display: inline-block;
 	vertical-align: top;
 	width: ${(props) => (props.login ? "14.063rem" : "5.063rem")};
-	padding: 2.8rem 0;
+	padding: ${(props) => (props.login ? "1.5rem 0;" : "2.8rem 0;")};
 	font-family: Pretendard-Bold;
 	color: #ffffff;
 	font-size: 1rem;

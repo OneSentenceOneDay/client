@@ -592,7 +592,9 @@ function Main() {
 				)}
 
 				<MailSection
-					subscription={sessionStorage.getItem("subscription") ? true : false}
+					subscription={
+						sessionStorage.getItem("subscription") === "true" ? true : false
+					}
 				>
 					<MailText
 						login={sessionStorage.getItem("access_token") ? true : false}
