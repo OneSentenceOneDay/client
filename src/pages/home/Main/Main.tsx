@@ -25,6 +25,8 @@ import {
 	NoSentences,
 	NoSentencesText,
 	AIIcon,
+	DesktopAds,
+	MobileAds,
 } from "./styled";
 import { Wrap } from "./../../../components/styled";
 import Copy from "../../../assets/icons/copy-icon.svg";
@@ -641,6 +643,22 @@ function Main() {
 					)}
 				</MailSection>
 				<FooterComponent />
+				<DesktopAds>
+					<script
+						async
+						src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1919598055512436"
+						crossOrigin="anonymous"
+					></script>
+					{/* <!-- contents/leaderboard --> */}
+					<ins
+						className="adsbygoogle"
+						style={{ display: "inline-block", width: "728px", height: "90px" }}
+						data-ad-client="ca-pub-1919598055512436"
+						data-ad-slot="5506046036"
+					></ins>
+					<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+				</DesktopAds>
+				<MobileAds></MobileAds>
 			</ListContainer>
 		</Wrap>
 	);

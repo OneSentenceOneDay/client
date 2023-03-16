@@ -350,3 +350,6 @@ export const InputBut = styled.div<{ login: boolean }>`
 		margin-top: ${(props) => (props.login ? "1rem" : "")};
 	}
 `;
+
+export const DesktopAds = styled.div``;
+export const MobileAds = styled.div``;
