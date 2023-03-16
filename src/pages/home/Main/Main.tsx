@@ -294,7 +294,7 @@ function Main() {
 
 	function clickSubNo() {
 		setFirst(false);
-		// window.location.reload(); // 새로고침
+		window.location.reload(); // 새로고침
 	}
 
 	function closeSubModal() {
