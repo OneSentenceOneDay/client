@@ -382,7 +382,7 @@ function Main() {
 			},
 		})
 			.then((res) => {
-				console.log(res.data);
+				// console.log(res.data);
 				setOsodAI(res.data.ai);
 				setResponse(res.data.response);
 				setOriginal(res.data.original);

@@ -112,7 +112,7 @@ export const Icons = styled.div`
 		width: 12.5rem;
 		height: 3rem;
 		img {
-			margin-left: 1.1rem;
+			margin-left: 0.2rem;
 			width: 1rem;
 		}
 	}
@@ -137,6 +137,7 @@ export const AIIcon = styled.div`
 	}
 	@media only screen and (max-width: 768px) {
 		margin-left: 1rem;
+		margin-right: 0.2rem;
 		font-size: 0.8rem;
 		width: 4rem;
 		height: 2rem;

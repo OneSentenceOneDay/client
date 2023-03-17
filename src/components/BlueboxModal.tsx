@@ -14,13 +14,11 @@ type Props = {
 function BlueboxModal({ title, subbody, body }: Props) {
 	return (
 		<Bluebox>
-			{title && (
-				<Title>
-					<Osod>osodAI</Osod>: {title}
-				</Title>
-			)}
-			<Subbody>{subbody}</Subbody>
-			<Body>{body}</Body>
+			<Title flag={title ? false : true}>
+				<Osod>osodAI</Osod>: {title}
+			</Title>
+			<Subbody flag={title ? false : true}>{subbody}</Subbody>
+			<Body flag={title ? false : true}>{body}</Body>
 			{title && (
 				<img
 					src={Copy}
@@ -71,16 +69,18 @@ const Osod = styled.div`
 	margin-right: 0.35rem;
 `;
 
-const Title = styled.div`
+const Title = styled.div<{ flag: boolean }>`
 	color: ${palette.blue2};
 	font-family: Pretendard-Regular;
+	display: ${(props) => (props.flag ? "none" : "")};
 `;
-const Subbody = styled.div`
+const Subbody = styled.div<{ flag: boolean }>`
 	color: ${palette.gray4};
+	display: ${(props) => (props.flag ? "none" : "")};
 	margin-top: 1rem;
 	font-family: Pretendard-Regular;
 `;
-const Body = styled.div`
-	margin-top: 1rem;
+const Body = styled.div<{ flag: boolean }>`
+	margin-top: ${(props) => (props.flag ? "" : "1rem")};
 	font-family: Pretendard-Regular;
 `;
