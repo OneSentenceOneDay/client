@@ -21,12 +21,14 @@ function BlueboxModal({ title, subbody, body }: Props) {
 			)}
 			<Subbody>{subbody}</Subbody>
 			<Body>{body}</Body>
-			<img
-				src={Copy}
-				onClick={() => {
-					handleCopyClipBoard(body);
-				}}
-			/>
+			{title && (
+				<img
+					src={Copy}
+					onClick={() => {
+						handleCopyClipBoard(body);
+					}}
+				/>
+			)}
 		</Bluebox>
 	);
 }
