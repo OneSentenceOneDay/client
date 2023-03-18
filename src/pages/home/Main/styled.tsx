@@ -249,8 +249,13 @@ export const SortMenu = styled.div`
 `;
 
 export const MailSection = styled.div<{ subscription: boolean }>`
-	margin-top: 8rem;
+	padding-top: 8rem;
+	width: 52.75rem;
+	margin: 0 auto;
 	display: ${(props) => (props.subscription ? "none" : "")};
+	@media only screen and (max-width: 768px) {
+		width: 20.5rem;
+	}
 `;
 
 export const MailText = styled.div<{ login: boolean }>`
