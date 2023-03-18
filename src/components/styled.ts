@@ -87,15 +87,10 @@ export const Contents = styled.div`
 
 export const BottomDiv = styled.div`
 	text-align: right;
-	padding-top: 1.7rem;
-	img {
-		cursor: pointer;
-		margin-left: 1rem;
-	}
+	margin-top: 1.7rem;
 	@media only screen and (max-width: 768px) {
 		display: block;
 		img {
-			margin-left: 0.9rem;
 			width: 0.95rem;
 		}
 	}
@@ -103,6 +98,24 @@ export const BottomDiv = styled.div`
 
 export const HeartDiv = styled.div`
 	display: inline-block;
+	&:hover {
+		cursor: pointer;
+	}
+`;
+
+export const TransDiv = styled.div`
+	display: inline-block;
+	padding: 0.3rem;
+	border-radius: 0.625rem;
+	margin-right: 0.8rem;
+	&:hover {
+		background-color: ${palette.blue1};
+		cursor: pointer;
+	}
+	@media only screen and (max-width: 768px) {
+		margin-right: 0.6rem;
+		padding: 0.2rem 0.3rem;
+	}
 `;
 
 export const Num = styled.div`

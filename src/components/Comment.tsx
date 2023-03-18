@@ -8,6 +8,7 @@ import {
 	BottomDiv,
 	Time,
 	Left,
+	TransDiv,
 } from "./styled";
 import Trans from "./../assets/icons/trans-icon.svg";
 import Heart from "./../assets/icons/heart-icon.svg";
@@ -145,13 +146,16 @@ any) {
 									/>
 							  )
 							: ""} */}
-						<img
-							src={Trans}
-							alt="translate"
-							onClick={() => {
-								clickTrans(contents);
-							}}
-						/>
+						<TransDiv>
+							<img
+								src={Trans}
+								alt="translate"
+								onClick={() => {
+									clickTrans(contents);
+								}}
+							/>
+						</TransDiv>
+
 						<HeartDiv>
 							{bool_like ? (
 								<img

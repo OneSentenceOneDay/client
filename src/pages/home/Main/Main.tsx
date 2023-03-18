@@ -592,57 +592,56 @@ function Main() {
 						<Pagination pages={pages} page={page} setPage={setPage} />{" "}
 					</>
 				)}
-
-				<MailSection
-					subscription={
-						sessionStorage.getItem("subscription") === "true" ? true : false
-					}
-				>
-					<MailText
-						login={sessionStorage.getItem("access_token") ? true : false}
-					>
-						<TopText>
-							{
-								"osod의 하루 한 문장 영어 글쓰기 연습을\n메일로 받아 보길 원하시나요?"
-							}
-						</TopText>
-						{sessionStorage.getItem("access_token") ? (
-							""
-						) : (
-							<BottomText>이름과 이메일을 남겨주세요.</BottomText>
-						)}
-					</MailText>
+			</ListContainer>
+			<MailSection
+				subscription={
+					sessionStorage.getItem("subscription") === "true" ? true : false
+				}
+			>
+				<MailText login={sessionStorage.getItem("access_token") ? true : false}>
+					<TopText>
+						{
+							"osod의 하루 한 문장 영어 글쓰기 연습을\n메일로 받아 보길 원하시나요?"
+						}
+					</TopText>
 					{sessionStorage.getItem("access_token") ? (
-						<InputBut login={true} onClick={clickSubYes}>
+						""
+					) : (
+						<BottomText>이름과 이메일을 남겨주세요.</BottomText>
+					)}
+				</MailText>
+				{sessionStorage.getItem("access_token") ? (
+					<InputBut login={true} onClick={clickSubYes}>
+						구독
+					</InputBut>
+				) : (
+					<MailInput>
+						<InputSec>
+							<InputDiv position={"up"}>
+								<input
+									placeholder="이름을 입력하세요"
+									onChange={(e) => {
+										setSubName(e.target.value);
+									}}
+								/>
+							</InputDiv>
+							<InputDiv position={"down"}>
+								<input
+									placeholder="Email을 입력하세요"
+									onChange={(e) => {
+										setSubEmail(e.target.value);
+									}}
+								/>
+							</InputDiv>
+						</InputSec>
+						<InputBut login={false} onClick={subAsNonUser}>
 							구독
 						</InputBut>
-					) : (
-						<MailInput>
-							<InputSec>
-								<InputDiv position={"up"}>
-									<input
-										placeholder="이름을 입력하세요"
-										onChange={(e) => {
-											setSubName(e.target.value);
-										}}
-									/>
-								</InputDiv>
-								<InputDiv position={"down"}>
-									<input
-										placeholder="Email을 입력하세요"
-										onChange={(e) => {
-											setSubEmail(e.target.value);
-										}}
-									/>
-								</InputDiv>
-							</InputSec>
-							<InputBut login={false} onClick={subAsNonUser}>
-								구독
-							</InputBut>
-						</MailInput>
-					)}
-				</MailSection>
-				<FooterComponent />
+					</MailInput>
+				)}
+			</MailSection>
+			<FooterComponent />
+			<body>
 				<DesktopAds>
 					<script
 						async
@@ -673,11 +672,9 @@ function Main() {
 					></ins>
 					<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 				</MobileAds>
-			</ListContainer>
+			</body>
 		</Wrap>
 	);
 }
 
 export default Main;
-
-console.log();
