@@ -105,7 +105,7 @@ export const HeartDiv = styled.div`
 
 export const TransDiv = styled.div`
 	display: inline-block;
-	padding: 0.3rem;
+	padding: 0.3rem 0.4rem;
 	border-radius: 0.625rem;
 	margin-right: 0.8rem;
 	&:hover {
