@@ -7,9 +7,11 @@ function FooterComponent() {
 	const navigate = useNavigate();
 	function goTermsOfUse() {
 		navigate("/termsofuse");
+		window.location.reload(); // 새로고침
 	}
 	function goPrivacy() {
 		navigate("/privacy");
+		window.location.reload(); // 새로고침
 	}
 	return (
 		<Footer>
