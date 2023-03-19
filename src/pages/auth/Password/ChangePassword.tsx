@@ -117,6 +117,7 @@ function Password() {
 			<Text>비밀번호 변경</Text>
 			<Input noWarning={warningOldPassword} page={"password"}>
 				<input
+					value={oldPassword}
 					type="password"
 					placeholder="Old Password"
 					onChange={(e) => {
@@ -129,6 +130,7 @@ function Password() {
 			</WarningText>
 			<Input noWarning={warningNewPassword} page={"password"}>
 				<input
+					value={newPassword1}
 					type="password"
 					placeholder="New Password"
 					onChange={(e) => {
@@ -138,6 +140,7 @@ function Password() {
 			</Input>
 			<Input noWarning={warningNewPassword} page={"password"}>
 				<input
+					value={newPassword2}
 					type="password"
 					placeholder="Confirm New Password"
 					onChange={(e) => {

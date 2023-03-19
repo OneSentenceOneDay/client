@@ -141,6 +141,7 @@ function Login({
 					<Text>로그인하셔야 해요</Text>
 					<Input noWarning={noWarning} page="login">
 						<input
+							value={email}
 							placeholder="Email"
 							onChange={(e) => {
 								setEmail(e.target.value);
@@ -149,6 +150,7 @@ function Login({
 					</Input>
 					<Input noWarning={noWarning} page={"login"}>
 						<input
+							value={password}
 							type="password"
 							placeholder="Password"
 							onChange={(e) => {

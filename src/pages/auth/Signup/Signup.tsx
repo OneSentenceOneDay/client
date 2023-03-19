@@ -195,6 +195,7 @@ function Signup({ setOpenSignup, setOpenLogin, setGoogle }: any) {
 					<Text>회원가입을 해주세요</Text>
 					<Input noWarning={warningName} page="signup">
 						<input
+							value={name}
 							placeholder="Name"
 							onChange={(e) => {
 								setName(e.target.value);
@@ -204,6 +205,7 @@ function Signup({ setOpenSignup, setOpenLogin, setGoogle }: any) {
 					<WarningText noWarning={warningName}>* 이름을 입력하세요</WarningText>
 					<Input noWarning={warningEmail} page="signup">
 						<input
+							value={email}
 							placeholder="Email"
 							onChange={(e) => {
 								setEmail(e.target.value);
@@ -213,6 +215,7 @@ function Signup({ setOpenSignup, setOpenLogin, setGoogle }: any) {
 					<WarningText noWarning={warningEmail}>{emailWarningMsg}</WarningText>
 					<Input noWarning={warningNickname} page="signup">
 						<input
+							value={nickname}
 							placeholder="Nickname"
 							onChange={(e) => {
 								setNickname(e.target.value);
@@ -224,6 +227,7 @@ function Signup({ setOpenSignup, setOpenLogin, setGoogle }: any) {
 					</WarningText>
 					<Input noWarning={warningPassword} page="signup">
 						<input
+							value={password}
 							type="password"
 							placeholder="Password"
 							onChange={(e) => {
@@ -236,6 +240,7 @@ function Signup({ setOpenSignup, setOpenLogin, setGoogle }: any) {
 					</WarningText>
 					<Input noWarning={warningPassword2} page="signup">
 						<input
+							value={password2}
 							type="password"
 							placeholder="Confirm Password"
 							onChange={(e) => {
@@ -248,7 +253,6 @@ function Signup({ setOpenSignup, setOpenLogin, setGoogle }: any) {
 					</WarningText>
 					<Privacy>
 						<label>
-							{" "}
 							<input
 								type="checkbox"
 								id="privacy"

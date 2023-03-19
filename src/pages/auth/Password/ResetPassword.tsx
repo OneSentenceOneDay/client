@@ -95,6 +95,7 @@ function ResetPassword() {
 			)}
 			<Input noWarning={warning} page={"password"}>
 				<input
+					value={newPassword1}
 					type="password"
 					placeholder="New Password"
 					onChange={(e) => {
@@ -104,6 +105,7 @@ function ResetPassword() {
 			</Input>
 			<Input noWarning={warning} page={"password"}>
 				<input
+					value={newPassword2}
 					type="password"
 					placeholder="Confirm New Password"
 					onChange={(e) => {

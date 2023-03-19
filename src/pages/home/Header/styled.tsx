@@ -79,15 +79,14 @@ export const Menudiv = styled.div<{ mark: string }>`
 			? `${palette.gray2}`
 			: props.mark === "menu"
 			? `${palette.blue2}`
-			: `${palette.gray1}`}}
-	font-size: ${(props) => (props.mark === "name" ? "1.5rem" : "1.125rem")}}
+			: `${palette.gray1}`};
+	font-size: ${(props) => (props.mark === "name" ? "1.5rem" : "1.125rem")};
 	font-family: Pretendard-Medium;
-	cursor: ${(props) => (props.mark === "name" ? "" : "pointer")}} 
+	cursor: ${(props) => (props.mark === "name" ? "" : "pointer")};
 	@media only screen and (max-width: 768px) {
-		font-size: 0.9rem;
+		font-size: ${(props) => (props.mark === "name" ? "1.1rem" : "0.9rem")};
 		height: 2.5rem;
 		line-height: 2.5rem;
 		width: 7.7rem;
 	}
-
 `;
