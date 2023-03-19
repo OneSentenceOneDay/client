@@ -207,7 +207,7 @@ function Main() {
 	function isWarning() {
 		if (writing.toLowerCase().includes(sentence.sentence.toLowerCase())) {
 			setNoWarning(true);
-			console.log(1);
+			// console.log(1);
 		} else {
 			setNoWarning(false);
 		}
