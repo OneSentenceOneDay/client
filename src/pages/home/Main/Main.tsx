@@ -58,6 +58,7 @@ import {
 } from "pages/auth/Login/styled";
 import handleCopyClipBoard from "../../../apis/copy";
 import Loading from "components/Loading";
+import GoogleAdvertise from "components/GoogleAdvertise";
 
 const BASE_URL = process.env.REACT_APP_API;
 
@@ -641,38 +642,12 @@ function Main() {
 				)}
 			</MailSection>
 			<FooterComponent />
-			<body>
-				<DesktopAds>
-					<script
-						async
-						src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1919598055512436"
-						crossOrigin="anonymous"
-					></script>
-					{/* <!-- contents/leaderboard --> */}
-					<ins
-						className="adsbygoogle"
-						style={{ display: "inline-block", width: "728px", height: "90px" }}
-						data-ad-client="ca-pub-1919598055512436"
-						data-ad-slot="5506046036"
-					></ins>
-					<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-				</DesktopAds>
-				<MobileAds>
-					<script
-						async
-						src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1919598055512436"
-						crossOrigin="anonymous"
-					></script>
-					{/* <!-- contents/mobile-leaderboard --> */}
-					<ins
-						className="adsbygoogle"
-						style={{ display: "inline-block", width: "320px", height: "50px" }}
-						data-ad-client="ca-pub-1919598055512436"
-						data-ad-slot="1678485541"
-					></ins>
-					<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-				</MobileAds>
-			</body>
+			<DesktopAds>
+				<GoogleAdvertise slot="5506046036" width="728px" height="90px" />
+			</DesktopAds>
+			<MobileAds>
+				<GoogleAdvertise slot="1678485541" width="320px" height="50px" />
+			</MobileAds>
 		</Wrap>
 	);
 }
