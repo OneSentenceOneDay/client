@@ -356,16 +356,3 @@ export const InputBut = styled.div<{ login: boolean }>`
 		margin-top: ${(props) => (props.login ? "1rem" : "")};
 	}
 `;
-
-export const DesktopAds = styled.div`
-	@media only screen and (max-width: 768px) {
-		display: none;
-	}
-`;
-
-export const MobileAds = styled.div`
-	display: none;
-	@media only screen and (max-width: 768px) {
-		display: block;
-	}
-`;

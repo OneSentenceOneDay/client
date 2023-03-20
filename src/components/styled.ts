@@ -328,3 +328,17 @@ export const LoadingItem = styled.div`
 	padding: 35vh 0;
 	font-family: Pretendard-Regular;
 `;
+
+// ************** 광고 **************
+export const DesktopAds = styled.div`
+	@media only screen and (max-width: 768px) {
+		display: none;
+	}
+`;
+
+export const MobileAds = styled.div`
+	display: none;
+	@media only screen and (max-width: 768px) {
+		display: block;
+	}
+`;
