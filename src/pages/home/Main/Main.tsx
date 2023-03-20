@@ -25,8 +25,6 @@ import {
 	NoSentences,
 	NoSentencesText,
 	AIIcon,
-	DesktopAds,
-	MobileAds,
 } from "./styled";
 import { Wrap } from "./../../../components/styled";
 import Copy from "../../../assets/icons/copy-icon.svg";
@@ -59,6 +57,7 @@ import {
 import handleCopyClipBoard from "../../../apis/copy";
 import Loading from "components/Loading";
 import GoogleAdvertise from "components/GoogleAdvertise";
+import { DesktopAds, MobileAds } from "./../../../components/styled";
 
 const BASE_URL = process.env.REACT_APP_API;
 
