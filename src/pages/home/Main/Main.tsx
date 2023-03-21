@@ -203,42 +203,44 @@ function Main() {
 
 	// ************************ 오늘의 구문이 포함되어 있는지 ************************
 	const [writing, setWriting] = useState<string>(""); // 작성한 문장
-	const [noWarning, setNoWarning] = useState<boolean | null>(null);
-	function isWarning() {
-		if (writing.toLowerCase().includes(sentence.sentence.toLowerCase())) {
-			setNoWarning(true);
-			// console.log(1);
-		} else {
-			setNoWarning(false);
-		}
+	const [noWarning, setNoWarning] = useState<boolean>(true);
+
+	async function isWarning() {
+		setLoading(true);
+		await axios({
+			method: "post",
+			url: `${BASE_URL}/writing/pattern-check/`,
+			data: { text: writing, sentence: sentence.sentence },
+		})
+			.then(() => {
+				saveSentence();
+			})
+			.catch((e) => {
+				setNoWarning(false);
+				setLoading(false);
+			});
 	}
 
 	// ************************ 문장 작성 ************************
 	async function saveSentence() {
-		if (noWarning) {
-			setLoading(true);
-			await axios({
-				method: "post",
-				url: `${BASE_URL}/writing/post/create/${sentence.id}/`,
-				headers: {
-					Authorization: sessionStorage.getItem("access_token")
-						? `Bearer ${sessionStorage.getItem("access_token")}`
-						: "",
-				},
-				data: { body: writing },
-			}).then(() => {
-				getSentences();
-				getCnt();
-				setNoWarning(null);
-				setLoading(false);
-				setNowSort("latest");
-				setWriting("");
-			});
-		}
+		await axios({
+			method: "post",
+			url: `${BASE_URL}/writing/post/create/${sentence.id}/`,
+			headers: {
+				Authorization: sessionStorage.getItem("access_token")
+					? `Bearer ${sessionStorage.getItem("access_token")}`
+					: "",
+			},
+			data: { body: writing },
+		}).then(() => {
+			getSentences();
+			getCnt();
+			setNoWarning(true);
+			setLoading(false);
+			setNowSort("latest");
+			setWriting("");
+		});
 	}
-	useEffect(() => {
-		saveSentence();
-	}, [noWarning]);
 
 	// ************************ 로그인 모달 ************************
 	const [openLogin, setOpenLogin] = useOutletContext<any>();
@@ -528,6 +530,7 @@ function Main() {
 					onChange={(e) => {
 						setWriting(e.target.value);
 					}}
+					value={writing}
 				/>
 				<Menu>
 					<Icons>
