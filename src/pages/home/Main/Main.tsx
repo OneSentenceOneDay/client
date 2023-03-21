@@ -2,6 +2,7 @@ import {
 	TodayStc,
 	Text,
 	Eng,
+	Kor,
 	Sentence,
 	SentenceKor,
 	Writing,
@@ -506,6 +507,7 @@ function Main() {
 				<DateComponent date={today} page={"main"} />
 				<Text>오늘의 구문을 사용하여 영어 글쓰기를 연습해 보세요.</Text>
 				<Eng>{sentence.sentence}</Eng>
+				<Kor>{sentence.korean}</Kor>
 				<Sentence>{sentence.discription}</Sentence>
 				<SentenceKor>{sentence.translate}</SentenceKor>
 			</TodayStc>

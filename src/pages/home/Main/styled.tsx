@@ -25,8 +25,19 @@ export const Eng = styled.div`
 	} ;
 `;
 
+export const Kor = styled.div`
+	margin-top: 0.7rem;
+	font-family: Pretendard-Light;
+	color: ${palette.gray1};
+	font-size: 1rem;
+	@media only screen and (max-width: 768px) {
+		margin-top: 0.5rem;
+		font-size: 0.875rem;
+	}
+`;
+
 export const Sentence = styled.div`
-	margin-top: 2rem;
+	margin-top: 1.5rem;
 	font-size: 1.125rem;
 	font-family: times-new-roman;
 	color: ${palette.gray2};
@@ -43,13 +54,13 @@ export const SentenceKor = styled.div`
 	color: ${palette.gray1};
 	font-family: Pretendard-Light;
 	font-size: 0.9rem;
-	margin-top: 0.7rem;
+	padding-top: 0.7rem;
 	@media only screen and (max-width: 768px) {
 		font-size: 0.875rem;
 		width: 22rem;
 		justify-content: center;
 		margin: 0 auto;
-		padding-top: 1rem;
+		padding-top: 0.5rem;
 	} ;
 `;
 
