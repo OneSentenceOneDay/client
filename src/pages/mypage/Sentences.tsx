@@ -30,6 +30,7 @@ import Emoji8 from "../../assets/icons/emoji-icon-8.svg";
 import Emoji9 from "../../assets/icons/emoji-icon-9.svg";
 import Emoji10 from "../../assets/icons/emoji-icon-10.svg";
 import Emoji11 from "../../assets/icons/emoji-icon-11.svg";
+import Edit from "../../assets/icons/edit-icon.svg";
 import { Modal } from "components/Modal";
 import Loading from "components/Loading";
 
@@ -106,7 +107,7 @@ function Sectences() {
 				setLoading(false);
 			})
 			.catch((e) => {
-				console.log(e);
+				// console.log(e);
 			});
 	}, []);
 
@@ -124,7 +125,7 @@ function Sectences() {
 		}).then((res) => {
 			setTodyPost(res.data);
 			setLoading(false);
-			console.log(res.data);
+			// console.log(res.data);
 		});
 	}
 	useEffect(() => {
@@ -150,7 +151,7 @@ function Sectences() {
 		}).then((res) => {
 			getWeek(res.data);
 			setTodaySentence(res.data.today_sentence);
-			console.log(res.data);
+			// console.log(res.data);
 		});
 	}, []);
 
@@ -199,16 +200,67 @@ function Sectences() {
 			headers: {
 				Authorization: `Bearer ${sessionStorage.getItem("access_token")}`,
 			},
-		}).then((res) => {
+		}).then(() => {
 			getTodayPost();
 		});
+	}
+
+	// ************************ 닉네임 변경 ************************
+	const [nicknameChangeModal, setNicknameChangeModal] =
+		useState<boolean>(false);
+	const [newNickname, setNewNickname] = useState<string>("");
+
+	async function changeNickname() {
+		await axios({
+			method: "post",
+			url: `${BASE_URL}/accounts/change-nickname/`,
+			headers: {
+				Authorization: `Bearer ${sessionStorage.getItem("access_token")}`,
+			},
+			data: {
+				nickname: newNickname,
+			},
+		})
+			.then((res) => {
+				// console.log(res);
+				sessionStorage.setItem("nickname", res.data.nickname);
+				alert("변경되었습니다.");
+				setNicknameChangeModal(false);
+			})
+			.catch((e) => {
+				alert(e.response.data.detail);
+			});
+	}
+
+	function closeNicknameChangeModal() {
+		setNicknameChangeModal(false);
 	}
 
 	if (loading) <Loading />;
 
 	return (
 		<Wrap>
-			<Name>{sessionStorage.getItem("nickname")}</Name>
+			{nicknameChangeModal && (
+				<Modal
+					body="새 닉네임을 설정해주세요"
+					input={true}
+					button="확인"
+					button2="취소"
+					placeholder="Nickname"
+					onclick={changeNickname}
+					onclick2={closeNicknameChangeModal}
+					setState={setNewNickname}
+				/>
+			)}
+			<Name>
+				{sessionStorage.getItem("nickname")}{" "}
+				<img
+					src={Edit}
+					onClick={() => {
+						setNicknameChangeModal(true);
+					}}
+				/>
+			</Name>
 			<Nickname>{sessionStorage.getItem("email")}</Nickname>
 			<History>
 				<HistoryItems name={"영어 작문"} count={user.post_num} img={""} />
@@ -242,7 +294,6 @@ function Sectences() {
 						hearts={c.like_num}
 						bool_like={c.bool_like}
 						clickLikes={clickLikes}
-						// clickTrans={clickTrans}
 					/>
 				))}
 			</Sentence>
@@ -290,7 +341,6 @@ function Sectences() {
 						hearts={c.like_num}
 						bool_like={c.bool_like}
 						clickLikes={clickLikes}
-						// clickTrans={clickTrans}
 					/>
 				))}
 			</Sentence>

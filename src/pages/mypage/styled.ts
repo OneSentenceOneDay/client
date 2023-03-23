@@ -6,6 +6,9 @@ export const Name = styled.div`
 	color: ${palette.gray2};
 	font-size: 2.25rem;
 	font-family: Pretendard-Bold;
+	img {
+		cursor: pointer;
+	}
 	@media only screen and (max-width: 700px) {
 		font-size: 1.3rem;
 		padding-top: 2rem;
