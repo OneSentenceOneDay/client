@@ -253,7 +253,7 @@ function Signup({ setOpenSignup, setOpenLogin, setGoogle }: any) {
 					</Privacy>
 					<button onClick={goSignUp}>회원가입</button>
 					<GoogleButton onClick={() => googleLogin()}>
-						<img src={Google} />
+						{/* <img src={Google} /> */}
 						Google 계정으로 가입
 					</GoogleButton>
 				</DialogBox>

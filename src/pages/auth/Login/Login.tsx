@@ -164,7 +164,7 @@ function Login({
 						로그인
 					</Button>
 					<GoogleButton onClick={() => googleLogin()}>
-						<img src={Google} />
+						{/* <img src={Google} /> */}
 						Google 로그인
 					</GoogleButton>
 					<BottomBut>
