@@ -319,6 +319,7 @@ export const InputDiv = styled.div<{ position: string }>`
 		&: focus {
 			outline: none;
 		}
+		font-size: 0.8rem;
 		width: 18rem;
 		height: 1.3rem;
 		padding: 1rem 1.25rem;
@@ -337,7 +338,6 @@ export const InputDiv = styled.div<{ position: string }>`
 		input {
 			padding: 0.9rem 1.25rem;
 			width: 12rem;
-			font-size: 0.8rem;
 		}
 	}
 `;

@@ -1,5 +1,5 @@
 import { DialogBox, Text, Backdrop } from "../Login/styled";
-import { Privacy, Title, Cont, WarningText } from "./styled";
+import { Privacy, WarningText } from "./styled";
 import Logo from "../../../assets/images/logo.svg";
 import { useState, Dispatch, SetStateAction, useEffect } from "react";
 import { Modal } from "components/Modal";
@@ -12,19 +12,6 @@ import Loading from "components/Loading";
 import { Input } from "components/Input";
 
 const BASE_URL = process.env.REACT_APP_API;
-
-export function EmailConfirm() {
-	return (
-		<>
-			<Title>You are almost there!</Title>
-			<Cont>
-				{
-					"작성해 주신 이메일로 인증 메일을 발송하였습니다.\n인증 후 회원가입이 완료됩니다"
-				}
-			</Cont>
-		</>
-	);
-}
 
 function Signup({ setOpenSignup, setOpenLogin, setGoogle }: any) {
 	const [loading, setLoading] = useState(false);

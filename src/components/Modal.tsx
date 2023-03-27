@@ -17,10 +17,10 @@ export function Modal({
 	return (
 		<>
 			<DialogBox page={"modal"}>
-				<Title>{title}</Title>
+				{title && <Title>{title}</Title>}
 				<Body>{body}</Body>
-				{input ? (
-					<Input noWarning={true} page="">
+				{input && (
+					<Input noWarning={true} page="modal">
 						<input
 							placeholder={placeholder}
 							onChange={(e) => {
@@ -28,8 +28,6 @@ export function Modal({
 							}}
 						/>
 					</Input>
-				) : (
-					""
 				)}
 				<Buttons>
 					{button2 && (

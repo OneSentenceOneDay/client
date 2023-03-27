@@ -3,7 +3,7 @@ import palette from "../lib/palette";
 
 export const Input = styled.div<{ noWarning: boolean; page: string }>`
 	input {
-		font-size: 0.8rem;
+		font-size: 0.9rem;
 		padding: 0.9rem 1.15rem;
 		width: 22.875rem;
 		height: 1.3rem;

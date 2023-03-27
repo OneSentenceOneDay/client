@@ -17,10 +17,6 @@ export const Privacy = styled.div`
 	}
 `;
 
-// modal
-export const Title = styled.div``;
-export const Cont = styled.div``;
-
 export const WarningText = styled.div<{ noWarning: boolean | null }>`
 	min-width: 24.875rem;
 	margin: 0 auto;
