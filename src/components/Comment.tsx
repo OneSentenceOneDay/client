@@ -16,7 +16,7 @@ import ColorHeart from "./../assets/icons/color-heart-icon.svg";
 import Edit from "./../assets/icons/edit-icon.svg";
 import axios from "axios";
 import { useRef, useState, useEffect } from "react";
-import { DialogBox } from "pages/auth/Login/styled";
+import { DialogBox } from "./DialogBox";
 import { Modal } from "./Modal";
 import BlueboxModal from "./BlueboxModal";
 

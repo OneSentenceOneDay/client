@@ -49,12 +49,13 @@ import axios from "axios";
 import { Modal } from "components/Modal";
 import closeModal from "apis/closeModal";
 import BlueboxModal from "../../../components/BlueboxModal";
-import { Backdrop, DialogBox, ModalContainer } from "pages/auth/Login/styled";
+import { Backdrop, ModalContainer } from "pages/auth/Login/styled";
 import handleCopyClipBoard from "../../../apis/copy";
 import Loading from "components/Loading";
 import GoogleAdvertise from "components/GoogleAdvertise";
 import { DesktopAds, MobileAds } from "./../../../components/styled";
 import { Input } from "../../../components/Input";
+import { DialogBox } from "components/DialogBox";
 
 const BASE_URL = process.env.REACT_APP_API;
 

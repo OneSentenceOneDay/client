@@ -1,4 +1,4 @@
-import { DialogBox, Text, Backdrop } from "../Login/styled";
+import { Text, Backdrop } from "../Login/styled";
 import { Privacy, WarningText } from "./styled";
 import Logo from "../../../assets/images/logo.svg";
 import { useState, Dispatch, SetStateAction, useEffect } from "react";
@@ -10,6 +10,7 @@ import { useOutletContext } from "react-router-dom";
 import { useGoogleLogin } from "@react-oauth/google";
 import Loading from "components/Loading";
 import { Input } from "components/Input";
+import { DialogBox } from "components/DialogBox";
 
 const BASE_URL = process.env.REACT_APP_API;
 

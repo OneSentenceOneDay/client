@@ -1,6 +1,5 @@
 import {
 	ModalContainer,
-	DialogBox,
 	Backdrop,
 	Text,
 	SignupBut,
@@ -13,13 +12,13 @@ import Google from "../../../assets/icons/google-icon.svg";
 import { useState, useCallback, useEffect } from "react";
 import Signup from "../Signup/Signup";
 import axios from "axios";
-import jwt_decode from "jwt-decode";
 import { useOutletContext } from "react-router-dom";
 import { useGoogleLogin } from "@react-oauth/google";
 import { WarningText } from "pages/home/Main/styled";
 import { createPortal } from "react-dom";
 import Loading from "components/Loading";
 import { Input } from "components/Input";
+import { DialogBox } from "components/DialogBox";
 
 const BASE_URL = process.env.REACT_APP_API;
 
