@@ -1,12 +1,5 @@
-import {
-	ModalContainer,
-	Backdrop,
-	Text,
-	SignupBut,
-	GoogleButton,
-	FindBut,
-	BottomBut,
-} from "./styled";
+import { ModalContainer, Text, SignupBut, FindBut, BottomBut } from "./styled";
+import { GoogleButton } from "components/GoogleButton";
 import Logo from "../../../assets/images/logo.svg";
 import Google from "../../../assets/icons/google-icon.svg";
 import { useState, useCallback, useEffect } from "react";
@@ -19,6 +12,7 @@ import { createPortal } from "react-dom";
 import Loading from "components/Loading";
 import { Input } from "components/Input";
 import { DialogBox } from "components/DialogBox";
+import { Backdrop } from "components/Backdrop";
 
 const BASE_URL = process.env.REACT_APP_API;
 

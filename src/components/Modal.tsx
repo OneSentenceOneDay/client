@@ -1,7 +1,7 @@
 import { DialogBox } from "./DialogBox";
 import { Title, Body, Button, Buttons, ModalContainer } from "./styled";
 import { Input } from "./Input";
-import { Backdrop } from "../pages/auth/Login/styled";
+import { Backdrop } from "./Backdrop";
 
 export function Modal({
 	title,
@@ -45,7 +45,7 @@ export function Modal({
 					</Button>
 				</Buttons>
 			</DialogBox>
-			{/* <Backdrop /> */}
+			<Backdrop />
 		</>
 	);
 }

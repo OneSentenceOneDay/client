@@ -1,24 +1,11 @@
-import {
-	Comment,
-	Name,
-	Contents,
-	Num,
-	HeartDiv,
-	Right,
-	BottomDiv,
-	Time,
-	Left,
-	TransDiv,
-} from "./styled";
 import Trans from "./../assets/icons/trans-icon.svg";
 import Heart from "./../assets/icons/heart-icon.svg";
 import ColorHeart from "./../assets/icons/color-heart-icon.svg";
-import Edit from "./../assets/icons/edit-icon.svg";
 import axios from "axios";
 import { useRef, useState, useEffect } from "react";
-import { DialogBox } from "./DialogBox";
-import { Modal } from "./Modal";
 import BlueboxModal from "./BlueboxModal";
+import styled from "styled-components";
+import palette from "lib/palette";
 
 const BASE_URL = process.env.REACT_APP_API;
 
@@ -170,7 +157,6 @@ any) {
 									onClick={() => clickLikes(postId)}
 								/>
 							)}
-
 							<Num>{hearts}</Num>
 						</HeartDiv>
 					</BottomDiv>
@@ -179,3 +165,110 @@ any) {
 		</>
 	);
 }
+
+export const Comment = styled.div`
+	background-color: #ffffff;
+	margin-top: 1rem;
+	padding: 1.5rem 1.5rem 1rem 1.5rem;
+	border-radius: 0.625rem 0.625rem 0.625rem 0.625rem;
+	border: 0.063rem solid ${palette.gray4};
+	width: 49.75rem;
+	@media only screen and (max-width: 768px) {
+		width: 17.5rem;
+	}
+`;
+
+export const Name = styled.div`
+	font-size: 1rem;
+	color: ${palette.gray1};
+	@media only screen and (max-width: 768px) {
+		font-size: 0.95rem;
+		display: flex;
+	}
+`;
+
+export const Time = styled.div`
+	margin-top: 0.5rem;
+	font-size: 0.8rem;
+	color: ${palette.gray4};
+	@media only screen and (max-width: 768px) {
+		margin-left: 1rem;
+		margin-top: 0rem;
+	}
+`;
+
+export const Left = styled.div`
+	width: 8rem;
+	padding-right: 1rem;
+	display: inline-block;
+	vertical-align: top;
+	text-align: left;
+	font-family: Pretendard-Regular;
+	@media only screen and (max-width: 768px) {
+		width: 16.5rem;
+		font-size: 0.95rem;
+		display: flex;
+	}
+`;
+
+export const Right = styled.div`
+	width: 39.75rem;
+	display: inline-block;
+	@media only screen and (max-width: 768px) {
+		display: block;
+		width: 17.5rem;
+	}
+`;
+
+export const Contents = styled.div`
+	text-align: left;
+	font-size: 1.125rem;
+	// line-height: 2rem;
+	font-family: Pretendard-Regular;
+	color: ${palette.gray2};
+	@media only screen and (max-width: 768px) {
+		font-size: 0.95rem;
+		line-height: 1.5rem;
+		margin-top: 0.5rem;
+	}
+`;
+
+export const BottomDiv = styled.div`
+	text-align: right;
+	margin-top: 1.7rem;
+	@media only screen and (max-width: 768px) {
+		display: block;
+		img {
+			width: 0.95rem;
+		}
+	}
+`;
+
+export const HeartDiv = styled.div`
+	display: inline-block;
+	&:hover {
+		cursor: pointer;
+	}
+`;
+
+export const TransDiv = styled.div`
+	display: inline-block;
+	padding: 0.3rem 0.4rem;
+	border-radius: 0.625rem;
+	margin-right: 0.8rem;
+	&:hover {
+		background-color: ${palette.blue1};
+		cursor: pointer;
+	}
+	@media only screen and (max-width: 768px) {
+		margin-right: 0.6rem;
+		padding: 0.2rem 0.3rem;
+	}
+`;
+
+export const Num = styled.div`
+	display: inline-block;
+	font-size: 0.875rem;
+	font-family: Pretendard-Regular;
+	color: ${palette.blue2};
+`;

@@ -1,4 +1,5 @@
-import { Footer, Member, Copyright, Img, Laws, Law } from "./styled";
+import styled from "styled-components";
+import palette from "lib/palette";
 import Logo from "assets/images/logo.svg";
 import SubLogo from "assets/images/sub-logo.svg";
 import { useNavigate } from "react-router-dom";
@@ -35,3 +36,60 @@ function FooterComponent() {
 }
 
 export default FooterComponent;
+
+export const Footer = styled.div`
+	width: 52.75rem;
+	padding-top: 10rem;
+	text-align: right;
+	margin: 0 auto;
+	@media only screen and (max-width: 768px) {
+		width: 20.5rem;
+		font-size: 0.15rem;
+	}
+`;
+
+export const Img = styled.div`
+	float: left;
+	img {
+		display: block;
+	}
+`;
+
+export const Laws = styled.div`
+	margin-top: 1rem;
+`;
+
+export const Law = styled.div`
+	display: inline-block;
+	margin-left: 1rem;
+	color: ${palette.blue2};
+	font-family: Pretendard-Light;
+	font-size: 0.563rem;
+	cursor: pointer;
+`;
+
+export const Member = styled.div<{ flag: boolean }>`
+	white-space: pre-line;
+	display: inline-block;
+	color: ${palette.blue2};
+	font-family: Pretendard-Light;
+	font-size: 0.563rem;
+	text-align: right;
+	padding-left: 1rem;
+	padding-right: ${(props) => (props.flag ? "1rem" : "")};
+	border-right: ${(props) =>
+		props.flag ? `0.063rem solid ${palette.blue2}` : ""};
+	@media only screen and (max-width: 768px) {
+		display: block;
+		padding-right: 0rem;
+		border-right: none;
+		margin-top: 0.5rem;
+	}
+`;
+export const Copyright = styled.div`
+	font-family: Pretendard-Light;
+	font-size: 0.563rem;
+	color: ${palette.blue2};
+	margin-top: 0.5rem;
+	padding-bottom: 2rem;
+`;

@@ -16,6 +16,7 @@ export const DialogBox = styled.dialog<{ page: string }>`
 	background-color: #ffffff;
 	z-index: 10000;
 	top: ${(props) => (props.page === "modal" ? "25%" : "0rem")};
+	overflow-y: scroll;
 
 	button {
 		min-width: 25.375rem;
@@ -37,7 +38,7 @@ export const DialogBox = styled.dialog<{ page: string }>`
 	img {
 		width: 7rem;
 	}
-	overflow-y: scroll;
+
 	@media only screen and (max-width: 768px) {
 		max-width: 20.5rem;
 		min-width: 20.5rem;

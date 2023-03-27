@@ -1,11 +1,11 @@
-import { Text, Backdrop } from "../Login/styled";
+import { Text } from "../Login/styled";
 import { Privacy, WarningText } from "./styled";
+import { GoogleButton } from "components/GoogleButton";
 import Logo from "../../../assets/images/logo.svg";
 import { useState, Dispatch, SetStateAction, useEffect } from "react";
 import { Modal } from "components/Modal";
 import axios from "axios";
 import Google from "../../../assets/icons/google-icon.svg";
-import { GoogleButton } from "../Login/styled";
 import { useOutletContext } from "react-router-dom";
 import { useGoogleLogin } from "@react-oauth/google";
 import Loading from "components/Loading";

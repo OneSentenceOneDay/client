@@ -49,7 +49,7 @@ import axios from "axios";
 import { Modal } from "components/Modal";
 import closeModal from "apis/closeModal";
 import BlueboxModal from "../../../components/BlueboxModal";
-import { Backdrop, ModalContainer } from "pages/auth/Login/styled";
+import { ModalContainer } from "pages/auth/Login/styled";
 import handleCopyClipBoard from "../../../apis/copy";
 import Loading from "components/Loading";
 import GoogleAdvertise from "components/GoogleAdvertise";
