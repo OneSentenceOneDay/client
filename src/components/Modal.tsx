@@ -1,6 +1,6 @@
 import { DialogBox } from "pages/auth/Login/styled";
 import { Title, Body, Button, Buttons, ModalContainer } from "./styled";
-import { Input } from "pages/auth/Login/styled";
+import { Input } from "./Input";
 import { Backdrop } from "../pages/auth/Login/styled";
 
 export function Modal({

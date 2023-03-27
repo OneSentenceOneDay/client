@@ -4,7 +4,6 @@ import {
 	Backdrop,
 	Text,
 	SignupBut,
-	Input,
 	GoogleButton,
 	FindBut,
 	BottomBut,
@@ -20,6 +19,7 @@ import { useGoogleLogin } from "@react-oauth/google";
 import { WarningText } from "pages/home/Main/styled";
 import { createPortal } from "react-dom";
 import Loading from "components/Loading";
+import { Input } from "components/Input";
 
 const BASE_URL = process.env.REACT_APP_API;
 
@@ -73,7 +73,7 @@ function Login({
 		setOpenSignup(!openSignup);
 	};
 
-	// ************************ close modal ************************
+	// ************************ close login modal ************************
 	const onClickToggleModal = useCallback(() => {
 		setOpenLogin(!openLogin);
 		document.body.style.overflow = "unset";

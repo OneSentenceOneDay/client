@@ -1,4 +1,4 @@
-import { Input } from "../Login/styled";
+import { Input } from "components/Input";
 import { Wrap } from "../../../components/styled";
 import { Text, Button } from "./styled";
 import FooterComponent from "components/Footer";
