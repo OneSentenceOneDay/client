@@ -18,23 +18,6 @@ export const DialogBox = styled.dialog<{ page: string }>`
 	top: ${(props) => (props.page === "modal" ? "25%" : "0rem")};
 	overflow-y: scroll;
 
-	button {
-		min-width: 25.375rem;
-		max-width: 25.375rem;
-		min-height: 3.3rem;
-		max-height: 3.3rem;
-		font-family: Pretendard-Bold;
-		border-radius: 0.625rem 0.625rem 0.625rem 0.625rem;
-		margin-top: 1rem;
-		border: none;
-		background-color: ${palette.blue2};
-		color: #ffffff;
-		font-size: 1rem;
-		&:hover {
-			cursor: pointer;
-			opacity: 0.9;
-		}
-	}
 	img {
 		width: 7rem;
 	}

@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import palette from "lib/palette";
+import GoogleIcon from "../assets/icons/google-icon.svg";
 
 export const GoogleButton = styled.div`
 	background-color: ${palette.blue7};
@@ -12,7 +13,7 @@ export const GoogleButton = styled.div`
 	margin-top: 1rem;
 	border: none;
 	img {
-		width: 1.125rem;
+		width: 1rem;
 		margin-right: 0.5rem;
 	}
 	&:hover {
