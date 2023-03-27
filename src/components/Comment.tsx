@@ -142,7 +142,6 @@ any) {
 								}}
 							/>
 						</TransDiv>
-
 						<HeartDiv>
 							{bool_like ? (
 								<img
@@ -263,6 +262,9 @@ export const TransDiv = styled.div`
 	@media only screen and (max-width: 768px) {
 		margin-right: 0.6rem;
 		padding: 0.2rem 0.3rem;
+		img {
+			width: 1.2rem;
+		}
 	}
 `;
 
