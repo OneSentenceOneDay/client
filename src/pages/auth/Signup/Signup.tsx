@@ -1,5 +1,6 @@
 import { Text } from "../Login/styled";
 import { Privacy, WarningText } from "./styled";
+import { Button } from "components/Button";
 import { GoogleButton } from "components/GoogleButton";
 import Logo from "../../../assets/images/logo.svg";
 import { useState, Dispatch, SetStateAction, useEffect } from "react";
@@ -251,7 +252,9 @@ function Signup({ setOpenSignup, setOpenLogin, setGoogle }: any) {
 							개인정보 수집 및 이용 동의
 						</label>
 					</Privacy>
-					<button onClick={goSignUp}>회원가입</button>
+					<Button flag={false} index={1} onClick={goSignUp}>
+						회원가입
+					</Button>
 					<GoogleButton onClick={() => googleLogin()}>
 						{/* <img src={Google} /> */}
 						Google 계정으로 가입
