@@ -17,10 +17,13 @@ function FooterComponent() {
 	return (
 		<Footer>
 			<Img>
-				<img src={Logo} width="75rem" />
-				<img src={SubLogo} />
+				<LogoImg>
+					<img src={Logo} />
+				</LogoImg>
+				<SubLogoImg>
+					<img src={SubLogo} />
+				</SubLogoImg>
 			</Img>
-
 			<Member flag={true}>
 				{"서비스기획/디자인: 김경화\nbrilliantkkh@naver.com"}
 			</Member>
@@ -55,8 +58,26 @@ export const Img = styled.div`
 	}
 `;
 
+export const LogoImg = styled.div`
+	img {
+		width: 5.5rem;
+		@media only screen and (max-width: 768px) {
+			width: 3.8rem;
+		}
+	}
+`;
+
+export const SubLogoImg = styled.div`
+	img {
+		width: 11rem;
+		@media only screen and (max-width: 768px) {
+			width: 6.25rem;
+		}
+	}
+`;
+
 export const Laws = styled.div`
-	margin-top: 1rem;
+	margin-top: 0.5rem;
 `;
 
 export const Law = styled.div`
