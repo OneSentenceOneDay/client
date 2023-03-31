@@ -48,6 +48,7 @@ export const Footer = styled.div`
 	@media only screen and (max-width: 768px) {
 		width: 20.5rem;
 		font-size: 0.15rem;
+		padding-top: 7rem;
 	}
 `;
 
