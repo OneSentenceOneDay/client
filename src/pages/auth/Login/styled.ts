@@ -8,6 +8,7 @@ export const ModalContainer = styled.div`
 	height: 100%;
 	display: flex;
 	position: fixed;
+	// animation: modal-bg-show 0.3s;
 `;
 
 export const Text = styled.div`

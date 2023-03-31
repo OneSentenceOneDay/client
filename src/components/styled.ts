@@ -105,10 +105,13 @@ export const LoadingItem = styled.div`
 `;
 
 // ************** 광고 **************
-export const DesktopAds = styled.div`
-	@media only screen and (max-width: 768px) {
+export const DesktopAds = styled.div<{ width: string }>`
+	@media only screen and (max-width: ${(props) => props.width}) {
 		display: none;
 	}
+	// @media only screen and (max-width: 768px) {
+	// 	display: none; 1338px
+	// }
 `;
 
 export const MobileAds = styled.div`

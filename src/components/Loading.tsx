@@ -7,7 +7,7 @@ function Loading() {
 		<Wrap>
 			<LoadingItem>로딩 중 ...</LoadingItem>
 			<FooterComponent />
-			<DesktopAds>
+			<DesktopAds width="768px">
 				<GoogleAdvertise slot="5506046036" width="728px" height="90px" />
 			</DesktopAds>
 			<MobileAds>

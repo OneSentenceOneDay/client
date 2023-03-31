@@ -197,7 +197,10 @@ function Main() {
 				getSentences();
 				// console.log(res);
 			})
-			.catch(() => setOpenLogin(true));
+			.catch(() => {
+				setOpenLogin(true);
+				document.body.style.overflow = "hidden";
+			});
 	}
 
 	// ************************ 오늘의 구문이 포함되어 있는지 ************************
@@ -436,8 +439,11 @@ function Main() {
 	if (loading) return <Loading />;
 
 	return (
-		<Wrap style={{ display: "flex" }}>
-			<DesktopAds style={{ float: "left", marginTop: "20rem" }}>
+		<Wrap>
+			<DesktopAds width="1338px" style={{ float: "left", marginTop: "20rem" }}>
+				<GoogleAdvertise slot="2282673475" width="250px" height="500px" />
+			</DesktopAds>
+			<DesktopAds width="1338px" style={{ float: "right", marginTop: "20rem" }}>
 				<GoogleAdvertise slot="2282673475" width="250px" height="500px" />
 			</DesktopAds>
 			<CenterSection>
@@ -564,7 +570,7 @@ function Main() {
 						* 오늘의 구문을 활용하여 문장을 만들어주세요!
 					</WarningText>
 				</Writing>
-				<DesktopAds style={{ marginTop: "1rem" }}>
+				<DesktopAds width="768px" style={{ marginTop: "1rem" }}>
 					<GoogleAdvertise
 						slot="5506046036"
 						width="728px"
@@ -620,7 +626,7 @@ function Main() {
 						</>
 					)}
 				</ListContainer>
-				<DesktopAds style={{ marginTop: "2rem" }}>
+				<DesktopAds width="768px" style={{ marginTop: "2rem" }}>
 					<GoogleAdvertise
 						slot="5506046036"
 						width="728px"
@@ -686,16 +692,13 @@ function Main() {
 					)}
 				</MailSection>
 				<FooterComponent />
-				<DesktopAds>
+				<DesktopAds width="768px">
 					<GoogleAdvertise slot="5506046036" width="728px" height="90px" />
 				</DesktopAds>
 				<MobileAds>
 					<GoogleAdvertise slot="1678485541" width="320px" height="50px" />
 				</MobileAds>
 			</CenterSection>
-			<DesktopAds style={{ float: "right", marginTop: "20rem" }}>
-				<GoogleAdvertise slot="2282673475" width="250px" height="500px" />
-			</DesktopAds>
 		</Wrap>
 	);
 }

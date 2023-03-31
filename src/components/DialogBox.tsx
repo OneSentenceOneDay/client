@@ -17,7 +17,7 @@ export const DialogBox = styled.dialog<{ page: string }>`
 	z-index: 10000;
 	top: ${(props) => (props.page === "modal" ? "25%" : "0rem")};
 	overflow-y: scroll;
-
+	// animation: modal-bg-show 0.3s;
 	img {
 		width: 7rem;
 	}
