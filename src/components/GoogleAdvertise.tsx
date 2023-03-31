@@ -15,6 +15,7 @@ function GoogleAdvertise({
 	// layoutKey = "",
 	width = "",
 	height = "",
+	margin = "",
 }) {
 	useEffect(() => {
 		try {
@@ -31,6 +32,7 @@ function GoogleAdvertise({
 			style={{
 				width: width,
 				height: height,
+				margin: margin,
 				textAlign: "center",
 				display: "inline-block",
 			}}

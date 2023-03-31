@@ -508,7 +508,6 @@ function Main() {
 				<Sentence>{sentence.discription}</Sentence>
 				<SentenceKor>{sentence.translate}</SentenceKor>
 			</TodayStc>
-
 			<Writing noWarning={noWarning}>
 				{showAI && (
 					<div ref={outsideRef}>
@@ -531,6 +530,12 @@ function Main() {
 					}}
 					value={writing}
 				/>
+				<DesktopAds style={{ float: "left" }}>
+					<GoogleAdvertise slot="2282673475" width="250px" height="500px" />
+				</DesktopAds>
+				<DesktopAds style={{ float: "right" }}>
+					<GoogleAdvertise slot="2282673475" width="250px" height="500px" />
+				</DesktopAds>
 				<Menu>
 					<Icons>
 						<img
@@ -555,6 +560,14 @@ function Main() {
 					* 오늘의 구문을 활용하여 문장을 만들어주세요!
 				</WarningText>
 			</Writing>
+			<DesktopAds style={{ marginTop: "1rem" }}>
+				<GoogleAdvertise
+					slot="5506046036"
+					width="728px"
+					height="90px"
+					margin="0 auto"
+				/>
+			</DesktopAds>
 			<ListContainer>
 				{postcnt === 0 ? (
 					<NoSentences>
@@ -567,6 +580,14 @@ function Main() {
 					<>
 						<MenuContainer>
 							<Cnt>오늘 하루 {postcnt}개의 영작문이 있어요!</Cnt>
+							<MobileAds style={{ marginTop: "1rem" }}>
+								<GoogleAdvertise
+									slot="1678485541"
+									width="320px"
+									height="50px"
+									margin="0 auto"
+								/>
+							</MobileAds>
 							<SortMenu>
 								{sorts.map((s, idx) =>
 									s.eng === nowSort ? (
@@ -591,10 +612,26 @@ function Main() {
 								getSentences={getSentences}
 							/>
 						))}
-						<Pagination pages={pages} page={page} setPage={setPage} />{" "}
+						<Pagination pages={pages} page={page} setPage={setPage} />
 					</>
 				)}
 			</ListContainer>
+			<DesktopAds style={{ marginTop: "2rem" }}>
+				<GoogleAdvertise
+					slot="5506046036"
+					width="728px"
+					height="90px"
+					margin="0 auto"
+				/>
+			</DesktopAds>
+			<MobileAds style={{ marginTop: "1rem" }}>
+				<GoogleAdvertise
+					slot="4766599147"
+					width="336px"
+					height="280px"
+					margin="0 auto"
+				/>
+			</MobileAds>
 			<MailSection
 				subscription={
 					sessionStorage.getItem("subscription") === "true" ? true : false

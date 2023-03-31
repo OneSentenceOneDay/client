@@ -224,11 +224,10 @@ export const MenuContainer = styled.div`
 `;
 
 export const Cnt = styled.div`
-	margin-left: 1rem;
 	color: ${palette.blue2};
 	font-family: Pretendard-Medium;
 	@media only screen and (max-width: 768px) {
-		font-size: 0.75rem;
+		font-size: 0.9rem;
 	}
 `;
 
@@ -252,7 +251,10 @@ export const SortMenu = styled.div`
 		display: inline-block;
 		font-size: 1rem;
 		margin-right: 1rem;
-		@media only screen and (max-width: 768px) {
+	}
+	@media only screen and (max-width: 768px) {
+		text-align: center;
+		div {
 			font-size: 0.8rem;
 			margin-right: 0.5rem;
 		}
@@ -260,12 +262,13 @@ export const SortMenu = styled.div`
 `;
 
 export const MailSection = styled.div<{ subscription: boolean }>`
-	padding-top: 8rem;
+	padding-top: 2rem;
 	width: 52.75rem;
 	margin: 0 auto;
 	display: ${(props) => (props.subscription ? "none" : "")};
 	@media only screen and (max-width: 768px) {
 		width: 20.5rem;
+		padding-top: 1rem;
 	}
 `;
 
