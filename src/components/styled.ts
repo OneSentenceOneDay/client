@@ -71,7 +71,7 @@ export const Button = styled.div<{ flag: boolean; index: number }>`
 export const Buttons = styled.div`
 	display: flex;
 	justify-content: space-between;
-	width: 23rem;
+	width: 25.375rem;
 	@media only screen and (max-width: 768px) {
 		width: 18rem;
 	}

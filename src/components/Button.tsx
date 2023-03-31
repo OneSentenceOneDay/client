@@ -2,8 +2,8 @@ import styled from "styled-components";
 import palette from "lib/palette";
 
 export const Button = styled.div<{ flag: boolean; index: number }>`
-	min-width: ${(props) => (props.flag ? "11.2rem" : "25.375rem")};
-	max-width: ${(props) => (props.flag ? "11.2rem" : "25.375rem")};
+	min-width: ${(props) => (props.flag ? "12.22rem" : "25.375rem")};
+	max-width: ${(props) => (props.flag ? "12.22rem" : "25.375rem")};
 	min-height: 3.3rem;
 	max-height: 3.3rem;
 	line-height: 3.3rem;
@@ -21,7 +21,8 @@ export const Button = styled.div<{ flag: boolean; index: number }>`
 		opacity: 0.9;
 	}
 	@media only screen and (max-width: 768px) {
-		width: ${(props) => (props.flag ? "8.7rem;" : "18rem")};
+		min-width: ${(props) => (props.flag ? "8.7rem;" : "18rem")};
+		max-width: ${(props) => (props.flag ? "8.7rem;" : "18rem")};
 		height: 3.3rem;
 		line-height: 3.3rem;
 	}

@@ -1,5 +1,6 @@
 import { DialogBox } from "./DialogBox";
-import { Title, Body, Button, Buttons, ModalContainer } from "./styled";
+import { Title, Body, Buttons, ModalContainer } from "./styled";
+import { Button } from "./Button";
 import { Input } from "./Input";
 import { Backdrop } from "./Backdrop";
 

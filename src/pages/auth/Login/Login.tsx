@@ -9,7 +9,6 @@ import axios from "axios";
 import { useOutletContext } from "react-router-dom";
 import { useGoogleLogin } from "@react-oauth/google";
 import { WarningText } from "pages/home/Main/styled";
-import { createPortal } from "react-dom";
 import Loading from "components/Loading";
 import { Input } from "components/Input";
 import { DialogBox } from "components/DialogBox";
