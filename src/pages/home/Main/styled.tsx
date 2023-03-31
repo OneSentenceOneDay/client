@@ -370,3 +370,7 @@ export const InputBut = styled.div<{ login: boolean }>`
 		margin-top: ${(props) => (props.login ? "1rem" : "")};
 	}
 `;
+
+export const CenterSection = styled.div`
+	margin: 0 auto;
+`;

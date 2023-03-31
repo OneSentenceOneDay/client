@@ -26,6 +26,7 @@ import {
 	NoSentences,
 	NoSentencesText,
 	AIIcon,
+	CenterSection,
 } from "./styled";
 import { Wrap } from "./../../../components/styled";
 import Copy from "../../../assets/icons/copy-icon.svg";
@@ -435,257 +436,266 @@ function Main() {
 	if (loading) return <Loading />;
 
 	return (
-		<Wrap>
-			{openLogin && (
-				<Login
-					openLogin={openLogin}
-					setOpenLogin={setOpenLogin}
-					setFirst={setFirst}
-					setGoogle={setFirstGoogle}
-					openResetPasswordModal={openResetPasswordModal}
-				/>
-			)}
-			{first && (
-				<Modal
-					title={"Email 구독 신청"}
-					body={"하루 한 문장 영어 글쓰기 연습을\n메일로 받아 보길 원하시나요?"}
-					button={"네"}
-					button2={"아니요"}
-					onclick={clickSubYes}
-					onclick2={clickSubNo}
-				/>
-			)}
-			{firstGoogle && (
-				<ModalContainer>
-					<DialogBox page={"login"}>
-						<Text style={{ marginBottom: "1rem" }}>닉네임을 설정해 주세요</Text>
-						<Input noWarning={nameError} page="">
-							<input
-								placeholder="Nickname"
-								onChange={(e) => {
-									setNickname(e.target.value);
+		<Wrap style={{ display: "flex" }}>
+			<DesktopAds style={{ float: "left", marginTop: "20rem" }}>
+				<GoogleAdvertise slot="2282673475" width="250px" height="500px" />
+			</DesktopAds>
+			<CenterSection>
+				{openLogin && (
+					<Login
+						openLogin={openLogin}
+						setOpenLogin={setOpenLogin}
+						setFirst={setFirst}
+						setGoogle={setFirstGoogle}
+						openResetPasswordModal={openResetPasswordModal}
+					/>
+				)}
+				{first && (
+					<Modal
+						title={"Email 구독 신청"}
+						body={
+							"하루 한 문장 영어 글쓰기 연습을\n메일로 받아 보길 원하시나요?"
+						}
+						button={"네"}
+						button2={"아니요"}
+						onclick={clickSubYes}
+						onclick2={clickSubNo}
+					/>
+				)}
+				{firstGoogle && (
+					<ModalContainer>
+						<DialogBox page={"login"}>
+							<Text style={{ marginBottom: "1rem" }}>
+								닉네임을 설정해 주세요
+							</Text>
+							<Input noWarning={nameError} page="">
+								<input
+									placeholder="Nickname"
+									onChange={(e) => {
+										setNickname(e.target.value);
+									}}
+								/>
+							</Input>
+							<WarningText noWarning={nameError} page="login">
+								* 중복이거나 잘못된 닉네임입니다
+							</WarningText>
+							<button onClick={setNameAndNickname}>확인</button>
+						</DialogBox>
+					</ModalContainer>
+				)}
+				{subModal && (
+					<Modal
+						body={"구독 신청이 되었습니다."}
+						button={"확인"}
+						onclick={closeSubModal}
+					/>
+				)}
+				{resetPasswordModal && (
+					<Modal
+						body="가입하신 Email 주소를 입력해주세요"
+						button="확인"
+						button2="취소"
+						onclick={resetPassword}
+						onclick2={closeResetPasswordModal}
+						input={true}
+						setState={setEmail}
+						placeholder="Email"
+					/>
+				)}
+				{resetPasswordConfirmModal && (
+					<Modal
+						body={"가입한 이메일로 \n비밀번호를 재설정 링크를 보냈습니다"}
+						button={"확인"}
+						onclick={closeResetPasswordConfirmModal}
+					/>
+				)}
+
+				<TodayStc>
+					<DateComponent date={today} page={"main"} />
+					<Text>오늘의 구문을 사용하여 영어 글쓰기를 연습해 보세요.</Text>
+					<Eng>{sentence.sentence}</Eng>
+					<Kor>{sentence.korean}</Kor>
+					<Sentence>{sentence.discription}</Sentence>
+					<SentenceKor>{sentence.translate}</SentenceKor>
+				</TodayStc>
+				<Writing noWarning={noWarning}>
+					{showAI && (
+						<div ref={outsideRef}>
+							<BlueboxModal
+								title={osodAI}
+								subbody={!bool ? original : ""}
+								body={!bool ? response : ""}
+							/>
+						</div>
+					)}
+					{showTrans && (
+						<div ref={outsideRef}>
+							<BlueboxModal body={trans} />
+						</div>
+					)}
+					<textarea
+						placeholder={sentence.sentence + " 를 사용하여 영작하기"}
+						onChange={(e) => {
+							setWriting(e.target.value);
+						}}
+						value={writing}
+					/>
+					<Menu>
+						<Icons>
+							<img
+								src={Trans}
+								alt="translate"
+								onClick={() => {
+									clickTrans(writing);
 								}}
 							/>
-						</Input>
-						<WarningText noWarning={nameError} page="login">
-							* 중복이거나 잘못된 닉네임입니다
-						</WarningText>
-						<button onClick={setNameAndNickname}>확인</button>
-					</DialogBox>
-				</ModalContainer>
-			)}
-			{subModal && (
-				<Modal
-					body={"구독 신청이 되었습니다."}
-					button={"확인"}
-					onclick={closeSubModal}
-				/>
-			)}
-			{resetPasswordModal && (
-				<Modal
-					body="가입하신 Email 주소를 입력해주세요"
-					button="확인"
-					button2="취소"
-					onclick={resetPassword}
-					onclick2={closeResetPasswordModal}
-					input={true}
-					setState={setEmail}
-					placeholder="Email"
-				/>
-			)}
-			{resetPasswordConfirmModal && (
-				<Modal
-					body={"가입한 이메일로 \n비밀번호를 재설정 링크를 보냈습니다"}
-					button={"확인"}
-					onclick={closeResetPasswordConfirmModal}
-				/>
-			)}
-			<TodayStc>
-				<DateComponent date={today} page={"main"} />
-				<Text>오늘의 구문을 사용하여 영어 글쓰기를 연습해 보세요.</Text>
-				<Eng>{sentence.sentence}</Eng>
-				<Kor>{sentence.korean}</Kor>
-				<Sentence>{sentence.discription}</Sentence>
-				<SentenceKor>{sentence.translate}</SentenceKor>
-			</TodayStc>
-			<Writing noWarning={noWarning}>
-				{showAI && (
-					<div ref={outsideRef}>
-						<BlueboxModal
-							title={osodAI}
-							subbody={!bool ? original : ""}
-							body={!bool ? response : ""}
-						/>
-					</div>
-				)}
-				{showTrans && (
-					<div ref={outsideRef}>
-						<BlueboxModal body={trans} />
-					</div>
-				)}
-				<textarea
-					placeholder={sentence.sentence + " 를 사용하여 영작하기"}
-					onChange={(e) => {
-						setWriting(e.target.value);
-					}}
-					value={writing}
-				/>
-				<DesktopAds style={{ float: "left" }}>
-					<GoogleAdvertise slot="2282673475" width="250px" height="500px" />
-				</DesktopAds>
-				<DesktopAds style={{ float: "right" }}>
-					<GoogleAdvertise slot="2282673475" width="250px" height="500px" />
-				</DesktopAds>
-				<Menu>
-					<Icons>
-						<img
-							src={Trans}
-							alt="translate"
-							onClick={() => {
-								clickTrans(writing);
-							}}
-						/>
-						<AIIcon onClick={clickAI}>osod AI</AIIcon>
-						<img
-							src={Copy}
-							alt="copy"
-							onClick={() => {
-								handleCopyClipBoard(writing);
-							}}
-						/>
-					</Icons>
-					<Button onClick={isWarning}>영작 완료</Button>
-				</Menu>
-				<WarningText noWarning={noWarning} page="main">
-					* 오늘의 구문을 활용하여 문장을 만들어주세요!
-				</WarningText>
-			</Writing>
-			<DesktopAds style={{ marginTop: "1rem" }}>
-				<GoogleAdvertise
-					slot="5506046036"
-					width="728px"
-					height="90px"
-					margin="0 auto"
-				/>
-			</DesktopAds>
-			<ListContainer>
-				{postcnt === 0 ? (
-					<NoSentences>
-						<Cnt>오늘 하루 {postcnt}개의 영작문이 있어요!</Cnt>
-						<NoSentencesText>
-							✏️ 첫 번째 영문장을 작성해 보세요.
-						</NoSentencesText>
-					</NoSentences>
-				) : (
-					<>
-						<MenuContainer>
-							<Cnt>오늘 하루 {postcnt}개의 영작문이 있어요!</Cnt>
-							<MobileAds style={{ marginTop: "1rem" }}>
-								<GoogleAdvertise
-									slot="1678485541"
-									width="320px"
-									height="50px"
-									margin="0 auto"
-								/>
-							</MobileAds>
-							<SortMenu>
-								{sorts.map((s, idx) =>
-									s.eng === nowSort ? (
-										<Sort key={idx} name={s.kor} eng={s.eng} mark={true} />
-									) : (
-										<Sort key={idx} name={s.kor} eng={s.eng} mark={false} />
-									)
-								)}
-							</SortMenu>
-						</MenuContainer>
-						{post.map((c: any) => (
-							<Com
-								key={c.id}
-								id={c.unknown ? null : c.user.id}
-								postId={c.id}
-								name={c.unknown ? c.unknown : c.user.nickname}
-								contents={c.body}
-								hearts={c.like_num}
-								bool_like={c.bool_like}
-								time={c.time_ago}
-								clickLikes={clickLikes}
-								getSentences={getSentences}
+							<AIIcon onClick={clickAI}>osod AI</AIIcon>
+							<img
+								src={Copy}
+								alt="copy"
+								onClick={() => {
+									handleCopyClipBoard(writing);
+								}}
 							/>
-						))}
-						<Pagination pages={pages} page={page} setPage={setPage} />
-					</>
-				)}
-			</ListContainer>
-			<DesktopAds style={{ marginTop: "2rem" }}>
-				<GoogleAdvertise
-					slot="5506046036"
-					width="728px"
-					height="90px"
-					margin="0 auto"
-				/>
-			</DesktopAds>
-			<MobileAds style={{ marginTop: "1rem" }}>
-				<GoogleAdvertise
-					slot="4766599147"
-					width="336px"
-					height="280px"
-					margin="0 auto"
-				/>
-			</MobileAds>
-			<MailSection
-				subscription={
-					sessionStorage.getItem("subscription") === "true" ? true : false
-				}
-			>
-				<MailText login={sessionStorage.getItem("access_token") ? true : false}>
-					<TopText>
-						{
-							"osod의 하루 한 문장 영어 글쓰기 연습을\n메일로 받아 보길 원하시나요?"
-						}
-					</TopText>
-					{sessionStorage.getItem("access_token") ? (
-						""
+						</Icons>
+						<Button onClick={isWarning}>영작 완료</Button>
+					</Menu>
+					<WarningText noWarning={noWarning} page="main">
+						* 오늘의 구문을 활용하여 문장을 만들어주세요!
+					</WarningText>
+				</Writing>
+				<DesktopAds style={{ marginTop: "1rem" }}>
+					<GoogleAdvertise
+						slot="5506046036"
+						width="728px"
+						height="90px"
+						margin="0 auto"
+					/>
+				</DesktopAds>
+				<ListContainer>
+					{postcnt === 0 ? (
+						<NoSentences>
+							<Cnt>오늘 하루 {postcnt}개의 영작문이 있어요!</Cnt>
+							<NoSentencesText>
+								✏️ 첫 번째 영문장을 작성해 보세요.
+							</NoSentencesText>
+						</NoSentences>
 					) : (
-						<BottomText>이름과 이메일을 남겨주세요.</BottomText>
+						<>
+							<MenuContainer>
+								<Cnt>오늘 하루 {postcnt}개의 영작문이 있어요!</Cnt>
+								<MobileAds style={{ marginTop: "1rem" }}>
+									<GoogleAdvertise
+										slot="1678485541"
+										width="320px"
+										height="50px"
+										margin="0 auto"
+									/>
+								</MobileAds>
+								<SortMenu>
+									{sorts.map((s, idx) =>
+										s.eng === nowSort ? (
+											<Sort key={idx} name={s.kor} eng={s.eng} mark={true} />
+										) : (
+											<Sort key={idx} name={s.kor} eng={s.eng} mark={false} />
+										)
+									)}
+								</SortMenu>
+							</MenuContainer>
+							{post.map((c: any) => (
+								<Com
+									key={c.id}
+									id={c.unknown ? null : c.user.id}
+									postId={c.id}
+									name={c.unknown ? c.unknown : c.user.nickname}
+									contents={c.body}
+									hearts={c.like_num}
+									bool_like={c.bool_like}
+									time={c.time_ago}
+									clickLikes={clickLikes}
+									getSentences={getSentences}
+								/>
+							))}
+							<Pagination pages={pages} page={page} setPage={setPage} />
+						</>
 					)}
-				</MailText>
-				{sessionStorage.getItem("access_token") ? (
-					<InputBut login={true} onClick={clickSubYes}>
-						구독
-					</InputBut>
-				) : (
-					<MailInput>
-						<InputSec>
-							<InputDiv position={"up"}>
-								<input
-									placeholder="이름을 입력하세요"
-									onChange={(e) => {
-										setSubName(e.target.value);
-									}}
-								/>
-							</InputDiv>
-							<InputDiv position={"down"}>
-								<input
-									placeholder="Email을 입력하세요"
-									onChange={(e) => {
-										setSubEmail(e.target.value);
-									}}
-								/>
-							</InputDiv>
-						</InputSec>
-						<InputBut login={false} onClick={subAsNonUser}>
+				</ListContainer>
+				<DesktopAds style={{ marginTop: "2rem" }}>
+					<GoogleAdvertise
+						slot="5506046036"
+						width="728px"
+						height="90px"
+						margin="0 auto"
+					/>
+				</DesktopAds>
+				<MobileAds style={{ marginTop: "1rem" }}>
+					<GoogleAdvertise
+						slot="4766599147"
+						width="336px"
+						height="280px"
+						margin="0 auto"
+					/>
+				</MobileAds>
+				<MailSection
+					subscription={
+						sessionStorage.getItem("subscription") === "true" ? true : false
+					}
+				>
+					<MailText
+						login={sessionStorage.getItem("access_token") ? true : false}
+					>
+						<TopText>
+							{
+								"osod의 하루 한 문장 영어 글쓰기 연습을\n메일로 받아 보길 원하시나요?"
+							}
+						</TopText>
+						{sessionStorage.getItem("access_token") ? (
+							""
+						) : (
+							<BottomText>이름과 이메일을 남겨주세요.</BottomText>
+						)}
+					</MailText>
+					{sessionStorage.getItem("access_token") ? (
+						<InputBut login={true} onClick={clickSubYes}>
 							구독
 						</InputBut>
-					</MailInput>
-				)}
-			</MailSection>
-			<FooterComponent />
-			<DesktopAds>
-				<GoogleAdvertise slot="5506046036" width="728px" height="90px" />
+					) : (
+						<MailInput>
+							<InputSec>
+								<InputDiv position={"up"}>
+									<input
+										placeholder="이름을 입력하세요"
+										onChange={(e) => {
+											setSubName(e.target.value);
+										}}
+									/>
+								</InputDiv>
+								<InputDiv position={"down"}>
+									<input
+										placeholder="Email을 입력하세요"
+										onChange={(e) => {
+											setSubEmail(e.target.value);
+										}}
+									/>
+								</InputDiv>
+							</InputSec>
+							<InputBut login={false} onClick={subAsNonUser}>
+								구독
+							</InputBut>
+						</MailInput>
+					)}
+				</MailSection>
+				<FooterComponent />
+				<DesktopAds>
+					<GoogleAdvertise slot="5506046036" width="728px" height="90px" />
+				</DesktopAds>
+				<MobileAds>
+					<GoogleAdvertise slot="1678485541" width="320px" height="50px" />
+				</MobileAds>
+			</CenterSection>
+			<DesktopAds style={{ float: "right", marginTop: "20rem" }}>
+				<GoogleAdvertise slot="2282673475" width="250px" height="500px" />
 			</DesktopAds>
-			<MobileAds>
-				<GoogleAdvertise slot="1678485541" width="320px" height="50px" />
-			</MobileAds>
 		</Wrap>
 	);
 }
