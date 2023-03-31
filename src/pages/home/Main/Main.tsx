@@ -383,6 +383,7 @@ function Main() {
 			url: `${BASE_URL}/writing/grammar-check/`,
 			data: {
 				text: writing,
+				sentence: sentence.sentence,
 			},
 		})
 			.then((res) => {
