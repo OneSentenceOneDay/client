@@ -1,5 +1,6 @@
 import Com from "components/Comment";
 import DateComponent, { CalcToday } from "components/DateComponent";
+import { useNavigate, useNavigation } from "react-router-dom";
 import FooterComponent from "components/Footer";
 import { useState, useEffect } from "react";
 import {
@@ -33,6 +34,7 @@ import Emoji11 from "../../assets/icons/emoji-icon-11.svg";
 import Edit from "../../assets/icons/edit-icon.svg";
 import { Modal } from "components/Modal";
 import Loading from "components/Loading";
+import tokenNotValid from "apis/tokenNotValid";
 
 const BASE_URL = process.env.REACT_APP_API;
 
@@ -57,8 +59,9 @@ export function HistoryItems({ name, count, img }: historyItem) {
 const today = CalcToday();
 
 function Sectences() {
-	// ************************ 연속 학습 이모티콘 ************************
+	const navigate = useNavigate();
 
+	// ************************ 연속 학습 이모티콘 ************************
 	const [emoji, setEmoji] = useState<any>("");
 	function todayEmoji(day: number) {
 		if (day < 1) {
@@ -107,7 +110,10 @@ function Sectences() {
 				setLoading(false);
 			})
 			.catch((e) => {
-				// console.log(e);
+				if (e.response.data.code === "token_not_valid") {
+					tokenNotValid();
+					navigate("/");
+				}
 			});
 	}, []);
 
@@ -122,11 +128,18 @@ function Sectences() {
 			headers: {
 				Authorization: `Bearer ${sessionStorage.getItem("access_token")}`,
 			},
-		}).then((res) => {
-			setTodyPost(res.data);
-			setLoading(false);
-			// console.log(res.data);
-		});
+		})
+			.then((res) => {
+				setTodyPost(res.data);
+				setLoading(false);
+				// console.log(res.data);
+			})
+			.catch((e) => {
+				if (e.response.data.code === "token_not_valid") {
+					tokenNotValid();
+					navigate("/");
+				}
+			});
 	}
 	useEffect(() => {
 		getTodayPost();
@@ -148,11 +161,18 @@ function Sectences() {
 			headers: {
 				Authorization: `Bearer ${sessionStorage.getItem("access_token")}`,
 			},
-		}).then((res) => {
-			getWeek(res.data);
-			setTodaySentence(res.data.today_sentence);
-			// console.log(res.data);
-		});
+		})
+			.then((res) => {
+				getWeek(res.data);
+				setTodaySentence(res.data.today_sentence);
+				// console.log(res.data);
+			})
+			.catch((e) => {
+				if (e.response.data.code === "token_not_valid") {
+					tokenNotValid();
+					navigate("/");
+				}
+			});
 	}, []);
 
 	function getWeek(strObj: any) {
@@ -188,6 +208,10 @@ function Sectences() {
 				})
 				.catch((e) => {
 					setPosts([]);
+					if (e.response.data.code === "token_not_valid") {
+						tokenNotValid();
+						navigate("/");
+					}
 				});
 		}
 	}, [date]);
@@ -200,9 +224,16 @@ function Sectences() {
 			headers: {
 				Authorization: `Bearer ${sessionStorage.getItem("access_token")}`,
 			},
-		}).then(() => {
-			getTodayPost();
-		});
+		})
+			.then(() => {
+				getTodayPost();
+			})
+			.catch((e) => {
+				if (e.response.data.code === "token_not_valid") {
+					tokenNotValid();
+					navigate("/");
+				}
+			});
 	}
 
 	// ************************ 닉네임 변경 ************************
@@ -228,7 +259,12 @@ function Sectences() {
 				setNicknameChangeModal(false);
 			})
 			.catch((e) => {
-				alert(e.response.data.detail);
+				if (e.response.data.code === "token_not_valid") {
+					tokenNotValid();
+					navigate("/");
+				} else {
+					alert(e.response.data.detail);
+				}
 			});
 	}
 

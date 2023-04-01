@@ -39,7 +39,7 @@ import {
 	useRef,
 	useCallback,
 } from "react";
-import { useOutletContext } from "react-router-dom";
+import { useNavigate, useOutletContext } from "react-router-dom";
 import Com from "components/Comment";
 import Pagination from "components/Pagination";
 import DateComponent, { CalcToday } from "components/DateComponent";
@@ -57,12 +57,14 @@ import GoogleAdvertise from "components/GoogleAdvertise";
 import { DesktopAds, MobileAds } from "./../../../components/styled";
 import { Input } from "../../../components/Input";
 import { DialogBox } from "components/DialogBox";
+import tokenNotValid from "apis/tokenNotValid";
 
 const BASE_URL = process.env.REACT_APP_API;
 
 const today = CalcToday();
 
 function Main() {
+	const navigate = useNavigate();
 	// ************************ 정렬 컴포넌트 ************************
 	const sorts = [
 		{
@@ -154,11 +156,18 @@ function Main() {
 						? `Bearer ${sessionStorage.getItem("access_token")}`
 						: "",
 				},
-			}).then((res) => {
-				// console.log(res);
-				setPost(res.data.postList);
-				setPages(res.data.pageCnt);
-			});
+			})
+				.then((res) => {
+					// console.log(res);
+					setPost(res.data.postList);
+					setPages(res.data.pageCnt);
+				})
+				.catch((e) => {
+					if (e.response.data.code === "token_not_valid") {
+						tokenNotValid();
+						navigate("/");
+					}
+				});
 			setLoading(false);
 		}
 	}
@@ -197,9 +206,13 @@ function Main() {
 				getSentences();
 				// console.log(res);
 			})
-			.catch(() => {
+			.catch((e) => {
 				setOpenLogin(true);
 				document.body.style.overflow = "hidden";
+				if (e.response.data.code === "token_not_valid") {
+					tokenNotValid();
+					navigate("/");
+				}
 			});
 	}
 
@@ -234,14 +247,21 @@ function Main() {
 					: "",
 			},
 			data: { body: writing },
-		}).then(() => {
-			getSentences();
-			getCnt();
-			setNoWarning(true);
-			setLoading(false);
-			setNowSort("latest");
-			setWriting("");
-		});
+		})
+			.then(() => {
+				getSentences();
+				getCnt();
+				setNoWarning(true);
+				setLoading(false);
+				setNowSort("latest");
+				setWriting("");
+			})
+			.catch((e) => {
+				if (e.response.data.code === "token_not_valid") {
+					tokenNotValid();
+					navigate("/");
+				}
+			});
 	}
 
 	// ************************ 로그인 모달 ************************
@@ -290,10 +310,18 @@ function Main() {
 			headers: {
 				Authorization: `Bearer ${sessionStorage.getItem("access_token")}`,
 			},
-		});
-		setFirst(false);
-		sessionStorage.setItem("subscription", "true");
-		window.location.reload(); // 새로고침
+		})
+			.then(() => {
+				setFirst(false);
+				sessionStorage.setItem("subscription", "true");
+				window.location.reload(); // 새로고침
+			})
+			.catch((e) => {
+				if (e.response.data.code === "token_not_valid") {
+					tokenNotValid();
+					navigate("/");
+				}
+			});
 	}
 
 	function clickSubNo() {

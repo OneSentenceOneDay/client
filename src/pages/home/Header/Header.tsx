@@ -4,14 +4,14 @@ import { Wrap, LoginBut, Menu, ProfileBut, Menudiv } from "./styled";
 import Logo from "../../../assets/images/logo.svg";
 import Profile from "../../../assets/icons/profile-icon.svg";
 import axios from "axios";
-import { useLogout } from "apis/logout";
+// import { useLogout } from "apis/logout";
 import { useRecoilState } from "recoil";
 import { LoginState } from "states/LoginState";
 // import { useMediaQuery } from "react-responsive";
 
 const BASE_URL = process.env.REACT_APP_API;
 
-export function Dropdown({ setLogin }: any) {
+export function Dropdown() {
 	// const isMobile = useMediaQuery({
 	// 	maxDeviceWidth: 768,
 	// 	// query: "(max-width:768px)",
@@ -39,7 +39,7 @@ export function Dropdown({ setLogin }: any) {
 			},
 		}).then((res) => {
 			sessionStorage.clear();
-			setLogin(false);
+			// setLogin(false);
 			alert(res.data.detail);
 			navigate("/");
 			window.location.reload(); // 새로고침
@@ -72,10 +72,6 @@ export function Dropdown({ setLogin }: any) {
 }
 
 function Header() {
-	const [login, setLogin] = useState<boolean | string | null>(
-		sessionStorage.getItem("access_token")
-	);
-	// const [login, setLogin] = useRecoilState(LoginState);
 	const [view, setView] = useState<boolean>(false); // dropdown
 	const [openLogin, setOpenLogin] = useState<boolean>(false); // login modal
 
@@ -110,7 +106,7 @@ function Header() {
 		<>
 			<Wrap>
 				<img src={Logo} onClick={goHome} />
-				{login ? (
+				{sessionStorage.getItem("access_token") ? (
 					<>
 						<ProfileBut
 							ref={outsideRef}
@@ -119,14 +115,14 @@ function Header() {
 							}}
 						>
 							<img src={Profile} />
-							{view && <Dropdown setLogin={setLogin} />}
+							{view && <Dropdown />}
 						</ProfileBut>
 					</>
 				) : (
 					<LoginBut onClick={onClickToggleModal}>로그인</LoginBut>
 				)}
 			</Wrap>
-			<Outlet context={[openLogin, setOpenLogin, setLogin]} />
+			<Outlet context={[openLogin, setOpenLogin]} />
 		</>
 	);
 }

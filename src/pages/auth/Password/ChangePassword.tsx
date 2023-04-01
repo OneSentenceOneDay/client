@@ -8,6 +8,7 @@ import { WarningText } from "pages/home/Main/styled";
 import { useNavigate } from "react-router-dom";
 import { Modal } from "components/Modal";
 import Loading from "components/Loading";
+import tokenNotValid from "apis/tokenNotValid";
 
 const BASE_URL = process.env.REACT_APP_API;
 
@@ -82,7 +83,8 @@ function Password() {
 						setWarningNewPassword(false);
 					}
 					if (e.response.data.code === "token_not_valid") {
-						// 로그아웃
+						tokenNotValid();
+						navigate("/");
 					}
 					setLoading(false);
 				});
@@ -100,7 +102,6 @@ function Password() {
 	const [confirmModal, setConfirmModal] = useState<boolean>(false);
 	function closeModal() {
 		setConfirmModal(false);
-		console.log(1);
 		navigate("/");
 	}
 

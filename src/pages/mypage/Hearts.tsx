@@ -6,11 +6,15 @@ import Pagination from "components/Pagination";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Loading from "components/Loading";
+import tokenNotValid from "apis/tokenNotValid";
+import { useNavigate } from "react-router-dom";
 
 const BASE_URL = process.env.REACT_APP_API;
 
 function Hearts() {
 	const [loading, setLoading] = useState(false);
+	const navigate = useNavigate();
+
 	// ************************ get 좋아요 클릭한 문장 ************************
 	const [posts, setPosts] = useState<any>([]);
 
@@ -22,11 +26,18 @@ function Hearts() {
 			headers: {
 				Authorization: `Bearer ${sessionStorage.getItem("access_token")}`,
 			},
-		}).then((res) => {
-			setPosts(res.data);
-			console.log(res.data);
-			setLoading(false);
-		});
+		})
+			.then((res) => {
+				setPosts(res.data);
+				console.log(res.data);
+				setLoading(false);
+			})
+			.catch((e) => {
+				if (e.response.data.code === "token_not_valid") {
+					tokenNotValid();
+					navigate("/");
+				}
+			});
 	}
 	useEffect(() => {
 		getPosts();
@@ -40,9 +51,16 @@ function Hearts() {
 			headers: {
 				Authorization: `Bearer ${sessionStorage.getItem("access_token")}`,
 			},
-		}).then((res) => {
-			getPosts();
-		});
+		})
+			.then(() => {
+				getPosts();
+			})
+			.catch((e) => {
+				if (e.response.data.code === "token_not_valid") {
+					tokenNotValid();
+					navigate("/");
+				}
+			});
 	}
 
 	// ************************ 번역 ************************
