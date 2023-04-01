@@ -43,7 +43,6 @@ function Login({
 					sessionStorage.setItem("nickname", res.data.user.nickname);
 					sessionStorage.setItem("subscription", res.data.user.subscription);
 					flag[1](false); // cloase login modal
-					// flag[2](true); // header 프로필 버튼 활성화
 					// 최초 로그인 확인
 					if (res.data.user.is_first) {
 						setGoogle(true);
@@ -80,6 +79,7 @@ function Login({
 
 	function clickLogin() {
 		setLoading(true);
+		setNoWarning(true);
 		axios({
 			method: "post",
 			url: `${BASE_URL}/login/`,
@@ -97,7 +97,6 @@ function Login({
 				sessionStorage.setItem("email", res.data.user.email);
 				sessionStorage.setItem("subscription", res.data.user.subscription);
 				flag[1](false); // cloase login modal
-				// flag[2](true); // header 프로필 버튼 활성화
 				document.body.style.overflow = "unset";
 				// 최초 로그인 확인
 				if (res.data.user.is_first && !res.data.user.subscription) {
@@ -111,13 +110,10 @@ function Login({
 			.catch(() => {
 				setNoWarning(false);
 				setLoading(false);
-				alert("이메일 혹은 비밀번호가 맞지 않습니다.");
+				setPassword("");
+				// alert("이메일 혹은 비밀번호가 맞지 않습니다.");
 			});
 	}
-
-	useEffect(() => {
-		setNoWarning(true);
-	}, [email, password]);
 
 	if (loading) return <Loading />;
 	return (

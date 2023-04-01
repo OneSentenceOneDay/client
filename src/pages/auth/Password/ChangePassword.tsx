@@ -85,6 +85,7 @@ function Password() {
 					if (e.response.data.code === "token_not_valid") {
 						tokenNotValid();
 						navigate("/");
+						window.location.reload(); // 새로고침
 					}
 					setLoading(false);
 				});

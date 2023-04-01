@@ -36,6 +36,7 @@ function Hearts() {
 				if (e.response.data.code === "token_not_valid") {
 					tokenNotValid();
 					navigate("/");
+					window.location.reload(); // 새로고침
 				}
 			});
 	}
@@ -59,6 +60,7 @@ function Hearts() {
 				if (e.response.data.code === "token_not_valid") {
 					tokenNotValid();
 					navigate("/");
+					window.location.reload(); // 새로고침
 				}
 			});
 	}
