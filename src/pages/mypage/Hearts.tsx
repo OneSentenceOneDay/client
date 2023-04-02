@@ -24,7 +24,7 @@ function Hearts() {
 			method: "get",
 			url: `${BASE_URL}/writing/mypage/ilike/`,
 			headers: {
-				Authorization: `Bearer ${sessionStorage.getItem("access_token")}`,
+				Authorization: `Bearer ${localStorage.getItem("access_token")}`,
 			},
 		})
 			.then((res) => {
@@ -50,7 +50,7 @@ function Hearts() {
 			method: "get",
 			url: `${BASE_URL}/writing/post/${id}/likes/`,
 			headers: {
-				Authorization: `Bearer ${sessionStorage.getItem("access_token")}`,
+				Authorization: `Bearer ${localStorage.getItem("access_token")}`,
 			},
 		})
 			.then(() => {
@@ -87,8 +87,8 @@ function Hearts() {
 	if (loading) return <Loading />;
 	return (
 		<Wrap>
-			<Name>{sessionStorage.getItem("nickname")}</Name>
-			<Nickname>{sessionStorage.getItem("email")}</Nickname>
+			<Name>{localStorage.getItem("nickname")}</Name>
+			<Nickname>{localStorage.getItem("email")}</Nickname>
 			<Sentence flag={true}>
 				<Text>♡ 모아보기</Text>
 				{posts.map((c: any) => (

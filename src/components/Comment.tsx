@@ -33,7 +33,7 @@ export default function Com({
 }: // showTrans,
 // clickTrans,
 any) {
-	const userId: string | null = sessionStorage.getItem("id");
+	const userId: string | null = localStorage.getItem("id");
 
 	// ************************ 번역 ************************
 	const [trans, setTrans] = useState<string>("");

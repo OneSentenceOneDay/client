@@ -88,7 +88,7 @@ function Main() {
 	};
 
 	function clickSort(eng: string) {
-		if (!sessionStorage.getItem("access_token") && eng === "my") {
+		if (!localStorage.getItem("access_token") && eng === "my") {
 			// 비로그인 시 내가 쓴 문장 확인 불가 -> 로그인 유도
 			setOpenLogin(true);
 		} else {
@@ -152,8 +152,8 @@ function Main() {
 				method: "get",
 				url: `${BASE_URL}/writing/post/order/${sentence.id}/query=${nowSort}/?page=${page}`,
 				headers: {
-					Authorization: sessionStorage.getItem("access_token")
-						? `Bearer ${sessionStorage.getItem("access_token")}`
+					Authorization: localStorage.getItem("access_token")
+						? `Bearer ${localStorage.getItem("access_token")}`
 						: "",
 				},
 			})
@@ -200,7 +200,7 @@ function Main() {
 			method: "get",
 			url: `${BASE_URL}/writing/post/${id}/likes/`,
 			headers: {
-				Authorization: `Bearer ${sessionStorage.getItem("access_token")}`,
+				Authorization: `Bearer ${localStorage.getItem("access_token")}`,
 			},
 		})
 			.then((res) => {
@@ -244,8 +244,8 @@ function Main() {
 			method: "post",
 			url: `${BASE_URL}/writing/post/create/${sentence.id}/`,
 			headers: {
-				Authorization: sessionStorage.getItem("access_token")
-					? `Bearer ${sessionStorage.getItem("access_token")}`
+				Authorization: localStorage.getItem("access_token")
+					? `Bearer ${localStorage.getItem("access_token")}`
 					: "",
 			},
 			data: { body: writing },
@@ -280,14 +280,14 @@ function Main() {
 			method: "post",
 			url: `${BASE_URL}/accounts/make-nickname/`,
 			headers: {
-				Authorization: `Bearer ${sessionStorage.getItem("access_token")}`,
+				Authorization: `Bearer ${localStorage.getItem("access_token")}`,
 			},
 			data: { nickname: nickname },
 		})
 			.then((r) => {
 				console.log(r);
-				sessionStorage.setItem("nickname", nickname);
-				sessionStorage.setItem("name", r.data.name);
+				localStorage.setItem("nickname", nickname);
+				localStorage.setItem("name", r.data.name);
 				setFirstGoogle(false);
 				setFirst(true);
 			})
@@ -311,12 +311,12 @@ function Main() {
 			method: "get",
 			url: `${BASE_URL}/accounts/change-sub/`,
 			headers: {
-				Authorization: `Bearer ${sessionStorage.getItem("access_token")}`,
+				Authorization: `Bearer ${localStorage.getItem("access_token")}`,
 			},
 		})
 			.then(() => {
 				setFirst(false);
-				sessionStorage.setItem("subscription", "true");
+				localStorage.setItem("subscription", "true");
 				window.location.reload(); // 새로고침
 			})
 			.catch((e) => {
@@ -677,24 +677,22 @@ function Main() {
 				</MobileAds>
 				<MailSection
 					subscription={
-						sessionStorage.getItem("subscription") === "true" ? true : false
+						localStorage.getItem("subscription") === "true" ? true : false
 					}
 				>
-					<MailText
-						login={sessionStorage.getItem("access_token") ? true : false}
-					>
+					<MailText login={localStorage.getItem("access_token") ? true : false}>
 						<TopText>
 							{
 								"osod의 하루 한 문장 영어 글쓰기 연습을\n메일로 받아 보길 원하시나요?"
 							}
 						</TopText>
-						{sessionStorage.getItem("access_token") ? (
+						{localStorage.getItem("access_token") ? (
 							""
 						) : (
 							<BottomText>이름과 이메일을 남겨주세요.</BottomText>
 						)}
 					</MailText>
-					{sessionStorage.getItem("access_token") ? (
+					{localStorage.getItem("access_token") ? (
 						<InputBut login={true} onClick={clickSubYes}>
 							구독
 						</InputBut>

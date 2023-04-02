@@ -25,18 +25,18 @@ function tokenNotValid() {
 		method: "post",
 		url: `${BASE_URL}/dj/token/refresh/`,
 		headers: {
-			Authorization: `Bearer ${sessionStorage.getItem("access_token")}`,
+			Authorization: `Bearer ${localStorage.getItem("access_token")}`,
 		},
 		data: {
-			refresh: sessionStorage.getItem("refresh_token"),
+			refresh: localStorage.getItem("refresh_token"),
 		},
 	})
 		.then((res) => {
-			sessionStorage.setItem("access_token", res.data.access_token);
-			sessionStorage.setItem("refresh_token", res.data.refresh_token);
+			localStorage.setItem("access_token", res.data.access_token);
+			localStorage.setItem("refresh_token", res.data.refresh_token);
 		})
 		.catch(() => {
-			sessionStorage.clear();
+			localStorage.clear();
 			alert("로그아웃 되었습니다. 다시 로그인해주세요.");
 		});
 }

@@ -59,7 +59,7 @@ function Password() {
 				method: "post",
 				url: `${BASE_URL}/password/change/`,
 				headers: {
-					Authorization: `Bearer ${sessionStorage.getItem("access_token")}`,
+					Authorization: `Bearer ${localStorage.getItem("access_token")}`,
 				},
 				data: {
 					old_password: oldPassword,

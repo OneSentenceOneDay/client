@@ -35,10 +35,10 @@ export function Dropdown() {
 			method: "post",
 			url: `${BASE_URL}/logout/`,
 			data: {
-				refresh: sessionStorage.getItem("refresh_token"),
+				refresh: localStorage.getItem("refresh_token"),
 			},
 		}).then((res) => {
-			sessionStorage.clear();
+			localStorage.clear();
 			// setLogin(false);
 			alert(res.data.detail);
 			navigate("/");
@@ -48,7 +48,7 @@ export function Dropdown() {
 
 	return (
 		<Menu>
-			<Menudiv mark={"name"}>{sessionStorage.getItem("nickname")}</Menudiv>
+			<Menudiv mark={"name"}>{localStorage.getItem("nickname")}</Menudiv>
 			<Menudiv mark={"menu"} onClick={goSentences}>
 				내가 쓴 문장
 			</Menudiv>
@@ -106,7 +106,7 @@ function Header() {
 		<>
 			<Wrap>
 				<img src={Logo} onClick={goHome} />
-				{sessionStorage.getItem("access_token") ? (
+				{localStorage.getItem("access_token") ? (
 					<>
 						<ProfileBut
 							ref={outsideRef}

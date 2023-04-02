@@ -36,12 +36,12 @@ function Login({
 			})
 				.then((res) => {
 					console.log(res);
-					sessionStorage.setItem("access_token", res.data.access_token);
-					sessionStorage.setItem("refresh_token", res.data.refresh_token);
-					sessionStorage.setItem("id", res.data.user.id);
-					sessionStorage.setItem("email", res.data.user.email);
-					sessionStorage.setItem("nickname", res.data.user.nickname);
-					sessionStorage.setItem("subscription", res.data.user.subscription);
+					localStorage.setItem("access_token", res.data.access_token);
+					localStorage.setItem("refresh_token", res.data.refresh_token);
+					localStorage.setItem("id", res.data.user.id);
+					localStorage.setItem("email", res.data.user.email);
+					localStorage.setItem("nickname", res.data.user.nickname);
+					localStorage.setItem("subscription", res.data.user.subscription);
 					flag[1](false); // cloase login modal
 					// 최초 로그인 확인
 					if (res.data.user.is_first) {
@@ -90,12 +90,12 @@ function Login({
 		})
 			.then((res) => {
 				console.log(res.data);
-				sessionStorage.setItem("access_token", res.data.access_token);
-				sessionStorage.setItem("refresh_token", res.data.refresh_token);
-				sessionStorage.setItem("nickname", res.data.user.nickname);
-				sessionStorage.setItem("id", res.data.user.id);
-				sessionStorage.setItem("email", res.data.user.email);
-				sessionStorage.setItem("subscription", res.data.user.subscription);
+				localStorage.setItem("access_token", res.data.access_token);
+				localStorage.setItem("refresh_token", res.data.refresh_token);
+				localStorage.setItem("nickname", res.data.user.nickname);
+				localStorage.setItem("id", res.data.user.id);
+				localStorage.setItem("email", res.data.user.email);
+				localStorage.setItem("subscription", res.data.user.subscription);
 				flag[1](false); // cloase login modal
 				document.body.style.overflow = "unset";
 				// 최초 로그인 확인

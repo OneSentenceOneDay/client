@@ -165,12 +165,12 @@ function Signup({ setOpenSignup, setOpenLogin, setGoogle }: any) {
 				.then((res) => {
 					// console.log(res);
 					setLoading(false);
-					sessionStorage.setItem("access_token", res.data.access_token);
-					sessionStorage.setItem("refresh_token", res.data.refresh_token);
-					sessionStorage.setItem("id", res.data.user.id);
-					sessionStorage.setItem("email", res.data.user.email);
-					sessionStorage.setItem("nickname", res.data.user.nickname);
-					sessionStorage.setItem("subscription", res.data.user.subscription);
+					localStorage.setItem("access_token", res.data.access_token);
+					localStorage.setItem("refresh_token", res.data.refresh_token);
+					localStorage.setItem("id", res.data.user.id);
+					localStorage.setItem("email", res.data.user.email);
+					localStorage.setItem("nickname", res.data.user.nickname);
+					localStorage.setItem("subscription", res.data.user.subscription);
 
 					flag[1](false); // cloase login modal
 					document.body.style.overflow = "unset";

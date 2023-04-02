@@ -101,7 +101,7 @@ function Sectences() {
 			method: "get",
 			url: `${BASE_URL}/writing/mypage/userdetail/`,
 			headers: {
-				Authorization: `Bearer ${sessionStorage.getItem("access_token")}`,
+				Authorization: `Bearer ${localStorage.getItem("access_token")}`,
 			},
 		})
 			.then((res) => {
@@ -127,7 +127,7 @@ function Sectences() {
 			method: "get",
 			url: `${BASE_URL}/writing/mypage/today/`,
 			headers: {
-				Authorization: `Bearer ${sessionStorage.getItem("access_token")}`,
+				Authorization: `Bearer ${localStorage.getItem("access_token")}`,
 			},
 		})
 			.then((res) => {
@@ -161,7 +161,7 @@ function Sectences() {
 			method: "get",
 			url: `${BASE_URL}/writing/mypage/get_dates/`,
 			headers: {
-				Authorization: `Bearer ${sessionStorage.getItem("access_token")}`,
+				Authorization: `Bearer ${localStorage.getItem("access_token")}`,
 			},
 		})
 			.then((res) => {
@@ -203,7 +203,7 @@ function Sectences() {
 				method: "get",
 				url: `${BASE_URL}/writing/mypage/query=${date.replace("/", "&")}/`,
 				headers: {
-					Authorization: `Bearer ${sessionStorage.getItem("access_token")}`,
+					Authorization: `Bearer ${localStorage.getItem("access_token")}`,
 				},
 			})
 				.then((res) => {
@@ -226,7 +226,7 @@ function Sectences() {
 			method: "get",
 			url: `${BASE_URL}/writing/post/${id}/likes/`,
 			headers: {
-				Authorization: `Bearer ${sessionStorage.getItem("access_token")}`,
+				Authorization: `Bearer ${localStorage.getItem("access_token")}`,
 			},
 		})
 			.then(() => {
@@ -251,7 +251,7 @@ function Sectences() {
 			method: "post",
 			url: `${BASE_URL}/accounts/change-nickname/`,
 			headers: {
-				Authorization: `Bearer ${sessionStorage.getItem("access_token")}`,
+				Authorization: `Bearer ${localStorage.getItem("access_token")}`,
 			},
 			data: {
 				nickname: newNickname,
@@ -259,7 +259,7 @@ function Sectences() {
 		})
 			.then((res) => {
 				// console.log(res);
-				sessionStorage.setItem("nickname", res.data.nickname);
+				localStorage.setItem("nickname", res.data.nickname);
 				alert("변경되었습니다.");
 				setNicknameChangeModal(false);
 			})
@@ -295,7 +295,7 @@ function Sectences() {
 				/>
 			)}
 			<Name>
-				{sessionStorage.getItem("nickname")}{" "}
+				{localStorage.getItem("nickname")}{" "}
 				<img
 					src={Edit}
 					onClick={() => {
@@ -303,7 +303,7 @@ function Sectences() {
 					}}
 				/>
 			</Name>
-			<Nickname>{sessionStorage.getItem("email")}</Nickname>
+			<Nickname>{localStorage.getItem("email")}</Nickname>
 			<History>
 				<HistoryItems name={"영어 작문"} count={user.post_num} img={""} />
 				<HistoryItems
