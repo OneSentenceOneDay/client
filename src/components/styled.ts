@@ -83,7 +83,7 @@ export const Bluebox = styled.dialog`
 	flex-direction: row;
 	box-sizing: border-box;
 	background-color: #ffffff;
-	z-index: 10000;
+	z-index: 100000;
 	border: 0.063rem solid ${palette.blue2};
 	border-radius: 0.625rem;
 	padding: 1.875rem;

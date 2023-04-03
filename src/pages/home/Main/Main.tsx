@@ -196,26 +196,30 @@ function Main() {
 
 	// ************************ 좋아요 클릭 ************************
 	async function clickLikes(id: number) {
-		await axios({
-			method: "get",
-			url: `${BASE_URL}/writing/post/${id}/likes/`,
-			headers: {
-				Authorization: `Bearer ${localStorage.getItem("access_token")}`,
-			},
-		})
-			.then((res) => {
-				getSentences();
-				// console.log(res);
+		if (localStorage.getItem("access_token")) {
+			await axios({
+				method: "get",
+				url: `${BASE_URL}/writing/post/${id}/likes/`,
+				headers: {
+					Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+				},
 			})
-			.catch((e) => {
-				setOpenLogin(true);
-				document.body.style.overflow = "hidden";
-				if (e.response.data.code === "token_not_valid") {
-					tokenNotValid();
-					navigate("/");
-					window.location.reload(); // 새로고침
-				}
-			});
+				.then((res) => {
+					getSentences();
+					// console.log(res);
+				})
+				.catch((e) => {
+					// console.log(e);
+					if (e.response.data.code === "token_not_valid") {
+						tokenNotValid();
+						navigate("/");
+						window.location.reload(); // 새로고침
+					}
+				});
+		} else {
+			setOpenLogin(true);
+			document.body.style.overflow = "hidden";
+		}
 	}
 
 	// ************************ 오늘의 구문이 포함되어 있는지 ************************
