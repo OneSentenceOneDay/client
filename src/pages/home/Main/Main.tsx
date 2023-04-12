@@ -592,7 +592,7 @@ function Main() {
 									clickTrans(writing);
 								}}
 							/>
-							<AIIcon onClick={clickAI}>osod AI</AIIcon>
+							<AIIcon onClick={clickAI}>AI teacher</AIIcon>
 							<img
 								src={Copy}
 								alt="copy"
@@ -626,7 +626,6 @@ function Main() {
 					) : (
 						<>
 							<MenuContainer>
-								<Cnt>오늘 하루 {postcnt}개의 영작문이 있어요!</Cnt>
 								<MobileAds style={{ marginTop: "1rem" }}>
 									<GoogleAdvertise
 										slot="1678485541"
@@ -635,6 +634,7 @@ function Main() {
 										margin="0 auto"
 									/>
 								</MobileAds>
+								<Cnt>오늘 하루 {postcnt}개의 영작문이 있어요!</Cnt>
 								<SortMenu>
 									{sorts.map((s, idx) =>
 										s.eng === nowSort ? (

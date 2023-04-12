@@ -134,7 +134,8 @@ export const AIIcon = styled.div`
 	color: ${palette.blue3};
 	font-family: Pretendard-Bold;
 	float: left;
-	width: 5rem;
+	// width: 6.1rem;
+	padding: 0rem 0.7rem;
 	height: 2.1rem;
 	line-height: 2.1rem;
 	margin-top: 0.3rem;
@@ -150,7 +151,6 @@ export const AIIcon = styled.div`
 		margin-left: 1rem;
 		margin-right: 0.2rem;
 		font-size: 0.8rem;
-		width: 4rem;
 		height: 2rem;
 	}
 `;
