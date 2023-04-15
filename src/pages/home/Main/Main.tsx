@@ -615,6 +615,14 @@ function Main() {
 						margin="0 auto"
 					/>
 				</DesktopAds>
+				<MobileAds style={{ marginTop: "1rem" }}>
+					<GoogleAdvertise
+						slot="1678485541"
+						width="320px"
+						height="50px"
+						margin="0 auto"
+					/>
+				</MobileAds>
 				<ListContainer>
 					{postcnt === 0 ? (
 						<NoSentences>
@@ -626,14 +634,6 @@ function Main() {
 					) : (
 						<>
 							<MenuContainer>
-								<MobileAds style={{ marginTop: "1rem" }}>
-									<GoogleAdvertise
-										slot="1678485541"
-										width="320px"
-										height="50px"
-										margin="0 auto"
-									/>
-								</MobileAds>
 								<Cnt>오늘 하루 {postcnt}개의 영작문이 있어요!</Cnt>
 								<SortMenu>
 									{sorts.map((s, idx) =>

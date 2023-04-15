@@ -43,7 +43,7 @@ export const Sentence = styled.div`
 	color: ${palette.gray2};
 	@media only screen and (max-width: 768px) {
 		font-size: 0.875rem;
-		width: 22rem;
+		width: 20.5rem;
 		justify-content: center;
 		margin: 0 auto;
 		padding-top: 1rem;
@@ -57,7 +57,7 @@ export const SentenceKor = styled.div`
 	padding-top: 0.7rem;
 	@media only screen and (max-width: 768px) {
 		font-size: 0.875rem;
-		width: 22rem;
+		width: 20.5rem;
 		justify-content: center;
 		margin: 0 auto;
 		padding-top: 0.5rem;
@@ -130,7 +130,7 @@ export const Icons = styled.div`
 `;
 
 export const AIIcon = styled.div`
-	background-color: ${palette.blue8};
+	background-color: ${palette.blue1};
 	color: ${palette.blue3};
 	font-family: Pretendard-Bold;
 	float: left;
@@ -179,9 +179,10 @@ export const Button = styled.div`
 export const ListContainer = styled.div`
 	width: 52.75rem;
 	margin: 0 auto;
-	padding-top: 3rem;
+	padding-top: 2rem;
 	@media only screen and (max-width: 768px) {
 		width: 20.5rem;
+		padding-top: 1rem;
 	}
 `;
 
