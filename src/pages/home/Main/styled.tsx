@@ -2,7 +2,7 @@ import styled from "styled-components";
 import palette from "../../../lib/palette";
 
 export const TodayStc = styled.div`
-	padding-top: 3rem;
+	padding-top: 2rem;
 `;
 
 export const Text = styled.div`
@@ -374,4 +374,58 @@ export const InputBut = styled.div<{ login: boolean }>`
 
 export const CenterSection = styled.div`
 	margin: 0 auto;
+	padding-top: 1rem;
+`;
+
+export const EventBanner = styled.div`
+	background-color: ${palette.blue2};
+	padding: 0.875rem 1.25rem;
+	width: 49.75rem;
+	margin: 0 auto;
+	border-radius: 0.625rem;
+	display: flex;
+	justify-content: space-between;
+	cursor: pointer;
+	@media only screen and (max-width: 768px) {
+		width: auto;
+		border-radius: 0rem;
+		font-size: 0.938rem;
+	}
+`;
+
+export const Notice = styled.div`
+	display: inline-block;
+	font-family: Pretendard-Bolder;
+	background-color: ${palette.blue8};
+	color: #ffffff;
+	padding: 0.325rem 0.725rem;
+	border-radius: 62.438rem;
+	@media only screen and (max-width: 768px) {
+		padding: 0rem 0.625rem;
+		height: 2rem;
+		line-height: 2rem;
+	}
+`;
+
+export const BannerText = styled.div`
+	display: inline-block;
+	width: 42rem;
+	text-align: left;
+	color: #ffffff;
+	font-family: Pretendard-Medium;
+	@media only screen and (max-width: 768px) {
+		margin-left: 1rem;
+		white-space: pre-line;
+	}
+`;
+
+export const RigthArrow = styled.div`
+	display: inline-block;
+	padding: 0.425rem 0.455rem 0.225rem 0.455rem;
+	background-color: #ffffff;
+	border-radius: 62.438rem;
+	color: ${palette.blue2};
+	@media only screen and (max-width: 768px) {
+		display: none;
+	}
 `;

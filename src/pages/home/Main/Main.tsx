@@ -27,9 +27,14 @@ import {
 	NoSentencesText,
 	AIIcon,
 	CenterSection,
+	EventBanner,
+	Notice,
+	BannerText,
+	RigthArrow,
 } from "./styled";
 import { Wrap } from "./../../../components/styled";
 import Copy from "../../../assets/icons/copy-icon.svg";
+import RightArrow from "../../../assets/icons/right-arrow-icon.svg";
 import Trans from "../../../assets/icons/trans-icon.svg";
 import {
 	useEffect,
@@ -552,7 +557,17 @@ function Main() {
 						onclick={closeResetPasswordConfirmModal}
 					/>
 				)}
-
+				<EventBanner>
+					<Notice>notice</Notice>
+					<BannerText>
+						{
+							"하루 한 문장 쓰기 챌런지 !! \n영어 실력도 높이고 상품도 받으세요 🎁"
+						}
+					</BannerText>
+					<RigthArrow>
+						<img src={RightArrow} />
+					</RigthArrow>
+				</EventBanner>
 				<TodayStc>
 					<DateComponent date={today} page={"main"} />
 					<Text>오늘의 구문을 사용하여 영어 글쓰기를 연습해 보세요.</Text>

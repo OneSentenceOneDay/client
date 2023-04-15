@@ -8,6 +8,7 @@ import {
 	Menudiv,
 	EventBut,
 	Right,
+	GiftIcon,
 } from "./styled";
 import Logo from "../../../assets/images/logo.svg";
 import Profile from "../../../assets/icons/profile-icon.svg";
@@ -115,7 +116,9 @@ function Header() {
 			<Wrap>
 				<img src={Logo} onClick={goHome} />
 				<Right>
-					<EventBut>EVENT</EventBut>
+					<EventBut>
+						<GiftIcon>🎁</GiftIcon>EVENT
+					</EventBut>
 					{localStorage.getItem("access_token") ? (
 						<>
 							<ProfileBut
