@@ -37,7 +37,8 @@ export const EventBut = styled.div`
 	color: #ffffff;
 	border-radius: 62.438rem;
 	@media only screen and (max-width: 700px) {
-		padding: 0.45rem 0.7rem;
+		padding: 0.35rem 0.7rem;
+		font-size: 0.938rem;
 	}
 `;
 
