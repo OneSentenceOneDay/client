@@ -130,8 +130,8 @@ export const Icons = styled.div`
 `;
 
 export const AIIcon = styled.div`
-	background-color: ${palette.blue1};
-	color: ${palette.blue3};
+	background-color: ${palette.blue8};
+	color: #ffffff;
 	font-family: Pretendard-Bold;
 	float: left;
 	// width: 6.1rem;
