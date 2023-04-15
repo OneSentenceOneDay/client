@@ -478,6 +478,11 @@ function Main() {
 		});
 	}
 
+	// ************************ go 이벤트창으로 ************************
+	const goEvent = () => {
+		navigate("/event");
+	};
+
 	if (loading) return <Loading />;
 
 	return (
@@ -557,7 +562,7 @@ function Main() {
 						onclick={closeResetPasswordConfirmModal}
 					/>
 				)}
-				<EventBanner>
+				<EventBanner onClick={goEvent}>
 					<Notice>notice</Notice>
 					<BannerText>
 						{

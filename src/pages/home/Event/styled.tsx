@@ -1,0 +1,133 @@
+import styled from "styled-components";
+import palette from "../../../lib/palette";
+
+export const Inner = styled.div`
+	padding: 3rem;
+`;
+
+export const EventIcon = styled.div`
+	font-family: Pretendard-Light;
+	font-size: 1rem;
+	color: ${palette.blue2};
+	padding: 0.375rem 0.175rem;
+	border-radius: 62.438rem;
+	border: 0.063rem solid ${palette.blue2};
+	background-color: #ffffff;
+	width: 4.5rem;
+	margin: 0 auto;
+`;
+
+export const Text1 = styled.div`
+	font-family: Pretendard-Light;
+	color: ${palette.blue2};
+	font-size: 1.5rem;
+	margin-top: 1rem;
+`;
+export const Text2 = styled.div`
+	font-family: Pretendard-Bold;
+	color: ${palette.blue8};
+	font-size: 2rem;
+	margin-top: 1rem;
+	margin-bottom: 1.5rem;
+`;
+export const Text3 = styled.div<{ flag: boolean }>`
+	white-space: pre-line;
+	// font-family: Pretendard-Regular;
+	color: ${(props) => (props.flag ? palette.blue2 : palette.gray2)};
+	line-height: 1.5rem;
+	font-size: 1.125rem;
+	margin-bottom: ${(props) => (props.flag ? "2rem" : "0rem")};
+	font-family: ${(props) =>
+		props.flag ? "Pretendard-Bold" : "Pretendard-Regular"};
+`;
+
+export const WhiteBox = styled.div`
+	background-color: #ffffff;
+	padding-top: 2rem;
+	padding-bottom: 1rem;
+	width: 49.75rem;
+	margin: 0 auto;
+	border-radius: 0.625rem 0.625rem 0rem 0rem;
+`;
+
+export const Text4 = styled.div`
+	color: ${palette.blue8};
+	font-size: 1rem;
+	font-family: Pretendard-Light;
+	margin-top: 1rem;
+`;
+
+export const Text5 = styled.div`
+	color: ${palette.blue8};
+	font-size: 1.125rem;
+	font-family: Pretendard-Medium;
+	margin: 0.5rem 0rem;
+`;
+
+export const PinkBox = styled.div`
+	background-color: #ffe8eb;
+	padding: 2rem 0rem;
+	width: 49.75rem;
+	margin: 0 auto;
+	border-radius: 0rem 0rem 0.625rem 0.625rem;
+`;
+export const Title = styled.div`
+	color: ${palette.blue2};
+	font-size: 1.125rem;
+	font-family: Pretendard-Medium;
+	background-color: #ffffff;
+	width: 4.688rem;
+	margin: 0 auto;
+	padding: 0.45rem 0.9rem;
+	border-radius: 0.625rem;
+`;
+
+export const Item = styled.div`
+	margin-top: 1.5rem;
+	img {
+		width: 3.3rem;
+	}
+`;
+
+export const Texts = styled.div`
+	display: inline-block;
+	text-align: left;
+	margin-left: 1rem;
+	width: 18.5rem;
+`;
+export const Text6 = styled.div<{ flag: boolean }>`
+	color: ${palette.gray2};
+	font-family: ${(props) =>
+		props.flag ? "Pretendard-Bold" : "Pretendard-Regular"};
+	font-size: 1.125rem;
+	line-height: 1.5rem;
+`;
+
+export const BlueBox = styled.div`
+	background-color: ${palette.blue2};
+	padding: 2rem;
+	width: 45.75rem;
+	margin: 2rem auto;
+	border-radius: 0.625rem 0.625rem 0.625rem 0.625rem;
+`;
+export const Text7 = styled.div<{ flag: boolean }>`
+	white-space: pre-line;
+	font-family: Pretendard-Regular;
+	line-height: 1.8rem;
+	color: #ffffff;
+	font-size: ${(props) => (props.flag ? "2.5rem" : "1.125rem")};
+	margin-bottom: 1rem;
+`;
+
+export const FeedbackBut = styled.div`
+	margin-top: 1rem;
+	width: 22.5rem;
+	background-color: #ffffff;
+	margin: 0 auto;
+	padding: 1rem 0.625rem;
+	color: ${palette.blue2};
+	font-family: Pretendard-Regular;
+	font-size: 1.125rem;
+	border-radius: 0.625rem 0.625rem 0.625rem 0.625rem;
+	cursor: pointer;
+`;

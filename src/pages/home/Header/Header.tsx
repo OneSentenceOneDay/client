@@ -90,6 +90,9 @@ function Header() {
 		navigate("/");
 		window.location.reload(); // 새로고침
 	};
+	const goEvent = () => {
+		navigate("/event");
+	};
 
 	// ************************ open login modal ************************
 	const onClickToggleModal = () => {
@@ -116,7 +119,7 @@ function Header() {
 			<Wrap>
 				<img src={Logo} onClick={goHome} />
 				<Right>
-					<EventBut>
+					<EventBut onClick={goEvent}>
 						<GiftIcon>🎁</GiftIcon>EVENT
 					</EventBut>
 					{localStorage.getItem("access_token") ? (
