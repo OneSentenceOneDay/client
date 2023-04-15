@@ -1,6 +1,14 @@
 import { useEffect, useRef, useState, useCallback } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
-import { Wrap, LoginBut, Menu, ProfileBut, Menudiv } from "./styled";
+import {
+	Wrap,
+	LoginBut,
+	Menu,
+	ProfileBut,
+	Menudiv,
+	EventBut,
+	Right,
+} from "./styled";
 import Logo from "../../../assets/images/logo.svg";
 import Profile from "../../../assets/icons/profile-icon.svg";
 import axios from "axios";
@@ -106,21 +114,24 @@ function Header() {
 		<>
 			<Wrap>
 				<img src={Logo} onClick={goHome} />
-				{localStorage.getItem("access_token") ? (
-					<>
-						<ProfileBut
-							ref={outsideRef}
-							onClick={() => {
-								setView(!view);
-							}}
-						>
-							<img src={Profile} />
-							{view && <Dropdown />}
-						</ProfileBut>
-					</>
-				) : (
-					<LoginBut onClick={onClickToggleModal}>로그인</LoginBut>
-				)}
+				<Right>
+					<EventBut>EVENT</EventBut>
+					{localStorage.getItem("access_token") ? (
+						<>
+							<ProfileBut
+								ref={outsideRef}
+								onClick={() => {
+									setView(!view);
+								}}
+							>
+								<img src={Profile} />
+								{view && <Dropdown />}
+							</ProfileBut>
+						</>
+					) : (
+						<LoginBut onClick={onClickToggleModal}>로그인</LoginBut>
+					)}
+				</Right>
 			</Wrap>
 			<Outlet context={[openLogin, setOpenLogin]} />
 		</>

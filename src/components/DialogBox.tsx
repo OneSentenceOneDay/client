@@ -5,7 +5,7 @@ export const DialogBox = styled.dialog<{ page: string }>`
 	padding: 2.5rem 0;
 	width: ${(props) => (props.page === "modal" ? "32rem" : "35rem")};
 	height: ${(props) => (props.page === "signup" ? "80%" : "")};
-	max-height: 50rem;
+	max-height: 45rem;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -16,7 +16,7 @@ export const DialogBox = styled.dialog<{ page: string }>`
 	background-color: #ffffff;
 	z-index: 100000;
 	top: ${(props) => (props.page === "modal" ? "25%" : "0rem")};
-	overflow-y: scroll;
+	overflow-y: auto;
 	// animation: modal-bg-show 0.3s;
 	img {
 		width: 7rem;

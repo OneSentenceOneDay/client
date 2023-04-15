@@ -4,34 +4,49 @@ import palette from "../../../lib/palette";
 export const Wrap = styled.div`
 	background-color: ${palette.blue1};
 	height: 5rem;
-	line-height: 5rem;
 	margin-left: -0.55rem;
 	margin-right: -0.4rem;
 	margin-top: -0.5rem;
 	border-bottom: 1px solid ${palette.gray1};
+	display: flex;
+	justify-content: space-between;
 	img {
 		width: 5rem;
 		vertical-align: middle;
 		margin-left: 3rem;
 		cursor: pointer;
-		@media only screen and (max-width: 700px) {
+	}
+	@media only screen and (max-width: 768px) {
+		margin-right: -0.55rem;
+		img {
 			margin-left: 1.5rem;
 			width: 4rem;
 		}
 	}
-	display: flex;
-	justify-content: space-between;
-	@media only screen and (max-width: 768px) {
-		margin-right: -0.55rem;
-	}
+`;
+
+export const Right = styled.div``;
+
+export const EventBut = styled.div`
+	display: inline-block;
+	padding: 0.55rem 1.25rem;
+	background-color: ${palette.blue8};
+	cursor: pointer;
+	font-family: Pretendard-Bolder;
+	font-size: 1.125rem;
+	color: #ffffff;
+	border-radius: 62.438rem;
 `;
 
 export const LoginBut = styled.div`
+	display: inline-block;
 	font-size: 1rem;
 	margin-right: 3rem;
+	margin-left: 2rem;
 	color: ${palette.blue2};
 	font-family: Pretendard-Bold;
 	cursor: pointer;
+	line-height: 5rem;
 	@media only screen and (max-width: 700px) {
 		margin-right: 1.5rem;
 	}
@@ -40,6 +55,7 @@ export const LoginBut = styled.div`
 export const ProfileBut = styled.div`
 	margin-right: 3rem;
 	display: inline-block;
+	line-height: 5rem;
 	img {
 		width: 2.5rem;
 		cursor: pointer;
