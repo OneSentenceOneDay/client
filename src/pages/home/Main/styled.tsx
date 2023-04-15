@@ -375,6 +375,9 @@ export const InputBut = styled.div<{ login: boolean }>`
 export const CenterSection = styled.div`
 	margin: 0 auto;
 	padding-top: 1rem;
+	@media only screen and (max-width: 768px) {
+		padding-top: 0rem;
+	}
 `;
 
 export const EventBanner = styled.div`
