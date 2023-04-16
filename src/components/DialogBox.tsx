@@ -14,8 +14,8 @@ export const DialogBox = styled.dialog<{ page: string }>`
 	box-shadow: 0rem 0.125rem 1.5rem rgba(0, 0, 0, 0.25);
 	box-sizing: border-box;
 	background-color: #ffffff;
-	z-index: 100000;
-	top: ${(props) => (props.page === "modal" ? "25%" : "0rem")};
+	z-index: 1000000;
+	top: ${(props) => (props.page === "modal" ? "15%" : "0rem")};
 	overflow-y: auto;
 	// animation: modal-bg-show 0.3s;
 	img {

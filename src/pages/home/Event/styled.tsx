@@ -68,6 +68,7 @@ export const WhiteBox = styled.div`
 	background-color: #ffffff;
 	padding-top: 2rem;
 	padding-bottom: 1rem;
+	width: 49.75rem;
 	margin: 0 auto;
 	border-radius: 0.625rem 0.625rem 0rem 0rem;
 	@media only screen and (max-width: 768px) {
@@ -201,5 +202,38 @@ export const FeedbackBut = styled.div`
 	@media only screen and (max-width: 768px) {
 		font-size: 0.875rem;
 		width: 18rem;
+	}
+`;
+
+export const CloseModal = styled.div`
+	width: 27.375rem;
+	text-align: right;
+	margin-top: 3rem;
+	margin-bottom: -1rem;
+	color: #4f4f4f;
+	font-family: Pretendard-Regular;
+	font-size: 1rem;
+	div {
+		display: inline-block;
+		margin-left: 1rem;
+		cursor: pointer;
+		&: hover {
+			opacity: 0.9;
+		}
+	}
+	input {
+		margin-right: 0.3rem;
+	}
+	label {
+		&: hover {
+			opacity: 0.9;
+			cursor: pointer;
+		}
+	}
+	@media only screen and (max-width: 768px) {
+		width: 17.75rem;
+		display: flex;
+		justify-content: space-between;
+		font-size: 0.875rem;
 	}
 `;

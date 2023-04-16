@@ -1,12 +1,15 @@
 import AppRouter from "./routes/AppRouter";
 import { GoogleOAuthProvider } from "@react-oauth/google";
+import { CookiesProvider } from "react-cookie";
 
 function App() {
 	const clientId: string = process.env.REACT_APP_CLIENT_ID!;
 	return (
 		<>
 			<GoogleOAuthProvider clientId={clientId}>
-				<AppRouter />
+				<CookiesProvider>
+					<AppRouter />
+				</CookiesProvider>
 			</GoogleOAuthProvider>
 		</>
 	);

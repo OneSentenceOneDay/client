@@ -63,6 +63,8 @@ import { DesktopAds, MobileAds } from "./../../../components/styled";
 import { Input } from "../../../components/Input";
 import { DialogBox } from "components/DialogBox";
 import tokenNotValid from "apis/tokenNotValid";
+import EventModal from "../Event/EventModal";
+import { useCookies } from "react-cookie";
 
 const BASE_URL = process.env.REACT_APP_API;
 
@@ -478,10 +480,33 @@ function Main() {
 		});
 	}
 
-	// ************************ go 이벤트창으로 ************************
+	// ************************ 이벤트 페이지로 ************************
 	const goEvent = () => {
 		navigate("/event");
 	};
+
+	// ************************ 이벤트 팝업창 ************************
+	const [eventPopup, setEventPopup] = useState<boolean>(true);
+	const [hasCookie, setHasCookie] = useState(true);
+	const [appCookies, setAppCookies] = useCookies(); // 쿠키 목록 불러옴
+	// 만료 시기 설정 함수
+	const getExpiredDate = (days: number) => {
+		const date = new Date();
+		date.setDate(date.getDate() + days);
+		return date;
+	};
+
+	const closeModalUntilExpires = () => {
+		if (!appCookies) return; // 쿠키에 있을 경우 return
+		const expires = getExpiredDate(1);
+		setAppCookies("MODAL_EXPIRES", true, { path: "/", expires });
+		setEventPopup(false);
+	};
+
+	useEffect(() => {
+		if (appCookies["MODAL_EXPIRES"]) return;
+		setHasCookie(false);
+	}, []);
 
 	if (loading) return <Loading />;
 
@@ -494,6 +519,12 @@ function Main() {
 				<GoogleAdvertise slot="2282673475" width="250px" height="500px" />
 			</DesktopAds>
 			<CenterSection>
+				{eventPopup && !hasCookie && (
+					<EventModal
+						closeModal={() => setEventPopup(false)}
+						closeModalUntilExpires={closeModalUntilExpires}
+					/>
+				)}
 				{openLogin && (
 					<Login
 						openLogin={openLogin}
