@@ -2,6 +2,7 @@ import styled from "styled-components";
 import palette from "lib/palette";
 
 export const DialogBox = styled.dialog<{ page: string }>`
+	position: fixed;
 	padding: 2.5rem 0;
 	width: ${(props) => (props.page === "modal" ? "32rem" : "35rem")};
 	height: ${(props) => (props.page === "signup" ? "80%" : "")};
@@ -15,7 +16,8 @@ export const DialogBox = styled.dialog<{ page: string }>`
 	box-sizing: border-box;
 	background-color: #ffffff;
 	z-index: 1000000;
-	top: ${(props) => (props.page === "modal" ? "15%" : "0rem")};
+	// top: ${(props) => (props.page === "modal" ? "15%" : "0rem")};
+	top: 15%;
 	overflow-y: auto;
 	// animation: modal-bg-show 0.3s;
 	img {

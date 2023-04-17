@@ -65,6 +65,7 @@ import { DialogBox } from "components/DialogBox";
 import tokenNotValid from "apis/tokenNotValid";
 import EventModal from "../Event/EventModal";
 import { useCookies } from "react-cookie";
+import Tooltip from "./Tooltip";
 
 const BASE_URL = process.env.REACT_APP_API;
 
@@ -522,6 +523,9 @@ function Main() {
 		setHasCookie(false);
 	}, []);
 
+	// ************************ tooltip ************************
+	const [tooltip, setTooltip] = useState<boolean>(true);
+
 	if (loading) return <Loading />;
 
 	return (
@@ -641,6 +645,14 @@ function Main() {
 							<BlueboxModal body={trans} />
 						</div>
 					)}
+					{tooltip && (
+						<Tooltip
+							closeTooltip={() => {
+								setTooltip(false);
+							}}
+						/>
+					)}
+
 					<textarea
 						placeholder={sentence.sentence + " 를 사용하여 영작하기"}
 						onChange={(e) => {
@@ -648,6 +660,7 @@ function Main() {
 						}}
 						value={writing}
 					/>
+
 					<Menu>
 						<Icons>
 							<img
