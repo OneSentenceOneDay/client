@@ -43,14 +43,15 @@ function Login({
 					localStorage.setItem("nickname", res.data.user.nickname);
 					localStorage.setItem("subscription", res.data.user.subscription);
 					flag[1](false); // cloase login modal
-					navigate("/");
+					// navigate("/");
 					// 최초 로그인 확인
 					if (res.data.user.is_first) {
 						setGoogle(true);
 					} else {
-						window.location.reload(); // 새로고침
+						// window.location.reload(); // 새로고침
 					}
 					setLoading(false);
+					console.log(res);
 				})
 				.catch((e) => {
 					setLoading(false);
@@ -99,7 +100,7 @@ function Login({
 				localStorage.setItem("subscription", res.data.user.subscription);
 				flag[1](false); // cloase login modal
 				document.body.style.overflow = "unset";
-				navigate("/");
+				// navigate("/");
 				// 최초 로그인 확인
 				if (res.data.user.is_first && !res.data.user.subscription) {
 					setFirst(true);

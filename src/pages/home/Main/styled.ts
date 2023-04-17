@@ -80,7 +80,7 @@ export const Writing = styled.div<{ noWarning: boolean | null }>`
 			color: ${palette.gray4};
 		}
 		@media only screen and (max-width: 768px) {
-			width: 18rem;
+			width: 21.375rem;
 			height: 7rem;
 			font-size: 0.9rem;
 		}

@@ -38,7 +38,7 @@ const Bluebox = styled.dialog`
 	flex-direction: row;
 	box-sizing: border-box;
 	background-color: #ffffff;
-	z-index: 100000;
+	z-index: 999;
 	border: 0.063rem solid ${palette.blue2};
 	border-radius: 0.625rem;
 	padding: 1.8rem;

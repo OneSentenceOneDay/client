@@ -502,7 +502,7 @@ function Main() {
 
 	// ************************ 이벤트 팝업창 ************************
 	const [eventPopup, setEventPopup] = useState<boolean>(true);
-	const [hasCookie, setHasCookie] = useState(true);
+	const [hasCookie, setHasCookie] = useState<boolean>(true);
 	const [appCookies, setAppCookies] = useCookies(); // 쿠키 목록 불러옴
 	// 만료 시기 설정 함수
 	const getExpiredDate = (days: number) => {
@@ -512,7 +512,7 @@ function Main() {
 	};
 
 	const closeModalUntilExpires = () => {
-		if (!appCookies) return; // 쿠키에 있을 경우 return
+		if (appCookies["MODAL_EXPIRES"]) return; // 쿠키에 있을 경우 return
 		const expires = getExpiredDate(1);
 		setAppCookies("MODAL_EXPIRES", true, { path: "/", expires });
 		setEventPopup(false);
@@ -525,6 +525,19 @@ function Main() {
 
 	// ************************ tooltip ************************
 	const [tooltip, setTooltip] = useState<boolean>(true);
+	const [hasTooltip, setHasTooltip] = useState<boolean>(true);
+
+	const closeTooltipUntilExpires = () => {
+		if (appCookies["TOOLTIP_EXPIRES"]) return; // 쿠키에 있을 경우 return
+		const expires = getExpiredDate(1095);
+		setAppCookies("TOOLTIP_EXPIRES", true, { path: "/", expires });
+		setTooltip(false);
+	};
+
+	useEffect(() => {
+		if (appCookies["TOOLTIP_EXPIRES"]) return;
+		setHasTooltip(false);
+	}, []);
 
 	if (loading) return <Loading />;
 
@@ -645,14 +658,9 @@ function Main() {
 							<BlueboxModal body={trans} />
 						</div>
 					)}
-					{tooltip && (
-						<Tooltip
-							closeTooltip={() => {
-								setTooltip(false);
-							}}
-						/>
+					{tooltip && !hasTooltip && (
+						<Tooltip closeTooltip={closeTooltipUntilExpires} />
 					)}
-
 					<textarea
 						placeholder={sentence.sentence + " 를 사용하여 영작하기"}
 						onChange={(e) => {

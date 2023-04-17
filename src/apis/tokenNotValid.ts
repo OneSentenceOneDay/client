@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const BASE_URL = process.env.REACT_APP_API;
 
@@ -42,3 +42,11 @@ function tokenNotValid() {
 }
 
 export default tokenNotValid;
+
+// useEffect(() => {
+// 	setInterval(() => {
+// 		if (localStorage.getItem("access_token")) {
+// 			tokenNotValid();
+// 		}
+// 	});
+// });

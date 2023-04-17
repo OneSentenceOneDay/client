@@ -5,6 +5,6 @@ export const Backdrop = styled.div`
 	height: 100vh;
 	position: fixed;
 	top: 0;
-	z-index: 9999;
+	z-index: 100;
 	background-color: rgba(0, 0, 0, 0.2);
 `;

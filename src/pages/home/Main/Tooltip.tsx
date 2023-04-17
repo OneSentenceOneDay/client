@@ -21,7 +21,7 @@ function Tooltip({ closeTooltip }: tooltipProps) {
 export default Tooltip;
 
 const TooltipBox = styled.dialog`
-	z-index: 1000;
+	z-index: 99;
 	display: flex;
 	width: 26rem;
 	background-color: rgba(0, 0, 0, 0.55);
@@ -29,7 +29,6 @@ const TooltipBox = styled.dialog`
 	border-radius: 0.625rem;
 	color: #ffffff;
 	position: absolute;
-	// top: 10rem;
 	margin-top: 5.6rem;
 	right: 24.5rem;
 	&:: after {
@@ -44,6 +43,11 @@ const TooltipBox = styled.dialog`
 		bottom: -12px;
 		left: 41px;
 	}
+	@media only screen and (max-width: 768px) {
+		width: 21.875rem;
+		margin-top: 2rem;
+		right: 0rem;
+	}
 `;
 
 const Text = styled.div`
@@ -54,6 +58,9 @@ const Text = styled.div`
 	line-height: 1.5rem;
 	font-family: Pretendard-Light;
 	color: #ffffff;
+	@media only screen and (max-width: 768px) {
+		font-size: 0.813rem;
+	}
 `;
 
 const Close = styled.div`

@@ -15,7 +15,7 @@ export const DialogBox = styled.dialog<{ page: string }>`
 	box-shadow: 0rem 0.125rem 1.5rem rgba(0, 0, 0, 0.25);
 	box-sizing: border-box;
 	background-color: #ffffff;
-	z-index: 1000000;
+	z-index: 999;
 	top: 50%;
 	-webkit-transform: translate(0, -50%);
 	-moz-transform: translate(0, -50%);
