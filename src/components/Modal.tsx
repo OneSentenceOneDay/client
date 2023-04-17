@@ -20,7 +20,7 @@ export function Modal({
 		<>
 			<DialogBox page={"modal"}>
 				{title && <Title>{title}</Title>}
-				<Body>{body}</Body>
+				<Body flag={title ? false : true}>{body}</Body>
 				{input && (
 					<Input noWarning={true} page="modal">
 						<input

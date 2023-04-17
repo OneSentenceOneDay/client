@@ -31,12 +31,12 @@ export const Title = styled.div`
 	font-family: Pretendard-Medium;
 `;
 
-export const Body = styled.div`
+export const Body = styled.div<{ flag: boolean }>`
 	white-space: pre-line;
-	font-size: 1rem;
+	font-size: ${(props) => (props.flag ? "1.25rem" : "1rem")};
 	font-family: Pretendard-Light;
 	line-height: 1.7rem;
-	margin-top: 2rem;
+	margin-top: ${(props) => (props.flag ? "0rem" : "2rem")};
 	margin-bottom: 1rem;
 	@media only screen and (max-width: 768px) {
 		margin-top: 1rem;

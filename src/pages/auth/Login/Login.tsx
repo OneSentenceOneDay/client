@@ -6,7 +6,7 @@ import Google from "../../../assets/icons/google-icon.svg";
 import { useState, useCallback, useEffect } from "react";
 import Signup from "../Signup/Signup";
 import axios from "axios";
-import { useOutletContext } from "react-router-dom";
+import { useNavigate, useOutletContext } from "react-router-dom";
 import { useGoogleLogin } from "@react-oauth/google";
 import { WarningText } from "pages/home/Main/styled";
 import Loading from "components/Loading";
@@ -24,7 +24,7 @@ function Login({
 	openResetPasswordModal,
 }: any) {
 	const [loading, setLoading] = useState(false);
-
+	const navigate = useNavigate();
 	// ************************ Google login ************************
 	const googleLogin = useGoogleLogin({
 		onSuccess: async (res) => {
@@ -43,6 +43,7 @@ function Login({
 					localStorage.setItem("nickname", res.data.user.nickname);
 					localStorage.setItem("subscription", res.data.user.subscription);
 					flag[1](false); // cloase login modal
+					navigate("/");
 					// 최초 로그인 확인
 					if (res.data.user.is_first) {
 						setGoogle(true);
@@ -98,6 +99,7 @@ function Login({
 				localStorage.setItem("subscription", res.data.user.subscription);
 				flag[1](false); // cloase login modal
 				document.body.style.overflow = "unset";
+				navigate("/");
 				// 최초 로그인 확인
 				if (res.data.user.is_first && !res.data.user.subscription) {
 					setFirst(true);

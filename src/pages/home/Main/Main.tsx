@@ -482,7 +482,21 @@ function Main() {
 
 	// ************************ 이벤트 페이지로 ************************
 	const goEvent = () => {
-		navigate("/event");
+		navigate("/event", {
+			state: {
+				openLogin: openLogin,
+				setOpenLogin: setOpenLogin,
+				setFirst: setFirst,
+				setFirstGoogle: setFirstGoogle,
+				openResetPasswordModal: openResetPasswordModal,
+				resetPasswordModal: resetPasswordModal,
+				resetPassword: resetPassword,
+				closeResetPasswordModal: closeResetPasswordModal,
+				setEmail: setEmail,
+				resetPasswordConfirmModal: resetPasswordConfirmModal,
+				closeResetPasswordConfirmModal: closeResetPasswordConfirmModal,
+			},
+		});
 	};
 
 	// ************************ 이벤트 팝업창 ************************

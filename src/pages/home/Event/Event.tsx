@@ -23,10 +23,68 @@ import Munsang2 from "assets/images/munsang30000.svg";
 import Computer from "assets/images/computer.svg";
 import Calendar from "assets/images/calendar.svg";
 import FooterComponent from "components/Footer";
+import { useState, Dispatch, SetStateAction } from "react";
+import FeedbackModal from "../Feedback/FeedbackModal";
+import Login from "pages/auth/Login/Login";
+import { Modal } from "components/Modal";
+import { useLocation } from "react-router-dom";
 
 function Event() {
+	const [openFeedbackModal, setOpenFeedbackModal] = useState<boolean>(false);
+
+	const location = useLocation();
+	const state = location.state as {
+		openLogin: boolean;
+		setOpenLogin: Dispatch<SetStateAction<boolean>>;
+		setFirst: Dispatch<SetStateAction<boolean>>;
+		setFirstGoogle: Dispatch<SetStateAction<boolean>>;
+		openResetPasswordModal: boolean;
+		resetPasswordModal: boolean;
+		resetPassword: boolean;
+		closeResetPasswordModal: boolean;
+		setEmail: Dispatch<SetStateAction<boolean>>;
+		resetPasswordConfirmModal: boolean;
+		closeResetPasswordConfirmModal: boolean;
+	};
+	const [openLogin, setOpenLogin] = useState<boolean>(false); // login modal
+
 	return (
 		<Wrap>
+			{openFeedbackModal && (
+				<FeedbackModal
+					closeModal={() => {
+						setOpenFeedbackModal(false);
+					}}
+				/>
+			)}
+			{/* {openLogin && (
+				<Login
+					openLogin={state.openLogin}
+					setOpenLogin={state.setOpenLogin}
+					setFirst={state.setFirst}
+					setGoogle={state.setFirstGoogle}
+					openResetPasswordModal={state.openResetPasswordModal}
+				/>
+			)}
+			{state.resetPasswordModal && (
+				<Modal
+					body="가입하신 Email 주소를 입력해주세요"
+					button="확인"
+					button2="취소"
+					onclick={state.resetPassword}
+					onclick2={state.closeResetPasswordModal}
+					input={true}
+					setState={state.setEmail}
+					placeholder="Email"
+				/>
+			)}
+			{state.resetPasswordConfirmModal && (
+				<Modal
+					body={"가입한 이메일로 \n비밀번호를 재설정 링크를 보냈습니다"}
+					button={"확인"}
+					onclick={state.closeResetPasswordConfirmModal}
+				/>
+			)} */}
 			<Inner>
 				<EventIcon>EVENT</EventIcon>
 				<Text1>하루 한 문장 영작 챌런지!</Text1>
@@ -74,7 +132,13 @@ function Event() {
 							"osod에서 영어 학습을 하면서 느낀\n좋은 점 또는 불편한 점을 피드백으로 보내주세요.\n더욱 도움이 되는 영어 작문 학습 사이트 만들어 볼게요!"
 						}
 					</Text7>
-					<FeedbackBut>피드백 보내기</FeedbackBut>
+					<FeedbackBut
+						onClick={() => {
+							setOpenFeedbackModal(true);
+						}}
+					>
+						피드백 보내기
+					</FeedbackBut>
 				</BlueBox>
 				<FooterComponent />
 			</Inner>

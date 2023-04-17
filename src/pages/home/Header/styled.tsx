@@ -68,7 +68,6 @@ export const LoginBut = styled.div`
 export const ProfileBut = styled.div`
 	margin-right: 3rem;
 	display: inline-block;
-	line-height: 5rem;
 	img {
 		width: 2.5rem;
 		cursor: pointer;
