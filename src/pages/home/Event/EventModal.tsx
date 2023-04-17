@@ -4,14 +4,15 @@ import { DialogBox } from "components/DialogBox";
 import { EventIcon, Text1, Text2, Text3, CloseModal } from "./styled";
 import { useCallback } from "react";
 
-interface IModalProps {
+type modalProps = {
 	closeModal: () => void;
 	closeModalUntilExpires: () => void;
-}
+};
 
-function EventModal({ closeModal, closeModalUntilExpires }: IModalProps) {
+function EventModal({ closeModal, closeModalUntilExpires }: modalProps) {
 	const onClickToggleModal = useCallback(() => {
 		closeModal();
+		document.body.style.overflow = "unset";
 	}, []);
 
 	return (

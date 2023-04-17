@@ -1,11 +1,11 @@
 import styled from "styled-components";
 import palette from "lib/palette";
 
-type tooltip = {
+type tooltipProps = {
 	closeTooltip: () => void;
 };
 
-function Tooltip({ closeTooltip }: tooltip) {
+function Tooltip({ closeTooltip }: tooltipProps) {
 	return (
 		<TooltipBox>
 			<Text>
@@ -30,7 +30,7 @@ const TooltipBox = styled.dialog`
 	color: #ffffff;
 	position: absolute;
 	// top: 10rem;
-	margin-top: 5.5rem;
+	margin-top: 5.6rem;
 	right: 24.5rem;
 	&:: after {
 		content: "";

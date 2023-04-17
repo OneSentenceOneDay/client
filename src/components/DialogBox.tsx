@@ -16,8 +16,13 @@ export const DialogBox = styled.dialog<{ page: string }>`
 	box-sizing: border-box;
 	background-color: #ffffff;
 	z-index: 1000000;
-	// top: ${(props) => (props.page === "modal" ? "15%" : "0rem")};
-	top: 15%;
+	top: 50%;
+	-webkit-transform: translate(0, -50%);
+	-moz-transform: translate(0, -50%);
+	-ms-transform: translate(0, -50%);
+	-o-transform: translate(0, -50%);
+	transform: translate(0, -50%);
+
 	overflow-y: auto;
 	// animation: modal-bg-show 0.3s;
 	img {

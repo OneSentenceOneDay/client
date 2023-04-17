@@ -32,21 +32,21 @@ import { useLocation } from "react-router-dom";
 function Event() {
 	const [openFeedbackModal, setOpenFeedbackModal] = useState<boolean>(false);
 
-	const location = useLocation();
-	const state = location.state as {
-		openLogin: boolean;
-		setOpenLogin: Dispatch<SetStateAction<boolean>>;
-		setFirst: Dispatch<SetStateAction<boolean>>;
-		setFirstGoogle: Dispatch<SetStateAction<boolean>>;
-		openResetPasswordModal: boolean;
-		resetPasswordModal: boolean;
-		resetPassword: boolean;
-		closeResetPasswordModal: boolean;
-		setEmail: Dispatch<SetStateAction<boolean>>;
-		resetPasswordConfirmModal: boolean;
-		closeResetPasswordConfirmModal: boolean;
-	};
-	const [openLogin, setOpenLogin] = useState<boolean>(false); // login modal
+	// const location = useLocation();
+	// const state = location.state as {
+	// 	openLogin: boolean;
+	// 	setOpenLogin: Dispatch<SetStateAction<boolean>>;
+	// 	setFirst: Dispatch<SetStateAction<boolean>>;
+	// 	setFirstGoogle: Dispatch<SetStateAction<boolean>>;
+	// 	openResetPasswordModal: boolean;
+	// 	resetPasswordModal: boolean;
+	// 	resetPassword: boolean;
+	// 	closeResetPasswordModal: boolean;
+	// 	setEmail: Dispatch<SetStateAction<boolean>>;
+	// 	resetPasswordConfirmModal: boolean;
+	// 	closeResetPasswordConfirmModal: boolean;
+	// };
+	// const [openLogin, setOpenLogin] = useState<boolean>(false); // login modal
 
 	return (
 		<Wrap>
@@ -135,6 +135,7 @@ function Event() {
 					<FeedbackBut
 						onClick={() => {
 							setOpenFeedbackModal(true);
+							// document.body.style.overflow = "hidden";
 						}}
 					>
 						피드백 보내기

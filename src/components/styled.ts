@@ -33,7 +33,7 @@ export const Title = styled.div`
 
 export const Body = styled.div<{ flag: boolean }>`
 	white-space: pre-line;
-	font-size: ${(props) => (props.flag ? "1.25rem" : "1rem")};
+	font-size: ${(props) => (props.flag ? "1.1rem" : "1rem")};
 	font-family: Pretendard-Light;
 	line-height: 1.7rem;
 	margin-top: ${(props) => (props.flag ? "0rem" : "2rem")};
