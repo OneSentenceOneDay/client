@@ -4,7 +4,7 @@ import { CookiesProvider } from "react-cookie";
 
 function App() {
 	const clientId: string = process.env.REACT_APP_CLIENT_ID!;
-	document.cookie = "SameSite=None";
+	// document.cookie = "cookie2=value2; SameSite=None; Secure";
 	return (
 		<>
 			<GoogleOAuthProvider clientId={clientId}>

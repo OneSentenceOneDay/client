@@ -44,9 +44,10 @@ const TooltipBox = styled.dialog`
 		left: 41px;
 	}
 	@media only screen and (max-width: 768px) {
-		width: 21.875rem;
+		width: 20.6rem;
 		margin-top: 2rem;
 		right: 0rem;
+		margin-top: 2.5rem;
 	}
 `;
 
@@ -69,4 +70,7 @@ const Close = styled.div`
 	font-size: 1rem;
 	cursor: pointer;
 	height: 1rem;
+	@media only screen and (max-width: 768px) {
+		margin-left: 1rem;
+	}
 `;
