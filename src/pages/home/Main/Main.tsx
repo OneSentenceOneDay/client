@@ -282,10 +282,10 @@ function Main() {
 	// ************************ 로그인 모달 ************************
 	const [openLogin, setOpenLogin] = useOutletContext<any>();
 
-	// ************************ 구글 첫 로그인 시 이름 및 닉네임 설정 ************************
+	// ************************ 구글 첫 로그인 시 닉네임 설정 ************************
 	const [firstGoogle, setFirstGoogle] = useState<boolean>(false); // 구글 로그인 처음인지 유무
 	const [nickname, setNickname] = useState<string>("");
-	const [nameError, setNameError] = useState<boolean>(true); // 이름 혹은 닉네임 에러 확인
+	const [nameError, setNameError] = useState<boolean>(true); // 닉네임 에러 확인
 
 	function setNameAndNickname() {
 		axios({
@@ -308,10 +308,6 @@ function Main() {
 				setNameError(false);
 			});
 	}
-
-	useEffect(() => {
-		setNameError(true);
-	}, [nickname]);
 
 	// ************************ 구독 신청 ************************
 	const [subModal, setSubModal] = useState<boolean>(false);
@@ -578,25 +574,15 @@ function Main() {
 					/>
 				)}
 				{firstGoogle && (
-					<ModalContainer>
-						<DialogBox page={"login"}>
-							<Text style={{ marginBottom: "1rem" }}>
-								닉네임을 설정해 주세요
-							</Text>
-							<Input noWarning={nameError} page="">
-								<input
-									placeholder="Nickname"
-									onChange={(e) => {
-										setNickname(e.target.value);
-									}}
-								/>
-							</Input>
-							<WarningText noWarning={nameError} page="login">
-								* 중복이거나 잘못된 닉네임입니다
-							</WarningText>
-							<button onClick={setNameAndNickname}>확인</button>
-						</DialogBox>
-					</ModalContainer>
+					<Modal
+						body={"닉네임을 설정해 주세요"}
+						button={"확인"}
+						onclick={setNameAndNickname}
+						input={true}
+						setState={setNickname}
+						placeholder="Nickname"
+						warning={nameError}
+					/>
 				)}
 				{subModal && (
 					<Modal

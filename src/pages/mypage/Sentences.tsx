@@ -245,6 +245,7 @@ function Sectences() {
 	const [nicknameChangeModal, setNicknameChangeModal] =
 		useState<boolean>(false);
 	const [newNickname, setNewNickname] = useState<string>("");
+	const [nameError, setNameError] = useState<boolean>(true); // 닉네임 에러 확인
 
 	async function changeNickname() {
 		await axios({
@@ -269,7 +270,8 @@ function Sectences() {
 					navigate("/");
 					window.location.reload(); // 새로고침
 				} else {
-					alert(e.response.data.detail);
+					// alert(e.response.data.detail);
+					setNameError(false);
 				}
 			});
 	}
@@ -292,6 +294,7 @@ function Sectences() {
 					onclick={changeNickname}
 					onclick2={closeNicknameChangeModal}
 					setState={setNewNickname}
+					warning={nameError}
 				/>
 			)}
 			<Name>

@@ -3,6 +3,7 @@ import { Title, Body, Buttons, ModalContainer } from "./styled";
 import { Button } from "./Button";
 import { Input } from "./Input";
 import { Backdrop } from "./Backdrop";
+import { WarningText } from "pages/home/Main/styled";
 
 export function Modal({
 	title,
@@ -14,7 +15,7 @@ export function Modal({
 	input,
 	setState,
 	placeholder,
-	type,
+	warning,
 }: any) {
 	return (
 		<>
@@ -22,13 +23,16 @@ export function Modal({
 				{title && <Title>{title}</Title>}
 				<Body flag={title ? false : true}>{body}</Body>
 				{input && (
-					<Input noWarning={true} page="modal">
+					<Input noWarning={warning} page="modal">
 						<input
 							placeholder={placeholder}
 							onChange={(e) => {
 								setState(e.target.value);
 							}}
 						/>
+						<WarningText noWarning={warning} page="login">
+							* 중복이거나 잘못된 닉네임입니다
+						</WarningText>
 					</Input>
 				)}
 				<Buttons>
