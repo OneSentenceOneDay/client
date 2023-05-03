@@ -42,13 +42,14 @@ function Login({
 					localStorage.setItem("email", res.data.user.email);
 					localStorage.setItem("nickname", res.data.user.nickname);
 					localStorage.setItem("subscription", res.data.user.subscription);
+					localStorage.setItem("is_first", res.data.user.is_first);
 					flag[1](false); // cloase login modal
 					// navigate("/");
 					// 최초 로그인 확인
 					if (res.data.user.is_first) {
 						setGoogle(true);
 					} else {
-						// window.location.reload(); // 새로고침
+						window.location.reload(); // 새로고침
 					}
 					setLoading(false);
 					console.log(res);

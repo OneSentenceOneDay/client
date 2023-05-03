@@ -13,20 +13,24 @@ export const Text = styled.div`
 	}
 `;
 
-export const Button = styled.button`
+export const Button = styled.button<{ google: boolean }>`
 	width: 25.375rem;
 	height: 3.3rem;
 	font-family: Pretendard-Bold;
 	border-radius: 0.625rem 0.625rem 0.625rem 0.625rem;
-	margin-top: 2rem;
-	margin-bottom: 10rem;
-	border: none;
-	background-color: ${palette.blue2};
-	color: #ffffff;
+	margin-top: 1rem;
+	border: ${(props) =>
+		props.google ? `0.063rem solid ${palette.blue2}` : "none"};
+	background-color: ${(props) =>
+		props.google ? palette.blue1 : palette.blue2};
+	color: ${(props) => (props.google ? palette.gray6 : "#ffffff")};
 	font-size: 1rem;
 	&:hover {
 		cursor: pointer;
 		opacity: 0.9;
+	}
+	img {
+		margin-right: 0.5rem;
 	}
 	@media only screen and (max-width: 768px) {
 		width: 18rem;

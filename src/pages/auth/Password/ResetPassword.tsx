@@ -116,7 +116,9 @@ function ResetPassword() {
 			<WarningText noWarning={warning} page="password">
 				{warningMsg}
 			</WarningText>
-			<Button onClick={reset}>새 비밀번호로 변경</Button>
+			<Button google={false} onClick={reset}>
+				새 비밀번호로 변경
+			</Button>
 			<FooterComponent />
 		</Wrap>
 	);

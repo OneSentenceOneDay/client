@@ -41,11 +41,18 @@ export const FindBut = styled.div`
 	}
 `;
 export const BottomBut = styled.div`
-	margin-top: 1.7rem;
+	padding-top: 1.7rem;
 	font-family: Pretendard-Regular;
 	font-size: 1rem;
 	width: 15rem;
+	margin: 0 auto;
 	@media only screen and (max-width: 768px) {
 		font-size: 0.8rem;
 	}
+`;
+
+// **************** login page ****************
+export const InnerWrap = styled.div`
+	width: 25.375rem;
+	margin: 0 auto;
 `;

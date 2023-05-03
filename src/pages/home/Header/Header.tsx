@@ -96,9 +96,7 @@ function Header() {
 
 	// ************************ open login modal ************************
 	const onClickToggleModal = () => {
-		navigate("/");
-		setOpenLogin(!openLogin);
-		document.body.style.overflow = "hidden";
+		navigate("/login");
 	};
 
 	// ************************ close dropdown ************************

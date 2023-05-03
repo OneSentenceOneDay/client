@@ -117,7 +117,7 @@ function Password() {
 				/>
 			)}
 			<Text>비밀번호 변경</Text>
-			<Input noWarning={warningOldPassword} page={"password"}>
+			<Input noWarning={warningOldPassword} page={"page"}>
 				<input
 					value={oldPassword}
 					type="password"
@@ -130,7 +130,7 @@ function Password() {
 			<WarningText noWarning={warningOldPassword} page="password">
 				{warningOldPasswordMsg}
 			</WarningText>
-			<Input noWarning={warningNewPassword} page={"password"}>
+			<Input noWarning={warningNewPassword} page={"page"}>
 				<input
 					value={newPassword1}
 					type="password"
@@ -153,7 +153,9 @@ function Password() {
 			<WarningText noWarning={warningNewPassword} page="password">
 				{warningNewPasswordMsg}
 			</WarningText>
-			<Button onClick={changePassword}>새 비밀번호로 변경</Button>
+			<Button google={false} onClick={changePassword}>
+				새 비밀번호로 변경
+			</Button>
 			<FooterComponent />
 		</Wrap>
 	);

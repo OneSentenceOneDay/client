@@ -12,7 +12,7 @@ export const Text = styled.div`
 	color: ${palette.gray2};
 	@media only screen and (max-width: 768px) {
 		font-size: 0.875rem;
-	} ;
+	}
 `;
 
 export const Eng = styled.div`
@@ -22,7 +22,7 @@ export const Eng = styled.div`
 	color: ${palette.gray2};
 	@media only screen and (max-width: 768px) {
 		font-size: 1.75rem;
-	} ;
+	}
 `;
 
 export const Kor = styled.div`
@@ -47,7 +47,7 @@ export const Sentence = styled.div`
 		justify-content: center;
 		margin: 0 auto;
 		padding-top: 1rem;
-	} ;
+	}
 `;
 
 export const SentenceKor = styled.div`
@@ -61,7 +61,7 @@ export const SentenceKor = styled.div`
 		justify-content: center;
 		margin: 0 auto;
 		padding-top: 0.5rem;
-	} ;
+	}
 `;
 
 export const Writing = styled.div<{ noWarning: boolean | null }>`
@@ -416,9 +416,12 @@ export const BannerText = styled.div`
 	text-align: left;
 	color: #ffffff;
 	font-family: Pretendard-Medium;
+	// background-color: red;
+	padding-top: 0.35rem;
 	@media only screen and (max-width: 768px) {
 		margin-left: 1rem;
 		white-space: pre-line;
+		padding-top: 0rem;
 	}
 `;
 

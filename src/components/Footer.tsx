@@ -42,7 +42,7 @@ export default FooterComponent;
 
 export const Footer = styled.div`
 	width: 52.75rem;
-	padding-top: 10rem;
+	padding-top: 15rem;
 	text-align: right;
 	margin: 0 auto;
 	@media only screen and (max-width: 768px) {
