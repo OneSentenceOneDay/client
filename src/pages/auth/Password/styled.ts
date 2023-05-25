@@ -17,6 +17,7 @@ export const Button = styled.button<{ google: boolean }>`
 	width: 25.375rem;
 	height: 3.3rem;
 	font-family: Pretendard-Bold;
+
 	border-radius: 0.625rem 0.625rem 0.625rem 0.625rem;
 	margin-top: 1rem;
 	border: ${(props) =>
@@ -31,6 +32,9 @@ export const Button = styled.button<{ google: boolean }>`
 	}
 	img {
 		margin-right: 0.5rem;
+		// background-color: red;
+		// padding 1rem 0rem;
+		vertical-align: top;
 	}
 	@media only screen and (max-width: 768px) {
 		width: 18rem;

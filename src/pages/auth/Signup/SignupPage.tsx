@@ -4,7 +4,7 @@ import { Wrap } from "components/styled";
 import { BottomBut, FindBut, InnerWrap, SignupBut } from "../Login/styled";
 import { Button, Text } from "../Password/styled";
 import { WarningText } from "./styled";
-import { ReactComponent as GoogleIcon } from "assets/icons/google-icon.svg";
+// import { ReactComponent as GoogleIcon } from "assets/icons/google-icon.svg";
 import { useState } from "react";
 import axios from "axios";
 

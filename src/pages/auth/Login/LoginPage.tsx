@@ -8,7 +8,8 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Button } from "../Password/styled";
-import { ReactComponent as GoogleIcon } from "assets/icons/google-icon.svg";
+// import { ReactComponent as GoogleIcon } from "assets/icons/google-icon.svg";
+import Google from "../../../assets/icons/google-icon.svg";
 import FooterComponent from "components/Footer";
 
 const BASE_URL = process.env.REACT_APP_API;
@@ -130,7 +131,7 @@ function LoginPage() {
 					로그인
 				</Button>
 				<Button google={true} onClick={() => googleLogin()}>
-					<GoogleIcon />
+					<img src={Google} />
 					Google 로그인
 				</Button>
 				<BottomBut>
