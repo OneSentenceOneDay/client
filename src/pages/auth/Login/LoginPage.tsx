@@ -11,6 +11,7 @@ import { Button } from "../Password/styled";
 // import { ReactComponent as GoogleIcon } from "assets/icons/google-icon.svg";
 import Google from "../../../assets/icons/google-icon.svg";
 import FooterComponent from "components/Footer";
+import { BlueBigButton, GoogleButton2 } from "components/Button";
 
 const BASE_URL = process.env.REACT_APP_API;
 
@@ -127,13 +128,12 @@ function LoginPage() {
 				<WarningText noWarning={noWarning} page="login">
 					* 이메일 혹은 비밀번호가 맞지 않습니다.
 				</WarningText>
-				<Button google={false} onClick={clickLogin}>
-					로그인
-				</Button>
-				<Button google={true} onClick={() => googleLogin()}>
+				<BlueBigButton onClick={clickLogin}>로그인</BlueBigButton>
+				<GoogleButton2 onClick={() => googleLogin()}>
 					<img src={Google} />
 					Google 로그인
-				</Button>
+				</GoogleButton2>
+
 				<BottomBut>
 					<SignupBut>회원가입</SignupBut>
 					<FindBut>비밀번호 찾기</FindBut>

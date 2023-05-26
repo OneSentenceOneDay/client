@@ -1,6 +1,6 @@
 import { ModalContainer, Text, SignupBut, FindBut, BottomBut } from "./styled";
-import { Button } from "components/Button";
-import { GoogleButton } from "components/GoogleButton";
+import { BlueBigButton, GoogleButton } from "components/Button";
+// import { GoogleButton } from "components/GoogleButton";
 import Logo from "../../../assets/images/logo.svg";
 import Google from "../../../assets/icons/google-icon.svg";
 import { useState, useCallback, useEffect } from "react";
@@ -159,11 +159,9 @@ function Login({
 					<WarningText noWarning={noWarning} page="login">
 						* 이메일 혹은 비밀번호가 맞지 않습니다.
 					</WarningText>
-					<Button flag={false} index={1} onClick={clickLogin}>
-						로그인
-					</Button>
+					<BlueBigButton onClick={clickLogin}>로그인</BlueBigButton>
 					<GoogleButton onClick={() => googleLogin()}>
-						{/* <img src={Google} /> */}
+						<img src={Google} />
 						Google 로그인
 					</GoogleButton>
 					<BottomBut>

@@ -8,7 +8,7 @@ export const Text = styled.div`
 	text-align: left;
 	color: ${palette.blue2};
 	font-family: Pretendard-Regular;
-	font-size: 1.125rem;
+	font-size: 1.05rem;
 	display: inline-block;
 	width: 21rem;
 	// background-color: red;

@@ -1,9 +1,21 @@
 import { DialogBox } from "./DialogBox";
 import { Title, Body, Buttons, ModalContainer } from "./styled";
-import { Button } from "./Button";
+import { BlueBigButton, BlueSmallButton, GraySmallButton } from "./Button";
 import { Input } from "./Input";
 import { Backdrop } from "./Backdrop";
 import { WarningText } from "pages/home/Main/styled";
+
+// type Props = {
+// 	title: string,
+// 	body: string,
+// 	plural: boolean,
+// 	onclick: () => void,
+// 	onclick2: () => void,
+// 	input: boolean,
+// 	placeholder: string,
+// 	setState: ,
+// 	warning: () => void
+// }
 
 export function Modal({
 	title,
@@ -35,20 +47,14 @@ export function Modal({
 						</WarningText>
 					</Input>
 				)}
-				<Buttons>
-					{button2 && (
-						<Button flag={true} index={2} onClick={onclick2}>
-							{button2}
-						</Button>
-					)}
-					<Button
-						flag={button2 ? true : false}
-						index={button2 ? 1 : 1}
-						onClick={onclick}
-					>
-						{button}
-					</Button>
-				</Buttons>
+				{button2 ? (
+					<Buttons>
+						<GraySmallButton onClick={onclick2}>{button2}</GraySmallButton>
+						<BlueSmallButton onClick={onclick}>{button}</BlueSmallButton>
+					</Buttons>
+				) : (
+					<BlueBigButton>{button}</BlueBigButton>
+				)}
 			</DialogBox>
 			<Backdrop />
 		</>

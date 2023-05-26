@@ -25,22 +25,15 @@ export const DialogBox = styled.dialog<{ page: string }>`
 
 	overflow-y: auto;
 	// animation: modal-bg-show 0.3s;
-	img {
-		width: 7rem;
-	}
+	// img {
+	// 	width: 7rem;
+	// }
 
 	@media only screen and (max-width: 768px) {
 		max-width: 20.5rem;
 		min-width: 20.5rem;
-		img {
-			width: 5rem;
-		}
-		button {
-			min-width: 18rem;
-			max-width: 18rem;
-			min-height: 3rem;
-			max-height: 3rem;
-			font-size: 0.9rem;
-		}
+		// img {
+		// 	width: 5rem;
+		// }
 	}
 `;

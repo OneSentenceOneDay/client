@@ -1,12 +1,12 @@
 import { Backdrop } from "components/Backdrop";
-import { Button } from "components/Button";
+import { BlueBigButton } from "components/Button";
 import { DialogBox } from "components/DialogBox";
 import { Text, Emoji, Up, TextArea } from "./styled";
 import { useCallback } from "react";
 
-interface IModalProps {
+type IModalProps = {
 	closeModal: () => void;
-}
+};
 
 function FeedbackModal({ closeModal }: IModalProps) {
 	const onClickToggleModal = useCallback(() => {
@@ -25,9 +25,7 @@ function FeedbackModal({ closeModal }: IModalProps) {
 					</Text>
 				</Up>
 				<TextArea />
-				<Button flag={false} index={1}>
-					피드백 보내기
-				</Button>
+				<BlueBigButton>피드백 보내기</BlueBigButton>
 			</DialogBox>
 			<Backdrop
 				onClick={(e: React.MouseEvent) => {

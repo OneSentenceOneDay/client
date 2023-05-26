@@ -40,7 +40,7 @@ export const Body = styled.div<{ flag: boolean }>`
 	margin-bottom: 1rem;
 	@media only screen and (max-width: 768px) {
 		margin-top: 1rem;
-		font-size: 0.8rem;
+		font-size: 0.9rem;
 		width: 18rem;
 	}
 `;

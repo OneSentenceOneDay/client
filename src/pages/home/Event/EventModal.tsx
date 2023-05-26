@@ -1,5 +1,5 @@
 import { Backdrop } from "components/Backdrop";
-import { Button } from "components/Button";
+import { BlueBigButton } from "components/Button";
 import { DialogBox } from "components/DialogBox";
 import { EventIcon, Text1, Text2, Text3, CloseModal } from "./styled";
 import { useCallback } from "react";
@@ -29,14 +29,13 @@ function EventModal({ closeModal, closeModalUntilExpires }: modalProps) {
 				<Text3 flag={true}>
 					한 달 동안 열심히 영작하고 상품도 받으세요! 🙌
 				</Text3>
-				<Button flag={false} index={1} onClick={closeModal}>
-					영작 하러 가기
-				</Button>
+				<BlueBigButton onClick={closeModal}>영작 하러 가기</BlueBigButton>
 				<CloseModal>
-					<label>
+					<div onClick={closeModalUntilExpires}>하루 동안 보지 않기</div>
+					{/* <label>
 						<input type="checkbox" onClick={closeModalUntilExpires} />
 						하루 동안 보지 않기
-					</label>
+					</label> */}
 					<div onClick={closeModal}>닫기</div>
 				</CloseModal>
 			</DialogBox>
