@@ -35,6 +35,7 @@ import {
 	RankItem,
 	Ranking,
 	NickName,
+	Character,
 	Title,
 	RankItems,
 } from "./styled";
@@ -74,6 +75,8 @@ import { useCookies } from "react-cookie";
 import Tooltip from "./Tooltip";
 import Medal from "assets/icons/medal-icon.svg";
 import Character1 from "assets/images/osod-character1.svg";
+import Character2 from "assets/images/osod-character2.svg";
+import Character3 from "assets/images/osod-character3.svg";
 
 const BASE_URL = process.env.REACT_APP_API;
 
@@ -709,20 +712,26 @@ function Main() {
 						연속 학습 랭킹
 					</Title>
 					<RankItems>
-						<RankItem>
-							<Ranking>1</Ranking>
-							<NickName>
-								닉네임은12자정도까지
+						<RankItem backgroundColor="#71EEA3">
+							<Ranking>1등</Ranking>
+							<NickName>닉네임은12자정도까지</NickName>
+							<Character>
 								<img src={Character1} />
-							</NickName>
+							</Character>
 						</RankItem>
-						<RankItem>
-							<Ranking>2</Ranking>
+						<RankItem backgroundColor="#FFE8EB">
+							<Ranking>2등</Ranking>
 							<NickName>손흥민</NickName>
+							<Character>
+								<img src={Character2} />
+							</Character>
 						</RankItem>
-						<RankItem>
-							<Ranking>3</Ranking>
+						<RankItem backgroundColor="#FFFFFF">
+							<Ranking>3등</Ranking>
 							<NickName>코리</NickName>
+							<Character>
+								<img src={Character3} />
+							</Character>
 						</RankItem>
 					</RankItems>
 				</WritingRank>

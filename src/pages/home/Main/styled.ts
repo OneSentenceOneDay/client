@@ -203,22 +203,37 @@ export const WarningText = styled.div<{
 	}
 `;
 export const WritingRank = styled.div`
-	background-color: red;
+	// background-color: red;
 	width: 52.75rem;
 	margin: 0 auto;
 	padding: 1.5rem 0rem;
+	@media only screen and (max-width: 768px) {
+		width: 20.5rem;
+	}
 `;
 
 export const RankItems = styled.div`
-	// display: flex;
-	// justify-content: space-between;
+	display: flex;
+	justify-content: space-between;
+	margin-top: 0.5rem;
+	@media only screen and (max-width: 768px) {
+		display: block;
+	}
 `;
 
-export const RankItem = styled.div`
-	width: 13.625rem;
+export const RankItem = styled.div<{ backgroundColor: string }>`
+	width: 15rem;
+	// height: 6.375rem;
 	border: 0.063rem solid ${palette.gray4};
 	border-radius: 0.625rem;
-	padding: 1.25rem 1.25rem 0.3rem 1.25rem;
+	padding: 1.25rem 0rem 0rem 1.25rem;
+	background-color: ${(props) => props.backgroundColor};
+	@media only screen and (max-width: 768px) {
+		width: 20.4rem;
+		// height: 3.25rem;
+		padding: 0.3rem 0rem;
+		margin-top: 0.5rem;
+	}
 `;
 
 export const Ranking = styled.div`
@@ -229,19 +244,37 @@ export const Ranking = styled.div`
 	width: 2.438rem;
 	padding: 0.4rem 0rem;
 	border-radius: 62.438rem;
-	// height: 1.75rem;
 	font-size: 0.875rem;
+	@media only screen and (max-width: 768px) {
+		display: inline-block;
+	}
 `;
 
 export const NickName = styled.div`
 	text-align: left;
 	font-family: Pretendard-Bolder;
 	font-size: 1rem;
-	background-color: blue;
-	img {
-		vertical-align: middle;
-		margin-left: 1rem;
+	width: 9.5rem;
+	// background-color: yellow;
+	display: inline-block;
+	@media only screen and (max-width: 768px) {
+		margin-left: 0.7rem;
+		width: 11.5rem;
 	}
+`;
+
+export const Character = styled.div`
+	img {
+		width: 5rem;
+		@media only screen and (max-width: 768px) {
+			width: 4rem;
+			margin-left: 0.5rem;
+		}
+	}
+	display: inline-block;
+	vertical-align: middle;
+
+	// background-color: blue;
 `;
 
 export const NoSentences = styled.div`
@@ -279,6 +312,9 @@ export const Title = styled(Cnt)`
 	img {
 		vertical-align: middle;
 		width: 2rem;
+	}
+	@media only screen and (max-width: 768px) {
+		text-align: center;
 	}
 `;
 
