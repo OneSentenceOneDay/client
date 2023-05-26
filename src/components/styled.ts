@@ -4,6 +4,7 @@ import palette from "./../lib/palette";
 // ************** Wrap.tsx **************
 export const Wrap = styled.div`
 	background-color: ${palette.blue1};
+	min-height: 100vh;
 	margin-left: -0.55rem;
 	margin-right: -0.4rem;
 	margin-bottom: -0.625rem;
@@ -12,8 +13,6 @@ export const Wrap = styled.div`
 		margin-right: -0.55rem;
 	}
 `;
-
-// ************** Footer.tsx **************
 
 // ************** Modal.tsx **************
 export const ModalContainer = styled.div`

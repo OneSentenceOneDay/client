@@ -142,19 +142,11 @@ any) {
 								}}
 							/>
 						</TransDiv>
-						<HeartDiv>
+						<HeartDiv onClick={() => clickLikes(postId)}>
 							{bool_like ? (
-								<img
-									src={ColorHeart}
-									alt="heart"
-									onClick={() => clickLikes(postId)}
-								/>
+								<img src={ColorHeart} alt="heart" />
 							) : (
-								<img
-									src={Heart}
-									alt="heart"
-									onClick={() => clickLikes(postId)}
-								/>
+								<img src={Heart} alt="heart" />
 							)}
 							<Num>{hearts}</Num>
 						</HeartDiv>

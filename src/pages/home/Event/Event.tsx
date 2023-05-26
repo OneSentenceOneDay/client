@@ -25,28 +25,9 @@ import Calendar from "assets/images/calendar.svg";
 import FooterComponent from "components/Footer";
 import { useState, Dispatch, SetStateAction } from "react";
 import FeedbackModal from "../Feedback/FeedbackModal";
-import Login from "pages/auth/Login/Login";
-import { Modal } from "components/Modal";
-import { useLocation } from "react-router-dom";
 
 function Event() {
 	const [openFeedbackModal, setOpenFeedbackModal] = useState<boolean>(false);
-
-	// const location = useLocation();
-	// const state = location.state as {
-	// 	openLogin: boolean;
-	// 	setOpenLogin: Dispatch<SetStateAction<boolean>>;
-	// 	setFirst: Dispatch<SetStateAction<boolean>>;
-	// 	setFirstGoogle: Dispatch<SetStateAction<boolean>>;
-	// 	openResetPasswordModal: boolean;
-	// 	resetPasswordModal: boolean;
-	// 	resetPassword: boolean;
-	// 	closeResetPasswordModal: boolean;
-	// 	setEmail: Dispatch<SetStateAction<boolean>>;
-	// 	resetPasswordConfirmModal: boolean;
-	// 	closeResetPasswordConfirmModal: boolean;
-	// };
-	// const [openLogin, setOpenLogin] = useState<boolean>(false); // login modal
 
 	return (
 		<Wrap>
@@ -57,34 +38,6 @@ function Event() {
 					}}
 				/>
 			)}
-			{/* {openLogin && (
-				<Login
-					openLogin={state.openLogin}
-					setOpenLogin={state.setOpenLogin}
-					setFirst={state.setFirst}
-					setGoogle={state.setFirstGoogle}
-					openResetPasswordModal={state.openResetPasswordModal}
-				/>
-			)}
-			{state.resetPasswordModal && (
-				<Modal
-					body="가입하신 Email 주소를 입력해주세요"
-					button="확인"
-					button2="취소"
-					onclick={state.resetPassword}
-					onclick2={state.closeResetPasswordModal}
-					input={true}
-					setState={state.setEmail}
-					placeholder="Email"
-				/>
-			)}
-			{state.resetPasswordConfirmModal && (
-				<Modal
-					body={"가입한 이메일로 \n비밀번호를 재설정 링크를 보냈습니다"}
-					button={"확인"}
-					onclick={state.closeResetPasswordConfirmModal}
-				/>
-			)} */}
 			<Inner>
 				<EventIcon>EVENT</EventIcon>
 				<Text1>하루 한 문장 영작 챌런지!</Text1>
@@ -103,8 +56,8 @@ function Event() {
 					<Text5>매주 4일 이상 연속 학습하고 문화상품권 5천 원 받으세요!</Text5>
 					<img src={Munsang1} />
 					<Text4>event.02</Text4>
-					<Text5>가장 많이 좋아요 받고 문화상품권 3만 원 받으세요!</Text5>
-					<img src={Munsang2} />
+					<Text5>가장 많이 좋아요 받고 문화상품권 5천 원 받으세요!</Text5>
+					<img src={Munsang1} />
 				</WhiteBox>
 				<PinkBox>
 					<Title>참여 방법</Title>
@@ -120,8 +73,8 @@ function Event() {
 					<Item>
 						<img src={Calendar} />
 						<Texts>
-							<Text6 flag={true}>5월 한 달간 매일 영작하기!</Text6>
-							<Text6 flag={false}>2023년 5월 1일부터 5월 28일까지</Text6>
+							<Text6 flag={true}>6월 한 달간 매일 영작하기!</Text6>
+							<Text6 flag={false}>2023년 6월 6일부터 7월 2일까지</Text6>
 						</Texts>
 					</Item>
 				</PinkBox>

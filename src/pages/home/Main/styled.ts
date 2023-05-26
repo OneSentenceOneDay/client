@@ -202,6 +202,47 @@ export const WarningText = styled.div<{
 		width: ${(props) => (props.page === "main" ? "20.5rem" : "17.5rem")};
 	}
 `;
+export const WritingRank = styled.div`
+	background-color: red;
+	width: 52.75rem;
+	margin: 0 auto;
+	padding: 1.5rem 0rem;
+`;
+
+export const RankItems = styled.div`
+	// display: flex;
+	// justify-content: space-between;
+`;
+
+export const RankItem = styled.div`
+	width: 13.625rem;
+	border: 0.063rem solid ${palette.gray4};
+	border-radius: 0.625rem;
+	padding: 1.25rem 1.25rem 0.3rem 1.25rem;
+`;
+
+export const Ranking = styled.div`
+	border: 0.063rem solid ${palette.blue2};
+	color: ${palette.blue2};
+	background: #ffffff;
+	font-family: Pretendard-Bolder;
+	width: 2.438rem;
+	padding: 0.4rem 0rem;
+	border-radius: 62.438rem;
+	// height: 1.75rem;
+	font-size: 0.875rem;
+`;
+
+export const NickName = styled.div`
+	text-align: left;
+	font-family: Pretendard-Bolder;
+	font-size: 1rem;
+	background-color: blue;
+	img {
+		vertical-align: middle;
+		margin-left: 1rem;
+	}
+`;
 
 export const NoSentences = styled.div`
 	height: 13rem;
@@ -227,9 +268,22 @@ export const MenuContainer = styled.div`
 export const Cnt = styled.div`
 	color: ${palette.blue2};
 	font-family: Pretendard-Medium;
+
 	@media only screen and (max-width: 768px) {
 		font-size: 0.9rem;
 	}
+`;
+
+export const Title = styled(Cnt)`
+	text-align: left;
+	img {
+		vertical-align: middle;
+		width: 2rem;
+	}
+`;
+
+export const MedalImg = styled.div`
+	display: inline-block;
 `;
 
 export const Sorted = styled.div<{ flag: boolean }>`

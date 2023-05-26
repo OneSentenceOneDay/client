@@ -31,8 +31,14 @@ import {
 	Notice,
 	BannerText,
 	RigthArrow,
+	WritingRank,
+	RankItem,
+	Ranking,
+	NickName,
+	Title,
+	RankItems,
 } from "./styled";
-import { Wrap } from "./../../../components/styled";
+import { Wrap } from "components/styled";
 import Copy from "../../../assets/icons/copy-icon.svg";
 import RightArrow from "../../../assets/icons/right-arrow-icon.svg";
 import Trans from "../../../assets/icons/trans-icon.svg";
@@ -66,6 +72,8 @@ import tokenNotValid from "apis/tokenNotValid";
 import EventModal from "../Event/EventModal";
 import { useCookies } from "react-cookie";
 import Tooltip from "./Tooltip";
+import Medal from "assets/icons/medal-icon.svg";
+import Character1 from "assets/images/osod-character1.svg";
 
 const BASE_URL = process.env.REACT_APP_API;
 
@@ -679,7 +687,7 @@ function Main() {
 						* 오늘의 구문을 활용하여 문장을 만들어주세요!
 					</WarningText>
 				</Writing>
-				<DesktopAds width="768px" style={{ marginTop: "1rem" }}>
+				{/* <DesktopAds width="768px" style={{ marginTop: "1rem" }}>
 					<GoogleAdvertise
 						slot="5506046036"
 						width="728px"
@@ -694,7 +702,30 @@ function Main() {
 						height="50px"
 						margin="0 auto"
 					/>
-				</MobileAds>
+				</MobileAds> */}
+				<WritingRank>
+					<Title>
+						<img src={Medal} />
+						연속 학습 랭킹
+					</Title>
+					<RankItems>
+						<RankItem>
+							<Ranking>1</Ranking>
+							<NickName>
+								닉네임은12자정도까지
+								<img src={Character1} />
+							</NickName>
+						</RankItem>
+						<RankItem>
+							<Ranking>2</Ranking>
+							<NickName>손흥민</NickName>
+						</RankItem>
+						<RankItem>
+							<Ranking>3</Ranking>
+							<NickName>코리</NickName>
+						</RankItem>
+					</RankItems>
+				</WritingRank>
 				<ListContainer>
 					{postcnt === 0 ? (
 						<NoSentences>
