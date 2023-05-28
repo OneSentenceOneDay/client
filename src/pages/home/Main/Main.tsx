@@ -792,7 +792,7 @@ function Main() {
 				<EventRankingContainer>
 					<EventTitle bold={true}>Event Rank</EventTitle>
 					<EventTitle bold={false}>
-						이번 주 동안 좋아요를 가장 많이 받은 1등에게 상품권을 드려요!
+						{"이번 주 동안 좋아요를 가장 많이 받은 1등에게\n 상품권을 드려요!"}
 					</EventTitle>
 					<EventRankingItems>
 						<EventRankingItem>

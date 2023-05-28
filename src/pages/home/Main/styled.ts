@@ -535,6 +535,10 @@ export const EventRankingContainer = styled.div`
 	border: 0.063rem solid ${palette.gray4};
 	border-radius: 0.625rem;
 	text-align: left;
+	@media only screen and (max-width: 768px) {
+		width: 18.5rem;
+		text-align: center;
+	}
 `;
 export const EventTitle = styled.div<{ bold: boolean }>`
 	font-size: 1.125rem;
@@ -544,10 +548,17 @@ export const EventTitle = styled.div<{ bold: boolean }>`
 	margin-right: 1rem;
 	margin-top: 1rem;
 	color: ${palette.blue8};
+	@media only screen and (max-width: 768px) {
+		white-space: pre-line;
+		font-size: ${(props) => (props.bold ? "1.125rem" : " 0.875rem")};
+	}
 `;
 export const EventRankingItems = styled.div`
 	// background-color: red;
 	margin-top: 1.5rem;
+	@media only screen and (max-width: 768px) {
+		text-align: left;
+	}
 `;
 
 export const EventRankingItem = styled.div`
@@ -569,6 +580,12 @@ export const Likes = styled.div`
 	font-size: 1.125rem;
 	text-align: center;
 	margin-left: 0.7rem;
+	@media only screen and (max-width: 768px) {
+		font-size: 1rem;
+		width: 3.5rem;
+		padding: 0.4rem 0rem;
+		margin-left: 0.5rem;
+	}
 `;
 
 export const EventRanking = styled(Ranking)`
@@ -582,4 +599,8 @@ export const EventNickName = styled.div`
 	font-size: 1.125rem;
 	display: inline-block;
 	margin-left: 0.7rem;
+	@media only screen and (max-width: 768px) {
+		font-size: 0.875rem;
+		margin-left: 0.5rem;
+	}
 `;
