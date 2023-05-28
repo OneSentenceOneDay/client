@@ -32,13 +32,15 @@ export const History = styled.div`
 	margin: 0 auto;
 	display: flex;
 	justify-content: space-between;
+	@media only screen and (max-width: 700px) {
+		width: 20.5rem;
+	}
 `;
 
 export const HistoryItem = styled.div`
-	// margin: 0rem 2.5rem;
 	background-color: #ffffff;
 	border: 0.063rem solid ${palette.gray4};
-	padding: 1.25rem 1.25rem;
+	padding: 1.25rem;
 	border-radius: 0.625rem;
 	width: 13.75rem;
 	text-align: left;
@@ -46,13 +48,23 @@ export const HistoryItem = styled.div`
 		vertical-align: bottom;
 	}
 	@media only screen and (max-width: 700px) {
-		margin: 0rem 1rem;
+		width: 6.5rem;
+		text-align: center;
+		padding: 0.7rem 0rem;
+		img {
+			width: 1.2rem;
+		}
 	}
 `;
 
 export const HistoryItemLong = styled(HistoryItem)`
 	margin: 1.6rem auto;
 	width: 50.25rem;
+	@media only screen and (max-width: 700px) {
+		text-align: left;
+		width: 17.5rem;
+		padding: 0.7rem 1.5rem;
+	}
 `;
 
 export const ItemName = styled.div<{ long: boolean }>`
@@ -63,7 +75,10 @@ export const ItemName = styled.div<{ long: boolean }>`
 	margin-left: 0.5rem;
 	width: ${(props) => (props.long ? "4.5rem" : "7rem")};
 	@media only screen and (max-width: 700px) {
+		width: ${(props) => (props.long ? "3rem" : "6rem")};
+		margin-top: 0.5rem;
 		font-size: 0.8rem;
+		margin-left: 0rem;
 	}
 `;
 
@@ -76,9 +91,8 @@ export const ItemCount = styled.div`
 	text-align: right;
 	@media only screen and (max-width: 700px) {
 		font-size: 0.9rem;
-		img {
-			height: 0.8rem;
-		}
+		text-align: center;
+		margin-top: 0.5rem;
 	}
 `;
 
@@ -164,10 +178,14 @@ export const StampContainer = styled.div`
 	justify-content: space-between;
 	width: 48rem;
 	margin: 0 auto;
+	@media only screen and (max-width: 700px) {
+		width: 17.5rem;
+	}
 `;
 export const StampItem = styled.div`
 	margin-top: 0.8rem;
 `;
+
 export const Week = styled.div`
 	font-family: Pretendard-Light;
 	border: 0.063rem solid ${palette.blue2};
@@ -178,6 +196,21 @@ export const Week = styled.div`
 	padding: 0.4rem 0rem;
 	border-radius: 62.438rem;
 	font-size: 0.875rem;
+	@media only screen and (max-width: 700px) {
+		font-size: 0.625rem;
+		width: 1.5rem;
+		padding: 0.2rem 0rem;
+	}
 `;
 
-export const Stamp = styled.div``;
+export const Stamp = styled.div`
+	img {
+		width: 5rem;
+	}
+	@media only screen and (max-width: 700px) {
+		text-align: center;
+		img {
+			width: 2.1rem;
+		}
+	}
+`;
