@@ -39,6 +39,13 @@ import Stamp4 from "assets/images/stamp4.svg";
 import Stamp5 from "assets/images/stamp5.svg";
 import Stamp6 from "assets/images/stamp6.svg";
 import Stamp7 from "assets/images/stamp7.svg";
+import Mon from "assets/images/mon.svg";
+import Tue from "assets/images/tue.svg";
+import Wed from "assets/images/wed.svg";
+import Thu from "assets/images/thu.svg";
+import Fri from "assets/images/fri.svg";
+import Sat from "assets/images/sat.svg";
+import Sun from "assets/images/sun.svg";
 
 const BASE_URL = process.env.REACT_APP_API;
 
@@ -252,6 +259,8 @@ function Sectences() {
 		setNicknameChangeModal(false);
 	}
 
+	// ************************ 스탬프 ************************
+
 	const stamp = [
 		{ id: 0, week: "Mon", img: Stamp1 },
 		{ id: 1, week: "Tue", img: Stamp2 },
@@ -261,6 +270,21 @@ function Sectences() {
 		{ id: 5, week: "Sat", img: Stamp6 },
 		{ id: 6, week: "Sun", img: Stamp7 },
 	];
+
+	const [isWriting, setIsWriting] = useState();
+
+	useEffect(() => {
+		axios({
+			method: "get",
+			url: `${BASE_URL}/writing/mypage/iswriting/`,
+			headers: {
+				Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+			},
+		}).then((res) => {
+			setIsWriting(res.data.week_is_writing);
+			console.log(res.data.week_is_writing);
+		});
+	}, []);
 
 	if (loading) <Loading />;
 

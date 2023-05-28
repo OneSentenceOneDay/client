@@ -278,7 +278,7 @@ export const Character = styled.div`
 `;
 
 export const NoSentences = styled.div`
-	height: 13rem;
+	padding: 5rem 0rem;
 `;
 
 export const NoSentencesText = styled.div`

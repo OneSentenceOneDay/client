@@ -183,7 +183,7 @@ export const StampContainer = styled.div`
 	}
 `;
 export const StampItem = styled.div`
-	margin-top: 0.8rem;
+	margin-top: 0.9rem;
 `;
 
 export const Week = styled.div`
@@ -191,7 +191,7 @@ export const Week = styled.div`
 	border: 0.063rem solid ${palette.blue2};
 	color: ${palette.blue2};
 	width: 3rem;
-	margin: 0.5rem auto;
+	margin: 1rem auto;
 	text-align: center;
 	padding: 0.4rem 0rem;
 	border-radius: 62.438rem;
