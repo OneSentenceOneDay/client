@@ -17,41 +17,43 @@ import {
 	Days,
 	Day,
 	NoTodayPost,
+	HistoryItemLong,
+	StampContainer,
+	StampItem,
+	Stamp,
+	Week,
 } from "./styled";
-import { Wrap } from "./../../components/styled";
+import { Wrap } from "components/styled";
 import axios from "axios";
-import Emoji1 from "../../assets/icons/emoji-icon-1.svg";
-import Emoji2 from "../../assets/icons/emoji-icon-2.svg";
-import Emoji3 from "../../assets/icons/emoji-icon-3.svg";
-import Emoji4 from "../../assets/icons/emoji-icon-4.svg";
-import Emoji5 from "../../assets/icons/emoji-icon-5.svg";
-import Emoji6 from "../../assets/icons/emoji-icon-6.svg";
-import Emoji7 from "../../assets/icons/emoji-icon-7.svg";
-import Emoji8 from "../../assets/icons/emoji-icon-8.svg";
-import Emoji9 from "../../assets/icons/emoji-icon-9.svg";
-import Emoji10 from "../../assets/icons/emoji-icon-10.svg";
-import Emoji11 from "../../assets/icons/emoji-icon-11.svg";
-import Edit from "../../assets/icons/edit-icon.svg";
+import Edit from "assets/icons/edit-icon.svg";
+import Medal from "assets/icons/medal-icon2.svg";
+import Writing from "assets/icons/writing-icon.svg";
+import Hearts from "assets/icons/hearts-icon.svg";
 import { Modal } from "components/Modal";
 import Loading from "components/Loading";
 import tokenNotValid from "apis/tokenNotValid";
+import Stamp1 from "assets/images/stamp1.svg";
+import Stamp2 from "assets/images/stamp2.svg";
+import Stamp3 from "assets/images/stamp3.svg";
+import Stamp4 from "assets/images/stamp4.svg";
+import Stamp5 from "assets/images/stamp5.svg";
+import Stamp6 from "assets/images/stamp6.svg";
+import Stamp7 from "assets/images/stamp7.svg";
 
 const BASE_URL = process.env.REACT_APP_API;
 
-type historyItem = {
+type historyItemType = {
 	name: string;
 	count: string;
 	img: any;
 };
 
-export function HistoryItems({ name, count, img }: historyItem) {
+export function HistoryItems({ name, count, img }: historyItemType) {
 	return (
 		<HistoryItem>
-			<ItemName>{name}</ItemName>
-			<ItemCount>
-				{count}
-				<img src={img} />
-			</ItemCount>
+			<img src={img} />
+			<ItemName long={false}>{name}</ItemName>
+			<ItemCount>{count}</ItemCount>
 		</HistoryItem>
 	);
 }
@@ -60,36 +62,6 @@ const today = CalcToday();
 
 function Sectences() {
 	const navigate = useNavigate();
-
-	// ************************ 연속 학습 이모티콘 ************************
-	const [emoji, setEmoji] = useState<any>("");
-	function todayEmoji(day: number) {
-		if (day < 1) {
-			setEmoji("");
-		} else if (day < 2) {
-			setEmoji(Emoji1);
-		} else if (day < 3) {
-			setEmoji(Emoji2);
-		} else if (day < 3) {
-			setEmoji(Emoji3);
-		} else if (day < 4) {
-			setEmoji(Emoji4);
-		} else if (day < 5) {
-			setEmoji(Emoji5);
-		} else if (day < 6) {
-			setEmoji(Emoji6);
-		} else if (day < 7) {
-			setEmoji(Emoji7);
-		} else if (day < 10) {
-			setEmoji(Emoji8);
-		} else if (day < 12) {
-			setEmoji(Emoji9);
-		} else if (day < 14) {
-			setEmoji(Emoji10);
-		} else {
-			setEmoji(Emoji11);
-		}
-	}
 
 	// ************************ get user detail ************************
 	const [loading, setLoading] = useState(false);
@@ -106,7 +78,7 @@ function Sectences() {
 		})
 			.then((res) => {
 				setUser(res.data);
-				todayEmoji(res.data.continuous_cnt);
+				// todayEmoji(res.data.continuous_cnt);
 				setLoading(false);
 			})
 			.catch((e) => {
@@ -280,6 +252,16 @@ function Sectences() {
 		setNicknameChangeModal(false);
 	}
 
+	const stamp = [
+		{ id: 0, week: "Mon", img: Stamp1 },
+		{ id: 1, week: "Tue", img: Stamp2 },
+		{ id: 2, week: "Wed", img: Stamp3 },
+		{ id: 3, week: "Thu", img: Stamp4 },
+		{ id: 4, week: "Fri", img: Stamp5 },
+		{ id: 5, week: "Sat", img: Stamp6 },
+		{ id: 6, week: "Sun", img: Stamp7 },
+	];
+
 	if (loading) <Loading />;
 
 	return (
@@ -308,18 +290,32 @@ function Sectences() {
 			</Name>
 			<Nickname>{localStorage.getItem("email")}</Nickname>
 			<History>
-				<HistoryItems name={"영어 작문"} count={user.post_num} img={""} />
+				<HistoryItems name={"연속 학습 랭킹"} count={"54등"} img={Medal} />
 				<HistoryItems
-					name={"좋아요 받은 횟수"}
-					count={user.liked_num}
-					img={""}
+					name={"영어 작문"}
+					count={user.post_num + "개"}
+					img={Writing}
 				/>
 				<HistoryItems
-					name={"연속 학습"}
-					count={user.continuous_cnt + "일째 "}
-					img={emoji}
+					name={"받은 좋아요"}
+					count={user.liked_num + "개"}
+					img={Hearts}
 				/>
 			</History>
+			<HistoryItemLong>
+				<ItemName long={true}>연속 학습</ItemName>
+				<ItemCount>{user.continuous_cnt + "일째"}</ItemCount>
+				<StampContainer>
+					{stamp.map((s) => (
+						<StampItem key={s.id}>
+							<Week>{s.week}</Week>
+							<Stamp>
+								<img src={s.img} />
+							</Stamp>
+						</StampItem>
+					))}
+				</StampContainer>
+			</HistoryItemLong>
 			<Sentence flag={false}>
 				<Text>오늘 작성한 문장</Text>
 				<MiddleSection>

@@ -8,6 +8,7 @@ export const Name = styled.div`
 	font-family: Pretendard-Bold;
 	img {
 		cursor: pointer;
+		vertical-align: middle;
 	}
 	@media only screen and (max-width: 700px) {
 		font-size: 1.3rem;
@@ -27,32 +28,52 @@ export const Nickname = styled.div`
 `;
 export const History = styled.div`
 	padding-top: 3rem;
+	width: 52.75rem;
+	margin: 0 auto;
+	display: flex;
+	justify-content: space-between;
 `;
 
 export const HistoryItem = styled.div`
-	display: inline-block;
-	margin: 0rem 2.5rem;
+	// margin: 0rem 2.5rem;
+	background-color: #ffffff;
+	border: 0.063rem solid ${palette.gray4};
+	padding: 1.25rem 1.25rem;
+	border-radius: 0.625rem;
+	width: 13.75rem;
+	text-align: left;
+	img {
+		vertical-align: bottom;
+	}
 	@media only screen and (max-width: 700px) {
 		margin: 0rem 1rem;
 	}
 `;
-export const ItemName = styled.div`
+
+export const HistoryItemLong = styled(HistoryItem)`
+	margin: 1.6rem auto;
+	width: 50.25rem;
+`;
+
+export const ItemName = styled.div<{ long: boolean }>`
 	color: ${palette.gray2};
+	display: inline-block;
 	font-size: 1.125rem;
 	font-family: Pretendard-Regular;
+	margin-left: 0.5rem;
+	width: ${(props) => (props.long ? "4.5rem" : "7rem")};
 	@media only screen and (max-width: 700px) {
 		font-size: 0.8rem;
 	}
 `;
 
 export const ItemCount = styled.div`
+	display: inline-block;
 	font-family: Pretendard-bold;
 	color: ${palette.blue2};
 	font-size: 1.25rem;
-	margin-top: 1rem;
-	img {
-		height: 1rem;
-	}
+	width: 4rem;
+	text-align: right;
 	@media only screen and (max-width: 700px) {
 		font-size: 0.9rem;
 		img {
@@ -137,3 +158,26 @@ export const NoTodayPost = styled.div`
 		font-size: 0.8rem;
 	}
 `;
+
+export const StampContainer = styled.div`
+	display: flex;
+	justify-content: space-between;
+	width: 48rem;
+	margin: 0 auto;
+`;
+export const StampItem = styled.div`
+	margin-top: 0.8rem;
+`;
+export const Week = styled.div`
+	font-family: Pretendard-Light;
+	border: 0.063rem solid ${palette.blue2};
+	color: ${palette.blue2};
+	width: 3rem;
+	margin: 0.5rem auto;
+	text-align: center;
+	padding: 0.4rem 0rem;
+	border-radius: 62.438rem;
+	font-size: 0.875rem;
+`;
+
+export const Stamp = styled.div``;
