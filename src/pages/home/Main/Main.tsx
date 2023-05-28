@@ -38,6 +38,13 @@ import {
 	Character,
 	Title,
 	RankItems,
+	EventRankingContainer,
+	EventTitle,
+	EventRankingItems,
+	EventRankingItem,
+	Likes,
+	EventRanking,
+	EventNickName,
 } from "./styled";
 import { Wrap } from "components/styled";
 import Copy from "../../../assets/icons/copy-icon.svg";
@@ -546,6 +553,13 @@ function Main() {
 		setHasTooltip(false);
 	}, []);
 
+	// ************************ writing ranking ************************
+	type RankingType = {
+		id: number;
+		nickname: string;
+	};
+	const [writingRanking, setWritingRanking] = useState<RankingType>();
+
 	if (loading) return <Loading />;
 
 	return (
@@ -775,7 +789,31 @@ function Main() {
 						</>
 					)}
 				</ListContainer>
-				<DesktopAds width="768px" style={{ marginTop: "2rem" }}>
+				<EventRankingContainer>
+					<EventTitle bold={true}>Event Rank</EventTitle>
+					<EventTitle bold={false}>
+						이번 주 동안 좋아요를 가장 많이 받은 1등에게 상품권을 드려요!
+					</EventTitle>
+					<EventRankingItems>
+						<EventRankingItem>
+							<EventRanking>1등</EventRanking>
+							<Likes>♥ 22</Likes>
+							<EventNickName>손흥민</EventNickName>
+						</EventRankingItem>
+						<EventRankingItem>
+							<EventRanking>2등</EventRanking>
+							<Likes>♥ 22</Likes>
+							<EventNickName>손흥민</EventNickName>
+						</EventRankingItem>
+						<EventRankingItem>
+							<EventRanking>3등</EventRanking>
+							<Likes>♥ 22</Likes>
+							<EventNickName>손흥민</EventNickName>
+						</EventRankingItem>
+					</EventRankingItems>
+				</EventRankingContainer>
+
+				{/* <DesktopAds width="768px" style={{ marginTop: "2rem" }}>
 					<GoogleAdvertise
 						slot="5506046036"
 						width="728px"
@@ -790,7 +828,7 @@ function Main() {
 						height="280px"
 						margin="0 auto"
 					/>
-				</MobileAds>
+				</MobileAds> */}
 				<MailSection
 					subscription={
 						localStorage.getItem("subscription") === "true" ? true : false

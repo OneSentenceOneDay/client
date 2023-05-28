@@ -525,3 +525,61 @@ export const RigthArrow = styled.div`
 		display: none;
 	}
 `;
+
+export const EventRankingContainer = styled.div`
+	background-color: #e9dffa;
+	width: 50.25rem;
+	// height: 18.125rem;
+	padding: 1.25rem 1.25rem;
+	margin: 2rem auto;
+	border: 0.063rem solid ${palette.gray4};
+	border-radius: 0.625rem;
+	text-align: left;
+`;
+export const EventTitle = styled.div<{ bold: boolean }>`
+	font-size: 1.125rem;
+	font-family: ${(props) =>
+		props.bold ? "Pretendard-Bolder" : " retendard-Regular"};
+	display: inline-block;
+	margin-right: 1rem;
+	margin-top: 1rem;
+	color: ${palette.blue8};
+`;
+export const EventRankingItems = styled.div`
+	// background-color: red;
+	margin-top: 1.5rem;
+`;
+
+export const EventRankingItem = styled.div`
+	background-color: #ffffff;
+	border-radius: 0.625rem;
+	padding: 0.625rem;
+	margin-top: 1rem;
+`;
+
+export const Likes = styled.div`
+	display: inline-block;
+	border: 0.063rem solid ${palette.blue8};
+	color: ${palette.blue8};
+	background: #ffffff;
+	font-family: Pretendard-Bolder;
+	width: 4rem;
+	padding: 0.5rem 0rem;
+	border-radius: 62.438rem;
+	font-size: 1.125rem;
+	text-align: center;
+	margin-left: 0.7rem;
+`;
+
+export const EventRanking = styled(Ranking)`
+	display: inline-block;
+	text-align: center;
+`;
+
+export const EventNickName = styled.div`
+	font-family: Pretendard-Bolder;
+	color: ${palette.blue8};
+	font-size: 1.125rem;
+	display: inline-block;
+	margin-left: 0.7rem;
+`;
