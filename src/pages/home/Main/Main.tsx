@@ -564,9 +564,17 @@ function Main() {
 
 	return (
 		<Wrap>
-			<DesktopAds width="1338px" style={{ float: "left", marginTop: "20rem" }}>
+			{/* <DesktopAds width="1338px" style={{ float: "left", marginTop: "20rem" }}>
 				<GoogleAdvertise slot="2282673475" width="250px" height="500px" />
-			</DesktopAds>
+			</DesktopAds> */}
+			<div
+				style={{
+					width: "250px",
+					height: "500px",
+					float: "left",
+					marginTop: "20rem",
+				}}
+			></div>
 			<DesktopAds width="1338px" style={{ float: "right", marginTop: "20rem" }}>
 				<GoogleAdvertise slot="2282673475" width="250px" height="500px" />
 			</DesktopAds>
@@ -639,7 +647,7 @@ function Main() {
 					<Notice>notice</Notice>
 					<BannerText>
 						{
-							"하루 한 문장 쓰기 챌런지 !! \n영어 실력도 높이고 상품도 받으세요 🎁"
+							"하루 한 문장 쓰기 챌런지 !! \n영어 실력도 높이고 상품도 받으세요! (6/5~7/2, 4주간) 🎁"
 						}
 					</BannerText>
 					<RigthArrow>
