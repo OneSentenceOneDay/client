@@ -262,21 +262,21 @@ function Sectences() {
 	// ************************ 스탬프 ************************
 
 	const stamp = [
-		{ id: 0, week: "Mon", img: Stamp1 },
-		{ id: 1, week: "Tue", img: Stamp2 },
-		{ id: 2, week: "Wed", img: Stamp3 },
-		{ id: 3, week: "Thu", img: Stamp4 },
-		{ id: 4, week: "Fri", img: Stamp5 },
-		{ id: 5, week: "Sat", img: Stamp6 },
-		{ id: 6, week: "Sun", img: Stamp7 },
+		{ id: 0, week: "Mon", img: Stamp1, none: Mon },
+		{ id: 1, week: "Tue", img: Stamp2, none: Tue },
+		{ id: 2, week: "Wed", img: Stamp3, none: Wed },
+		{ id: 3, week: "Thu", img: Stamp4, none: Thu },
+		{ id: 4, week: "Fri", img: Stamp5, none: Fri },
+		{ id: 5, week: "Sat", img: Stamp6, none: Sat },
+		{ id: 6, week: "Sun", img: Stamp7, none: Sun },
 	];
 
-	const [isWriting, setIsWriting] = useState();
+	const [isWriting, setIsWriting] = useState<number[]>([0, 0, 0, 0, 0, 0, 0]);
 
 	useEffect(() => {
 		axios({
 			method: "get",
-			url: `${BASE_URL}/writing/mypage/iswriting/`,
+			url: `${BASE_URL}/writing/mypage/week/`,
 			headers: {
 				Authorization: `Bearer ${localStorage.getItem("access_token")}`,
 			},
@@ -334,7 +334,7 @@ function Sectences() {
 						<StampItem key={s.id}>
 							<Week>{s.week}</Week>
 							<Stamp>
-								<img src={s.img} />
+								{isWriting[s.id] ? <img src={s.img} /> : <img src={s.none} />}
 							</Stamp>
 						</StampItem>
 					))}
