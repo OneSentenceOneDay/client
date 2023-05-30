@@ -231,7 +231,7 @@ export const RankItem = styled.div<{ backgroundColor: string }>`
 	@media only screen and (max-width: 768px) {
 		width: 20.4rem;
 		// height: 3.25rem;
-		padding: 0.3rem 0rem;
+		padding: 0.5rem 0rem;
 		margin-top: 0.5rem;
 	}
 `;
@@ -260,22 +260,30 @@ export const NickName = styled.div`
 	@media only screen and (max-width: 768px) {
 		margin-left: 0.7rem;
 		width: 11.5rem;
+		font-family: Pretendard-Bold;
+		font-size: 0.875rem;
 	}
 `;
 
 export const Character = styled.div`
 	width: 5rem;
 	height: 4rem;
+	display: inline-block;
+	vertical-align: middle;
 	img {
 		width: 5rem;
 		height: 4rem;
-		@media only screen and (max-width: 768px) {
-			width: 4rem;
-			margin-left: 0.5rem;
+	}
+
+	@media only screen and (max-width: 768px) {
+		width: 3rem;
+		height: 2rem;
+		margin-left: 0.5rem;
+		img {
+			width: 3rem;
+			height: 2rem;
 		}
 	}
-	display: inline-block;
-	vertical-align: middle;
 `;
 
 export const NoSentences = styled.div`
@@ -498,6 +506,7 @@ export const Notice = styled.div`
 		padding: 0rem 0.625rem;
 		height: 2rem;
 		line-height: 2rem;
+		margin: auto 0;
 	}
 `;
 
@@ -508,11 +517,11 @@ export const BannerText = styled.div`
 	color: #ffffff;
 	font-family: Pretendard-Medium;
 	// background-color: red;
-	padding-top: 0.35rem;
 	@media only screen and (max-width: 768px) {
 		margin-left: 1rem;
 		white-space: pre-line;
 		padding-top: 0rem;
+		vertical-align: middle;
 	}
 `;
 
