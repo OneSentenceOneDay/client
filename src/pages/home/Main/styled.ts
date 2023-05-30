@@ -264,8 +264,11 @@ export const NickName = styled.div`
 `;
 
 export const Character = styled.div`
+	width: 5rem;
+	height: 4rem;
 	img {
 		width: 5rem;
+		height: 4rem;
 		@media only screen and (max-width: 768px) {
 			width: 4rem;
 			margin-left: 0.5rem;
@@ -273,8 +276,6 @@ export const Character = styled.div`
 	}
 	display: inline-block;
 	vertical-align: middle;
-
-	// background-color: blue;
 `;
 
 export const NoSentences = styled.div`

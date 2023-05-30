@@ -81,9 +81,9 @@ import EventModal from "../Event/EventModal";
 import { useCookies } from "react-cookie";
 import Tooltip from "./Tooltip";
 import Medal from "assets/icons/medal-icon.svg";
-import Character1 from "assets/images/osod-character1.svg";
-import Character2 from "assets/images/osod-character2.svg";
-import Character3 from "assets/images/osod-character3.svg";
+import Character1 from "assets/images/osodi_congrat.svg";
+import Character2 from "assets/images/osodi_flag.svg";
+import Character3 from "assets/images/osodi_cheerup.svg";
 
 const BASE_URL = process.env.REACT_APP_API;
 
