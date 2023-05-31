@@ -540,7 +540,7 @@ export const EventRankingContainer = styled.div`
 	background-color: #e9dffa;
 	width: 50.25rem;
 	// height: 18.125rem;
-	padding: 1.25rem 1.25rem;
+	padding: 0.5rem 1.25rem 1.25rem 1.25rem;
 	margin: 2rem auto;
 	border: 0.063rem solid ${palette.gray4};
 	border-radius: 0.625rem;
@@ -555,9 +555,16 @@ export const EventTitle = styled.div<{ bold: boolean }>`
 	font-family: ${(props) =>
 		props.bold ? "Pretendard-Bolder" : " retendard-Regular"};
 	display: inline-block;
-	margin-right: 1rem;
+	margin-right: 0.5rem;
 	margin-top: 1rem;
+	margin-left: 0.5rem;
 	color: ${palette.blue8};
+	img {
+		vertical-align: middle;
+		width: 3.5rem;
+		// background-color: red;
+		margin-left: 0.5rem;
+	}
 	@media only screen and (max-width: 768px) {
 		white-space: pre-line;
 		font-size: ${(props) => (props.bold ? "1.125rem" : " 0.875rem")};
@@ -565,7 +572,7 @@ export const EventTitle = styled.div<{ bold: boolean }>`
 `;
 export const EventRankingItems = styled.div`
 	// background-color: red;
-	margin-top: 1.5rem;
+	// margin-top: 1.5rem;
 	@media only screen and (max-width: 768px) {
 		text-align: left;
 	}
