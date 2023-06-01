@@ -517,6 +517,7 @@ export const BannerText = styled.div`
 	color: #ffffff;
 	font-family: Pretendard-Medium;
 	// background-color: red;
+	margin: auto 0;
 	@media only screen and (max-width: 768px) {
 		margin-left: 1rem;
 		white-space: pre-line;

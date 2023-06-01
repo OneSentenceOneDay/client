@@ -285,7 +285,6 @@ function Main() {
 				getSentences();
 				getCnt();
 				setNoWarning(true);
-				setLoading(false);
 				setNowSort("latest");
 				setWriting("");
 			})
@@ -294,7 +293,10 @@ function Main() {
 					tokenNotValid();
 					navigate("/");
 					window.location.reload(); // 새로고침
+				} else {
+					// setNoWarning(false);
 				}
+				setLoading(false);
 			});
 	}
 
