@@ -1,11 +1,11 @@
 import { Text } from "../Login/styled";
 import { Privacy, WarningText } from "./styled";
 import { BlueBigButton, GoogleButton } from "components/Button";
-import Logo from "../../../assets/images/logo.svg";
+import Logo from "assets/images/logo.svg";
 import { useState, Dispatch, SetStateAction, useEffect } from "react";
 import { Modal } from "components/Modal";
 import axios from "axios";
-import Google from "../../../assets/icons/google-icon.svg";
+import Google from "assets/icons/google-icon.svg";
 import { useOutletContext } from "react-router-dom";
 import { useGoogleLogin } from "@react-oauth/google";
 import Loading from "components/Loading";
@@ -42,45 +42,11 @@ function Signup({ setOpenSignup, setOpenLogin, setGoogle }: any) {
 	const [nicknameWarningMsg, setNicknameWarningMsg] = useState<string>("");
 	const [passwordWarningMsg, setPasswordWarningMsg] = useState<string>("");
 
-	// function validation() {
-	// 	if (name.length === 0) {
-	// 		setNameWarningMsg("* 이름을 입력하세요");
-	// 		setWarningName(false);
-	// 	}
-	// 	if (email.length === 0) {
-	// 		setEmailWarningMsg("* 이메일을 입력하세요");
-	// 		setWarningEmail(false);
-	// 	}
-	// 	if (nickname.length === 0) {
-	// 		setNicknameWarningMsg("* 닉네임을 입력하세요");
-	// 		setWarningNickname(false);
-	// 	}
-	// 	if (password.length === 0) {
-	// 		setPasswordWarningMsg("* 비밀번호를 설정하세요");
-	// 		setWarningPassword(false);
-	// 	}
-	// 	if (password.length !== 0 || password !== password2) {
-	// 		setPasswordWarningMsg("* 비밀번호가 일치하지 않습니다");
-	// 		setWarningPassword(false);
-	// 	}
-	// 	if (
-	// 		warningName &&
-	// 		warningEmail &&
-	// 		warningNickname &&
-	// 		warningPassword
-	// 		// warningPassword2
-	// 	) {
-	// 		return true;
-	// 	}
-	// 	return false;
-	// }
-
 	function goSignUp() {
 		setWarningName(true);
 		setWarningEmail(true);
 		setWarningNickname(true);
 		setWarningPassword(true);
-		// if (validation()) {
 		if (privacy) {
 			setLoading(true);
 			axios({
@@ -131,24 +97,7 @@ function Signup({ setOpenSignup, setOpenLogin, setGoogle }: any) {
 		} else {
 			alert("개인정보 수집 및 이용 동의에 체크해주세요");
 		}
-		// }
 	}
-
-	// useEffect(() => {
-	// 	setWarningName(true);
-	// }, [name]);
-	// useEffect(() => {
-	// 	setWarningEmail(true);
-	// }, [email]);
-	// useEffect(() => {
-	// 	setWarningNickname(true);
-	// }, [nickname]);
-	// useEffect(() => {
-	// 	setWarningPassword(true);
-	// }, [password]);
-	// useEffect(() => {
-	// 	setWarningPassword2(true);
-	// }, [password2]);
 
 	// ************************ Google login ************************
 	const flag = useOutletContext<any>();

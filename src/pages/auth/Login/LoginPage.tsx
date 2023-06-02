@@ -18,6 +18,11 @@ const BASE_URL = process.env.REACT_APP_API;
 function LoginPage() {
 	const [loading, setLoading] = useState(false);
 	const navigate = useNavigate();
+
+	function goSignup() {
+		navigate("/signup");
+	}
+
 	// ************************ Google login ************************
 	const googleLogin = useGoogleLogin({
 		onSuccess: async (res) => {
@@ -133,9 +138,8 @@ function LoginPage() {
 					<img src={Google} />
 					Google 로그인
 				</GoogleButton2>
-
 				<BottomBut>
-					<SignupBut>회원가입</SignupBut>
+					<SignupBut onClick={goSignup}>회원가입</SignupBut>
 					<FindBut>비밀번호 찾기</FindBut>
 				</BottomBut>
 			</InnerWrap>

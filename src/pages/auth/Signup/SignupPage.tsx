@@ -3,10 +3,15 @@ import { Input } from "components/Input";
 import { Wrap } from "components/styled";
 import { BottomBut, FindBut, InnerWrap, SignupBut } from "../Login/styled";
 import { Button, Text } from "../Password/styled";
-import { WarningText } from "./styled";
-// import { ReactComponent as GoogleIcon } from "assets/icons/google-icon.svg";
+import { Privacy, WarningText } from "./styled";
 import { useState } from "react";
 import axios from "axios";
+import { BlueBigButton, GoogleButton2 } from "components/Button";
+import Google from "assets/icons/google-icon.svg";
+import { useNavigate, useOutletContext } from "react-router-dom";
+import { useGoogleLogin } from "@react-oauth/google";
+import Loading from "components/Loading";
+import { Modal } from "components/Modal";
 
 const BASE_URL = process.env.REACT_APP_API;
 
@@ -30,12 +35,20 @@ function SignupPage() {
 	const [nicknameWarningMsg, setNicknameWarningMsg] = useState<string>("");
 	const [passwordWarningMsg, setPasswordWarningMsg] = useState<string>("");
 
+	const [confirmModal, setConfirmModal] = useState(false);
+
+	const navigate = useNavigate();
+
+	function closeModal() {
+		setConfirmModal(false);
+		navigate("/");
+	}
+
 	function goSignUp() {
 		setWarningName(true);
 		setWarningEmail(true);
 		setWarningNickname(true);
 		setWarningPassword(true);
-		// if (validation()) {
 		if (privacy) {
 			setLoading(true);
 			axios({
@@ -51,7 +64,7 @@ function SignupPage() {
 			})
 				.then((res) => {
 					console.log(res);
-					// setConfirmModal(!confirmModal); // open cinfirm modal
+					setConfirmModal(!confirmModal); // open cinfirm modal
 				})
 				.catch((e) => {
 					if (password !== password2) {
@@ -86,44 +99,52 @@ function SignupPage() {
 		} else {
 			alert("개인정보 수집 및 이용 동의에 체크해주세요");
 		}
-		// }
 	}
 
 	// ************************ Google login ************************
-	// const googleLogin = useGoogleLogin({
-	// 	onSuccess: async (res) => {
-	// 		// console.log(res.access_token);
-	// 		setLoading(true);
-	// 		await axios({
-	// 			method: "post",
-	// 			url: `${BASE_URL}/accounts/google/login/`,
-	// 			data: { access_token: res.access_token },
-	// 		})
-	// 			.then((res) => {
-	// 				// console.log(res);
-	// 				setLoading(false);
-	// 				localStorage.setItem("access_token", res.data.access_token);
-	// 				localStorage.setItem("refresh_token", res.data.refresh_token);
-	// 				localStorage.setItem("id", res.data.user.id);
-	// 				localStorage.setItem("email", res.data.user.email);
-	// 				localStorage.setItem("nickname", res.data.user.nickname);
-	// 				localStorage.setItem("subscription", res.data.user.subscription);
-	// 				document.body.style.overflow = "unset";
-	// 				// 최초 로그인 확인
-	// 				if (res.data.user.is_first) {
-	// 					setGoogle(true);
-	// 				} else {
-	// 					window.location.reload(); // 새로고침
-	// 				}
-	// 			})
-	// 			.catch((e) => console.log(e));
-	// 	},
-	// });
+	const googleLogin = useGoogleLogin({
+		onSuccess: async (res) => {
+			// console.log(res.access_token);
+			setLoading(true);
+			await axios({
+				method: "post",
+				url: `${BASE_URL}/accounts/google/login/`,
+				data: { access_token: res.access_token },
+			})
+				.then((res) => {
+					// console.log(res);
+					setLoading(false);
+					localStorage.setItem("access_token", res.data.access_token);
+					localStorage.setItem("refresh_token", res.data.refresh_token);
+					localStorage.setItem("id", res.data.user.id);
+					localStorage.setItem("email", res.data.user.email);
+					localStorage.setItem("nickname", res.data.user.nickname);
+					localStorage.setItem("subscription", res.data.user.subscription);
+					navigate("/");
+					document.body.style.overflow = "unset";
+					// 최초 로그인 확인
+					if (res.data.user.is_first) {
+						// setGoogle(true);
+					}
+				})
+				.catch((e) => console.log(e));
+		},
+	});
 
-	// if (loading) return <Loading />;
+	if (loading) return <Loading />;
 
 	return (
 		<Wrap>
+			{confirmModal && (
+				<Modal
+					title={"YOU ARE ALMOST THERE!"}
+					body={
+						"작성해 주신 이메일로 인증 메일을 발송하였습니다.\n인증 후 회원가입이 완료됩니다."
+					}
+					button={"확인"}
+					onclick={closeModal}
+				/>
+			)}
 			<InnerWrap>
 				<Text>회원가입을 해주세요 🙌</Text>
 				<Input noWarning={warningName} page="signup">
@@ -184,7 +205,7 @@ function SignupPage() {
 				<WarningText noWarning={warningPassword}>
 					{passwordWarningMsg}
 				</WarningText>
-				{/* <Privacy>
+				<Privacy>
 					<label>
 						<input
 							type="checkbox"
@@ -194,7 +215,12 @@ function SignupPage() {
 						/>
 						개인정보 수집 및 이용 동의
 					</label>
-				</Privacy> */}
+				</Privacy>
+				<BlueBigButton onClick={goSignUp}>회원가입</BlueBigButton>
+				<GoogleButton2 onClick={() => googleLogin()}>
+					<img src={Google} />
+					Google 계정으로 가입
+				</GoogleButton2>
 			</InnerWrap>
 			<FooterComponent />
 		</Wrap>
