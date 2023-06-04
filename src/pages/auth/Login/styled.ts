@@ -55,4 +55,7 @@ export const BottomBut = styled.div`
 export const InnerWrap = styled.div`
 	width: 25.375rem;
 	margin: 0 auto;
+	@media only screen and (max-width: 768px) {
+		width: 18rem;
+	}
 `;

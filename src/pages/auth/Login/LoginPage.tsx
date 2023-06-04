@@ -23,6 +23,10 @@ function LoginPage() {
 		navigate("/signup");
 	}
 
+	function goResetPassword() {
+		navigate("/changePassword");
+	}
+
 	// ************************ Google login ************************
 	const googleLogin = useGoogleLogin({
 		onSuccess: async (res) => {
@@ -137,7 +141,7 @@ function LoginPage() {
 				</GoogleButton2>
 				<BottomBut>
 					<SignupBut onClick={goSignup}>회원가입</SignupBut>
-					<FindBut>비밀번호 찾기</FindBut>
+					<FindBut onClick={goResetPassword}>비밀번호 찾기</FindBut>
 				</BottomBut>
 			</InnerWrap>
 			<FooterComponent />

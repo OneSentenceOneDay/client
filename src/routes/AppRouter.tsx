@@ -13,6 +13,7 @@ import Event from "../pages/home/Event/Event";
 import LoginPage from "../pages/auth/Login/LoginPage";
 import SignupPage from "pages/auth/Signup/SignupPage";
 import SetNickname from "pages/auth/Signup/SetNickname";
+import ResetPasswordPage from "pages/auth/Password/ResetPasswordPage";
 
 const BASE_URL = process.env.REACT_APP_API;
 
@@ -31,6 +32,7 @@ const AppRouter: React.FC = () => (
 				<Route path="/login" element={<LoginPage />} />
 				<Route path="/signup" element={<SignupPage />} />
 				<Route path="/nickname" element={<SetNickname />} />
+				<Route path="/changePassword" element={<ResetPasswordPage />} />
 			</Route>
 			<Route path="*" element={<div>There's nothing here!</div>} />
 		</Routes>
