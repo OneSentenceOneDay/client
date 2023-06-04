@@ -304,6 +304,7 @@ function Main() {
 	const [openLogin, setOpenLogin] = useOutletContext<any>();
 
 	// ************************ 구글 첫 로그인 시 닉네임 설정 ************************
+	const flag = useOutletContext<any>();
 	const [firstGoogle, setFirstGoogle] = useState<boolean>(false); // 구글 로그인 처음인지 유무
 	const [nickname, setNickname] = useState<string>("");
 	const [nameError, setNameError] = useState<boolean>(true); // 닉네임 에러 확인
@@ -322,7 +323,8 @@ function Main() {
 				localStorage.setItem("nickname", nickname);
 				localStorage.setItem("name", r.data.name);
 				setFirstGoogle(false);
-				setFirst(true);
+				// setFirst(true);
+				flag[3](true);
 			})
 			.catch((e) => {
 				console.log(e.response.data.detail);
@@ -333,7 +335,7 @@ function Main() {
 	// ************************ 구독 신청 ************************
 	const [subModal, setSubModal] = useState<boolean>(false);
 
-	const [first, setFirst] = useState<boolean>(false); // 최초 로그인 유무
+	// const [first, setFirst] = useState<boolean>(false); // 최초 로그인 유무
 
 	function clickSubYes() {
 		axios({
@@ -344,7 +346,7 @@ function Main() {
 			},
 		})
 			.then(() => {
-				setFirst(false);
+				flag[3](false);
 				localStorage.setItem("subscription", "true");
 				// window.location.reload(); // 새로고침
 			})
@@ -358,7 +360,7 @@ function Main() {
 	}
 
 	function clickSubNo() {
-		setFirst(false);
+		flag[3](false);
 		window.location.reload(); // 새로고침
 	}
 
@@ -556,12 +558,27 @@ function Main() {
 		setHasTooltip(false);
 	}, []);
 
-	// ************************ writing ranking ************************
-	type RankingType = {
-		id: number;
-		nickname: string;
-	};
-	const [writingRanking, setWritingRanking] = useState<RankingType>();
+	// // ************************ ranking report modal ************************
+	// const [rankingReport, setRankReport] = useState<boolean>(false);
+
+	// ************************ 연속 학습 랭킹 ************************
+	const [rankingUser, setRankingUser] = useState<string[]>(["", "", ""]);
+	const colors = ["#71EEA3", "#FFE8EB", "#FFFFFF"];
+	const characters = [Character1, Character2, Character3];
+
+	function rankingContinuos() {
+		axios({
+			method: "get",
+			url: `${BASE_URL}/accounts/rankingcontinuous/`,
+		}).then((res) => {
+			console.log(res.data.ranking);
+			setRankingUser(res.data.ranking);
+		});
+	}
+
+	useEffect(() => {
+		rankingContinuos();
+	}, []);
 
 	if (loading) return <Loading />;
 
@@ -593,12 +610,12 @@ function Main() {
 					<Login
 						openLogin={openLogin}
 						setOpenLogin={setOpenLogin}
-						setFirst={setFirst}
+						setFirst={flag[3]}
 						setGoogle={setFirstGoogle}
 						openResetPasswordModal={openResetPasswordModal}
 					/>
 				)}
-				{first && (
+				{flag[2] && (
 					<Modal
 						title={"Email 구독 신청"}
 						body={
@@ -647,6 +664,7 @@ function Main() {
 						onclick={closeResetPasswordConfirmModal}
 					/>
 				)}
+				{/* {rankingReport && <DialogBox page="modal"></DialogBox>} */}
 				<EventBanner onClick={goEvent}>
 					<Notice>notice</Notice>
 					<BannerText>
@@ -738,27 +756,30 @@ function Main() {
 						연속 학습 랭킹
 					</Title>
 					<RankItems>
-						<RankItem backgroundColor="#71EEA3">
-							<Ranking>1등</Ranking>
-							<NickName>닉네임은12자정도까지</NickName>
-							<Character>
-								<img src={Character1} />
-							</Character>
-						</RankItem>
-						<RankItem backgroundColor="#FFE8EB">
+						{rankingUser.map((user, idx) => (
+							<RankItem backgroundColor={colors[idx]}>
+								<Ranking>{idx + 1}등</Ranking>
+								<NickName>{user}</NickName>
+								<Character>
+									<img src={characters[idx]} />
+								</Character>
+							</RankItem>
+						))}
+
+						{/* <RankItem backgroundColor=>
 							<Ranking>2등</Ranking>
 							<NickName>손흥민</NickName>
 							<Character>
 								<img src={Character2} />
 							</Character>
 						</RankItem>
-						<RankItem backgroundColor="#FFFFFF">
+						<RankItem backgroundColor=>
 							<Ranking>3등</Ranking>
 							<NickName>코리</NickName>
 							<Character>
 								<img src={Character3} />
 							</Character>
-						</RankItem>
+						</RankItem> */}
 					</RankItems>
 				</WritingRank>
 				<ListContainer>
@@ -802,7 +823,10 @@ function Main() {
 					)}
 				</ListContainer>
 				<EventRankingContainer>
-					<EventTitle bold={true}>Event Rank</EventTitle>
+					<EventTitle bold={true}>
+						<img src={Character4} />
+						Event Rank
+					</EventTitle>
 					<EventTitle bold={false}>
 						{"이번 주 동안 좋아요를 가장 많이 받은 1등에게\n 상품권을 드려요!"}
 						<img src={Character4} />

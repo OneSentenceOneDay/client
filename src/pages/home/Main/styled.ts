@@ -561,6 +561,7 @@ export const EventTitle = styled.div<{ bold: boolean }>`
 	margin-left: 0.5rem;
 	color: ${palette.blue8};
 	img {
+		display: ${(props) => (props.bold ? "none" : "")};
 		vertical-align: middle;
 		width: 3.5rem;
 		// background-color: red;
@@ -569,6 +570,12 @@ export const EventTitle = styled.div<{ bold: boolean }>`
 	@media only screen and (max-width: 768px) {
 		white-space: pre-line;
 		font-size: ${(props) => (props.bold ? "1.125rem" : " 0.875rem")};
+		img {
+			display: ${(props) => (props.bold ? "block" : "none")};
+			margin: 0 auto;
+			width: 3rem;
+			padding-bottom: 0.5rem;
+		}
 	}
 `;
 export const EventRankingItems = styled.div`

@@ -83,23 +83,18 @@ function LoginPage() {
 				localStorage.setItem("id", res.data.user.id);
 				localStorage.setItem("email", res.data.user.email);
 				localStorage.setItem("subscription", res.data.user.subscription);
-				// flag[1](false); // cloase login modal
-				// document.body.style.overflow = "unset";
-				navigate("/");
 				// 최초 로그인 확인
-				if (res.data.user.is_first && !res.data.user.subscription) {
-					// setFirst(true);
+				if (res.data.user.is_first) {
+					navigate("/nickname");
 				} else {
-					window.location.reload(); // 새로고침
+					navigate("/");
 				}
-				// console.log(res);
 				setLoading(false);
 			})
 			.catch(() => {
 				setNoWarning(false);
 				setLoading(false);
 				setPassword("");
-				// alert("이메일 혹은 비밀번호가 맞지 않습니다.");
 			});
 	}
 

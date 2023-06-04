@@ -83,6 +83,7 @@ export function Dropdown() {
 function Header() {
 	const [view, setView] = useState<boolean>(false); // dropdown
 	const [openLogin, setOpenLogin] = useState<boolean>(false); // login modal
+	const [first, setFirst] = useState<boolean>(false);
 
 	// ************************ navigation ************************
 	const navigate = useNavigate();
@@ -138,7 +139,7 @@ function Header() {
 					)}
 				</Right>
 			</Wrap>
-			<Outlet context={[openLogin, setOpenLogin]} />
+			<Outlet context={[openLogin, setOpenLogin, first, setFirst]} />
 		</>
 	);
 }
