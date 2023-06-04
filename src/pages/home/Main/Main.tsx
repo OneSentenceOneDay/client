@@ -193,7 +193,7 @@ function Main() {
 					if (e.response.data.code === "token_not_valid") {
 						tokenNotValid();
 						navigate("/");
-						window.location.reload(); // 새로고침
+						// window.location.reload(); // 새로고침
 					}
 				});
 			setLoading(false);
@@ -240,7 +240,7 @@ function Main() {
 					if (e.response.data.code === "token_not_valid") {
 						tokenNotValid();
 						navigate("/");
-						window.location.reload(); // 새로고침
+						// window.location.reload(); // 새로고침
 					}
 				});
 		} else {
@@ -292,7 +292,7 @@ function Main() {
 				if (e.response.data.code === "token_not_valid") {
 					tokenNotValid();
 					navigate("/");
-					window.location.reload(); // 새로고침
+					// window.location.reload(); // 새로고침
 				} else {
 					// setNoWarning(false);
 				}
@@ -346,13 +346,13 @@ function Main() {
 			.then(() => {
 				setFirst(false);
 				localStorage.setItem("subscription", "true");
-				window.location.reload(); // 새로고침
+				// window.location.reload(); // 새로고침
 			})
 			.catch((e) => {
 				if (e.response.data.code === "token_not_valid") {
 					tokenNotValid();
 					navigate("/");
-					window.location.reload(); // 새로고침
+					// window.location.reload(); // 새로고침
 				}
 			});
 	}
@@ -501,19 +501,19 @@ function Main() {
 	// ************************ 이벤트 페이지로 ************************
 	const goEvent = () => {
 		navigate("/event", {
-			state: {
-				openLogin: openLogin,
-				setOpenLogin: setOpenLogin,
-				setFirst: setFirst,
-				setFirstGoogle: setFirstGoogle,
-				openResetPasswordModal: openResetPasswordModal,
-				resetPasswordModal: resetPasswordModal,
-				resetPassword: resetPassword,
-				closeResetPasswordModal: closeResetPasswordModal,
-				setEmail: setEmail,
-				resetPasswordConfirmModal: resetPasswordConfirmModal,
-				closeResetPasswordConfirmModal: closeResetPasswordConfirmModal,
-			},
+			// state: {
+			// 	openLogin: openLogin,
+			// 	setOpenLogin: setOpenLogin,
+			// 	setFirst: setFirst,
+			// 	setFirstGoogle: setFirstGoogle,
+			// 	openResetPasswordModal: openResetPasswordModal,
+			// 	resetPasswordModal: resetPasswordModal,
+			// 	resetPassword: resetPassword,
+			// 	closeResetPasswordModal: closeResetPasswordModal,
+			// 	setEmail: setEmail,
+			// 	resetPasswordConfirmModal: resetPasswordConfirmModal,
+			// 	closeResetPasswordConfirmModal: closeResetPasswordConfirmModal,
+			// },
 		});
 	};
 

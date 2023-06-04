@@ -92,7 +92,7 @@ function Sectences() {
 				if (e.response.data.code === "token_not_valid") {
 					tokenNotValid();
 					navigate("/");
-					window.location.reload(); // 새로고침
+					// window.location.reload(); // 새로고침
 				}
 			});
 	}, []);
@@ -118,7 +118,7 @@ function Sectences() {
 				if (e.response.data.code === "token_not_valid") {
 					tokenNotValid();
 					navigate("/");
-					window.location.reload(); // 새로고침
+					// window.location.reload(); // 새로고침
 				}
 			});
 	}
@@ -152,7 +152,7 @@ function Sectences() {
 				if (e.response.data.code === "token_not_valid") {
 					tokenNotValid();
 					navigate("/");
-					window.location.reload(); // 새로고침
+					// window.location.reload(); // 새로고침
 				}
 			});
 	}, []);
@@ -193,7 +193,7 @@ function Sectences() {
 					if (e.response.data.code === "token_not_valid") {
 						tokenNotValid();
 						navigate("/");
-						window.location.reload(); // 새로고침
+						// window.location.reload(); // 새로고침
 					}
 				});
 		}
@@ -215,7 +215,7 @@ function Sectences() {
 				if (e.response.data.code === "token_not_valid") {
 					tokenNotValid();
 					navigate("/");
-					window.location.reload(); // 새로고침
+					// window.location.reload(); // 새로고침
 				}
 			});
 	}
@@ -247,7 +247,7 @@ function Sectences() {
 				if (e.response.data.code === "token_not_valid") {
 					tokenNotValid();
 					navigate("/");
-					window.location.reload(); // 새로고침
+					// window.location.reload(); // 새로고침
 				} else {
 					// alert(e.response.data.detail);
 					setNameError(false);

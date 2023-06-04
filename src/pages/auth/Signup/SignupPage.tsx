@@ -120,11 +120,11 @@ function SignupPage() {
 					localStorage.setItem("email", res.data.user.email);
 					localStorage.setItem("nickname", res.data.user.nickname);
 					localStorage.setItem("subscription", res.data.user.subscription);
-					navigate("/");
-					document.body.style.overflow = "unset";
 					// 최초 로그인 확인
 					if (res.data.user.is_first) {
-						// setGoogle(true);
+						navigate("/nickname");
+					} else {
+						navigate("/");
 					}
 				})
 				.catch((e) => console.log(e));
