@@ -708,6 +708,7 @@ function Main() {
 							setWriting(e.target.value);
 						}}
 						value={writing}
+						maxLength={200}
 					/>
 
 					<Menu>

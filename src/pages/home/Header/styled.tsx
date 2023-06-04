@@ -81,26 +81,24 @@ export const ProfileBut = styled.div`
 `;
 
 export const Menu = styled.div`
-	position: fixed;
+	position: absolute;
 	z-index: 999;
-	right: 2rem;
+	right: 3rem;
+	top: 4.5rem;
 	background-color: #ffffff;
 	width: 11.25rem;
-	height: 17rem;
-	padding-top: 0.75rem;
+	padding: 0.75rem 0rem;
 	border-radius: 0.625rem;
 	box-shadow: 0rem 0.125rem 1.5rem rgba(0, 0, 0, 0.15);
 	@media only screen and (max-width: 768px) {
-		height: 13.2rem;
 		width: 10rem;
 	}
 `;
 
 export const Menudiv = styled.div<{ mark: string }>`
-	margin-bottom: 1rem;
 	width: 8.75rem;
-	height: 3.25rem;
-	line-height: 3.25rem;
+	// background-color: red;
+	padding: 0.9rem 0rem;
 	margin: 0 auto;
 	color: ${(props) =>
 		props.mark === "name"
@@ -113,8 +111,7 @@ export const Menudiv = styled.div<{ mark: string }>`
 	cursor: ${(props) => (props.mark === "name" ? "" : "pointer")};
 	@media only screen and (max-width: 768px) {
 		font-size: ${(props) => (props.mark === "name" ? "1.1rem" : "0.9rem")};
-		height: 2.5rem;
-		line-height: 2.5rem;
+		padding: 0.8rem;
 		width: 7.7rem;
 	}
 `;

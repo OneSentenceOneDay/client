@@ -242,6 +242,7 @@ function Sectences() {
 				localStorage.setItem("nickname", res.data.nickname);
 				alert("변경되었습니다.");
 				setNicknameChangeModal(false);
+				setNameError(true);
 			})
 			.catch((e) => {
 				if (e.response.data.code === "token_not_valid") {
