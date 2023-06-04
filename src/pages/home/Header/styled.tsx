@@ -92,6 +92,8 @@ export const Menu = styled.div`
 	box-shadow: 0rem 0.125rem 1.5rem rgba(0, 0, 0, 0.15);
 	@media only screen and (max-width: 768px) {
 		width: 10rem;
+		right: 2rem;
+		top: 4rem;
 	}
 `;
 
