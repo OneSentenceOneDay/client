@@ -319,7 +319,7 @@ function Main() {
 			data: { nickname: nickname },
 		})
 			.then((r) => {
-				console.log(r);
+				// console.log(r);
 				localStorage.setItem("nickname", nickname);
 				localStorage.setItem("name", r.data.name);
 				setFirstGoogle(false);
@@ -327,7 +327,7 @@ function Main() {
 				flag[3](true);
 			})
 			.catch((e) => {
-				console.log(e.response.data.detail);
+				// console.log(e.response.data.detail);
 				setNameError(false);
 			});
 	}
@@ -383,7 +383,7 @@ function Main() {
 			})
 				.then((res) => {
 					alert("신청되었습니다.");
-					console.log(res);
+					// console.log(res);
 				})
 				.catch((e) => {
 					if (e.response.status === 400) {
@@ -429,7 +429,7 @@ function Main() {
 				setLoading(false);
 			})
 			.catch((e) => {
-				console.log(e);
+				// console.log(e);
 			});
 	}
 

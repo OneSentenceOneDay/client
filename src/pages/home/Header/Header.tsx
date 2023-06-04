@@ -21,11 +21,6 @@ import { LoginState } from "states/LoginState";
 const BASE_URL = process.env.REACT_APP_API;
 
 export function Dropdown() {
-	// const isMobile = useMediaQuery({
-	// 	maxDeviceWidth: 768,
-	// 	// query: "(max-width:768px)",
-	// });
-
 	// ************************ navigation ************************
 	const navigate = useNavigate();
 	const goSentences = () => {
@@ -38,7 +33,7 @@ export function Dropdown() {
 		navigate("/password");
 	};
 
-	// // ************************ Logout ************************
+	// ************************ Logout ************************
 	function clickLogout() {
 		axios({
 			method: "post",

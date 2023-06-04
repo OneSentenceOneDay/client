@@ -52,7 +52,6 @@ function Login({
 						window.location.reload(); // 새로고침
 					}
 					setLoading(false);
-					console.log(res);
 				})
 				.catch((e) => {
 					setLoading(false);
@@ -92,7 +91,7 @@ function Login({
 			},
 		})
 			.then((res) => {
-				console.log(res.data);
+				// console.log(res.data);
 				localStorage.setItem("access_token", res.data.access_token);
 				localStorage.setItem("refresh_token", res.data.refresh_token);
 				localStorage.setItem("nickname", res.data.user.nickname);

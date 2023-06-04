@@ -283,7 +283,7 @@ function Sectences() {
 			},
 		}).then((res) => {
 			setIsWriting(res.data.week_is_writing);
-			console.log(res.data.week_is_writing);
+			// console.log(res.data.week_is_writing);
 		});
 	}, []);
 
@@ -315,7 +315,11 @@ function Sectences() {
 			</Name>
 			<Nickname>{localStorage.getItem("email")}</Nickname>
 			<History>
-				<HistoryItems name={"연속 학습 랭킹"} count={"54등"} img={Medal} />
+				<HistoryItems
+					name={"연속 학습 랭킹"}
+					count={user.continuous_ranking + "등"}
+					img={Medal}
+				/>
 				<HistoryItems
 					name={"영어 작문"}
 					count={user.post_num + "개"}

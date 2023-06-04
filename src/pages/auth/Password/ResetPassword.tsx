@@ -68,7 +68,6 @@ function ResetPassword() {
 					if (e.response.data.new_password2) {
 						setWarningMsg("* " + e.response.data.new_password2[0]);
 					}
-					console.log(e.response.data.new_password2[0]);
 				});
 		}
 	}
@@ -82,7 +81,6 @@ function ResetPassword() {
 
 	if (loading) return <Loading />;
 
-	console.log(confirmModal);
 	return (
 		<Wrap>
 			<Text>비밀번호 변경</Text>

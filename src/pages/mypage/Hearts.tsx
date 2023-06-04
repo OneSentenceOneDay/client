@@ -29,7 +29,7 @@ function Hearts() {
 		})
 			.then((res) => {
 				setPosts(res.data);
-				console.log(res.data);
+				// console.log(res.data);
 				setLoading(false);
 			})
 			.catch((e) => {
@@ -78,9 +78,9 @@ function Hearts() {
 			},
 		}).then((res) => {
 			setTrans(res.data.translation);
-			console.log(res.data.translation);
+			// console.log(res.data.translation);
 			setShowTrans(true);
-			console.log(showTrans);
+			// console.log(showTrans);
 		});
 	}
 
