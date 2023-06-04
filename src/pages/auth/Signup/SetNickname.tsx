@@ -6,12 +6,15 @@ import { Text } from "../Password/styled";
 import axios from "axios";
 import { BlueBigButton } from "components/Button";
 import { WarningText } from "./styled";
+import { useNavigate } from "react-router-dom";
 
 const BASE_URL = process.env.REACT_APP_API;
 
 function SetNickname() {
 	const [nickname, setNickname] = useState<string>("");
 	const [nameError, setNameError] = useState<boolean>(true); // 닉네임 에러 확인
+
+	const navigate = useNavigate();
 
 	function settingNickname() {
 		axios({
@@ -25,6 +28,8 @@ function SetNickname() {
 			.then((r) => {
 				localStorage.setItem("nickname", nickname);
 				localStorage.setItem("name", r.data.name);
+				alert("설정되었습니다.");
+				navigate("/");
 			})
 			.catch((e) => {
 				// console.log(e.response.data.detail);

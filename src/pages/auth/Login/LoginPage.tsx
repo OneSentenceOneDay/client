@@ -46,10 +46,11 @@ function LoginPage() {
 					localStorage.setItem("subscription", res.data.user.subscription);
 					// 최초 로그인 확인
 					if (res.data.user.is_first) {
-						// setGoogle(true);
+						navigate("/nickname");
+					} else {
+						navigate("/");
 					}
 					setLoading(false);
-					navigate("/");
 				})
 				.catch((e) => {
 					setLoading(false);
