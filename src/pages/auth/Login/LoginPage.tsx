@@ -48,7 +48,7 @@ function LoginPage() {
 					if (res.data.user.is_first) {
 						navigate("/nickname");
 					} else {
-						navigate("/");
+						// navigate("/");
 					}
 					setLoading(false);
 				})

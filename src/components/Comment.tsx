@@ -68,46 +68,8 @@ any) {
 		};
 	}, [outsideRef]);
 
-	// ************************ 수정 ************************
-	// const [editModal, setEditModal] = useState<boolean>(false);
-	// const [editConts, setEditConts] = useState<string>("");
-
-	// function edit() {
-	// 	axios({
-	// 		method: "put",
-	// 		url: `${BASE_URL}/writing/post/${postId}/`,
-	// 		headers: {
-	// 			Authorization: `Bearer ${sessionStorage.getItem("access_token")}`,
-	// 		},
-	// 		data: {
-	// 			body: editConts,
-	// 		},
-	// 	}).then((res) => {
-	// 		console.log(res);
-	// 		setEditModal(false);
-	// 		getSentences();
-	// 	});
-	// }
-
-	// function undo() {
-	// 	setEditModal(false);
-	// }
-
 	return (
 		<>
-			{/* {editModal && (
-				<Modal
-					title="Edit"
-					body="오늘의 구문을 사용해주세요"
-					button="확인"
-					button2="취소"
-					onclick={edit}
-					onclick2={undo}
-					input={true}
-					placeholder=""
-					setState={setEditConts}
-				/>
-			)} */}
 			{showTrans && (
 				<div ref={outsideRef}>
 					<BlueboxModal body={trans} />
@@ -118,21 +80,9 @@ any) {
 					<Name>{name}</Name>
 					<Time>{time}</Time>
 				</Left>
-
 				<Right>
 					<Contents>{contents}</Contents>
 					<BottomDiv>
-						{/* {userId
-							? id?.toString() === userId && (
-									<img
-										src={Edit}
-										alt="edit"
-										onClick={() => {
-											setEditModal(true);
-										}}
-									/>
-							  )
-							: ""} */}
 						<TransDiv>
 							<img
 								src={Trans}

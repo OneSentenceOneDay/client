@@ -607,8 +607,8 @@ export const Likes = styled.div`
 	margin-left: 0.7rem;
 	@media only screen and (max-width: 768px) {
 		font-size: 1rem;
-		width: 3.5rem;
-		padding: 0.4rem 0rem;
+		width: 3rem;
+		padding: 0.3rem 0rem;
 		margin-left: 0.5rem;
 	}
 `;

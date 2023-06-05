@@ -74,8 +74,6 @@ import handleCopyClipBoard from "../../../apis/copy";
 import Loading from "components/Loading";
 import GoogleAdvertise from "components/GoogleAdvertise";
 import { DesktopAds, MobileAds } from "./../../../components/styled";
-import { Input } from "../../../components/Input";
-import { DialogBox } from "components/DialogBox";
 import tokenNotValid from "apis/tokenNotValid";
 import EventModal from "../Event/EventModal";
 import { useCookies } from "react-cookie";
@@ -121,39 +119,55 @@ function Main() {
 		} else {
 			setNowSort(eng);
 			setPage(1);
-			// console.log(1);
 		}
 	}
 
 	const Sort = ({ name, eng, mark }: SortProps) => {
-		if (mark) {
-			return (
-				<Sorted
-					flag={mark}
-					onClick={() => {
-						clickSort(eng);
-					}}
-				>
-					{name}
-				</Sorted>
-			);
-		} else {
-			return (
-				<Sorted
-					flag={mark}
-					onClick={() => {
-						clickSort(eng);
-					}}
-				>
-					{name}
-				</Sorted>
-			);
-		}
+		// if (mark) {
+		// 	return (
+		// 		<Sorted
+		// 			flag={mark}
+		// 			onClick={() => {
+		// 				clickSort(eng);
+		// 			}}
+		// 		>
+		// 			{name}
+		// 		</Sorted>
+		// 	);
+		// } else {
+		return (
+			<Sorted
+				flag={mark}
+				onClick={() => {
+					clickSort(eng);
+				}}
+			>
+				{name}
+			</Sorted>
+		);
+		// }
 	};
 
 	// ************************ get 오늘의 구문 ************************
+	type sentenceType = {
+		created_at: string;
+		day_of_the_week: string;
+		discription: string;
+		id: number;
+		korean: string;
+		sentence: string;
+		translate: string;
+	};
 	const [loading, setLoading] = useState(false);
-	const [sentence, setSentence] = useState<any>([]);
+	const [sentence, setSentence] = useState<sentenceType>({
+		created_at: "",
+		day_of_the_week: "",
+		discription: "",
+		id: 0,
+		korean: "",
+		sentence: "",
+		translate: "",
+	});
 
 	useEffect(() => {
 		setLoading(true);
@@ -162,7 +176,6 @@ function Main() {
 			url: `${BASE_URL}/writing/main/`,
 		}).then((res) => {
 			setSentence(res.data.postList[0]);
-			// console.log(res.data);
 		});
 		setLoading(false);
 	}, []);
@@ -172,30 +185,20 @@ function Main() {
 	const [pages, setPages] = useState<number>(1);
 	const [page, setPage] = useState<number>(1);
 
+	console.log(post);
+
 	function getSentences() {
 		if (sentence.id) {
 			setLoading(true);
 			axios({
 				method: "get",
 				url: `${BASE_URL}/writing/post/order/${sentence.id}/query=${nowSort}/?page=${page}`,
-				headers: {
-					Authorization: localStorage.getItem("access_token")
-						? `Bearer ${localStorage.getItem("access_token")}`
-						: "",
-				},
 			})
 				.then((res) => {
-					// console.log(res);
 					setPost(res.data.postList);
 					setPages(res.data.pageCnt);
 				})
-				.catch((e) => {
-					if (e.response.data.code === "token_not_valid") {
-						tokenNotValid();
-						navigate("/");
-						// window.location.reload(); // 새로고침
-					}
-				});
+				.catch((e) => {});
 			setLoading(false);
 		}
 	}
@@ -231,16 +234,14 @@ function Main() {
 					Authorization: `Bearer ${localStorage.getItem("access_token")}`,
 				},
 			})
-				.then((res) => {
+				.then(() => {
 					getSentences();
-					// console.log(res);
 				})
 				.catch((e) => {
-					// console.log(e);
+					console.log(e);
 					if (e.response.data.code === "token_not_valid") {
 						tokenNotValid();
-						navigate("/");
-						// window.location.reload(); // 새로고침
+						window.location.reload(); // 새로고침
 					}
 				});
 		} else {
@@ -253,7 +254,7 @@ function Main() {
 	const [writing, setWriting] = useState<string>(""); // 작성한 문장
 	const [noWarning, setNoWarning] = useState<boolean>(true);
 
-	async function isWarning() {
+	async function isIncluding() {
 		setLoading(true);
 		await axios({
 			method: "post",
@@ -291,17 +292,17 @@ function Main() {
 			.catch((e) => {
 				if (e.response.data.code === "token_not_valid") {
 					tokenNotValid();
-					navigate("/");
-					// window.location.reload(); // 새로고침
+					// navigate("/");
+					window.location.reload(); // 새로고침
 				} else {
 					// setNoWarning(false);
 				}
-				setLoading(false);
 			});
+		setLoading(false);
 	}
 
 	// ************************ 로그인 모달 ************************
-	const [openLogin, setOpenLogin] = useOutletContext<any>();
+	const [openLogin, setOpenLogin] = useState<boolean>(false);
 
 	// ************************ 구글 첫 로그인 시 닉네임 설정 ************************
 	const flag = useOutletContext<any>();
@@ -319,7 +320,6 @@ function Main() {
 			data: { nickname: nickname },
 		})
 			.then((r) => {
-				// console.log(r);
 				localStorage.setItem("nickname", nickname);
 				localStorage.setItem("name", r.data.name);
 				setFirstGoogle(false);
@@ -353,8 +353,8 @@ function Main() {
 			.catch((e) => {
 				if (e.response.data.code === "token_not_valid") {
 					tokenNotValid();
-					navigate("/");
-					// window.location.reload(); // 새로고침
+					// navigate("/");
+					window.location.reload(); // 새로고침
 				}
 			});
 	}
@@ -502,27 +502,14 @@ function Main() {
 
 	// ************************ 이벤트 페이지로 ************************
 	const goEvent = () => {
-		navigate("/event", {
-			// state: {
-			// 	openLogin: openLogin,
-			// 	setOpenLogin: setOpenLogin,
-			// 	setFirst: setFirst,
-			// 	setFirstGoogle: setFirstGoogle,
-			// 	openResetPasswordModal: openResetPasswordModal,
-			// 	resetPasswordModal: resetPasswordModal,
-			// 	resetPassword: resetPassword,
-			// 	closeResetPasswordModal: closeResetPasswordModal,
-			// 	setEmail: setEmail,
-			// 	resetPasswordConfirmModal: resetPasswordConfirmModal,
-			// 	closeResetPasswordConfirmModal: closeResetPasswordConfirmModal,
-			// },
-		});
+		navigate("/event");
 	};
 
 	// ************************ 이벤트 팝업창 ************************
 	const [eventPopup, setEventPopup] = useState<boolean>(true);
 	const [hasCookie, setHasCookie] = useState<boolean>(true);
 	const [appCookies, setAppCookies] = useCookies(); // 쿠키 목록 불러옴
+
 	// 만료 시기 설정 함수
 	const getExpiredDate = (days: number) => {
 		const date = new Date();
@@ -571,13 +558,32 @@ function Main() {
 			method: "get",
 			url: `${BASE_URL}/accounts/rankingcontinuous/`,
 		}).then((res) => {
-			console.log(res.data.ranking);
 			setRankingUser(res.data.ranking);
+		});
+	}
+
+	// ************************ 이벤트 좋아요 랭킹 ************************
+	type likeRankType = [
+		{
+			user__nickname: string;
+			total_likes: number;
+		}
+	];
+	const [likeRankingUser, setLikeRankingUser] = useState<likeRankType>();
+
+	function getLikeRanking() {
+		axios({
+			method: "get",
+			url: `${BASE_URL}/accounts/ranking/`,
+		}).then((res) => {
+			setLikeRankingUser(res.data.ranking);
+			console.log(res);
 		});
 	}
 
 	useEffect(() => {
 		rankingContinuos();
+		getLikeRanking();
 	}, []);
 
 	if (loading) return <Loading />;
@@ -729,7 +735,7 @@ function Main() {
 								}}
 							/>
 						</Icons>
-						<Button onClick={isWarning}>영작 완료</Button>
+						<Button onClick={isIncluding}>영작 완료</Button>
 					</Menu>
 					<WarningText noWarning={noWarning} page="main">
 						* 오늘의 구문을 활용하여 문장을 만들어주세요!
@@ -833,12 +839,16 @@ function Main() {
 						<img src={Character4} />
 					</EventTitle>
 					<EventRankingItems>
-						<EventRankingItem>
-							<EventRanking>1등</EventRanking>
-							<Likes>♥ 22</Likes>
-							<EventNickName>손흥민</EventNickName>
-						</EventRankingItem>
-						<EventRankingItem>
+						{likeRankingUser &&
+							likeRankingUser.map((user, idx) => (
+								<EventRankingItem>
+									<EventRanking>{idx + 1}등</EventRanking>
+									<Likes>♥ {user.total_likes}</Likes>
+									<EventNickName>{user.user__nickname}</EventNickName>
+								</EventRankingItem>
+							))}
+
+						{/* <EventRankingItem>
 							<EventRanking>2등</EventRanking>
 							<Likes>♥ 22</Likes>
 							<EventNickName>손흥민</EventNickName>
@@ -847,7 +857,7 @@ function Main() {
 							<EventRanking>3등</EventRanking>
 							<Likes>♥ 22</Likes>
 							<EventNickName>손흥민</EventNickName>
-						</EventRankingItem>
+						</EventRankingItem> */}
 					</EventRankingItems>
 				</EventRankingContainer>
 
