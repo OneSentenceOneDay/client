@@ -185,8 +185,6 @@ function Main() {
 	const [pages, setPages] = useState<number>(1);
 	const [page, setPage] = useState<number>(1);
 
-	console.log(post);
-
 	function getSentences() {
 		if (sentence.id) {
 			setLoading(true);
@@ -549,17 +547,19 @@ function Main() {
 	// const [rankingReport, setRankReport] = useState<boolean>(false);
 
 	// ************************ 연속 학습 랭킹 ************************
-	const [rankingUser, setRankingUser] = useState<string[]>(["", "", ""]);
+	const [rankingUser, setRankingUser] = useState<string[]>();
 	const colors = ["#71EEA3", "#FFE8EB", "#FFFFFF"];
 	const characters = [Character1, Character2, Character3];
 
 	function rankingContinuos() {
+		setLoading(false);
 		axios({
 			method: "get",
 			url: `${BASE_URL}/accounts/rankingcontinuous/`,
 		}).then((res) => {
 			setRankingUser(res.data.ranking);
 		});
+		setLoading(true);
 	}
 
 	// ************************ 이벤트 좋아요 랭킹 ************************
@@ -572,6 +572,7 @@ function Main() {
 	const [likeRankingUser, setLikeRankingUser] = useState<likeRankType>();
 
 	function getLikeRanking() {
+		setLoading(false);
 		axios({
 			method: "get",
 			url: `${BASE_URL}/accounts/ranking/`,
@@ -579,6 +580,7 @@ function Main() {
 			setLikeRankingUser(res.data.ranking);
 			console.log(res);
 		});
+		setLoading(true);
 	}
 
 	useEffect(() => {
@@ -763,30 +765,16 @@ function Main() {
 						연속 학습 랭킹
 					</Title>
 					<RankItems>
-						{rankingUser.map((user, idx) => (
-							<RankItem backgroundColor={colors[idx]}>
-								<Ranking>{idx + 1}등</Ranking>
-								<NickName>{user}</NickName>
-								<Character>
-									<img src={characters[idx]} />
-								</Character>
-							</RankItem>
-						))}
-
-						{/* <RankItem backgroundColor=>
-							<Ranking>2등</Ranking>
-							<NickName>손흥민</NickName>
-							<Character>
-								<img src={Character2} />
-							</Character>
-						</RankItem>
-						<RankItem backgroundColor=>
-							<Ranking>3등</Ranking>
-							<NickName>코리</NickName>
-							<Character>
-								<img src={Character3} />
-							</Character>
-						</RankItem> */}
+						{rankingUser &&
+							rankingUser.map((user, idx) => (
+								<RankItem backgroundColor={colors[idx]}>
+									<Ranking>{idx + 1}등</Ranking>
+									<NickName>{user}</NickName>
+									<Character>
+										<img src={characters[idx]} />
+									</Character>
+								</RankItem>
+							))}
 					</RankItems>
 				</WritingRank>
 				<ListContainer>
