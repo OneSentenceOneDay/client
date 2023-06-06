@@ -22,7 +22,7 @@ export const EventIcon = styled.div`
 		font-size: 0.75rem;
 		padding: 0.375rem 0.1rem;
 		width: 3.5rem;
-	} ;
+	}
 `;
 
 export const Text1 = styled.div`
@@ -33,7 +33,7 @@ export const Text1 = styled.div`
 	@media only screen and (max-width: 768px) {
 		font-size: 1.125rem;
 		margin-top: 0.5rem;
-	} ;
+	}
 `;
 
 export const Text2 = styled.div`
@@ -46,7 +46,7 @@ export const Text2 = styled.div`
 		font-size: 1.5rem;
 		margin-top: 0.5rem;
 		margin-bottom: 1rem;
-	} ;
+	}
 `;
 export const Text3 = styled.div<{ flag: boolean }>`
 	white-space: pre-line;
@@ -61,7 +61,7 @@ export const Text3 = styled.div<{ flag: boolean }>`
 		padding-bottom: ${(props) => (props.flag ? "1.5rem" : "0rem")};
 		width: ${(props) => (props.flag ? "10rem" : "auto")};
 		margin: 0 auto;
-	} ;
+	}
 `;
 
 export const WhiteBox = styled.div`
@@ -77,7 +77,7 @@ export const WhiteBox = styled.div`
 			width: 7rem;
 			border-radius: 0.5rem 0.5rem 0rem 0rem;
 		}
-	} ;
+	}
 `;
 
 export const Text4 = styled.div`
@@ -215,7 +215,6 @@ export const CloseModal = styled.div`
 	font-size: 1rem;
 	div {
 		display: inline-block;
-		margin-left: 1rem;
 		cursor: pointer;
 		&: hover {
 			opacity: 0.9;
