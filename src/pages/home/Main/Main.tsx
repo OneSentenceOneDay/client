@@ -552,14 +552,14 @@ function Main() {
 	const characters = [Character1, Character2, Character3];
 
 	function rankingContinuos() {
-		setLoading(false);
+		setLoading(true);
 		axios({
 			method: "get",
 			url: `${BASE_URL}/accounts/rankingcontinuous/`,
 		}).then((res) => {
 			setRankingUser(res.data.ranking);
 		});
-		setLoading(true);
+		setLoading(false);
 	}
 
 	// ************************ 이벤트 좋아요 랭킹 ************************
@@ -572,7 +572,7 @@ function Main() {
 	const [likeRankingUser, setLikeRankingUser] = useState<likeRankType>();
 
 	function getLikeRanking() {
-		setLoading(false);
+		setLoading(true);
 		axios({
 			method: "get",
 			url: `${BASE_URL}/accounts/ranking/`,
@@ -580,7 +580,7 @@ function Main() {
 			setLikeRankingUser(res.data.ranking);
 			console.log(res);
 		});
-		setLoading(true);
+		setLoading(false);
 	}
 
 	useEffect(() => {
