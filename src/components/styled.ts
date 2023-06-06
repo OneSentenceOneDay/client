@@ -99,8 +99,25 @@ export const Bluebox = styled.dialog`
 
 // ************** Loading **************
 export const LoadingItem = styled.div`
-	padding: 35vh 0;
 	font-family: Pretendard-Regular;
+	margin-top: 1rem;
+	font-size: 1rem;
+	@media only screen and (max-width: 768px) {
+		font-size: 0.9rem;
+	}
+`;
+
+export const OsodiImg = styled.div`
+	img {
+		width: 5rem;
+		@media only screen and (max-width: 768px) {
+			width: 4rem;
+		}
+	}
+`;
+
+export const InnerWrap = styled.div`
+	padding: 15rem 0rem;
 `;
 
 // ************** 광고 **************

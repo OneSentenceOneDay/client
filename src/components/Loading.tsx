@@ -1,11 +1,25 @@
 import FooterComponent from "./Footer";
 import GoogleAdvertise from "./GoogleAdvertise";
-import { Wrap, LoadingItem, DesktopAds, MobileAds } from "./styled";
+import {
+	Wrap,
+	LoadingItem,
+	DesktopAds,
+	MobileAds,
+	OsodiImg,
+	InnerWrap,
+} from "./styled";
+import Osodi from "assets/images/osodi.gif";
 
 function Loading() {
 	return (
 		<Wrap>
-			<LoadingItem>로딩 중 ...</LoadingItem>
+			<InnerWrap>
+				<OsodiImg>
+					<img src={Osodi} />
+				</OsodiImg>
+				<LoadingItem>잠시만 기다려주세요</LoadingItem>
+			</InnerWrap>
+
 			<FooterComponent />
 			<DesktopAds width="768px">
 				<GoogleAdvertise slot="5506046036" width="728px" height="90px" />

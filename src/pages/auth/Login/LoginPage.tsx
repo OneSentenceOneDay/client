@@ -12,6 +12,7 @@ import { Button } from "../Password/styled";
 import Google from "../../../assets/icons/google-icon.svg";
 import FooterComponent from "components/Footer";
 import { BlueBigButton, GoogleButton2 } from "components/Button";
+import Loading from "components/Loading";
 
 const BASE_URL = process.env.REACT_APP_API;
 
@@ -97,6 +98,8 @@ function LoginPage() {
 				setPassword("");
 			});
 	}
+
+	if (loading) return <Loading />;
 
 	return (
 		<Wrap>
