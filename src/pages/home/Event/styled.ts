@@ -215,6 +215,7 @@ export const CloseModal = styled.div`
 	font-size: 1rem;
 	div {
 		display: inline-block;
+		margin-left: 1rem;
 		cursor: pointer;
 		&: hover {
 			opacity: 0.9;
@@ -234,5 +235,8 @@ export const CloseModal = styled.div`
 		display: flex;
 		justify-content: space-between;
 		font-size: 0.875rem;
+		div {
+			margin-left: 0rem;
+		}
 	}
 `;
