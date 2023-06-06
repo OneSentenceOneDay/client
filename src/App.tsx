@@ -12,8 +12,8 @@ function App() {
 	ReactGA.initialize(gaTrackingId, { debug: true }); // react-ga 초기화 및 debug 사용
 	ReactGA.pageview(window.location.pathname); // 추적하려는 page 설정
 
-	const HJID: number = parseInt(process.env.HJID!);
-	const HJSV: number = parseInt(process.env.HJSV!);
+	const HJID: number = parseInt(process.env.REACT_APP_HJID!);
+	const HJSV: number = parseInt(process.env.REACT_APP_HJSV!);
 
 	useEffect(() => {
 		if (process.env.NODE_ENV !== "development") {
