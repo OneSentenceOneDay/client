@@ -23,10 +23,14 @@ function FeedbackModal({ closeModal }: IModalProps) {
 			method: "post",
 			url: `${BASE_URL}//accounts/feedback/`,
 			data: { body: feedback },
-		}).then(() => {
-			alert("전송되었습니다.");
-			closeModal();
-		});
+		})
+			.then(() => {
+				alert("전송되었습니다.");
+				closeModal();
+			})
+			.catch(() => {
+				alert("내용을 작성해주세요.");
+			});
 	}
 
 	return (

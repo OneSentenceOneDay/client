@@ -193,6 +193,7 @@ function Main() {
 				url: `${BASE_URL}/writing/post/order/${sentence.id}/query=${nowSort}/?page=${page}`,
 			})
 				.then((res) => {
+					console.log(res.data.postList);
 					setPost(res.data.postList);
 					setPages(res.data.pageCnt);
 				})
