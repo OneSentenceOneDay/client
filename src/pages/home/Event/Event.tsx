@@ -19,7 +19,7 @@ import {
 } from "./styled";
 import Gift from "assets/images/gift-image.svg";
 import Munsang1 from "assets/images/munsang5000.svg";
-import Munsang2 from "assets/images/munsang30000.svg";
+import Hearts from "assets/images/Hearts.svg";
 import Computer from "assets/images/computer.svg";
 import Calendar from "assets/images/calendar.svg";
 import FooterComponent from "components/Footer";
@@ -67,6 +67,15 @@ function Event() {
 							<Text6 flag={true}>로그인하고 연속 학습 출석하기!</Text6>
 							<Text6 flag={false}>
 								4일 이상 출석한 학습자를 대상으로 추첨!
+							</Text6>
+						</Texts>
+					</Item>
+					<Item>
+						<img src={Hearts} />
+						<Texts>
+							<Text6 flag={true}>좋은 영어 문장을 써서 좋아요 받기!</Text6>
+							<Text6 flag={false}>
+								좋아요를 가장 많이 받은 1등에게 상품권을 드려요!
 							</Text6>
 						</Texts>
 					</Item>

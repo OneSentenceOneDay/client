@@ -4,7 +4,7 @@ import palette from "../../../lib/palette";
 export const Inner = styled.div`
 	padding: 3rem;
 	@media only screen and (max-width: 768px) {
-		padding: 2rem;
+		padding: 2rem 0rem;
 	}
 `;
 
@@ -147,7 +147,8 @@ export const Texts = styled.div`
 	margin-left: 1rem;
 	width: 18.5rem;
 	@media only screen and (max-width: 768px) {
-		width: 14.5rem;
+		width: 17.5rem;
+		margin-left: 0.7rem;
 	}
 `;
 

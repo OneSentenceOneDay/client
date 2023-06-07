@@ -3,6 +3,7 @@ import { BlueBigButton } from "components/Button";
 import { DialogBox } from "components/DialogBox";
 import { EventIcon, Text1, Text2, Text3, CloseModal } from "./styled";
 import { useCallback } from "react";
+import { useNavigate } from "react-router-dom";
 
 type modalProps = {
 	closeModal: () => void;
@@ -14,6 +15,11 @@ function EventModal({ closeModal, closeModalUntilExpires }: modalProps) {
 		closeModal();
 		document.body.style.overflow = "unset";
 	}, []);
+
+	const navigate = useNavigate();
+	function goEvent() {
+		navigate("/event");
+	}
 
 	return (
 		<>
@@ -29,7 +35,7 @@ function EventModal({ closeModal, closeModalUntilExpires }: modalProps) {
 				<Text3 flag={true}>
 					한 달 동안 열심히 영작하고 상품도 받으세요! 🙌
 				</Text3>
-				<BlueBigButton onClick={closeModal}>영작 하러 가기</BlueBigButton>
+				<BlueBigButton onClick={goEvent}>이벤트 자세히 보기</BlueBigButton>
 				<CloseModal>
 					<div onClick={closeModalUntilExpires}>하루 동안 보지 않기</div>
 					{/* <label>
