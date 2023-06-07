@@ -762,8 +762,8 @@ function Main() {
 				</MobileAds> */}
 				<WritingRank>
 					<Title>
-						<img src={Medal} />
-						연속 학습 랭킹
+						{/* <img src={Medal} /> */}
+						🏅 연속 학습 랭킹
 					</Title>
 					<RankItems>
 						{rankingUser &&

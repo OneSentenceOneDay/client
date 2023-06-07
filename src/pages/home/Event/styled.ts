@@ -74,7 +74,7 @@ export const WhiteBox = styled.div`
 	@media only screen and (max-width: 768px) {
 		width: 21.875rem;
 		img {
-			width: 7rem;
+			width: 6rem;
 			border-radius: 0.5rem 0.5rem 0rem 0rem;
 		}
 	}
@@ -147,8 +147,8 @@ export const Texts = styled.div`
 	margin-left: 1rem;
 	width: 18.5rem;
 	@media only screen and (max-width: 768px) {
-		width: 17.5rem;
-		margin-left: 0.7rem;
+		width: 17.1rem;
+		margin-left: 0.5rem;
 	}
 `;
 

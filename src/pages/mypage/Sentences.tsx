@@ -22,6 +22,7 @@ import {
 	StampItem,
 	Stamp,
 	Week,
+	ItemIcon,
 } from "./styled";
 import { Wrap } from "components/styled";
 import axios from "axios";
@@ -58,7 +59,8 @@ type historyItemType = {
 export function HistoryItems({ name, count, img }: historyItemType) {
 	return (
 		<HistoryItem>
-			<img src={img} />
+			{/* <img src={img} /> */}
+			<ItemIcon>{img}</ItemIcon>
 			<ItemName long={false}>{name}</ItemName>
 			<ItemCount>{count}</ItemCount>
 		</HistoryItem>
@@ -318,17 +320,17 @@ function Sectences() {
 				<HistoryItems
 					name={"연속 학습 랭킹"}
 					count={user.continuous_ranking + "등"}
-					img={Medal}
+					img={"🏅"}
 				/>
 				<HistoryItems
 					name={"영어 작문"}
 					count={user.post_num + "개"}
-					img={Writing}
+					img={"🗒️"}
 				/>
 				<HistoryItems
 					name={"받은 좋아요"}
 					count={user.liked_num + "개"}
-					img={Hearts}
+					img={"💕"}
 				/>
 			</History>
 			<HistoryItemLong>

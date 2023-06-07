@@ -44,9 +44,6 @@ export const HistoryItem = styled.div`
 	border-radius: 0.625rem;
 	width: 13.75rem;
 	text-align: left;
-	img {
-		vertical-align: bottom;
-	}
 	@media only screen and (max-width: 700px) {
 		width: 6.5rem;
 		text-align: center;
@@ -54,6 +51,14 @@ export const HistoryItem = styled.div`
 		img {
 			width: 1.2rem;
 		}
+	}
+`;
+
+export const ItemIcon = styled.div`
+	display: inline-block;
+	font-size: 1rem;
+	@media only screen and (max-width: 700px) {
+		font-size: 0.875rem;
 	}
 `;
 
@@ -184,6 +189,9 @@ export const StampContainer = styled.div`
 `;
 export const StampItem = styled.div`
 	margin-top: 0.9rem;
+	@media only screen and (max-width: 700px) {
+		margin-top: 0rem;
+	}
 `;
 
 export const Week = styled.div`

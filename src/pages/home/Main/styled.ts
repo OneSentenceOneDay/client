@@ -491,7 +491,8 @@ export const EventBanner = styled.div`
 	@media only screen and (max-width: 768px) {
 		width: auto;
 		border-radius: 0rem;
-		font-size: 0.938rem;
+		font-size: 0.8758rem;
+		padding: 0.7rem 1.25rem;
 	}
 `;
 

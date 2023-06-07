@@ -18,7 +18,8 @@ import {
 	FeedbackBut,
 } from "./styled";
 import Gift from "assets/images/gift-image.svg";
-import Munsang1 from "assets/images/munsang5000.svg";
+import Munsang1 from "assets/images/munsang.svg";
+import Munsang2 from "assets/images/munsang2.svg";
 import Hearts from "assets/images/Hearts.svg";
 import Computer from "assets/images/computer.svg";
 import Calendar from "assets/images/calendar.svg";
@@ -57,7 +58,7 @@ function Event() {
 					<img src={Munsang1} />
 					<Text4>event.02</Text4>
 					<Text5>가장 많이 좋아요 받고 문화상품권 5천 원 받으세요!</Text5>
-					<img src={Munsang1} />
+					<img src={Munsang2} />
 				</WhiteBox>
 				<PinkBox>
 					<Title>참여 방법</Title>
