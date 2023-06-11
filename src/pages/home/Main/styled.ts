@@ -555,7 +555,7 @@ export const EventRankingContainer = styled.div`
 export const EventTitle = styled.div<{ bold: boolean }>`
 	font-size: 1.125rem;
 	font-family: ${(props) =>
-		props.bold ? "Pretendard-Bolder" : " retendard-Regular"};
+		props.bold ? "Pretendard-Bolder" : "Pretendard-Regular"};
 	display: inline-block;
 	margin-right: 0.5rem;
 	margin-top: 1rem;
