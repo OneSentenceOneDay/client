@@ -591,9 +591,9 @@ function Main() {
 
 	// ************************ 모달 관련 ************************
 	// 월요일 -> 이벤트 모달, 다른 요일 -> 결과 모달
-	let mToday = new Date();
-	let date = mToday.getDay();
-	const mon: boolean = date === 1 ? true : false;
+	// let mToday = new Date();
+	// let date = mToday.getDay();
+	// const mon: boolean = date === 1 ? true : false;
 
 	if (loading) return <Loading />;
 
@@ -614,13 +614,12 @@ function Main() {
 				<GoogleAdvertise slot="2282673475" width="250px" height="500px" />
 			</DesktopAds>
 			<CenterSection>
-				{!mon && eventPopup && !hasCookie && (
+				{eventPopup && !hasCookie && (
 					<EventModal
 						closeModal={() => setEventPopup(false)}
 						closeModalUntilExpires={closeModalUntilExpires}
 					/>
 				)}
-				{mon}
 				{openLogin && (
 					<Login
 						openLogin={openLogin}
