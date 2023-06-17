@@ -22,7 +22,7 @@ export const DialogBox = styled.dialog<{ page: string }>`
 	-ms-transform: translate(0, -50%);
 	-o-transform: translate(0, -50%);
 	transform: translate(0, -50%);
-
+	// animation: modal-bg-show 0.3s;
 	overflow-y: auto;
 	// animation: modal-bg-show 0.3s;
 	// img {

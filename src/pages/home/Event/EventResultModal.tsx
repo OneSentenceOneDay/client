@@ -16,7 +16,7 @@ function EventResultModal({ closeModal }: modalProps) {
 
 	return (
 		<>
-			<DialogBox page="modal">
+			<DialogBox page="signup">
 				<Text bold={false}>하루 한 문장 영작 챌런지!</Text>
 				<Text bold={true}>둘째 주 당첨자 확인</Text>
 				<Img>
@@ -60,12 +60,20 @@ const Text = styled.div<{ bold: boolean }>`
 	font-size: 1.25rem;
 	color: ${palette.blue2};
 	margin-top: 0.2rem;
+	@media only screen and (max-width: 768px) {
+		font-size: 1.125rem;
+	}
 `;
 
 const Img = styled.div`
 	margin: 1rem 0rem;
 	img {
 		width: 5rem;
+	}
+	@media only screen and (max-width: 768px) {
+		img {
+			width: 4rem;
+		}
 	}
 `;
 
@@ -78,11 +86,14 @@ const Item = styled.div<{ position: string }>`
 	// 	#f5f6ff 100%
 	// );
 	padding: 1.875rem 0rem;
-	width: 25rem;
+	width: 28rem;
 	border-radius: ${(props) =>
 		props.position === "up"
 			? "0.625rem 0.625rem 0rem 0rem"
 			: "0rem 0rem 0.625rem 0.625rem "};
+	@media only screen and (max-width: 768px) {
+		width: 18rem;
+	}
 `;
 
 const Text2 = styled.div<{ bold: boolean }>`
@@ -90,21 +101,32 @@ const Text2 = styled.div<{ bold: boolean }>`
 		props.bold ? "Pretendard-Bold" : "Pretendard-Regular"};
 	color: ${palette.blue8};
 	margin-bottom: 0.6rem;
-	font-size: 1.05rem;
+	font-size: 1.15rem;
+	@media only screen and (max-width: 768px) {
+		font-size: 1rem;
+	}
 `;
+
 const NameSection = styled.div`
 	background-color: #ffffff;
-	width: 17rem;
+	width: 16rem;
 	margin: 0 auto;
 	padding: 0.7rem 0rem;
 	border-radius: 0.625rem;
 	margin-top: 0.5rem;
+	@media only screen and (max-width: 768px) {
+		width: 12rem;
+	}
 `;
+
 const Name = styled.div`
 	display: inline-block;
 	font-family: Pretendard-Bold;
 	font-size: 1.2rem;
 	color: ${palette.gray2};
+	@media only screen and (max-width: 768px) {
+		font-size: 1rem;
+	}
 `;
 const Nim = styled.div`
 	display: inline-block;
@@ -112,6 +134,9 @@ const Nim = styled.div`
 	font-size: 1rem;
 	margin-left: 0.2rem;
 	color: ${palette.gray2};
+	@media only screen and (max-width: 768px) {
+		font-size: 0.9rem;
+	}
 `;
 
 const Text3 = styled.div`
@@ -119,4 +144,8 @@ const Text3 = styled.div`
 	font-size: 0.95rem;
 	color: ${palette.gray1};
 	margin-top: 1.5rem;
+	@media only screen and (max-width: 768px) {
+		margin-top: 1rem;
+		font-size: 0.8rem;
+	}
 `;
