@@ -16,6 +16,8 @@ import {
 	BlueBox,
 	Text7,
 	FeedbackBut,
+	ModalTitle,
+	ModalText,
 } from "./styled";
 import Gift from "assets/images/gift-image.svg";
 import Munsang1 from "assets/images/munsang.svg";
@@ -24,13 +26,26 @@ import Hearts from "assets/images/Hearts.svg";
 import Computer from "assets/images/computer.svg";
 import Calendar from "assets/images/calendar.svg";
 import FooterComponent from "components/Footer";
-import { useState, Dispatch, SetStateAction } from "react";
+import { useState, Dispatch, SetStateAction, useCallback } from "react";
 import FeedbackModal from "../Feedback/FeedbackModal";
 import EventResultModal from "./EventResultModal";
+import { Modal } from "components/Modal";
+import { DialogBox } from "components/DialogBox";
+import { SkyBlueBigButton } from "components/Button";
+import { Backdrop } from "components/Backdrop";
 
 function Event() {
 	const [openFeedbackModal, setOpenFeedbackModal] = useState<boolean>(false);
+	const [confirm, setConfirm] = useState<boolean>(false);
 	const [resultModal, setResultModal] = useState<boolean>(true);
+
+	function closeConfirmModal() {
+		setConfirm(false);
+	}
+
+	const onClickToggleModal = useCallback(() => {
+		closeConfirmModal();
+	}, []);
 
 	return (
 		<Wrap>
@@ -39,7 +54,27 @@ function Event() {
 					closeModal={() => {
 						setOpenFeedbackModal(false);
 					}}
+					setConfirm={setConfirm}
 				/>
+			)}
+			{confirm && (
+				<>
+					<DialogBox page="modal">
+						<ModalTitle>🫰🏻</ModalTitle>
+						<ModalText>소중한 피드백 감사합니다!!</ModalText>
+						<SkyBlueBigButton onClick={closeConfirmModal}>
+							확인
+						</SkyBlueBigButton>
+					</DialogBox>
+					<Backdrop
+						onClick={(e: React.MouseEvent) => {
+							e.preventDefault();
+							if (onClickToggleModal) {
+								onClickToggleModal();
+							}
+						}}
+					/>
+				</>
 			)}
 			{resultModal && (
 				<EventResultModal closeModal={() => setResultModal(false)} />

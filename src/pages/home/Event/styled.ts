@@ -2,7 +2,7 @@ import styled from "styled-components";
 import palette from "../../../lib/palette";
 
 export const Inner = styled.div`
-	padding: 3rem;
+	padding: 3rem 0rem;
 	@media only screen and (max-width: 768px) {
 		padding: 2rem 0rem;
 	}
@@ -66,9 +66,10 @@ export const Text3 = styled.div<{ flag: boolean }>`
 
 export const WhiteBox = styled.div`
 	background-color: #ffffff;
+	// background-color: red;
 	padding-top: 2rem;
 	padding-bottom: 1rem;
-	width: 49.75rem;
+	width: 52.75rem;
 	margin: 0 auto;
 	border-radius: 0.625rem 0.625rem 0rem 0rem;
 	@media only screen and (max-width: 768px) {
@@ -103,7 +104,7 @@ export const Text5 = styled.div`
 export const PinkBox = styled.div`
 	background-color: #ffe8eb;
 	padding: 2rem 0rem;
-	width: 49.75rem;
+	width: 52.75rem;
 	margin: 0 auto;
 	border-radius: 0rem 0rem 0.625rem 0.625rem;
 	@media only screen and (max-width: 768px) {
@@ -165,8 +166,8 @@ export const Text6 = styled.div<{ flag: boolean }>`
 
 export const BlueBox = styled.div`
 	background-color: ${palette.blue2};
-	padding: 2rem;
-	width: 45.75rem;
+	padding: 2rem 0rem;
+	width: 52.75rem;
 	margin: 2rem auto;
 	border-radius: 0.625rem 0.625rem 0.625rem 0.625rem;
 	@media only screen and (max-width: 768px) {
@@ -240,4 +241,15 @@ export const CloseModal = styled.div`
 			margin-left: 0rem;
 		}
 	}
+`;
+
+export const ModalTitle = styled.div`
+	font-size: 2rem;
+`;
+
+export const ModalText = styled.div`
+	font-family: Pretendard-Medium;
+	color: ${palette.blue2};
+	font-size: 1rem;
+	padding: 1rem 0rem;
 `;

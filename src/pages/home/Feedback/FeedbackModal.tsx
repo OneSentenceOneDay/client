@@ -2,16 +2,17 @@ import { Backdrop } from "components/Backdrop";
 import { BlueBigButton } from "components/Button";
 import { DialogBox } from "components/DialogBox";
 import { Text, Emoji, Up, TextArea } from "./styled";
-import { useCallback, useState } from "react";
+import { useCallback, useState, Dispatch, SetStateAction } from "react";
 import axios from "axios";
 
 const BASE_URL = process.env.REACT_APP_API;
 
 type IModalProps = {
 	closeModal: () => void;
+	setConfirm: Dispatch<SetStateAction<boolean>>;
 };
 
-function FeedbackModal({ closeModal }: IModalProps) {
+function FeedbackModal({ closeModal, setConfirm }: IModalProps) {
 	const onClickToggleModal = useCallback(() => {
 		closeModal();
 	}, []);
@@ -25,7 +26,7 @@ function FeedbackModal({ closeModal }: IModalProps) {
 			data: { body: feedback },
 		})
 			.then(() => {
-				alert("전송되었습니다.");
+				setConfirm(true);
 				closeModal();
 			})
 			.catch(() => {
