@@ -5,7 +5,8 @@ export const DialogBox = styled.dialog<{ page: string }>`
 	position: fixed;
 	padding: 2.5rem 0;
 	width: ${(props) => (props.page === "modal" ? "32rem" : "35rem")};
-	height: ${(props) => (props.page === "signup" ? "80%" : "")};
+	height: ${(props) =>
+		props.page === "signup" ? "80%" : props.page === "eventModal" ? "60%" : ""};
 	max-height: 45rem;
 	display: flex;
 	flex-direction: column;

@@ -16,7 +16,7 @@ function EventResultModal({ closeModal }: modalProps) {
 
 	return (
 		<>
-			<DialogBox page="signup">
+			<DialogBox page="eventModal">
 				<Text bold={false}>하루 한 문장 영작 챌런지!</Text>
 				<Text bold={true}>둘째 주 당첨자 확인</Text>
 				<Img>
