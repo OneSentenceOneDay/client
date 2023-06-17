@@ -5,8 +5,7 @@ export const DialogBox = styled.dialog<{ page: string }>`
 	position: fixed;
 	padding: 2.5rem 0;
 	width: ${(props) => (props.page === "modal" ? "32rem" : "35rem")};
-	height: ${(props) =>
-		props.page === "signup" ? "80%" : props.page === "eventModal" ? "60%" : ""};
+	height: ${(props) => (props.page === "signup" ? "80%" : "")};
 	max-height: 45rem;
 	display: flex;
 	flex-direction: column;
@@ -33,6 +32,7 @@ export const DialogBox = styled.dialog<{ page: string }>`
 	@media only screen and (max-width: 768px) {
 		max-width: 20.5rem;
 		min-width: 20.5rem;
+		height: ${(props) => (props.page === "eventModal" ? "65%" : "")};
 		// img {
 		// 	width: 5rem;
 		// }

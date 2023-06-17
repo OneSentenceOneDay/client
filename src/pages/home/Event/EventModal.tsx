@@ -23,7 +23,7 @@ function EventModal({ closeModal, closeModalUntilExpires }: modalProps) {
 
 	return (
 		<>
-			<DialogBox page="modal">
+			<DialogBox page="eventModal">
 				<EventIcon>EVENT</EventIcon>
 				<Text1>하루 한 문장 영작 챌런지!</Text1>
 				<Text2>osod 출시 기념 이벤트</Text2>

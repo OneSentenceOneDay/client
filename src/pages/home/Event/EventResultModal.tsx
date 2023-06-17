@@ -61,7 +61,7 @@ const Text = styled.div<{ bold: boolean }>`
 	color: ${palette.blue2};
 	margin-top: 0.2rem;
 	@media only screen and (max-width: 768px) {
-		font-size: 1.125rem;
+		font-size: 1.1rem;
 	}
 `;
 
