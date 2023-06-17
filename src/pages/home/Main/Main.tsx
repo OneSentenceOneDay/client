@@ -589,6 +589,12 @@ function Main() {
 		getLikeRanking();
 	}, []);
 
+	// ************************ 모달 관련 ************************
+	// 월요일 -> 이벤트 모달, 다른 요일 -> 결과 모달
+	let mToday = new Date();
+	let date = mToday.getDay();
+	const mon: boolean = date === 1 ? true : false;
+
 	if (loading) return <Loading />;
 
 	return (
@@ -604,17 +610,17 @@ function Main() {
 					}}
 				></div>
 			</DesktopAds>
-
 			<DesktopAds width="1338px" style={{ float: "right", marginTop: "20rem" }}>
 				<GoogleAdvertise slot="2282673475" width="250px" height="500px" />
 			</DesktopAds>
 			<CenterSection>
-				{eventPopup && !hasCookie && (
+				{!mon && eventPopup && !hasCookie && (
 					<EventModal
 						closeModal={() => setEventPopup(false)}
 						closeModalUntilExpires={closeModalUntilExpires}
 					/>
 				)}
+				{mon}
 				{openLogin && (
 					<Login
 						openLogin={openLogin}

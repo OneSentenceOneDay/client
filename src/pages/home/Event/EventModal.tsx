@@ -2,7 +2,7 @@ import { Backdrop } from "components/Backdrop";
 import { BlueBigButton } from "components/Button";
 import { DialogBox } from "components/DialogBox";
 import { EventIcon, Text1, Text2, Text3, CloseModal } from "./styled";
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 type modalProps = {
@@ -13,7 +13,7 @@ type modalProps = {
 function EventModal({ closeModal, closeModalUntilExpires }: modalProps) {
 	const onClickToggleModal = useCallback(() => {
 		closeModal();
-		document.body.style.overflow = "unset";
+		// document.body.style.overflow = "unset";
 	}, []);
 
 	const navigate = useNavigate();

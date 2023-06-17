@@ -26,9 +26,11 @@ import Calendar from "assets/images/calendar.svg";
 import FooterComponent from "components/Footer";
 import { useState, Dispatch, SetStateAction } from "react";
 import FeedbackModal from "../Feedback/FeedbackModal";
+import EventResultModal from "./EventResultModal";
 
 function Event() {
 	const [openFeedbackModal, setOpenFeedbackModal] = useState<boolean>(false);
+	const [resultModal, setResultModal] = useState<boolean>(true);
 
 	return (
 		<Wrap>
@@ -38,6 +40,9 @@ function Event() {
 						setOpenFeedbackModal(false);
 					}}
 				/>
+			)}
+			{resultModal && (
+				<EventResultModal closeModal={() => setResultModal(false)} />
 			)}
 			<Inner>
 				<EventIcon>EVENT</EventIcon>
@@ -84,7 +89,7 @@ function Event() {
 						<img src={Calendar} />
 						<Texts>
 							<Text6 flag={true}>6월 한 달간 매일 영작하기!</Text6>
-							<Text6 flag={false}>2023년 6월 6일부터 7월 2일까지</Text6>
+							<Text6 flag={false}>2023년 6월 12일부터 7월 2일까지</Text6>
 						</Texts>
 					</Item>
 				</PinkBox>
