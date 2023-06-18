@@ -32,7 +32,7 @@ export const DialogBox = styled.dialog<{ page: string }>`
 	@media only screen and (max-width: 768px) {
 		max-width: 20.5rem;
 		min-width: 20.5rem;
-		height: ${(props) => (props.page === "eventModal" ? "65%" : "")};
+		max-height: ${(props) => (props.page === "eventModal" ? "80%" : "")};
 		// img {
 		// 	width: 5rem;
 		// }

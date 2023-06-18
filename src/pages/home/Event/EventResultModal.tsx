@@ -34,11 +34,11 @@ function EventResultModal({ closeModal }: modalProps) {
 					<Text2 bold={true}>가장 많이 좋아요를 받은 학습자는?</Text2>
 					<Text2 bold={false}>축하합니다!👏👏👏</Text2>
 					<NameSection>
-						<Name>김치주세요</Name>
+						<Name>손흥민</Name>
 						<Nim>님</Nim>
 					</NameSection>
 				</Item>
-				<Text3>2023년 0월 0일 까지 email로 상품을 보내 드립니다!</Text3>
+				<Text3>2023년 7월 2일 까지 email로 상품을 보내 드립니다!</Text3>
 			</DialogBox>
 			<Backdrop
 				onClick={(e: React.MouseEvent) => {
