@@ -18,7 +18,7 @@ function EventResultModal({ closeModal }: modalProps) {
 		<>
 			<DialogBox page="eventModal">
 				<Text bold={false}>하루 한 문장 영작 챌런지!</Text>
-				<Text bold={true}>둘째 주 당첨자 확인</Text>
+				<Text bold={true}>셋째 주 당첨자 확인</Text>
 				<Img>
 					<img src={Trophy} />
 				</Img>
@@ -34,7 +34,7 @@ function EventResultModal({ closeModal }: modalProps) {
 					<Text2 bold={true}>가장 많이 좋아요를 받은 학습자는?</Text2>
 					<Text2 bold={false}>축하합니다!👏👏👏</Text2>
 					<NameSection>
-						<Name>손흥민</Name>
+						<Name>꿀꿀돼지</Name>
 						<Nim>님</Nim>
 					</NameSection>
 				</Item>
