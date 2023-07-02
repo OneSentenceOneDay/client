@@ -83,6 +83,7 @@ import Character1 from "assets/images/osodi_congrat.svg";
 import Character2 from "assets/images/osodi_flag.svg";
 import Character3 from "assets/images/osodi_cheerup.svg";
 import Character4 from "assets/images/osodi_hi.svg";
+import EventResultModal from "../Event/EventResultModal";
 
 const BASE_URL = process.env.REACT_APP_API;
 
@@ -572,6 +573,8 @@ function Main() {
 	];
 	const [likeRankingUser, setLikeRankingUser] = useState<likeRankType>();
 
+	const [resultModal, setResultModal] = useState<boolean>(true);
+
 	function getLikeRanking() {
 		setLoading(true);
 		axios({
@@ -614,11 +617,14 @@ function Main() {
 				<GoogleAdvertise slot="2282673475" width="250px" height="500px" />
 			</DesktopAds>
 			<CenterSection>
-				{eventPopup && !hasCookie && (
+				{/* {eventPopup && !hasCookie && (
 					<EventModal
 						closeModal={() => setEventPopup(false)}
 						closeModalUntilExpires={closeModalUntilExpires}
 					/>
+				)} */}
+				{resultModal && (
+					<EventResultModal closeModal={() => setResultModal(false)} />
 				)}
 				{openLogin && (
 					<Login
@@ -679,7 +685,7 @@ function Main() {
 					/>
 				)}
 				{/* {rankingReport && <DialogBox page="modal"></DialogBox>} */}
-				<EventBanner onClick={goEvent}>
+				{/* <EventBanner onClick={goEvent}>
 					<Notice>notice</Notice>
 					<BannerText>
 						{
@@ -689,7 +695,7 @@ function Main() {
 					<RigthArrow>
 						<img src={RightArrow} />
 					</RigthArrow>
-				</EventBanner>
+				</EventBanner> */}
 				<TodayStc>
 					<DateComponent date={today} page={"main"} />
 					<Text>오늘의 구문을 사용하여 영어 글쓰기를 연습해 보세요.</Text>
@@ -823,7 +829,7 @@ function Main() {
 						</>
 					)}
 				</ListContainer>
-				<EventRankingContainer>
+				{/* <EventRankingContainer>
 					<EventTitle bold={true}>
 						<img src={Character4} />
 						Event Rank
@@ -841,19 +847,8 @@ function Main() {
 									<EventNickName>{user.user__nickname}</EventNickName>
 								</EventRankingItem>
 							))}
-
-						{/* <EventRankingItem>
-							<EventRanking>2등</EventRanking>
-							<Likes>♥ 22</Likes>
-							<EventNickName>손흥민</EventNickName>
-						</EventRankingItem>
-						<EventRankingItem>
-							<EventRanking>3등</EventRanking>
-							<Likes>♥ 22</Likes>
-							<EventNickName>손흥민</EventNickName>
-						</EventRankingItem> */}
 					</EventRankingItems>
-				</EventRankingContainer>
+				</EventRankingContainer> */}
 
 				{/* <DesktopAds width="768px" style={{ marginTop: "2rem" }}>
 					<GoogleAdvertise

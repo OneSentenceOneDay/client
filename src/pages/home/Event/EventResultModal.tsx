@@ -26,7 +26,7 @@ function EventResultModal({ closeModal }: modalProps) {
 					<Text2 bold={true}>4일 이상 출석 주인공은?</Text2>
 					<Text2 bold={false}>축하합니다!👏👏👏</Text2>
 					<NameSection>
-						<Name>손흥민</Name>
+						<Name>Jo</Name>
 						<Nim>님</Nim>
 					</NameSection>
 				</Item>
@@ -34,7 +34,7 @@ function EventResultModal({ closeModal }: modalProps) {
 					<Text2 bold={true}>가장 많이 좋아요를 받은 학습자는?</Text2>
 					<Text2 bold={false}>축하합니다!👏👏👏</Text2>
 					<NameSection>
-						<Name>꿀꿀돼지</Name>
+						<Name>Jo</Name>
 						<Nim>님</Nim>
 					</NameSection>
 				</Item>

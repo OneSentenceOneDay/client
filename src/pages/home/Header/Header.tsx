@@ -114,9 +114,9 @@ function Header() {
 			<Wrap>
 				<img src={Logo} onClick={goHome} />
 				<Right>
-					<EventBut onClick={goEvent}>
+					{/* <EventBut onClick={goEvent}>
 						<GiftIcon>🎁</GiftIcon>EVENT
-					</EventBut>
+					</EventBut> */}
 					{localStorage.getItem("access_token") ? (
 						<>
 							<ProfileBut
