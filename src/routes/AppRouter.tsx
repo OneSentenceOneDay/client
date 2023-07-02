@@ -28,7 +28,7 @@ const AppRouter: React.FC = () => (
 				<Route path="password/reset/:uid/:token" element={<ResetPassword />} />
 				<Route path="/termsofuse" element={<TermsOfUse />} />
 				<Route path="/privacy" element={<Privacy />} />
-				<Route path="/event" element={<Event />} />
+				{/* <Route path="/event" element={<Event />} /> */}
 				<Route path="/login" element={<LoginPage />} />
 				<Route path="/signup" element={<SignupPage />} />
 				<Route path="/nickname" element={<SetNickname />} />
