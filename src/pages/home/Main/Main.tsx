@@ -782,7 +782,9 @@ function Main() {
 								<RankItem backgroundColor={colors[idx]}>
 									<Ranking>{idx + 1}등</Ranking>
 									<NickName>{user}</NickName>
-									<Character>{/* <img src={characters[idx]} /> */}</Character>
+									<Character>
+										<img src={characters[idx]} />
+									</Character>
 								</RankItem>
 							))}
 					</RankItems>
